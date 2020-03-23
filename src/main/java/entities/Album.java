@@ -117,6 +117,11 @@ public class Album {
         pictures.sort(Comparator.comparing(x -> x.getInterestingMetadata().getFileSize()));
     }
 
+    @Override
+    public String toString() {
+        return name + "  Inneholder : " + pictures.size() + " bilder";
+    }
+
     /**
      * sorts the images in the album based on file name
      */
