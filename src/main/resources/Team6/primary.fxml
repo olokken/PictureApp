@@ -8,17 +8,22 @@
 <?import javafx.scene.text.Text?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="645.0" prefWidth="526.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="566.0" prefWidth="529.0" fx:controller="Team6.PrimaryController" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Text fontSmoothingType="LCD" layoutX="205.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PicLd" wrappingWidth="115.884765625">
+      <Text layoutX="204.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PicLd" wrappingWidth="106.884765625">
          <font>
-            <Font name="Gabriola" size="48.0" />
+            <Font name="Georgia Italic" size="36.0" />
          </font>
       </Text>
-      <TextField layoutX="9.0" layoutY="62.0" prefHeight="25.0" prefWidth="500.0" promptText="Search" />
-      <VBox layoutX="14.0" layoutY="100.0" prefHeight="532.0" prefWidth="500.0">
+      <TextField layoutX="3.0" layoutY="63.0" prefHeight="25.0" prefWidth="523.0" promptText="Search" />
+      <Text layoutX="14.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dine Album" wrappingWidth="106.884765625">
+         <font>
+            <Font name="Georgia Italic" size="18.0" />
+         </font>
+      </Text>
+      <VBox layoutX="9.0" layoutY="117.0" prefHeight="440.0" prefWidth="514.0">
          <children>
-            <ListView fx:id="albumList" prefHeight="552.0" prefWidth="500.0" />
+            <ListView fx:id="albumList" prefHeight="443.0" prefWidth="514.0" />
          </children>
       </VBox>
    </children>
