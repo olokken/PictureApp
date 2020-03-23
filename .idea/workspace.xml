@@ -24,9 +24,6 @@
     <expand />
     <select />
   </component>
-  <component name="FavoritesManager">
-    <favorites_list name="PictureApp" />
-  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -146,6 +143,13 @@
       </MavenSettings>
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Application.App (1)" />
+      <item itemvalue="Application.Gauder" />
+      <item itemvalue="Application.Main" />
+      <item itemvalue="Application.testing" />
+      <item itemvalue="Maven.PictureApp [javafx:run]" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Maven.PictureApp [javafx:run]" />
