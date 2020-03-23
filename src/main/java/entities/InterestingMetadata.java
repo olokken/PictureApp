@@ -7,12 +7,17 @@ import com.drew.metadata.Metadata;
 import com.drew.metadata.Tag;
 import com.drew.metadata.exif.ExifSubIFDDirectory;
 import com.drew.metadata.exif.GpsDirectory;
-import forkastet.Metadata;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
 import java.util.Optional;
+
+/**
+ * Class InterestingMetadata that extracts the wanted metadata from a image.
+ * @version unclear 23.03.20
+ * @author Team 6
+ */
 
 public class InterestingMetadata {
     private String filepath;
@@ -25,30 +30,59 @@ public class InterestingMetadata {
     private double longitude;
     private double fileSize;
 
+    /**
+     * Gets the filepath for the image.
+      * @return String
+     */
+
     public String getFilepath() {
         return filepath;
     }
 
+    /**
+     * Gets the time the picture was taken.
+     * @return Date
+     */
     public Date getDateTime() {
         return dateTime;
     }
 
+    /**
+     * Gets ISO.
+     * @return int
+     */
     public int getISO() {
         return ISO;
     }
 
+    /**
+     * Get the exposure time.
+     * @return double
+     */
     public double getExposureTime() {
         return exposureTime;
     }
 
+    /**
+     * If the flash was used the method returns true.
+     * @return boolean
+     */
     public boolean isFlashUsed() {
         return isFlashUsed;
     }
 
+    /**
+     * Gets the shutterspeed.
+     * @return int
+     */
     public int getShutterSpeed() {
         return shutterSpeed;
     }
 
+    /**
+     * Gets the latitude of the image when it was taken.
+     * @return double
+     */
     public double getLatitude() {
         return latitude;
     }
