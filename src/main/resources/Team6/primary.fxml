@@ -16,7 +16,7 @@
          </font>
       </Text>
       <TextField layoutX="3.0" layoutY="63.0" prefHeight="25.0" prefWidth="523.0" promptText="Search" />
-      <Text layoutX="14.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dine Album" wrappingWidth="106.884765625">
+      <Text layoutX="14.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Albums" wrappingWidth="106.884765625">
          <font>
             <Font name="Georgia Italic" size="18.0" />
          </font>
