@@ -115,7 +115,7 @@ public class InterestingMetadata {
     /**
      * Constructor that takes in the filepath of a image and gives values to
      * the attributes that exists in the image.
-     * @param filepath A String that has the images filepath.
+     * @param filepath A String that has the image filepath.
      */
     public InterestingMetadata(String filepath){
         this.filepath = filepath;
