@@ -1,45 +1,84 @@
-# Created by .ignore support plugin (hsz.mobi)
-### Java template
-# Compiled class file
-*.class
-
-*.properties
-
-# Log file
-*.log
-
-# BlueJ files
-*.ctxt
-
-# Mobile Tools for Java (J2ME)
+##############################
+## Java
+##############################
 .mtj.tmp/
-
-# Package Files #
+*.class
 *.jar
 *.war
-*.nar
 *.ear
-*.zip
-*.tar.gz
-*.rar
+*.nar
+hs_err_pid*
 
-# User-specific stuff
-**/.idea/libraries/
-**/.idea/workspace.xml
-**/.idea/tasks.xml
-**/.idea/checkstyle-idea.xml
-**/.idea/sonarlint
-**/.idea/dataSources.local.xml
-**/.idea/dataSources.xml
-**/.idea/dataSources/
-*.iml
+##############################
+## Maven
+##############################
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+pom.xml.bak
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
 
-# File-based project format
-*.iws
+##############################
+## Gradle
+##############################
+bin/
+build/
+.gradle
+.gradletasknamecache
+gradle-app.setting
+!gradle-wrapper.jar
 
-# IntelliJ
+##############################
+## IntelliJ
+##############################
 out/
 target/
-
-# mpeltonen/sbt-idea plugin
+.idea/
 .idea_modules/
+*.iml
+*.ipr
+*.iws
+
+##############################
+## Eclipse
+##############################
+.settings/
+bin/
+tmp/
+.metadata
+.classpath
+.project
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.loadpath
+.factorypath
+
+##############################
+## NetBeans
+##############################
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+nbactions.xml
+nb-configuration.xml
+
+##############################
+## Visual Studio Code
+##############################
+.vscode/
+
+##############################
+## OS X
+##############################
+.DS_Store
