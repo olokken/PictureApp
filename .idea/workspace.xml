@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f9a3118e-4c0c-4403-84be-afa426413025" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/entities/Album.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/entities/Album.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/entities/PictureInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/entities/PictureInfo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/entities/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/entities/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/albumtest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/albumtest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/testAlbum.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/testAlbum.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/testing.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/testing.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/InterestingMetadata.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/InterestingMetadata.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
