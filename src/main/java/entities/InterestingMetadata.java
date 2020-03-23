@@ -148,7 +148,9 @@ public class InterestingMetadata {
                     this.isFlashUsed = false;
                 }
             }
-        } catch (ImageProcessingException | IOException e) {
+        } catch (ImageProcessingException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
