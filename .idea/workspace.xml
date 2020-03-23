@@ -3,6 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="f9a3118e-4c0c-4403-84be-afa426413025" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/entities/Album.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/entities/Album.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/entities/PictureInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/entities/PictureInfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/entities/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/entities/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/albumtest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/albumtest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/testAlbum.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/testAlbum.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/testing.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/testing.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,6 +65,8 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../Systemutvikling/PicLd" />
     <property name="project.structure.last.edited" value="Global Libraries" />
     <property name="project.structure.proportion" value="0.15039062" />
@@ -69,18 +77,6 @@
       <recent name="C:\Dev\PictureApp\src\test\java" />
       <recent name="C:\Dev\PictureApp\src\main\java" />
     </key>
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
   </component>
   <component name="RunManager" selected="Maven.PictureApp [javafx:run]">
     <configuration name="App (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -176,11 +172,12 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="98fa6b83-6146-4c19-8c19-10d74d46851b" name="Default Changelist" comment="" />
+      <changelist id="f9a3118e-4c0c-4403-84be-afa426413025" name="Default Changelist" comment="" />
       <created>1584951548620</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1584951548620</updated>
+      <workItem from="1584968685024" duration="534000" />
     </task>
     <task id="LOCAL−00001" summary="Creating Listview in primarycontroller">
       <created>1584955900721</created>
@@ -236,12 +233,17 @@
     <option name="localTasksCounter" value="9" />
     <servers />
   </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
@@ -282,25 +284,25 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1584956510034" />
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1584968025623">
+    <state width="746" height="210" key="GridCell.Tab.0.bottom" timestamp="1584969008995">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1584968025623" />
+    <state width="746" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1584969008995" />
     <state width="1877" height="424" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1584962870209" />
-    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1584968025623">
+    <state width="746" height="210" key="GridCell.Tab.0.center" timestamp="1584969008994">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1584968025623" />
+    <state width="746" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1584969008994" />
     <state width="1877" height="424" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1584962870208" />
-    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1584968025622">
+    <state width="746" height="210" key="GridCell.Tab.0.left" timestamp="1584969008994">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1584968025622" />
+    <state width="746" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1584969008994" />
     <state width="1877" height="424" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1584962870208" />
-    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1584968025623">
+    <state width="746" height="210" key="GridCell.Tab.0.right" timestamp="1584969008995">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1584968025623" />
+    <state width="746" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1584969008995" />
     <state width="1877" height="424" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1584962870208" />
     <state width="571" height="912" key="GridCell.Tab.1.bottom" timestamp="1584952715950">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -339,10 +341,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="664" y="413" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1584958122075" />
-    <state x="615" y="346" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1584968142823">
+    <state x="615" y="346" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1584969137378">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="615" y="346" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1584968142823" />
+    <state x="615" y="346" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1584969137378" />
     <state x="769" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1584960651089" />
     <state x="438" y="239" key="git4idea.ui.GitUnstashDialog" timestamp="1584968157336">
       <screen x="0" y="0" width="1536" height="824" />
