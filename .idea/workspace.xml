@@ -2,28 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="98fa6b83-6146-4c19-8c19-10d74d46851b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/InterestingMetadata.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/InterestingMetadata.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/PictureApp.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Team6/App.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Team6/PrimaryController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Team6/SecondaryController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Team6/primary.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Team6/primary.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/entities/Album.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/entities/AlbumRegister.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/entities/InterestingMetadata.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/entities/PictureInfo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/entities/User.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/forkastet/Gauder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/forkastet/Metadata.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/forkastet/forkastet.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/services/AlbumService$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/services/AlbumService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/albumtest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/testAlbum.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/testing.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,23 +29,26 @@
     </option>
   </component>
   <component name="ProjectId" id="1ZWOnJsfSVOHQfD92x4jXstUC3f" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="Repository.Attach.Annotations" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/openjfx-11.0.2_windows-x64_bin-sdk/javafx-sdk-11.0.2/lib" />
-    <property name="project.structure.last.edited" value="Global Libraries" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Systemutvikling/PicLd" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15039062" />
-    <property name="project.structure.side.proportion" value="0.273878" />
+    <property name="project.structure.side.proportion" value="0.32451093" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -74,13 +56,13 @@
       <recent name="C:\Dev\PictureApp\src\main\java" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.App">
-    <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="GUI.App" />
+  <component name="RunManager" selected="Application.App (1)">
+    <configuration name="App (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Team6.App" />
       <module name="PictureApp" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="GUI.*" />
+          <option name="PATTERN" value="Team6.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -89,12 +71,11 @@
       </method>
     </configuration>
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Team6.App" />
+      <option name="MAIN_CLASS_NAME" value="GUI.App" />
       <module name="PictureApp" />
-      <option name="VM_PARAMETERS" value="--module-path &quot;C:\Users\sstn\Downloads\openjfx-11.0.2_windows-x64_bin-sdk\javafx-sdk-11.0.2/lib&quot; --add-modules javafx.controls,javafx.fxml" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="Team6.*" />
+          <option name="PATTERN" value="GUI.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -137,25 +118,13 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.App" />
+        <item itemvalue="Application.App (1)" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.testing" />
         <item itemvalue="Application.Gauder" />
         <item itemvalue="Application.App" />
       </list>
     </recent_temporary>
-  </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
-      <list>
-        <serviceView>
-          <treeState>
-            <expand />
-            <select />
-          </treeState>
-        </serviceView>
-      </list>
-    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -167,69 +136,56 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1584951548620</updated>
-      <workItem from="1584955865170" duration="1106000" />
     </task>
-    <task id="LOCAL−00001" summary="Checked outshit">
-      <created>1584955969270</created>
+    <task id="LOCAL−00001" summary="Creating Listview in primarycontroller">
+      <created>1584955900721</created>
       <option name="number" value="LOCAL−00001" />
       <option name="presentableId" value="LOCAL−00001" />
-      <updated>1584955969270</updated>
+      <updated>1584955900721</updated>
     </task>
-    <task id="LOCAL−00002" summary="Checked in">
-      <created>1584956054224</created>
+    <task id="LOCAL−00002" summary="Creating Listview in primarycontroller">
+      <created>1584956867886</created>
       <option name="number" value="LOCAL−00002" />
       <option name="presentableId" value="LOCAL−00002" />
-      <updated>1584956054224</updated>
+      <updated>1584956867886</updated>
     </task>
     <option name="localTasksCounter" value="3" />
     <servers />
   </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
-  </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Checked outshit" />
-    <MESSAGE value="Checked in" />
-    <option name="LAST_COMMIT_MESSAGE" value="Checked in" />
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Creating Listview in primarycontroller" />
+    <option name="LAST_COMMIT_MESSAGE" value="Creating Listview in primarycontroller" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="178" key="#Project_Structure" timestamp="1584951875133">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="178" key="#Project_Structure/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1584951875133" />
-    <state x="1920" y="-258" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1584956568141">
-      <screen x="1920" y="-854" width="1080" height="1880" />
-    </state>
-    <state x="1920" y="-258" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/1920.-854.1080.1880@1920.-854.1080.1880" timestamp="1584956568141" />
-    <state x="2308" y="-24" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1584956578796">
-      <screen x="1920" y="-854" width="1080" height="1880" />
-    </state>
-    <state x="2308" y="-24" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1920.1040/1920.-854.1080.1880@1920.-854.1080.1880" timestamp="1584956578796" />
-    <state x="2055" y="-319" key="CommitChangelistDialog2" timestamp="1584956053443">
-      <screen x="1920" y="-854" width="1080" height="1880" />
-    </state>
-    <state x="2055" y="-319" key="CommitChangelistDialog2/0.0.1920.1040/1920.-854.1080.1880@1920.-854.1080.1880" timestamp="1584956053443" />
-    <state x="2336" y="-357" key="FileChooserDialogImpl" timestamp="1584956729288">
-      <screen x="1920" y="-854" width="1080" height="1880" />
-    </state>
-    <state x="2336" y="-357" key="FileChooserDialogImpl/0.0.1920.1040/1920.-854.1080.1880@1920.-854.1080.1880" timestamp="1584956729288" />
-    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1584952329009" />
-    <state width="1877" height="424" key="GridCell.Tab.0.bottom" timestamp="1584955116429">
+    <state x="614" y="114" key="CommitChangelistDialog2" timestamp="1584956866701">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="424" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1584955116429" />
-    <state width="1877" height="424" key="GridCell.Tab.0.center" timestamp="1584955116429">
+    <state x="614" y="114" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1584956866701" />
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1584956510034">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="424" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1584955116429" />
-    <state width="1877" height="424" key="GridCell.Tab.0.left" timestamp="1584955116429">
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1584956510034" />
+    <state width="1877" height="424" key="GridCell.Tab.0.bottom" timestamp="1584957159728">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="424" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1584955116429" />
-    <state width="1877" height="424" key="GridCell.Tab.0.right" timestamp="1584955116429">
+    <state width="1877" height="424" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1584957159728" />
+    <state width="1877" height="424" key="GridCell.Tab.0.center" timestamp="1584957159728">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="424" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1584955116429" />
+    <state width="1877" height="424" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1584957159728" />
+    <state width="1877" height="424" key="GridCell.Tab.0.left" timestamp="1584957159728">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="424" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1584957159728" />
+    <state width="1877" height="424" key="GridCell.Tab.0.right" timestamp="1584957159728">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="424" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1584957159728" />
     <state width="571" height="912" key="GridCell.Tab.1.bottom" timestamp="1584952715950">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -246,23 +202,21 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="571" height="912" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1584952715950" />
-    <state x="1960" y="-684" key="SettingsEditor" timestamp="1584956971315">
-      <screen x="1920" y="-854" width="1080" height="1880" />
+    <state x="440" y="94" key="SettingsEditor" timestamp="1584957193893">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="1960" y="-684" key="SettingsEditor/0.0.1920.1040/1920.-854.1080.1880@1920.-854.1080.1880" timestamp="1584956971315" />
-    <state x="440" y="94" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1584955850022" />
-    <state x="2052" y="-180" key="Vcs.Push.Dialog.v2" timestamp="1584956057879">
-      <screen x="1920" y="-854" width="1080" height="1880" />
+    <state x="440" y="94" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1584957193893" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1584956869677">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="2052" y="-180" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.-854.1080.1880@1920.-854.1080.1880" timestamp="1584956057879" />
-    <state x="2184" y="-365" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1584956964205">
-      <screen x="1920" y="-854" width="1080" height="1880" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1584956869677" />
+    <state x="664" y="413" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1584956976844">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="2184" y="-365" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1920.1040/1920.-854.1080.1880@1920.-854.1080.1880" timestamp="1584956964205" />
-    <state x="2353" y="-64" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1584957090685">
-      <screen x="1920" y="-854" width="1080" height="1880" />
+    <state x="664" y="413" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1584956976844" />
+    <state x="769" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1584957121940">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="2353" y="-64" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/1920.-854.1080.1880@1920.-854.1080.1880" timestamp="1584957090685" />
-    <state x="769" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1584952216426" />
+    <state x="769" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1584957121940" />
   </component>
 </project>
