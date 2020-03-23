@@ -1,11 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="98fa6b83-6146-4c19-8c19-10d74d46851b" name="Default Changelist" comment="" />
+    <list default="true" id="98fa6b83-6146-4c19-8c19-10d74d46851b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GUI/Controller.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GUI/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GUI/sample.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Team6/PrimaryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Team6/PrimaryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Team6/primary.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Team6/primary.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/GUI/Controller.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/GUI/Main.class" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="FxmlFile" />
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -19,6 +37,7 @@
     </option>
   </component>
   <component name="ProjectId" id="1ZWOnJsfSVOHQfD92x4jXstUC3f" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -26,9 +45,8 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/test/java" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Systemutvikling/PicLd" />
     <property name="project.structure.last.edited" value="Global Libraries" />
     <property name="project.structure.proportion" value="0.15039062" />
     <property name="project.structure.side.proportion" value="0.273878" />
@@ -39,7 +57,7 @@
       <recent name="C:\Dev\PictureApp\src\main\java" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Gauder">
+  <component name="RunManager" selected="Application.App (1)">
     <configuration name="App (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Team6.App" />
       <module name="PictureApp" />
@@ -79,10 +97,32 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="GUI.Main" />
+      <module name="PictureApp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="GUI.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="testing" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="testing" />
+      <module name="PictureApp" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Gauder" />
         <item itemvalue="Application.App (1)" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.testing" />
+        <item itemvalue="Application.Gauder" />
         <item itemvalue="Application.App" />
       </list>
     </recent_temporary>
@@ -105,33 +145,49 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="178" key="#Project_Structure/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1584951875133" />
-    <state width="1877" height="424" key="GridCell.Tab.0.bottom" timestamp="1584951959365">
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1584952329009">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="424" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1584951959365" />
-    <state width="1877" height="424" key="GridCell.Tab.0.center" timestamp="1584951959365">
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1584952329009" />
+    <state width="1877" height="424" key="GridCell.Tab.0.bottom" timestamp="1584955116429">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="424" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1584951959365" />
-    <state width="1877" height="424" key="GridCell.Tab.0.left" timestamp="1584951959365">
+    <state width="1877" height="424" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1584955116429" />
+    <state width="1877" height="424" key="GridCell.Tab.0.center" timestamp="1584955116429">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="424" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1584951959365" />
-    <state width="1877" height="424" key="GridCell.Tab.0.right" timestamp="1584951959365">
+    <state width="1877" height="424" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1584955116429" />
+    <state width="1877" height="424" key="GridCell.Tab.0.left" timestamp="1584955116429">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="424" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1584951959365" />
-    <state x="440" y="94" key="SettingsEditor" timestamp="1584951932691">
+    <state width="1877" height="424" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1584955116429" />
+    <state width="1877" height="424" key="GridCell.Tab.0.right" timestamp="1584955116429">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="440" y="94" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1584951932691" />
-    <state x="2211" y="-197" key="VCS.ChangeListViewerDialog" timestamp="1584955953098">
-      <screen x="1920" y="-854" width="1080" height="1880" />
+    <state width="1877" height="424" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1584955116429" />
+    <state width="571" height="912" key="GridCell.Tab.1.bottom" timestamp="1584952715950">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="2211" y="-197" key="VCS.ChangeListViewerDialog/0.0.1920.1040/1920.-854.1080.1880@1920.-854.1080.1880" timestamp="1584955953098" />
-    <state x="2269" y="4" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1584955940873">
-      <screen x="1920" y="-854" width="1080" height="1880" />
+    <state width="571" height="912" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1584952715950" />
+    <state width="571" height="912" key="GridCell.Tab.1.center" timestamp="1584952715950">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="2269" y="4" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/1920.-854.1080.1880@1920.-854.1080.1880" timestamp="1584955940873" />
+    <state width="571" height="912" key="GridCell.Tab.1.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1584952715950" />
+    <state width="571" height="912" key="GridCell.Tab.1.left" timestamp="1584952715950">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="571" height="912" key="GridCell.Tab.1.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1584952715950" />
+    <state width="571" height="912" key="GridCell.Tab.1.right" timestamp="1584952715950">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="571" height="912" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1584952715950" />
+    <state x="440" y="94" key="SettingsEditor" timestamp="1584955850022">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="440" y="94" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1584955850022" />
+    <state x="769" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1584952216426">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="769" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1584952216426" />
   </component>
 </project>
