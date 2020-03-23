@@ -29,6 +29,7 @@ public class InterestingMetadata {
     private double latitude;
     private double longitude;
     private double fileSize;
+    private String fileName;
 
     /**
      * Gets the filepath for the image.
@@ -87,20 +88,35 @@ public class InterestingMetadata {
         return latitude;
     }
 
+    /**
+     * Gets the longitude of the image when it was taken.
+     * @return double
+     */
     public double getLongitude() {
         return longitude;
     }
 
+    /**
+     * Gets file size
+     * @return double
+     */
     public double getFileSize() {
         return fileSize;
     }
 
+    /**
+     * Gets filename
+     * @return String
+     */
     public String getFileName() {
         return fileName;
     }
 
-    private String fileName;
-
+    /**
+     * Constructor that takes in the filepath of a image and gives values to
+     * the attributes that exists in the image.
+     * @param filepath A String that has the images filepath.
+     */
     public InterestingMetadata(String filepath){
         this.filepath = filepath;
         File file =  new File(filepath);
