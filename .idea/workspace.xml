@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f9a3118e-4c0c-4403-84be-afa426413025" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/InterestingMetadata.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/InterestingMetadata.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -171,7 +171,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1584951548620</updated>
-      <workItem from="1584968685024" duration="534000" />
+      <workItem from="1584968685024" duration="1328000" />
     </task>
     <task id="LOCAL−00001" summary="Creating Listview in primarycontroller">
       <created>1584955900721</created>
