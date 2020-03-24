@@ -155,7 +155,7 @@ public class Album {
 
     @Override
     public String toString() {
-        return name + "  Inneholder : " + pictures.size() + " bilder";
+        return name;
     }
 
     /**
@@ -170,5 +170,9 @@ public class Album {
      */
     public void sortFlashUsed() {
         pictures.sort(Comparator.comparing(x -> x.isFlashUsed()));
+    }
+
+    public void sortShutterSpeed() {
+        pictures.sort(Comparator.comparing(x -> x.getShutterSpeed()));
     }
 }

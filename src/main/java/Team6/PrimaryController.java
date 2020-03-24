@@ -73,9 +73,15 @@ public class PrimaryController implements Initializable  {
         }
     }
 
+    public void openAlbum() throws IOException {
+        if (albumView.getSelectionModel().getSelectedIndex() > -1) {
+            Context.getInstance().currentAlbum().setId(albumView.getSelectionModel().getSelectedItem().getId());
+            Context.getInstance().currentAlbum().setName(albumView.getSelectionModel().getSelectedItem().getName());
+            App.setRoot("secondary");
+        }
+    }
 
-
-    public void openAlbum() {
+    /**public void openAlbum() {
         if (albumView.getSelectionModel().getSelectedIndex() > -1) {
             PictureService pictureService = new PictureService();
             Album a =  albumView.getSelectionModel().getSelectedItem();
@@ -90,5 +96,5 @@ public class PrimaryController implements Initializable  {
             stage.setScene(s);
             stage.show();
         }
-    }
+    } */
 }
