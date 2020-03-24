@@ -1,11 +1,7 @@
 Team6\App.class
-entities\InterestingMetadata.class
 entities\Album.class
 Team6\PrimaryController.class
-entities\PictureInfo.class
-services\AlbumService$1.class
 services\AlbumService.class
-entities\AlbumRegister.class
 forkastet\forkastet.class
 entities\User.class
 forkastet\Metadata.class

@@ -10,16 +10,40 @@ import java.util.List;
 import java.util.Optional;
 
 public class Album {
+    private int id;
     private String name;
-    private List<PictureInfo> pictures;
+    private List<Picture> pictures;
 
     /**
      * Constructor for an album object
      * @param name
      */
-    public Album(String name) {
+    public Album(int id, String name) {
+        this.id = id;
         this.name = name;
-        this.pictures = new ArrayList<PictureInfo>();
+        this.pictures = new ArrayList<Picture>();
+    }
+
+    public Album(String name) {
+        this.id = 0;
+        this.name = name;
+        this.pictures = new ArrayList<Picture>();
+    }
+
+    public Album() {}
+
+    public Album(Album a) {
+        this.id = a.getId();
+        this.name = a.getName();
+        this.pictures = a.getPictures();
+    }
+
+    public void setPictures(ArrayList<Picture> pictures) {
+        this.pictures = pictures;
+    }
+
+    public int getId() {
+        return id;
     }
 
     /**
@@ -34,7 +58,7 @@ public class Album {
      * method to get picures in the album
      * @return returns a list of the pictures in the album
      */
-    public List<PictureInfo> getPictures() {
+    public List<Picture> getPictures() {
         return pictures;
     }
 
@@ -44,7 +68,7 @@ public class Album {
      * @return true if registered, false if not
      */
     private boolean isRegistered(String filePath) {
-        Optional<PictureInfo> o = pictures.stream().filter(x -> x.getInterestingMetadata().getFilepath().equals(filePath)).findFirst();
+        Optional<Picture> o = pictures.stream().filter(x -> x.getFilepath().equals(filePath)).findFirst();
         if(o.isPresent()) {
             return true;
         }
@@ -59,7 +83,7 @@ public class Album {
         if(isRegistered(filePath)) {
             throw new IllegalArgumentException("Bildet er allerede registert");
         }
-        PictureInfo p = new PictureInfo(filePath);
+        Picture p = new Picture(filePath);
         this.pictures.add(p);
     }
 
@@ -68,7 +92,7 @@ public class Album {
      * @param filePath filepath of the image to be removed
      */
     public void removePicture(String filePath) {
-        Optional<PictureInfo> o = pictures.stream().filter(x -> x.getInterestingMetadata().getFilepath().equals(filePath)).findFirst();
+        Optional<Picture> o = pictures.stream().filter(x -> x.getFilepath().equals(filePath)).findFirst();
         if (o.isPresent()) {
             pictures.remove(o);
         }
@@ -78,7 +102,7 @@ public class Album {
      * method to remove a picture
      * @param p picture to be removed
      */
-    public void removePicture(PictureInfo p) {
+    public void removePicture(Picture p) {
         pictures.remove(p);
     }
 
@@ -86,35 +110,47 @@ public class Album {
      * sorts the images in the album based on the ISO data
      */
     public void sortIso() {
-        pictures.sort(Comparator.comparing(x -> x.getInterestingMetadata().getISO()));
+        pictures.sort(Comparator.comparing(x -> x.getISO()));
     }
 
     /**
      * sorts the images in the album based on the ISO data in the opposite order
      */
     public void sortIsoReversed() {
-        pictures.sort(Comparator.comparing(x -> x.getInterestingMetadata().getISO()));
+        pictures.sort(Comparator.comparing(x -> x.getISO()));
     }
 
     /**
      * sorts the images in the album based on the date the photo was taken
      */
     public void sortDate() {
-        pictures.sort(Comparator.comparing(x -> x.getInterestingMetadata().getDateTime()));
+        pictures.sort(Comparator.comparing(x -> x.getDateTime()));
     }
 
     /**
      * sorts the images in the album based on the exposure time
      */
     public void sortExposureTime() {
-        pictures.sort(Comparator.comparing(x -> x.getInterestingMetadata().getExposureTime()));
+        pictures.sort(Comparator.comparing(x -> x.getExposureTime()));
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPictures(List<Picture> pictures) {
+        this.pictures = pictures;
     }
 
     /**
      * sorts the images in the album based on the file size
      */
     public void sortFileSize() {
-        pictures.sort(Comparator.comparing(x -> x.getInterestingMetadata().getFileSize()));
+        pictures.sort(Comparator.comparing(x -> x.getFileSize()));
     }
 
     @Override
@@ -126,13 +162,13 @@ public class Album {
      * sorts the images in the album based on file name
      */
     public void sortFileName() {
-        pictures.sort(Comparator.comparing(x -> x.getInterestingMetadata().getFileName()));
+        pictures.sort(Comparator.comparing(x -> x.getFileName()));
     }
 
     /**
      * sorts the images in the album based on whether flash was used
      */
     public void sortFlashUsed() {
-        pictures.sort(Comparator.comparing(x -> x.getInterestingMetadata().isFlashUsed()));
+        pictures.sort(Comparator.comparing(x -> x.isFlashUsed()));
     }
 }

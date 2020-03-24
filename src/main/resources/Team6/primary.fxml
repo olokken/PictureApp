@@ -23,10 +23,11 @@
       </Text>
       <VBox layoutX="9.0" layoutY="126.0" prefHeight="431.0" prefWidth="514.0">
          <children>
-            <ListView fx:id="albumList" prefHeight="455.0" prefWidth="514.0" />
+            <ListView fx:id="albumView" prefHeight="455.0" prefWidth="514.0" />
          </children>
       </VBox>
-      <Button layoutX="481.0" layoutY="93.0" mnemonicParsing="false" onAction="#switchToSecondary" text="--&gt;" />
-      <Button layoutX="440.0" layoutY="93.0" mnemonicParsing="false" onAction="#createAlbum" text="+" />
+      <Button layoutX="481.0" layoutY="93.0" mnemonicParsing="false" onAction="#openAlbum" text="--&gt;" />
+      <Button layoutX="448.0" layoutY="93.0" mnemonicParsing="false" onAction="#createAlbum" text="+" />
+      <Button layoutX="412.0" layoutY="93.0" mnemonicParsing="false" onAction="#deleteAlbum" prefHeight="25.0" prefWidth="25.0" text="-" />
    </children>
 </AnchorPane>
