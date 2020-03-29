@@ -31,6 +31,9 @@ public class Picture {
     private String fileName;
     private List<String> tags;
 
+    public void setTags(List<String> tags) {
+        this.tags = tags;
+    }
 
     public Picture(int id, String fileName, String filepath, double fileSize, Date dateTime, int ISO, int shutterSpeed, double exposureTime, boolean isFlashUsed, double latitude, double longitude) {
         this.id = id;

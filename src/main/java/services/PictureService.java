@@ -12,7 +12,8 @@ public class PictureService {
     public PictureService() { }
 
     public ArrayList<Picture> getAllPictures(int albumId) {
-        String query = "SELECT * From picture as p INNER JOIN albumpicture as ap WHERE ap.albumId = ?";
+        String query = "SELECT *  From picture as p INNER JOIN albumpicture as ap WHERE p.id = ap.pictureId and ap.albumId = ?";
+        String tagQuery = "SELECT * From picturetag where pictureId = ?";
         ArrayList<Picture> pictures = new ArrayList<>();
 
         Connection conn = Database.ConnectDB();
@@ -23,11 +24,14 @@ public class PictureService {
             pst.setInt(1,albumId);
             result = pst.executeQuery();
 
-            while(result.next())
-                pictures.add(new Picture(result.getInt("id"), result.getString("fileName"), result.getString("filePath"),
+            while(result.next()) {
+                Picture pic = new Picture(result.getInt("id"), result.getString("fileName"), result.getString("filePath"),
                         result.getDouble("fileSize"), result.getDate("dateTaken"), result.getInt("iso"), result.getInt("shutterSpeed"), result.getDouble("exposureTime"),
-                        result.getBoolean("isFlashUsed"), result.getDouble("latitude"), result.getDouble("longitude")));
-            return pictures;
+                        result.getBoolean("isFlashUsed"), result.getDouble("latitude"), result.getDouble("longitude"));
+                pic.setTags(getTags(pic));
+                pictures.add(pic);
+            }
+                return pictures;
         } catch(SQLException se) {
             System.out.println(se);
             return null;
@@ -94,6 +98,51 @@ public class PictureService {
             return false;
         } finally {
             Database.closeConnection(conn, pst);
+        }
+    }
+
+    public boolean addTags (Picture p, String tag) {
+        String insertPictureTag = "INSERT INTO picturetag VALUES (default, ?, ?)";
+
+        Connection conn = Database.ConnectDB();
+        PreparedStatement pst = null;
+        ResultSet result = null;
+        try {
+            pst = conn.prepareStatement(insertPictureTag,Statement.RETURN_GENERATED_KEYS);
+            pst.setInt(1, p.getId());
+            pst.setString(2, tag);
+            pst.executeUpdate();
+            return true;
+        } catch(SQLException se) {
+            System.out.println(se);
+            return false;
+        } finally {
+            Database.closeConnection(conn, pst, result);
+        }
+    }
+
+
+    public ArrayList<String> getTags(Picture picture) {
+        String query = "Select * From picturetag where pictureId = ?";
+        ArrayList<String> tags = new ArrayList<>();
+
+        Connection conn = Database.ConnectDB();
+        PreparedStatement pst = null;
+        ResultSet result = null;
+        try {
+            pst = conn.prepareStatement(query);
+            pst.setInt(1, picture.getId());
+            result = pst.executeQuery();
+
+            while(result.next()) {
+                tags.add(result.getString("tagName"));
+            }
+            return tags;
+        } catch(SQLException se) {
+            System.out.println(se);
+            return null;
+        } finally {
+            Database.closeConnection(conn, pst, result);
         }
     }
 
