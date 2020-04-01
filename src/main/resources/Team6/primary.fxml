@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="566.0" prefWidth="529.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Team6.PrimaryController">
+<AnchorPane prefHeight="537.0" prefWidth="643.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Team6.PrimaryController">
    <children>
       <Text layoutX="204.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PicLd" wrappingWidth="106.884765625">
          <font>
@@ -21,9 +21,9 @@
             <Font name="Georgia Italic" size="18.0" />
          </font>
       </Text>
-      <VBox layoutX="9.0" layoutY="126.0" prefHeight="431.0" prefWidth="514.0">
+      <VBox layoutX="14.0" layoutY="132.0" prefHeight="394.0" prefWidth="622.0">
          <children>
-            <ListView fx:id="albumView" prefHeight="455.0" prefWidth="514.0" />
+            <ListView fx:id="albumView" prefHeight="386.0" prefWidth="549.0" />
          </children>
       </VBox>
       <Button layoutX="481.0" layoutY="93.0" mnemonicParsing="false" onAction="#openAlbum" text="--&gt;" />

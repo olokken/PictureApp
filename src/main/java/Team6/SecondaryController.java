@@ -8,6 +8,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 import entities.Album;
 import entities.Picture;
@@ -16,7 +17,9 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.control.ListView;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -24,12 +27,14 @@ import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import services.PictureService;
 
 
 
 public class SecondaryController implements Initializable {
+
     PictureService pictureService = new PictureService();
     Album album = new Album();
     @FXML
@@ -37,10 +42,11 @@ public class SecondaryController implements Initializable {
     @FXML
     AnchorPane anchorPane;
     @FXML
+    ScrollPane scrollPane;
+    @FXML
     TilePane tilePane;
-    private int nRows = 3;
-    private int nCols = 3;
-    private static final double ELEMENT_SIZE = 100;
+
+    private static final double ELEMENT_SIZE = 150;
     private static final double GAP = ELEMENT_SIZE/10;
 
 
@@ -54,12 +60,16 @@ public class SecondaryController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         album.setName(Context.getInstance().currentAlbum().getName());
         album.setId(Context.getInstance().currentAlbum().getId());
+        fillList();
+        int nRows = album.getPictures().size()/3;
+        int nCols = 3;
+        scrollPane.setPadding(new Insets(5,5,5,5));
         albumName.setText(album.getName());
         tilePane.setPrefColumns(nCols);
         tilePane.setPrefRows(nRows);
         tilePane.setHgap(GAP);
         tilePane.setVgap(GAP);
-        fillList();
+        createElements();
     }
 
     @FXML
@@ -67,39 +77,29 @@ public class SecondaryController implements Initializable {
         App.setRoot("primary");
     }
 
-    private void createElements() throws FileNotFoundException {
+
+    private void createElements() {
         tilePane.getChildren().clear();
-        int count = 0;
-        for (int i = 0; i < nCols; i++) {
-            for (int j = 0; j < nRows; j++) {
-                if(count<album.getPictures().size()) {
-                    tilePane.getChildren().add(createPage(count));
-                    count++;
-                }
+        List<VBox> pics = album.getPictures().stream().map(x -> {
+            Image image = null;
+            try {
+                image = new Image(new FileInputStream(x.getFilepath()));
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
             }
-        }
+            ImageView imageView = new ImageView(image);
+            imageView.setFitHeight(ELEMENT_SIZE);
+            imageView.setFitWidth(ELEMENT_SIZE);
+            imageView.setSmooth(true);
+            imageView.setCache(true);
+            VBox pageBox = new VBox();
+            pageBox.getChildren().add(imageView);
+            return pageBox;
+        }).collect(Collectors.toList());
+        tilePane.getChildren().addAll(pics);
     }
 
-    public VBox createPage(int index) throws FileNotFoundException {
-        VBox pageBox = new VBox();
-        ImageView view = new ImageView();
-        view.setImage(viewAblePictures().get(index));
-        view.setFitHeight(ELEMENT_SIZE);
-        view.setFitWidth(ELEMENT_SIZE);
-        view.setSmooth(true);
-        view.setCache(true);
-        pageBox.getChildren().add(view);
-        return  pageBox;
-    }
 
-    public ArrayList<Image> viewAblePictures() throws FileNotFoundException {
-        ArrayList<Image> images = new ArrayList<>();
-        for (Picture p : album.getPictures()) {
-            Image i = new Image(new FileInputStream(p.getFilepath()));
-            images.add(i);
-        }
-        return images;
-    }
     
     public void sortIso(ActionEvent actionEvent) throws FileNotFoundException {
         album.sortIso();
@@ -134,9 +134,13 @@ public class SecondaryController implements Initializable {
     public void deletePicture(ActionEvent actionEvent) {
     }
 
-    public void addPicture(ActionEvent actionEvent) {
-        final DirectoryChooser dir = new DirectoryChooser();
-        File file = dir.showDialog(anchorPane.getScene().getWindow());
-        file.getPath();
+    public void addPicture(ActionEvent actionEvent)  {
+        final FileChooser dir = new FileChooser();
+        File file = dir.showOpenDialog(anchorPane.getScene().getWindow());
+        if (file.exists()) {
+            Picture p = new Picture(file.getPath());
+            album.getPictures().add(p);
+            pictureService.createPicture(p, album.getId());
+        }
     }
 }

@@ -75,14 +75,14 @@ public class Picture {
                 this.exposureTime = subIfd.getDoubleObject(ExifSubIFDDirectory.TAG_EXPOSURE_TIME);
                 this.dateTime = subIfd.getDate(ExifSubIFDDirectory.TAG_DATETIME_ORIGINAL);
                 this.shutterSpeed = subIfd.getInteger(ExifSubIFDDirectory.TAG_SHUTTER_SPEED);
-            }
-            Optional<Tag> flash = subIfd.getTags().stream().filter(x -> x.getTagName().equals("Flash")).findFirst();
-            if(flash.isPresent()) {
-                if(flash.get().getDescription().equals("Flash fired")) {
-                    this.isFlashUsed = true;
-                }
-                else {
-                    this.isFlashUsed = false;
+                Optional<Tag> flash = subIfd.getTags().stream().filter(x -> x.getTagName().equals("Flash")).findFirst();
+                if(flash.isPresent()) {
+                    if(flash.get().getDescription().equals("Flash fired")) {
+                        this.isFlashUsed = true;
+                    }
+                    else {
+                        this.isFlashUsed = false;
+                    }
                 }
             }
         } catch (ImageProcessingException e) {

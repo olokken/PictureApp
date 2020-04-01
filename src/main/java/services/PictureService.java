@@ -53,8 +53,12 @@ public class PictureService {
             pst.setString(2, picture.getFilepath());
             pst.setDouble(3, picture.getFileSize());
             Date d = picture.getDateTime();
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            String currentTime = sdf.format(d);
+            SimpleDateFormat sdf;
+            String currentTime = null;
+            if (d!= null) {
+                sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                currentTime = sdf.format(d);
+            }
             pst.setString(4, currentTime);
             pst.setInt(5, picture.getISO());
             pst.setInt(6, picture.getShutterSpeed());
