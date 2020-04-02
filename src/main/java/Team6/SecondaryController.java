@@ -35,6 +35,8 @@ import services.PictureService;
 
 
 public class SecondaryController implements Initializable {
+    @FXML
+    ScrollPane scrollPane;
     PictureService pictureService = new PictureService();
     Album album = new Album();
     List<VBox> pics;
@@ -45,13 +47,11 @@ public class SecondaryController implements Initializable {
     Text albumName;
     @FXML
     AnchorPane anchorPane;
-    @FXML
-    TilePane tilePane;
+
+    TilePane tilePane = new TilePane();
 
     private static double ELEMENT_SIZE = 170;
     private static final double GAP = ELEMENT_SIZE/10;
-
-
 
 
     public void fillList () {
@@ -64,14 +64,16 @@ public class SecondaryController implements Initializable {
         album.setName(Context.getInstance().currentAlbum().getName());
         album.setId(Context.getInstance().currentAlbum().getId());
         fillList();
-        int nRows = album.getPictures().size()/3;
-        int nCols = 3;
         albumName.setText(album.getName());
-        tilePane.setPrefColumns(nCols);
-        tilePane.setPrefRows(nRows);
+        setup();
+        createElements();
+    }
+
+    void setup() {
         tilePane.setHgap(GAP);
         tilePane.setVgap(GAP);
-        createElements();
+        scrollPane.setFitToWidth(true);
+        scrollPane.setContent(tilePane);
     }
 
     @FXML

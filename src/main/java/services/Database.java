@@ -7,8 +7,8 @@ import java.sql.SQLException;
 public class Database {
     private static final String CONNECTION_STRING = "jdbc:mysql://mysql-ait.stud.idi.ntnu.no:3306/olelok?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
     private static final String DRIVER = "com.mysql.jdbc.Driver";
-    private static final String USERNAME = "olelok"; // Skriv eget brukernavn som du har på mail fra ntnu databasegreier
-    private static final String PASSWORD = "xRoHhYJn"; //Skriv eget passord som du har på mail fra ntnu databasegreier
+    private static final String USERNAME = "eget"; // Skriv eget brukernavn som du har på mail fra ntnu databasegreier
+    private static final String PASSWORD = "passord"; //Skriv eget passord som du har på mail fra ntnu databasegreier
 
 
 
