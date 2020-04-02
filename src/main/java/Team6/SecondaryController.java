@@ -20,6 +20,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.SplitPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -34,19 +35,20 @@ import services.PictureService;
 
 
 public class SecondaryController implements Initializable {
-
     PictureService pictureService = new PictureService();
     Album album = new Album();
+    List<VBox> pics;
+
+    @FXML
+    SplitPane splitPane;
     @FXML
     Text albumName;
     @FXML
     AnchorPane anchorPane;
     @FXML
-    ScrollPane scrollPane;
-    @FXML
     TilePane tilePane;
 
-    private static final double ELEMENT_SIZE = 150;
+    private static double ELEMENT_SIZE = 170;
     private static final double GAP = ELEMENT_SIZE/10;
 
 
@@ -56,6 +58,7 @@ public class SecondaryController implements Initializable {
         album.setPictures(pictureService.getAllPictures(album.getId()));
     }
 
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         album.setName(Context.getInstance().currentAlbum().getName());
@@ -63,7 +66,6 @@ public class SecondaryController implements Initializable {
         fillList();
         int nRows = album.getPictures().size()/3;
         int nCols = 3;
-        scrollPane.setPadding(new Insets(5,5,5,5));
         albumName.setText(album.getName());
         tilePane.setPrefColumns(nCols);
         tilePane.setPrefRows(nRows);
@@ -80,7 +82,7 @@ public class SecondaryController implements Initializable {
 
     private void createElements() {
         tilePane.getChildren().clear();
-        List<VBox> pics = album.getPictures().stream().map(x -> {
+        pics = album.getPictures().stream().map(x -> {
             Image image = null;
             try {
                 image = new Image(new FileInputStream(x.getFilepath()));
@@ -131,7 +133,8 @@ public class SecondaryController implements Initializable {
         createElements();
     }
 
-    public void deletePicture(ActionEvent actionEvent) {
+    public void deletePicture(ImageView v) {
+        v.getImage().getUrl();
     }
 
     public void addPicture(ActionEvent actionEvent)  {

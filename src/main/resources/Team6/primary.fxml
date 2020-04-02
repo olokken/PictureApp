@@ -10,12 +10,12 @@
 
 <AnchorPane prefHeight="537.0" prefWidth="643.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Team6.PrimaryController">
    <children>
-      <Text layoutX="204.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PicLd" wrappingWidth="106.884765625">
+      <Text layoutX="272.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PicLd" wrappingWidth="106.884765625">
          <font>
             <Font name="Georgia Italic" size="36.0" />
          </font>
       </Text>
-      <TextField layoutX="3.0" layoutY="63.0" prefHeight="25.0" prefWidth="523.0" promptText="Search" />
+      <TextField layoutX="14.0" layoutY="63.0" prefHeight="25.0" prefWidth="622.0" promptText="Search" />
       <Text layoutX="14.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Albums" wrappingWidth="106.884765625">
          <font>
             <Font name="Georgia Italic" size="18.0" />
@@ -26,8 +26,8 @@
             <ListView fx:id="albumView" prefHeight="386.0" prefWidth="549.0" />
          </children>
       </VBox>
-      <Button layoutX="481.0" layoutY="93.0" mnemonicParsing="false" onAction="#openAlbum" text="--&gt;" />
-      <Button layoutX="448.0" layoutY="93.0" mnemonicParsing="false" onAction="#createAlbum" text="+" />
-      <Button layoutX="412.0" layoutY="93.0" mnemonicParsing="false" onAction="#deleteAlbum" prefHeight="25.0" prefWidth="25.0" text="-" />
+      <Button layoutX="589.0" layoutY="93.0" mnemonicParsing="false" onAction="#openAlbum" text="--&gt;" />
+      <Button layoutX="540.0" layoutY="93.0" mnemonicParsing="false" onAction="#createAlbum" text="+" />
+      <Button layoutX="509.0" layoutY="93.0" mnemonicParsing="false" onAction="#deleteAlbum" prefHeight="25.0" prefWidth="25.0" text="-" />
    </children>
 </AnchorPane>

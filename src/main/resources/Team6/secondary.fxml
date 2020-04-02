@@ -1,32 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="566.0" prefWidth="603.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Team6.SecondaryController">
-   <children>
-      <Button layoutX="14.0" layoutY="145.0" mnemonicParsing="false" onAction="#deletePicture" prefHeight="25.0" prefWidth="28.0" text="-" />
-      <Text fx:id="albumName" layoutX="207.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="171.13671875">
-         <font>
-            <Font size="29.0" />
-         </font>
-      </Text>
-      <ScrollPane fx:id="scrollPane" layoutX="98.0" layoutY="80.0" prefHeight="472.0" prefWidth="491.0">
-         <content>
-            <TilePane fx:id="tilePane" prefHeight="474.0" prefWidth="496.0" />
-         </content>
-      </ScrollPane>
-      <Button layoutX="14.0" layoutY="190.0" mnemonicParsing="false" onAction="#sortIso" prefHeight="25.0" prefWidth="70.0" text="ISO" />
-      <Button layoutX="14.0" layoutY="328.0" mnemonicParsing="false" onAction="#sortFlash" prefHeight="25.0" prefWidth="70.0" text="Flash" />
-      <Button layoutX="14.0" layoutY="234.0" mnemonicParsing="false" onAction="#sortShutterSpeed" prefHeight="25.0" prefWidth="70.0" text="Shutter" />
-      <Button layoutX="14.0" layoutY="283.0" mnemonicParsing="false" onAction="#sortFileSize" prefHeight="25.0" prefWidth="70.0" text="FileSize" />
-      <Button layoutX="14.0" layoutY="373.0" mnemonicParsing="false" onAction="#sortExposureTime" prefHeight="25.0" prefWidth="70.0" text="Exposure" />
-      <Button layoutX="14.0" layoutY="33.0" mnemonicParsing="false" onAction="#switchToPrimary" prefHeight="25.0" prefWidth="70.0" text="&lt;--" />
-      <Button layoutX="14.0" layoutY="411.0" mnemonicParsing="false" onAction="#sortDate" prefHeight="25.0" prefWidth="70.0" text="Date" />
-      <Button layoutX="49.0" layoutY="145.0" mnemonicParsing="false" onAction="#addPicture" prefHeight="25.0" prefWidth="28.0" text="+" />
-   </children>
-</AnchorPane>
+<SplitPane fx:id="splitPane" dividerPositions="0.2792642140468227" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Team6.SecondaryController">
+  <items>
+    <AnchorPane fx:id="anchorPane" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+         <children>
+            <Text fx:id="albumName" layoutX="67.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER">
+               <font>
+                  <Font name="Georgia Italic" size="32.0" />
+               </font>
+            </Text>
+            <Button layoutX="52.0" layoutY="76.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="30.0" text="-" />
+            <Button layoutX="87.0" layoutY="76.0" mnemonicParsing="false" onAction="#addPicture" prefHeight="25.0" prefWidth="30.0" text="+" />
+            <Button layoutX="14.0" layoutY="10.0" mnemonicParsing="false" onAction="#switchToPrimary" prefHeight="25.0" prefWidth="37.0" text="&lt;--" />
+            <Button layoutX="52.0" layoutY="115.0" mnemonicParsing="false" onAction="#sortIso" prefHeight="25.0" prefWidth="70.0" text="ISO" />
+            <Button layoutX="51.0" layoutY="147.0" mnemonicParsing="false" onAction="#sortShutterSpeed" prefHeight="43.0" prefWidth="70.0" text="Shutter- speed" wrapText="true" />
+            <Button layoutX="52.0" layoutY="273.0" mnemonicParsing="false" onAction="#sortExposureTime" prefHeight="43.0" prefWidth="70.0" text="Exposure-Time" wrapText="true" />
+            <Button layoutX="52.0" layoutY="239.0" mnemonicParsing="false" onAction="#sortFileSize" prefHeight="25.0" prefWidth="70.0" text="File Size" />
+            <Button layoutX="51.0" layoutY="202.0" mnemonicParsing="false" onAction="#sortFlash" prefHeight="25.0" prefWidth="70.0" text="Flash" />
+         </children></AnchorPane>
+      <TilePane fx:id="tilePane" prefHeight="398.0" prefWidth="300.0" />
+  </items>
+</SplitPane>
