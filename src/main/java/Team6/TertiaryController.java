@@ -32,12 +32,8 @@ public class TertiaryController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         pictureSetup();
-        sceneSetup();
     }
 
-    void sceneSetup() {
-
-    }
 
     void pictureSetup() {
         Image image = null;
@@ -47,6 +43,10 @@ public class TertiaryController implements Initializable {
             e.printStackTrace();
         }
         imageView.setImage(image);
+    }
+
+    void deletePicture() {
+        pictureService.deletePicture(pic.get(index));
     }
 
     void listSetup() {

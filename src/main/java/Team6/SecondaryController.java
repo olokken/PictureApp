@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
@@ -21,6 +22,7 @@ import javafx.geometry.Insets;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.SplitPane;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -144,9 +146,6 @@ public class SecondaryController implements Initializable {
         createElements();
     }
 
-    public void deletePicture(ImageView v) {
-        v.getImage().getUrl();
-    }
 
     public void addPicture(ActionEvent actionEvent)  {
         final FileChooser dir = new FileChooser();
