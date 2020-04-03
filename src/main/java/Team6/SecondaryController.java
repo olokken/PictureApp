@@ -112,8 +112,6 @@ public class SecondaryController implements Initializable {
         tilePane.getChildren().addAll(pics);
     }
 
-
-    
     public void sortIso(ActionEvent actionEvent) throws FileNotFoundException {
         album.sortIso();
         createElements();
@@ -152,5 +150,9 @@ public class SecondaryController implements Initializable {
             album.getPictures().add(p);
             pictureService.createPicture(p, album.getId());
         }
+    }
+
+    public void test(){
+        
     }
 }
