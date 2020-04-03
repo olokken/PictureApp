@@ -96,6 +96,15 @@ public class SecondaryController implements Initializable {
             imageView.setFitWidth(ELEMENT_SIZE);
             imageView.setSmooth(true);
             imageView.setCache(true);
+            imageView.setOnMouseClicked(e -> {
+                Context.getInstance().setPictures(album.getPictures());
+                Context.getInstance().setIndex(album.getPictures().indexOf(x));
+                try {
+                    App.setRoot("tertiary");
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            });
             VBox pageBox = new VBox();
             pageBox.getChildren().add(imageView);
             return pageBox;
