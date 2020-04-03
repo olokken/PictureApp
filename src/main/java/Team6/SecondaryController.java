@@ -144,10 +144,6 @@ public class SecondaryController implements Initializable {
         createElements();
     }
 
-    public void deletePicture(ImageView v) {
-        v.getImage().getUrl();
-    }
-
     public void addPicture(ActionEvent actionEvent)  {
         final FileChooser dir = new FileChooser();
         File file = dir.showOpenDialog(anchorPane.getScene().getWindow());
