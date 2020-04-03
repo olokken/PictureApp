@@ -151,8 +151,4 @@ public class SecondaryController implements Initializable {
             pictureService.createPicture(p, album.getId());
         }
     }
-
-    public void test(){
-        
-    }
 }
