@@ -81,20 +81,4 @@ public class PrimaryController implements Initializable  {
         }
     }
 
-    /**public void openAlbum() {
-        if (albumView.getSelectionModel().getSelectedIndex() > -1) {
-            PictureService pictureService = new PictureService();
-            Album a =  albumView.getSelectionModel().getSelectedItem();
-            a.setPictures(pictureService.getAllPictures(a.getId()));
-            ObservableList<Picture> list = FXCollections.observableArrayList(a.getPictures());
-            ListView<Picture> pictureView = new ListView<>();
-            pictureView.setItems(list);
-            VBox root = new VBox();
-            root.getChildren().add(pictureView);
-            Scene s = new Scene(root, 300, 300);
-            Stage stage = new Stage();
-            stage.setScene(s);
-            stage.show();
-        }
-    } */
 }
