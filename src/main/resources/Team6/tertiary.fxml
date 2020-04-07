@@ -5,21 +5,83 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Team6.TertiaryController">
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="Team6.TertiaryController">
    <center>
       <ImageView fx:id="imageView" fitHeight="321.0" fitWidth="423.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
    </center>
-   <right>
-      <ListView fx:id="listView" prefHeight="300.0" prefWidth="170.0" BorderPane.alignment="CENTER" />
-   </right>
    <bottom>
       <HBox alignment="CENTER" prefHeight="78.0" prefWidth="600.0" spacing="10.0">
          <children>
             <Button mnemonicParsing="false" onAction="#switchToSecondary" prefHeight="25.0" prefWidth="55.0" text="&lt;--" />
-            <Button mnemonicParsing="false" text="Delete" />
+            <Button fx:id="deletePicture" mnemonicParsing="false" text="Delete" />
             <Button mnemonicParsing="false" text="Add tag" />
          </children>
       </HBox>
    </bottom>
+   <right>
+      <VBox alignment="TOP_CENTER" prefHeight="257.0" prefWidth="163.0" spacing="5.0" BorderPane.alignment="CENTER">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Metadata">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Text fx:id="filePath" strokeType="OUTSIDE" strokeWidth="0.0" text="File Path : ">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Text fx:id="fileName" strokeType="OUTSIDE" strokeWidth="0.0" text="File name :">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Text fx:id="fileSize" strokeType="OUTSIDE" strokeWidth="0.0" text="File size : ">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Text fx:id="date" strokeType="OUTSIDE" strokeWidth="0.0" text="Date taken : ">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Text fx:id="iso" strokeType="OUTSIDE" strokeWidth="0.0" text="ISO">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Text fx:id="shutterspeed" strokeType="OUTSIDE" strokeWidth="0.0" text="Shutterspeed :">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Text fx:id="exposureTime" strokeType="OUTSIDE" strokeWidth="0.0" text="Exposure time :">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Text fx:id="flash" strokeType="OUTSIDE" strokeWidth="0.0" text="Is Flash used : ">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Text fx:id="latitude" strokeType="OUTSIDE" strokeWidth="0.0" text="Latitude :">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Text fx:id="longitude" strokeType="OUTSIDE" strokeWidth="0.0" text="Longitude :">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <ListView fx:id="listView" prefHeight="200.0" prefWidth="200.0" />
+         </children>
+      </VBox>
+   </right>
 </BorderPane>
