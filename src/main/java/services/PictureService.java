@@ -91,42 +91,6 @@ public class PictureService {
         String query = "Delete from picture where id = ?";
 
         Connection conn = Database.ConnectDB();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         PreparedStatement pst = null;
         try {
             pst = conn.prepareStatement(query);
