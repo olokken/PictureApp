@@ -12,8 +12,15 @@ public class PictureService {
     public PictureService() { }
 
     public ArrayList<Picture> getAllPictures(int albumId) {
-        String query = "SELECT *  From picture as p INNER JOIN albumpicture as ap WHERE p.id = ap.pictureId and ap.albumId = ?";
-        String tagQuery = "SELECT * From picturetag where pictureId = ?";
+        String query;
+        String tagQuery;
+        if (albumId > 0) {
+            query = "SELECT *  From picture as p INNER JOIN albumpicture as ap WHERE p.id = ap.pictureId and ap.albumId = ?";
+            tagQuery = "SELECT * From picturetag where pictureId = ?";
+        }
+        else {
+            query = "SELECT * From picture";
+        }
         ArrayList<Picture> pictures = new ArrayList<>();
 
         Connection conn = Database.ConnectDB();
@@ -21,7 +28,9 @@ public class PictureService {
         ResultSet result = null;
         try {
             pst = conn.prepareStatement(query);
-            pst.setInt(1,albumId);
+            if (albumId > 0) {
+                pst.setInt(1,albumId);
+            }
             result = pst.executeQuery();
 
             while(result.next()) {
