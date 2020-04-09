@@ -4,10 +4,7 @@
  * @author team6
  */
 package entities;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class Album {
     private int id;
@@ -124,7 +121,12 @@ public class Album {
      * sorts the images in the album based on the date the photo was taken
      */
     public void sortDate() {
-        pictures.sort(Comparator.comparing(x -> x.getDateTime()));
+        pictures.sort(Comparator.comparing(x -> {
+            if (x.getDateTime() != null) {
+                return x.getDateTime().getTime();
+            }
+            return new Date(0).getTime();
+        }));
     }
 
     /**

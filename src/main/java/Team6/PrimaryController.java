@@ -16,7 +16,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import services.AlbumService;
@@ -24,26 +26,40 @@ import services.PictureService;
 
 
 public class PrimaryController implements Initializable  {
-    ArrayList<Album> yourAlbums = new ArrayList<Album>();
-    ObservableList<Album> list = FXCollections.observableArrayList(yourAlbums);
-    AlbumService albumService = new AlbumService();
+    @FXML
+    TextField textField;
+    @FXML
+    VBox vBox;
+    @FXML
+    AnchorPane anchorPane;
     @FXML
     ListView<Album> albumView;
 
+    ArrayList<Album> yourAlbums = new ArrayList<Album>();
+    ObservableList<Album> list = FXCollections.observableArrayList(yourAlbums);
+    AlbumService albumService = new AlbumService();
+    PictureService pictureService = new PictureService();
 
-    public void fillList() {
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        fillListView();
+        doubleClick();
+        search();
+    }
+
+    public void fillListView() {
         yourAlbums = albumService.getAllAlbums();
+        Album album = new Album("All Photos");
+        album.setId(0);
+        yourAlbums.add(0, album);
         albumView.getItems().addAll(yourAlbums);
     }
+
 
     @FXML
     private void switchToSecondary() throws IOException {
         App.setRoot("secondary");
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        fillList();
     }
 
 
@@ -55,7 +71,7 @@ public class PrimaryController implements Initializable  {
         Optional<String> result = t.showAndWait();
         if (result.isPresent()) {
             albumService.createAlbum(result.get());
-            fillList();
+            fillListView();
             list = FXCollections.observableArrayList(yourAlbums);
             albumView.setItems(list);
         }
@@ -64,13 +80,24 @@ public class PrimaryController implements Initializable  {
     public void deleteAlbum(ActionEvent actionEvent) {
         if (albumView.getSelectionModel().getSelectedIndex() > -1) {
             albumService.deleteAlbum(albumView.getSelectionModel().getSelectedItem());
-            fillList();
+            fillListView();
             list = FXCollections.observableArrayList(yourAlbums);
             albumView.setItems(list);
         }
-        else {
-            System.out.println("velg en gokar først");
-        }
+    }
+
+    public void doubleClick() {
+        albumView.setOnMouseClicked(e -> {
+            if(e.getClickCount() == 2 && albumView.getSelectionModel().getSelectedIndex() > -1) {
+                Context.getInstance().currentAlbum().setId(albumView.getSelectionModel().getSelectedItem().getId());
+                Context.getInstance().currentAlbum().setName(albumView.getSelectionModel().getSelectedItem().getName());
+                try {
+                    App.setRoot("secondary");
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
     }
 
     public void openAlbum() throws IOException {
@@ -81,20 +108,13 @@ public class PrimaryController implements Initializable  {
         }
     }
 
-    /**public void openAlbum() {
-        if (albumView.getSelectionModel().getSelectedIndex() > -1) {
-            PictureService pictureService = new PictureService();
-            Album a =  albumView.getSelectionModel().getSelectedItem();
-            a.setPictures(pictureService.getAllPictures(a.getId()));
-            ObservableList<Picture> list = FXCollections.observableArrayList(a.getPictures());
-            ListView<Picture> pictureView = new ListView<>();
-            pictureView.setItems(list);
-            VBox root = new VBox();
-            root.getChildren().add(pictureView);
-            Scene s = new Scene(root, 300, 300);
-            Stage stage = new Stage();
-            stage.setScene(s);
-            stage.show();
-        }
-    } */
+    public void search() {
+        textField.setOnMouseClicked(e -> {
+            try {
+                App.setRoot("search");
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
+    }
 }

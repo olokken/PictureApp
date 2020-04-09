@@ -4,12 +4,13 @@ import entities.Picture;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Date;
 
 public class test {
     public static void main(String[] args) {
-        PictureService p = new PictureService();
-        Picture pic = new Picture("C:/Users/olelo/OneDrive/Bilder/Domenemodell.PNG");
+        PictureService pictureService = new PictureService();
+
         int i = 0;
-        p.createPicture(pic,14);
     }
 }

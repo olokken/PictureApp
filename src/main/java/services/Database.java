@@ -11,9 +11,7 @@ public class Database {
     private static final String PASSWORD = "xRoHhYJn"; //Skriv eget passord som du har på mail fra ntnu databasegreier
 
 
-
     public Database() { }
-
     /**
      * Connectiong to database
      *
@@ -28,8 +26,6 @@ public class Database {
             return null;
         }
     }
-
-
 
     /**
      * Rollback query

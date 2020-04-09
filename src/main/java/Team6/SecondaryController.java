@@ -5,20 +5,15 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 import entities.Album;
 import entities.Picture;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
-import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.SplitPane;
 import javafx.scene.image.Image;
@@ -27,9 +22,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 import services.PictureService;
 
 
@@ -37,10 +30,6 @@ import services.PictureService;
 public class SecondaryController implements Initializable {
     @FXML
     ScrollPane scrollPane;
-    PictureService pictureService = new PictureService();
-    Album album = new Album();
-    List<VBox> pics;
-
     @FXML
     SplitPane splitPane;
     @FXML
@@ -48,26 +37,34 @@ public class SecondaryController implements Initializable {
     @FXML
     AnchorPane anchorPane;
 
+    PictureService pictureService = new PictureService();
+    Album album = new Album();
+    List<VBox> pics;
     TilePane tilePane = new TilePane();
 
     private static double ELEMENT_SIZE = 170;
     private static final double GAP = ELEMENT_SIZE/10;
 
-
-    public void fillList () {
-        album.setPictures(pictureService.getAllPictures(album.getId()));
-    }
-
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         album.setName(Context.getInstance().currentAlbum().getName());
         album.setId(Context.getInstance().currentAlbum().getId());
-        fillList();
         albumName.setText(album.getName());
+        fillList();
         setup();
         createElements();
     }
+
+
+    public void fillList () {
+        if (Context.getInstance().currentPictures() == null) {
+            album.setPictures(pictureService.getAllPictures(album.getId()));
+        }
+        else {
+            album.setPictures(Context.getInstance().currentPictures());
+        }
+    }
+
 
     void setup() {
         tilePane.setHgap(GAP);
@@ -82,9 +79,13 @@ public class SecondaryController implements Initializable {
     }
 
 
-    private void createElements() {
+    void createElements() {
         tilePane.getChildren().clear();
-        pics = album.getPictures().stream().map(x -> {
+        tilePane.getChildren().addAll(createPages());
+    }
+
+     List<ImageView> createImageViews() {
+        return album.getPictures().stream().map(x -> {
             Image image = null;
             try {
                 image = new Image(new FileInputStream(x.getFilepath()));
@@ -97,7 +98,8 @@ public class SecondaryController implements Initializable {
             imageView.setSmooth(true);
             imageView.setCache(true);
             imageView.setOnMouseClicked(e -> {
-                Context.getInstance().setPictures(album.getPictures());
+                Context.getInstance().currentAlbum().setPictures(album.getPictures());
+                Context.getInstance().currentAlbum().setId(album.getId());
                 Context.getInstance().setIndex(album.getPictures().indexOf(x));
                 try {
                     App.setRoot("tertiary");
@@ -105,12 +107,18 @@ public class SecondaryController implements Initializable {
                     ex.printStackTrace();
                 }
             });
-            VBox pageBox = new VBox();
-            pageBox.getChildren().add(imageView);
-            return pageBox;
+            return imageView;
         }).collect(Collectors.toList());
-        tilePane.getChildren().addAll(pics);
     }
+
+    List<VBox> createPages() {
+        return createImageViews().stream().map(x -> {
+            VBox vBox = new VBox();
+            vBox.getChildren().add(x);
+            return vBox;
+        }).collect(Collectors.toList());
+    }
+
 
     public void sortIso(ActionEvent actionEvent) throws FileNotFoundException {
         album.sortIso();

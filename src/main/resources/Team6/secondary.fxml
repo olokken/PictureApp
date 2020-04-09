@@ -16,14 +16,16 @@
                   <Font name="Georgia Italic" size="32.0" />
                </font>
             </Text>
-            <Button layoutX="52.0" layoutY="76.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="30.0" text="-" />
-            <Button layoutX="87.0" layoutY="76.0" mnemonicParsing="false" onAction="#addPicture" prefHeight="25.0" prefWidth="30.0" text="+" />
+            <Button layoutX="18.0" layoutY="76.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="30.0" text="-" />
+            <Button layoutX="67.0" layoutY="76.0" mnemonicParsing="false" onAction="#addPicture" prefHeight="25.0" prefWidth="30.0" text="+" />
             <Button layoutX="14.0" layoutY="10.0" mnemonicParsing="false" onAction="#switchToPrimary" prefHeight="25.0" prefWidth="37.0" text="&lt;--" />
             <Button layoutX="52.0" layoutY="115.0" mnemonicParsing="false" onAction="#sortIso" prefHeight="25.0" prefWidth="70.0" text="ISO" />
             <Button layoutX="51.0" layoutY="147.0" mnemonicParsing="false" onAction="#sortShutterSpeed" prefHeight="43.0" prefWidth="70.0" text="Shutter- speed" wrapText="true" />
             <Button layoutX="52.0" layoutY="273.0" mnemonicParsing="false" onAction="#sortExposureTime" prefHeight="43.0" prefWidth="70.0" text="Exposure-Time" wrapText="true" />
             <Button layoutX="52.0" layoutY="239.0" mnemonicParsing="false" onAction="#sortFileSize" prefHeight="25.0" prefWidth="70.0" text="File Size" />
             <Button layoutX="51.0" layoutY="202.0" mnemonicParsing="false" onAction="#sortFlash" prefHeight="25.0" prefWidth="70.0" text="Flash" />
+            <Button layoutX="117.0" layoutY="76.0" mnemonicParsing="false" text="URL" />
+            <Button layoutX="54.0" layoutY="325.0" mnemonicParsing="false" onAction="#sortDate" prefHeight="25.0" prefWidth="70.0" text="Date" wrapText="true" />
          </children></AnchorPane>
       <ScrollPane fx:id="scrollPane" prefHeight="398.0" prefWidth="422.0" />
   </items>

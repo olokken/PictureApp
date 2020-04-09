@@ -8,26 +8,26 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="Team6.PrimaryController">
+<AnchorPane fx:id="anchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="Team6.PrimaryController">
    <children>
-      <Text layoutX="272.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PicLd" wrappingWidth="106.884765625">
+      <Text layoutX="247.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PicLd" wrappingWidth="106.884765625" AnchorPane.bottomAnchor="345.107421875" AnchorPane.leftAnchor="247.0" AnchorPane.rightAnchor="246.115234375" AnchorPane.topAnchor="13.98828125">
          <font>
             <Font name="Georgia Italic" size="36.0" />
          </font>
       </Text>
-      <TextField layoutX="14.0" layoutY="63.0" prefHeight="25.0" prefWidth="622.0" promptText="Search" />
-      <Text layoutX="14.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Albums" wrappingWidth="106.884765625">
+      <TextField fx:id="textField" layoutX="9.0" layoutY="61.0" prefHeight="25.0" prefWidth="619.0" promptText="Search" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
+      <Text layoutX="5.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Albums" wrappingWidth="106.884765625" AnchorPane.bottomAnchor="284.0537109375" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="488.115234375" AnchorPane.topAnchor="94.9462890625">
          <font>
             <Font name="Georgia Italic" size="18.0" />
          </font>
       </Text>
-      <VBox layoutX="14.0" layoutY="132.0" prefHeight="394.0" prefWidth="622.0">
+      <VBox fx:id="vBox" layoutY="132.0" prefHeight="394.0" prefWidth="636.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="130.0">
          <children>
-            <ListView fx:id="albumView" prefHeight="386.0" prefWidth="549.0" />
+            <ListView fx:id="albumView" prefHeight="451.0" prefWidth="636.0" VBox.vgrow="ALWAYS" />
          </children>
       </VBox>
-      <Button layoutX="589.0" layoutY="93.0" mnemonicParsing="false" onAction="#openAlbum" text="--&gt;" />
-      <Button layoutX="540.0" layoutY="93.0" mnemonicParsing="false" onAction="#createAlbum" text="+" />
-      <Button layoutX="509.0" layoutY="93.0" mnemonicParsing="false" onAction="#deleteAlbum" prefHeight="25.0" prefWidth="25.0" text="-" />
+      <Button layoutX="541.0" layoutY="93.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#openAlbum" prefHeight="25.0" prefWidth="45.0" text="--&gt;" AnchorPane.rightAnchor="14.0" />
+      <Button layoutX="485.0" layoutY="93.0" mnemonicParsing="false" onAction="#createAlbum" text="+" AnchorPane.rightAnchor="90.0" />
+      <Button layoutX="451.0" layoutY="93.0" mnemonicParsing="false" onAction="#deleteAlbum" prefHeight="25.0" prefWidth="25.0" text="-" AnchorPane.rightAnchor="124.0" />
    </children>
 </AnchorPane>
