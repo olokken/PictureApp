@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
@@ -57,11 +58,15 @@ public class SecondaryController implements Initializable {
 
 
     public void fillList () {
-        if (Context.getInstance().currentPictures() == null) {
-            album.setPictures(pictureService.getAllPictures(album.getId()));
+        long startTime = System.currentTimeMillis();
+        ArrayList<Picture> pics = pictureService.getAllPictures(album.getId());
+        long endTime = System.currentTimeMillis();
+        System.out.println("Tidtaker : " + (endTime - startTime));
+        if (Context.getInstance().currentAlbum().getPictures() == null) {
+            album.setPictures(pics);
         }
         else {
-            album.setPictures(Context.getInstance().currentPictures());
+            album.setPictures(Context.getInstance().currentAlbum().getPictures());
         }
     }
 

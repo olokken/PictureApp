@@ -17,7 +17,7 @@
       <HBox alignment="CENTER" prefHeight="78.0" prefWidth="600.0" spacing="10.0">
          <children>
             <Button mnemonicParsing="false" onAction="#switchToSecondary" prefHeight="25.0" prefWidth="55.0" text="&lt;--" />
-            <Button fx:id="deletePicture" mnemonicParsing="false" text="Delete" />
+            <Button mnemonicParsing="false" onAction="#deletePicture" text="Delete" />
             <Button mnemonicParsing="false" text="Add tag" />
          </children>
       </HBox>

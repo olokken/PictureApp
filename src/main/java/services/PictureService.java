@@ -96,14 +96,19 @@ public class PictureService {
         }
     }
 
-    public boolean deletePicture(Picture picture) {
+    public boolean deletePicture(int pictureid, int albumid) {
         String query = "Delete from picture where id = ?";
+        String deleteFromAlbumQuery = "Delete from albumpicture where albumid = ? and pictureid = ?";
+        String deleteFromAllAlbumsQuery = "Delete from albumpicture where pictureid = ?";
 
         Connection conn = Database.ConnectDB();
         PreparedStatement pst = null;
         try {
+            pst = conn.prepareStatement(deleteFromAlbumQuery);
+            pst.setInt(1, albumid);
+            pst.setInt(1, pictureid);
+            pst.executeUpdate();
             pst = conn.prepareStatement(query);
-            pst.setInt(1, picture.getId());
             pst.executeUpdate();
             return true;
         } catch(SQLException se) {
