@@ -57,6 +57,7 @@ public class TertiaryController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         album.setPictures(Context.getInstance().currentAlbum().getPictures());
+        album.setId(Context.getInstance().currentAlbum().getId());
         pictureSetup();
         metadataSetup();
         listSetup();

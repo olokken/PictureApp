@@ -81,15 +81,15 @@ public class PictureService {
             pst.setDouble(9, picture.getLatitude());
             pst.setDouble(10, picture.getLongitude());
             pst.executeUpdate();
-
-            ResultSet rs = pst.getGeneratedKeys();
-            if(rs.next())
-            {
-                int pictureId = rs.getInt(1);
-                pst = conn.prepareStatement(insertAlbumPicture);
-                pst.setInt(1, albumId);
-                pst.setInt(2, pictureId);
-                pst.executeUpdate();
+            if (albumId != 0) {
+                ResultSet rs = pst.getGeneratedKeys();
+                if (rs.next()) {
+                    int pictureId = rs.getInt(1);
+                    pst = conn.prepareStatement(insertAlbumPicture);
+                    pst.setInt(1, albumId);
+                    pst.setInt(2, pictureId);
+                    pst.executeUpdate();
+                }
             }
 
             return true;
@@ -103,17 +103,23 @@ public class PictureService {
 
     public boolean deletePicture(int pictureid, int albumid) {
         String query = "Delete from picture where id = ?";
-        String deleteFromAlbumQuery = "Delete from albumpicture where albumid = ? and pictureid = ?";
+        String deleteFromAlbumQuery = "Delete from albumpicture where pictureid = ? and albumid = ?";
         String deleteFromAllAlbumsQuery = "Delete from albumpicture where pictureid = ?";
 
         Connection conn = Database.ConnectDB();
         PreparedStatement pst = null;
         try {
-            pst = conn.prepareStatement(deleteFromAlbumQuery);
-            pst.setInt(1, albumid);
+            if(albumid == 0) {
+                pst = conn.prepareStatement(deleteFromAllAlbumsQuery);
+            } else {
+                pst = conn.prepareStatement(deleteFromAlbumQuery);
+                pst.setInt(2, albumid);
+            }
             pst.setInt(1, pictureid);
             pst.executeUpdate();
+
             pst = conn.prepareStatement(query);
+            pst.setInt(1, pictureid);
             pst.executeUpdate();
             return true;
         } catch(SQLException se) {
