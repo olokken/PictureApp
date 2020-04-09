@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 
 import entities.Album;
 import entities.Picture;
+import entities.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -39,6 +40,7 @@ public class PrimaryController implements Initializable  {
     ObservableList<Album> list = FXCollections.observableArrayList(yourAlbums);
     AlbumService albumService = new AlbumService();
     PictureService pictureService = new PictureService();
+    User user = Context.getInstance().currentUser();
 
 
     @Override
@@ -49,7 +51,7 @@ public class PrimaryController implements Initializable  {
     }
 
     public void fillListView() {
-        yourAlbums = albumService.getAllAlbums();
+        yourAlbums = albumService.getAllAlbums(user.getId());
         Album album = new Album("All Photos");
         album.setId(0);
         yourAlbums.add(0, album);
@@ -70,8 +72,8 @@ public class PrimaryController implements Initializable  {
         t.setContentText("Enter name: ");
         Optional<String> result = t.showAndWait();
         if (result.isPresent()) {
-            albumService.createAlbum(result.get());
-            fillListView();
+            albumService.createAlbum(result.get(), user.getId());
+            yourAlbums.add(new Album(result.get(), user.getId()));
             list = FXCollections.observableArrayList(yourAlbums);
             albumView.setItems(list);
         }
@@ -79,8 +81,9 @@ public class PrimaryController implements Initializable  {
 
     public void deleteAlbum(ActionEvent actionEvent) {
         if (albumView.getSelectionModel().getSelectedIndex() > -1) {
-            albumService.deleteAlbum(albumView.getSelectionModel().getSelectedItem());
-            fillListView();
+            Album album = albumView.getSelectionModel().getSelectedItem();
+            albumService.deleteAlbum(album);
+            yourAlbums.remove(album);
             list = FXCollections.observableArrayList(yourAlbums);
             albumView.setItems(list);
         }
@@ -116,5 +119,9 @@ public class PrimaryController implements Initializable  {
                 ex.printStackTrace();
             }
         });
+    }
+
+    public void logOut(ActionEvent actionEvent) throws IOException {
+        App.setRoot("login");
     }
 }

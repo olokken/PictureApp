@@ -7,17 +7,17 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="512.0" prefWidth="426.0" snapToPixel="false" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Team6.LoginController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" snapToPixel="false" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="Team6.LoginController">
    <children>
-      <ImageView fitHeight="401.0" fitWidth="429.0" layoutX="-1.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="111.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <ImageView fitHeight="403.0" fitWidth="468.0" layoutX="20.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="108.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="146.02871704101562" AnchorPane.topAnchor="0.0">
          <image>
-            <Image url="@../../../../lib/pickles.jpg" />
+            <Image url="@../../../../images/pickles.jpg" />
          </image></ImageView>
-      <TextField layoutX="88.0" layoutY="439.0" prefHeight="25.0" prefWidth="327.0" promptText="Enter username" />
-      <Text layoutX="21.0" layoutY="456.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username: " />
-      <TextField layoutX="88.0" layoutY="470.0" prefHeight="25.0" prefWidth="327.0" promptText="Enter password" />
-      <Text layoutX="25.0" layoutY="487.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password:" />
-      <Button layoutX="307.0" layoutY="406.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="108.0" text="Create new user" />
-      <Button layoutX="165.0" layoutY="406.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="132.0" text="Forgotten password?" />
+      <TextField fx:id="username" layoutX="76.0" layoutY="415.0" prefHeight="25.0" prefWidth="514.0" promptText="Enter username" />
+      <Text layoutX="14.0" layoutY="432.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username: " />
+      <TextField fx:id="password" layoutX="76.0" layoutY="443.0" prefHeight="25.0" prefWidth="514.0" promptText="Enter password" />
+      <Text layoutX="14.0" layoutY="460.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password:" />
+      <Button layoutX="478.0" layoutY="367.0" mnemonicParsing="false" onAction="#createNewUser" prefHeight="25.0" prefWidth="108.0" text="Create new user" />
+      <Button layoutX="478.0" layoutY="473.0" mnemonicParsing="false" onAction="#signIn" prefHeight="25.0" prefWidth="108.0" text="Sign in" />
    </children>
 </AnchorPane>

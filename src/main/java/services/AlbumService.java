@@ -11,8 +11,8 @@ import java.util.ArrayList;
 public class AlbumService {
     public AlbumService() { }
 
-    public ArrayList<Album> getAllAlbums() {
-        String query = "Select * from album";
+    public ArrayList<Album> getAllAlbums(int userId) {
+        String query = "Select * from album where userid = ?";
         ArrayList<Album> albums = new ArrayList<>();
 
         Connection conn = Database.ConnectDB();
@@ -20,10 +20,10 @@ public class AlbumService {
         ResultSet result = null;
         try {
             pst = conn.prepareStatement(query);
+            pst.setInt(1, userId);
             result = pst.executeQuery();
-
             while(result.next())
-                albums.add(new Album(result.getInt("id"), result.getString("name")));
+                albums.add(new Album(result.getInt("id"), result.getString("name"), userId));
             return albums;
         } catch(SQLException se) {
             System.out.println(se);
@@ -33,22 +33,21 @@ public class AlbumService {
         }
     }
 
-    public boolean createAlbum(String name) {
-        String query = "INSERT INTO album VALUES (default, ?)";
-
+    public boolean createAlbum(String name, int userId) {
+        String query = "INSERT INTO album VALUES (default, ?, ?)";
         Connection conn = Database.ConnectDB();
         PreparedStatement pst = null;
-        ResultSet result = null;
         try {
             pst = conn.prepareStatement(query);
             pst.setString(1, name);
+            pst.setInt(2, userId);
             pst.executeUpdate();
             return true;
         } catch(SQLException se) {
             System.out.println(se);
             return false;
         } finally {
-            Database.closeConnection(conn, pst, result);
+            Database.closeConnection(conn, pst, null);
         }
     }
 
@@ -69,6 +68,4 @@ public class AlbumService {
             Database.closeConnection(conn, pst);
         }
     }
-
-
 }

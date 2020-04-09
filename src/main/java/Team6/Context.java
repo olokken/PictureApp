@@ -2,6 +2,7 @@ package Team6;
 
 import entities.Album;
 import entities.Picture;
+import entities.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,12 +13,14 @@ public class Context {
     public static Context getInstance() {
         return instance;
     }
-    private int index = 0;
-    private List<Picture> pictures;
+    private int index;
     private Album album = new Album();
+    private User user = new User();
     private ArrayList<Album> albums;
 
-
+    public User currentUser() {
+        return user;
+    }
     public ArrayList<Album> currentAlbums() {
         return albums;
     }
@@ -26,9 +29,6 @@ public class Context {
         return album;
     }
 
-    public List<Picture> currentPictures() {
-        return pictures;
-    }
 
     public void setIndex(int index) {
         this.index = index;
@@ -36,9 +36,5 @@ public class Context {
 
     public int currentIndex () {
         return index;
-    }
-
-    public void setAlbums(ArrayList<Album> albums) {
-        this.albums = albums;
     }
 }

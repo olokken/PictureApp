@@ -74,8 +74,11 @@ public class TertiaryController implements Initializable {
     }
 
     @FXML
-    void deletePicture() {
-        pictureService.deletePicture(album.getPictures().get(index));
+    void deletePicture() throws IOException {
+        Picture picture = album.getPictures().get(index);
+        pictureService.deletePicture(picture.getId(), album.getId());
+        Context.getInstance().currentAlbum().removePicture(picture);
+        App.setRoot("secondary");
     }
 
     void listSetup() {

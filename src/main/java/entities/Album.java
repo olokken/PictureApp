@@ -9,15 +9,17 @@ import java.util.*;
 public class Album {
     private int id;
     private String name;
+    private int userId;
     private List<Picture> pictures;
 
     /**
      * Constructor for an album object
      * @param name
      */
-    public Album(int id, String name) {
+    public Album(int id, String name, int userId) {
         this.id = id;
         this.name = name;
+        this.userId = userId;
         this.pictures = new ArrayList<Picture>();
     }
 
@@ -35,6 +37,11 @@ public class Album {
         this.pictures = a.getPictures();
     }
 
+    public Album(String name, int userId) {
+        this.name = name;
+        this.userId = userId;
+    }
+
     public void setPictures(ArrayList<Picture> pictures) {
         this.pictures = pictures;
     }
@@ -49,6 +56,14 @@ public class Album {
      */
     public String getName() {
         return name;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     /**
