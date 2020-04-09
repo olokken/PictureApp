@@ -11,15 +11,17 @@ import java.util.Date;
 public class PictureService {
     public PictureService() { }
 
-    public ArrayList<Picture> getAllPictures(int albumId) {
+    public ArrayList<Picture> getAllPictures(int albumId, int userId) {
         String query;
-        String tagQuery;
         if (albumId > 0) {
             query = "SELECT *  From picture as p INNER JOIN albumpicture as ap WHERE p.id = ap.pictureId and ap.albumId = ?";
-            tagQuery = "SELECT * From picturetag where pictureId = ?";
         }
         else {
-            query = "SELECT * From picture";
+            query = "SELECT p.* From picture p " +
+                    "join albumpicture ap on p.id = ap.pictureId " +
+                    "join album a on a.id = ap.albumId " +
+                    "where a.userid = ?";
+
         }
         ArrayList<Picture> pictures = new ArrayList<>();
 
@@ -30,6 +32,9 @@ public class PictureService {
             pst = conn.prepareStatement(query);
             if (albumId > 0) {
                 pst.setInt(1,albumId);
+            }
+            else if (albumId == 0) {
+                pst.setInt(1, userId);
             }
             result = pst.executeQuery();
 

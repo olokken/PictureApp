@@ -30,7 +30,7 @@ public class SearchController implements Initializable {
     @FXML
     ScrollPane scrollPane;
     PictureService pictureService = new PictureService();
-    ArrayList<Picture> pictures = pictureService.getAllPictures(0);
+    ArrayList<Picture> pictures = pictureService.getAllPictures(0, Context.getInstance().currentUser().getId());
     ArrayList<Picture> searchedPictures = new ArrayList<>();
     TilePane tilePane = new TilePane();
 
