@@ -1,6 +1,9 @@
 package Team6;
 
+import entities.Album;
 import entities.Picture;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
@@ -49,19 +52,21 @@ public class TertiaryController implements Initializable {
 
     PictureService pictureService = new PictureService();
     int index = Context.getInstance().currentIndex();
-    List<Picture> pic = Context.getInstance().currentPictures();
+    Album album = new Album(Context.getInstance().currentAlbum().getName());
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        album.setPictures(Context.getInstance().currentAlbum().getPictures());
         pictureSetup();
         metadataSetup();
+        listSetup();
     }
 
 
     void pictureSetup() {
         Image image = null;
         try {
-            image = new Image(new FileInputStream(pic.get(index).getFilepath()));
+            image = new Image(new FileInputStream(album.getPictures().get(index).getFilepath()));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -70,17 +75,27 @@ public class TertiaryController implements Initializable {
 
     @FXML
     void deletePicture() {
-        pictureService.deletePicture(pic.get(index));
+        pictureService.deletePicture(album.getPictures().get(index));
+    }
+
+    void listSetup() {
+        ObservableList<String> list = FXCollections.observableArrayList(album.getPictures().get(index).getTags());
+        listView.setItems(list);
     }
 
 
     @FXML
     private void switchToSecondary() throws IOException {
-        App.setRoot("secondary");
+        if(album.getId() == -1) {
+            App.setRoot("search");
+        }
+        else {
+            App.setRoot("secondary");
+        }
     }
 
     void metadataSetup() {
-        Picture picture = pic.get(index);
+        Picture picture = album.getPictures().get(index);
         if (filePath != null) {
             filePath.setText(picture.getFilepath());
         }
