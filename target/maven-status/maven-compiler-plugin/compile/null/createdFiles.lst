@@ -1,10 +1,10 @@
-Team6\App.class
 entities\Album.class
-Team6\PrimaryController.class
 Team6\TertiaryController.class
-services\AlbumService.class
 forkastet\forkastet.class
 entities\User.class
-forkastet\Metadata.class
 Team6\SecondaryController.class
+Team6\App.class
+Team6\PrimaryController.class
+services\AlbumService.class
+forkastet\Metadata.class
 forkastet\Gauder.class

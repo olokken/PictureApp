@@ -16,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -26,17 +27,28 @@ import services.PictureService;
 
 public class PrimaryController implements Initializable  {
     @FXML
+    TextField textField;
+    @FXML
     VBox vBox;
     @FXML
     AnchorPane anchorPane;
-    ArrayList<Album> yourAlbums = new ArrayList<Album>();
-    ObservableList<Album> list = FXCollections.observableArrayList(yourAlbums);
-    AlbumService albumService = new AlbumService();
     @FXML
     ListView<Album> albumView;
 
+    ArrayList<Album> yourAlbums = new ArrayList<Album>();
+    ObservableList<Album> list = FXCollections.observableArrayList(yourAlbums);
+    AlbumService albumService = new AlbumService();
+    PictureService pictureService = new PictureService();
 
-    public void fillList() {
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        fillListView();
+        doubleClick();
+        search();
+    }
+
+    public void fillListView() {
         yourAlbums = albumService.getAllAlbums();
         Album album = new Album("All Photos");
         album.setId(0);
@@ -44,20 +56,10 @@ public class PrimaryController implements Initializable  {
         albumView.getItems().addAll(yourAlbums);
     }
 
-    void bind() {
-        vBox.prefHeightProperty().bind(anchorPane.widthProperty());
-        vBox.prefHeightProperty().bind(anchorPane.heightProperty());
-    }
 
     @FXML
     private void switchToSecondary() throws IOException {
         App.setRoot("secondary");
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        fillList();
-        doubleClick();
     }
 
 
@@ -69,7 +71,7 @@ public class PrimaryController implements Initializable  {
         Optional<String> result = t.showAndWait();
         if (result.isPresent()) {
             albumService.createAlbum(result.get());
-            fillList();
+            fillListView();
             list = FXCollections.observableArrayList(yourAlbums);
             albumView.setItems(list);
         }
@@ -78,18 +80,15 @@ public class PrimaryController implements Initializable  {
     public void deleteAlbum(ActionEvent actionEvent) {
         if (albumView.getSelectionModel().getSelectedIndex() > -1) {
             albumService.deleteAlbum(albumView.getSelectionModel().getSelectedItem());
-            fillList();
+            fillListView();
             list = FXCollections.observableArrayList(yourAlbums);
             albumView.setItems(list);
-        }
-        else {
-            System.out.println("velg en gokar først");
         }
     }
 
     public void doubleClick() {
         albumView.setOnMouseClicked(e -> {
-            if(e.getClickCount() == 2 || albumView.getSelectionModel().getSelectedIndex() > -1) {
+            if(e.getClickCount() == 2 && albumView.getSelectionModel().getSelectedIndex() > -1) {
                 Context.getInstance().currentAlbum().setId(albumView.getSelectionModel().getSelectedItem().getId());
                 Context.getInstance().currentAlbum().setName(albumView.getSelectionModel().getSelectedItem().getName());
                 try {
@@ -109,4 +108,13 @@ public class PrimaryController implements Initializable  {
         }
     }
 
+    public void search() {
+        textField.setOnMouseClicked(e -> {
+            try {
+                App.setRoot("search");
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
+    }
 }

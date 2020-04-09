@@ -9,10 +9,7 @@ import com.drew.metadata.exif.GpsDirectory;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 /**
  * class used to store information about the photos
@@ -189,6 +186,15 @@ public class Picture {
     public String getFileName() {
         return fileName;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Picture)) return false;
+        Picture picture = (Picture) o;
+        return filepath.equals(picture.filepath);
+    }
+
 
     /**
      * adds a tag to the image

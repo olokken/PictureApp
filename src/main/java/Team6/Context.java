@@ -3,6 +3,7 @@ package Team6;
 import entities.Album;
 import entities.Picture;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Context {
@@ -14,6 +15,12 @@ public class Context {
     private int index = 0;
     private List<Picture> pictures;
     private Album album = new Album();
+    private ArrayList<Album> albums;
+
+
+    public ArrayList<Album> currentAlbums() {
+        return albums;
+    }
 
     public Album currentAlbum() {
         return album;
@@ -27,11 +34,11 @@ public class Context {
         this.index = index;
     }
 
-    public void setPictures(List<Picture> pictures) {
-        this.pictures = pictures;
-    }
-
     public int currentIndex () {
         return index;
+    }
+
+    public void setAlbums(ArrayList<Album> albums) {
+        this.albums = albums;
     }
 }

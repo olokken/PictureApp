@@ -10,12 +10,12 @@
 
 <AnchorPane fx:id="anchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="Team6.PrimaryController">
    <children>
-      <Text layoutX="272.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PicLd" wrappingWidth="106.884765625" AnchorPane.bottomAnchor="345.107421875" AnchorPane.leftAnchor="272.0" AnchorPane.rightAnchor="221.115234375" AnchorPane.topAnchor="13.892578125">
+      <Text layoutX="247.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PicLd" wrappingWidth="106.884765625" AnchorPane.bottomAnchor="345.107421875" AnchorPane.leftAnchor="247.0" AnchorPane.rightAnchor="246.115234375" AnchorPane.topAnchor="13.98828125">
          <font>
             <Font name="Georgia Italic" size="36.0" />
          </font>
       </Text>
-      <TextField layoutX="9.0" layoutY="61.0" prefHeight="25.0" prefWidth="619.0" promptText="Search" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
+      <TextField fx:id="textField" layoutX="9.0" layoutY="61.0" prefHeight="25.0" prefWidth="619.0" promptText="Search" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
       <Text layoutX="5.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Albums" wrappingWidth="106.884765625" AnchorPane.bottomAnchor="284.0537109375" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="488.115234375" AnchorPane.topAnchor="94.9462890625">
          <font>
             <Font name="Georgia Italic" size="18.0" />
