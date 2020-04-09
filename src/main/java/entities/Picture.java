@@ -121,11 +121,6 @@ public class Picture {
         return dateTime;
     }
 
-    @Override
-    public String toString() {
-        return fileName;
-    }
-
     /**
      * Gets ISO.
      * @return int
@@ -198,5 +193,10 @@ public class Picture {
     public boolean addTags(String tag) {
         tags.add(tag);
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return fileName;
     }
 }
