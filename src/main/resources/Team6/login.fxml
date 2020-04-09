@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="512.0" prefWidth="426.0" snapToPixel="false" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Team6.LoginController">
+   <children>
+      <ImageView fitHeight="401.0" fitWidth="429.0" layoutX="-1.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="111.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@../../../../lib/pickles.jpg" />
+         </image></ImageView>
+      <TextField layoutX="88.0" layoutY="439.0" prefHeight="25.0" prefWidth="327.0" promptText="Enter username" />
+      <Text layoutX="21.0" layoutY="456.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username: " />
+      <TextField layoutX="88.0" layoutY="470.0" prefHeight="25.0" prefWidth="327.0" promptText="Enter password" />
+      <Text layoutX="25.0" layoutY="487.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password:" />
+      <Button layoutX="307.0" layoutY="406.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="108.0" text="Create new user" />
+      <Button layoutX="165.0" layoutY="406.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="132.0" text="Forgotten password?" />
+   </children>
+</AnchorPane>
