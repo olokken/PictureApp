@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
@@ -21,6 +22,10 @@ import java.net.URL;
 import java.util.*;
 
 public class TertiaryController implements Initializable {
+    @FXML
+    HBox hBox;
+    @FXML
+    Button deleteButton;
     @FXML
     Text fileSize;
     @FXML
@@ -40,8 +45,6 @@ public class TertiaryController implements Initializable {
     @FXML
     Text fileName;
     @FXML
-    Text filePath;
-    @FXML
     BorderPane borderPane;
     @FXML
     ImageView imageView;
@@ -54,12 +57,23 @@ public class TertiaryController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        album.setName(Context.getInstance().currentAlbum().getName());
-        album.setPictures(Context.getInstance().currentAlbum().getPictures());
-        album.setId(Context.getInstance().currentAlbum().getId());
+        albumSetup();
         pictureSetup();
         metadataSetup();
         listSetup();
+        deleteButtonSetup();
+    }
+
+    void albumSetup() {
+        album.setName(Context.getInstance().currentAlbum().getName());
+        album.setPictures(Context.getInstance().currentAlbum().getPictures());
+        album.setId(Context.getInstance().currentAlbum().getId());
+    }
+
+    void deleteButtonSetup() {
+        if (album.getId() <= 0){
+            hBox.getChildren().remove(deleteButton);
+        }
     }
 
 
@@ -90,6 +104,7 @@ public class TertiaryController implements Initializable {
     @FXML
     private void switchToSecondary() throws IOException {
         if(album.getId() == -1) {
+            Context.getInstance().currentAlbum().setPictures(null);
             App.setRoot("search");
         }
         else {

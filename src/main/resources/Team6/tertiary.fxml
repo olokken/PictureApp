@@ -14,10 +14,10 @@
       <ImageView fx:id="imageView" fitHeight="321.0" fitWidth="423.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
    </center>
    <bottom>
-      <HBox alignment="CENTER" prefHeight="78.0" prefWidth="600.0" spacing="10.0">
+      <HBox fx:id="hBox" alignment="CENTER" prefHeight="78.0" prefWidth="600.0" spacing="10.0">
          <children>
             <Button mnemonicParsing="false" onAction="#switchToSecondary" prefHeight="25.0" prefWidth="55.0" text="&lt;--" />
-            <Button mnemonicParsing="false" onAction="#deletePicture" text="Delete" />
+            <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#deletePicture" text="Delete" />
             <Button mnemonicParsing="false" onAction="#addTag" text="Add tag" />
             <Button mnemonicParsing="false" onAction="#deleteTag" text="Delete tag" />
          </children>

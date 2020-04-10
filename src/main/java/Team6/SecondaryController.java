@@ -39,7 +39,6 @@ public class SecondaryController implements Initializable {
 
     PictureService pictureService = new PictureService();
     Album album = new Album();
-    List<VBox> pics;
     TilePane tilePane = new TilePane();
 
     private static double ELEMENT_SIZE = 170;

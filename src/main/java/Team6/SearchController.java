@@ -63,8 +63,9 @@ public class SearchController implements Initializable {
     void addPictures(String searchingWord) {
         pictures.forEach(x -> {
             Optional<String> tag = x.getTags().stream().filter(e -> e.equalsIgnoreCase(searchingWord)).findAny();
-            if (tag.isPresent()) {
-                if (!searchedPictures.contains(x)){
+            String[] fileName = x.getFileName().split("\\.");
+            if (tag.isPresent() || searchingWord.equalsIgnoreCase(fileName[0])) {
+                if (!searchedPictures.contains(x) || searchingWord.equalsIgnoreCase(fileName[0])){
                     searchedPictures.add(x);
                 }
             }

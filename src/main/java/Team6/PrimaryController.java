@@ -48,7 +48,6 @@ public class PrimaryController implements Initializable  {
         fillListView();
         doubleClick();
         search();
-        int i = 0;
     }
 
     public void fillListView() {
@@ -57,12 +56,6 @@ public class PrimaryController implements Initializable  {
         //album.setId(0);
         //yourAlbums.add(0, album);
         albumView.getItems().addAll(yourAlbums);
-    }
-
-
-    @FXML
-    private void switchToSecondary() throws IOException {
-        App.setRoot("secondary");
     }
 
 
