@@ -4,6 +4,7 @@
  * @author team6
  */
 package entities;
+import java.io.IOException;
 import java.util.*;
 
 public class Album {
@@ -91,7 +92,7 @@ public class Album {
      * Method to add a picture to the album, only if it isnt already
      * @param filePath filepath of the image to be added
      */
-    public void addPicture(String filePath) {
+    public void addPicture(String filePath) throws IOException {
         if(isRegistered(filePath)) {
             throw new IllegalArgumentException("Bildet er allerede registert");
         }

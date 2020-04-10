@@ -16,6 +16,9 @@ public class CreateUserController {
 
     UserService userService = new UserService();
 
+    public CreateUserController() throws IOException {
+    }
+
     public void createUser(ActionEvent actionEvent) throws IOException {
         if (username.getText() != null && password.getText()!= null) {
             userService.createUser(username.getText(), password.getText());

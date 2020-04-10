@@ -4,14 +4,20 @@ import at.favre.lib.crypto.bcrypt.BCrypt;
 import entities.Album;
 import entities.User;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
 
 public class UserService {
-    public UserService() { }
+
+    //Create logger object from PicLdLogger class.
+    private PicLdLogger picLdLogger = new PicLdLogger();
+
+    public UserService() throws IOException { }
 
     public boolean createUser(String name, String password) {
         String query = "INSERT INTO user VALUES (default, ?,?)";
@@ -24,7 +30,7 @@ public class UserService {
             pst.executeUpdate();
             return true;
         } catch(SQLException se) {
-            System.out.println(se);
+            picLdLogger.getLogger().log(Level.FINE, se.getMessage());
             return false;
         } finally {
             Database.closeConnection(conn, pst, null);
@@ -52,7 +58,7 @@ public class UserService {
                 }
             return null;
         } catch(SQLException se) {
-            System.out.println(se);
+            picLdLogger.getLogger().log(Level.FINE, se.getMessage());
             return null;
         } finally {
             Database.closeConnection(conn, pst, null);
@@ -71,7 +77,7 @@ public class UserService {
             pst.executeUpdate();
             return true;
         } catch(SQLException se) {
-            System.out.println(se);
+            picLdLogger.getLogger().log(Level.FINE, se.getMessage());
             return false;
         } finally {
             Database.closeConnection(conn, pst);

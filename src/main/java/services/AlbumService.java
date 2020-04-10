@@ -2,14 +2,20 @@ package services;
 
 import entities.Album;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
 
 public class AlbumService {
-    public AlbumService() { }
+
+    //Create logger object from PicLdLogger class.
+    private PicLdLogger picLdLogger = new PicLdLogger();
+
+    public AlbumService() throws IOException { }
 
     public ArrayList<Album> getAllAlbums(int userId) {
         String query = "Select * from album where userid = ?";
@@ -26,7 +32,7 @@ public class AlbumService {
                 albums.add(new Album(result.getInt("id"), result.getString("name"), userId));
             return albums;
         } catch(SQLException se) {
-            System.out.println(se);
+            picLdLogger.getLogger().log(Level.FINE, se.getMessage());
             return null;
         } finally {
             Database.closeConnection(conn, pst, result);
@@ -44,7 +50,7 @@ public class AlbumService {
             pst.executeUpdate();
             return true;
         } catch(SQLException se) {
-            System.out.println(se);
+            picLdLogger.getLogger().log(Level.FINE, se.getMessage());
             return false;
         } finally {
             Database.closeConnection(conn, pst, null);
@@ -62,7 +68,7 @@ public class AlbumService {
             pst.executeUpdate();
             return true;
         } catch(SQLException se) {
-            System.out.println(se);
+            picLdLogger.getLogger().log(Level.FINE, se.getMessage());
             return false;
         } finally {
             Database.closeConnection(conn, pst);

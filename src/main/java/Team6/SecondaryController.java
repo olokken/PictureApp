@@ -8,6 +8,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
 import java.util.stream.Collectors;
 
 import entities.Album;
@@ -24,6 +25,7 @@ import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
+import services.PicLdLogger;
 import services.PictureService;
 
 
@@ -45,6 +47,12 @@ public class SecondaryController implements Initializable {
 
     private static double ELEMENT_SIZE = 170;
     private static final double GAP = ELEMENT_SIZE/10;
+
+    //Create logger object from PicLdLogger class.
+    private PicLdLogger picLdLogger = new PicLdLogger();
+
+    public SecondaryController() throws IOException {
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -95,7 +103,7 @@ public class SecondaryController implements Initializable {
             try {
                 image = new Image(new FileInputStream(x.getFilepath()));
             } catch (FileNotFoundException e) {
-                e.printStackTrace();
+                picLdLogger.getLogger().log(Level.FINE, e.getMessage());
             }
             ImageView imageView = new ImageView(image);
             imageView.setFitHeight(ELEMENT_SIZE);
@@ -109,7 +117,7 @@ public class SecondaryController implements Initializable {
                 try {
                     App.setRoot("tertiary");
                 } catch (IOException ex) {
-                    ex.printStackTrace();
+                    picLdLogger.getLogger().log(Level.FINE, ex.getMessage());
                 }
             });
             return imageView;
@@ -155,7 +163,7 @@ public class SecondaryController implements Initializable {
         createElements();
     }
 
-    public void addPicture(ActionEvent actionEvent)  {
+    public void addPicture(ActionEvent actionEvent) throws IOException {
         final FileChooser dir = new FileChooser();
         File file = dir.showOpenDialog(anchorPane.getScene().getWindow());
         if (file.exists()) {

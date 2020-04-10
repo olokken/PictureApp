@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
 
 import entities.Album;
 import entities.Picture;
@@ -23,6 +24,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import services.AlbumService;
+import services.PicLdLogger;
 import services.PictureService;
 
 
@@ -41,6 +43,12 @@ public class PrimaryController implements Initializable  {
     AlbumService albumService = new AlbumService();
     PictureService pictureService = new PictureService();
     User user = Context.getInstance().currentUser();
+
+    //Create logger object from PicLdLogger class.
+    private PicLdLogger picLdLogger = new PicLdLogger();
+
+    public PrimaryController() throws IOException {
+    }
 
 
     @Override
@@ -97,7 +105,7 @@ public class PrimaryController implements Initializable  {
                 try {
                     App.setRoot("secondary");
                 } catch (IOException ex) {
-                    ex.printStackTrace();
+                    picLdLogger.getLogger().log(Level.FINE, ex.getMessage());
                 }
             }
         });
@@ -116,7 +124,7 @@ public class PrimaryController implements Initializable  {
             try {
                 App.setRoot("search");
             } catch (IOException ex) {
-                ex.printStackTrace();
+                picLdLogger.getLogger().log(Level.FINE, ex.getMessage());
             }
         });
     }
