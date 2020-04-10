@@ -7,11 +7,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" snapToPixel="false" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="Team6.LoginController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" snapToPixel="false" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Team6.LoginController">
    <children>
       <ImageView fitHeight="403.0" fitWidth="468.0" layoutX="20.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="108.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="146.02871704101562" AnchorPane.topAnchor="0.0">
          <image>
-            <Image url="@../../../../images/pickles.jpg" />
+            <Image url="@../../../../../PictureApp/images/pickles.jpg" />
          </image></ImageView>
       <TextField fx:id="username" layoutX="76.0" layoutY="415.0" prefHeight="25.0" prefWidth="514.0" promptText="Enter username" />
       <Text layoutX="14.0" layoutY="432.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username: " />
