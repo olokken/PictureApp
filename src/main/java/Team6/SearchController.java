@@ -15,7 +15,6 @@ import services.PictureService;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,9 +37,18 @@ public class SearchController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         bind();
+        rememberLastSearch();
         search();
     }
 
+    void rememberLastSearch() {
+        if (Context.getInstance().currentSearchingword() != null) {
+            String lastSearched = Context.getInstance().currentSearchingword();
+            addPictures(lastSearched);
+            textField.setText(lastSearched);
+            createElements();
+        }
+    }
     void bind() {
         tilePane.setHgap(GAP);
         tilePane.setVgap(GAP);
@@ -91,6 +99,7 @@ public class SearchController implements Initializable {
             imageView.setSmooth(true);
             imageView.setCache(true);
             imageView.setOnMouseClicked(e -> {
+                Context.getInstance().setCurrentSearchingword(textField.getText());
                 Context.getInstance().currentAlbum().setPictures(searchedPictures);
                 Context.getInstance().currentAlbum().setId(-1);
                 Context.getInstance().setIndex(searchedPictures.indexOf(x));

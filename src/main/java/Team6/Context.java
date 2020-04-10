@@ -13,6 +13,7 @@ public class Context {
     public static Context getInstance() {
         return instance;
     }
+    private String searchingWord;
     private int index;
     private Album album = new Album();
     private User user = new User();
@@ -27,6 +28,14 @@ public class Context {
 
     public Album currentAlbum() {
         return album;
+    }
+
+    public String currentSearchingword() {
+        return searchingWord;
+    }
+
+    public void setCurrentSearchingword(String searchingWord) {
+        this.searchingWord = searchingWord;
     }
 
 
