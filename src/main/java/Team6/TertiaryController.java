@@ -4,9 +4,11 @@ import entities.Album;
 import entities.Picture;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -16,10 +18,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class TertiaryController implements Initializable {
     @FXML
@@ -51,10 +50,11 @@ public class TertiaryController implements Initializable {
 
     PictureService pictureService = new PictureService();
     int index = Context.getInstance().currentIndex();
-    Album album = new Album(Context.getInstance().currentAlbum().getName());
+    Album album = new Album();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        album.setName(Context.getInstance().currentAlbum().getName());
         album.setPictures(Context.getInstance().currentAlbum().getPictures());
         album.setId(Context.getInstance().currentAlbum().getId());
         pictureSetup();
@@ -99,17 +99,30 @@ public class TertiaryController implements Initializable {
 
     void metadataSetup() {
         Picture picture = album.getPictures().get(index);
-        if (filePath != null) {
-            filePath.setText(picture.getFilepath());
-        }
         if (picture.getFileName()!= null) {
-            fileName.setText(picture.getFileName());
+            fileName.setText("File name : " +picture.getFileName());
         }
-        fileSize.setText(Double.toString(picture.getFileSize()));
-        iso.setText(Integer.toString(picture.getISO()));
-        shutterspeed.setText(Integer.toString(picture.getShutterSpeed()));
-        exposureTime.setText(Double.toString(picture.getExposureTime()));
-        latitude.setText(Double.toString(picture.getLatitude()));
-        longitude.setText(Double.toString(picture.getLongitude()));
+        fileSize.setText("File size : " + Double.toString(picture.getFileSize()));
+        iso.setText("ISO : " + Integer.toString(picture.getISO()));
+        shutterspeed.setText("Shutterspeed : " + Integer.toString(picture.getShutterSpeed()));
+        exposureTime.setText("Exposure time : " + Double.toString(picture.getExposureTime()));
+        latitude.setText("Latitude : " + Double.toString(picture.getLatitude()));
+        longitude.setText("Longitude : " + Double.toString(picture.getLongitude()));
+    }
+
+    public void addTag(ActionEvent actionEvent) {
+        TextInputDialog t = new TextInputDialog();
+        t.setTitle("Tag");
+        t.setHeaderText("Add new tag");
+        t.setContentText("Enter tag: ");
+        Optional<String> result = t.showAndWait();
+        if (result.isPresent()) {
+            pictureService.addTags(album.getPictures().get(index), result.get());
+            album.getPictures().get(index).getTags().add(result.get());
+            listSetup();
+        }
+    }
+
+    public void deleteTag(ActionEvent actionEvent) {
     }
 }
