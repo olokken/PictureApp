@@ -1,6 +1,9 @@
 import entities.Picture;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.io.IOException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -10,7 +13,7 @@ public class PictureTest {
     private Picture picture;
 
     @BeforeEach
-    public void beforeEach(){
+    public void beforeEach() throws IOException {
         this.picture = new Picture("C:\\Users\\sstn\\OneDrive - NTNU\\Programmering\\PictureApp\\test\\garn.jpg");
     }
 

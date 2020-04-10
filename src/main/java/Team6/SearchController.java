@@ -10,6 +10,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
+import services.PicLdLogger;
 import services.PictureService;
 
 import java.io.FileInputStream;
@@ -20,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
 import java.util.stream.Collectors;
 
 public class SearchController implements Initializable {
@@ -33,6 +35,12 @@ public class SearchController implements Initializable {
     ArrayList<Picture> pictures = pictureService.getAllPictures(0, Context.getInstance().currentUser().getId());
     ArrayList<Picture> searchedPictures = new ArrayList<>();
     TilePane tilePane = new TilePane();
+
+    //Create logger object from PicLdLogger class.
+    private PicLdLogger picLdLogger = new PicLdLogger();
+
+    public SearchController() throws IOException {
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -91,7 +99,7 @@ public class SearchController implements Initializable {
             try {
                 image = new Image(new FileInputStream(x.getFilepath()));
             } catch (FileNotFoundException e) {
-                e.printStackTrace();
+                picLdLogger.getLogger().log(Level.FINE, e.getMessage());
             }
             ImageView imageView = new ImageView(image);
             imageView.setFitHeight(ELEMENT_SIZE);
@@ -106,7 +114,7 @@ public class SearchController implements Initializable {
                 try {
                     App.setRoot("tertiary");
                 } catch (IOException ex) {
-                    ex.printStackTrace();
+                    picLdLogger.getLogger().log(Level.FINE, ex.getMessage());
                 }
             });
             return imageView;

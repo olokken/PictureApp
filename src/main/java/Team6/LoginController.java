@@ -16,6 +16,9 @@ public class LoginController {
     TextField username;
     UserService userService = new UserService();
 
+    public LoginController() throws IOException {
+    }
+
     public void createNewUser(ActionEvent actionEvent) throws IOException {
         App.setRoot("createUser");
     }

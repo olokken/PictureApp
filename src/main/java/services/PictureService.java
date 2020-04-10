@@ -3,13 +3,19 @@ package services;
 import entities.Album;
 import entities.Picture;
 
+import java.io.IOException;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
 
 public class PictureService {
-    public PictureService() { }
+
+    //Create logger object from PicLdLogger class.
+    private PicLdLogger picLdLogger = new PicLdLogger();
+
+    public PictureService() throws IOException { }
 
     public ArrayList<Picture> getAllPictures(int albumId, int userId) {
         String query;
@@ -46,8 +52,8 @@ public class PictureService {
                 pictures.add(pic);
             }
                 return pictures;
-        } catch(SQLException se) {
-            System.out.println(se);
+        } catch(SQLException | IOException se) {
+            picLdLogger.getLogger().log(Level.FINE, se.getMessage());
             return null;
         } finally {
             Database.closeConnection(conn, pst, result);
@@ -94,7 +100,7 @@ public class PictureService {
 
             return true;
         } catch(SQLException se) {
-            System.out.println(se);
+            picLdLogger.getLogger().log(Level.FINE, se.getMessage());
             return false;
         } finally {
             Database.closeConnection(conn, pst, result);
@@ -123,7 +129,7 @@ public class PictureService {
             pst.executeUpdate();
             return true;
         } catch(SQLException se) {
-            System.out.println(se);
+            picLdLogger.getLogger().log(Level.FINE, se.getMessage());
             return false;
         } finally {
             Database.closeConnection(conn, pst);
@@ -143,7 +149,7 @@ public class PictureService {
             pst.executeUpdate();
             return true;
         } catch(SQLException se) {
-            System.out.println(se);
+            picLdLogger.getLogger().log(Level.FINE, se.getMessage());
             return false;
         } finally {
             Database.closeConnection(conn, pst, result);
@@ -168,7 +174,7 @@ public class PictureService {
             }
             return tags;
         } catch(SQLException se) {
-            System.out.println(se);
+            picLdLogger.getLogger().log(Level.FINE, se.getMessage());
             return null;
         } finally {
             Database.closeConnection(conn, pst, result);

@@ -14,12 +14,14 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
+import services.PicLdLogger;
 import services.PictureService;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
+import java.util.logging.Level;
 
 public class TertiaryController implements Initializable {
     @FXML
@@ -55,6 +57,12 @@ public class TertiaryController implements Initializable {
     int index = Context.getInstance().currentIndex();
     Album album = new Album();
 
+    //Create logger object from PicLdLogger class.
+    private PicLdLogger picLdLogger = new PicLdLogger();
+
+    public TertiaryController() throws IOException {
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         albumSetup();
@@ -82,7 +90,7 @@ public class TertiaryController implements Initializable {
         try {
             image = new Image(new FileInputStream(album.getPictures().get(index).getFilepath()));
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            picLdLogger.getLogger().log(Level.FINE, e.getMessage());
         }
         imageView.setImage(image);
     }

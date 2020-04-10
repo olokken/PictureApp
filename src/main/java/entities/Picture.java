@@ -6,10 +6,12 @@ import com.drew.metadata.Metadata;
 import com.drew.metadata.Tag;
 import com.drew.metadata.exif.ExifSubIFDDirectory;
 import com.drew.metadata.exif.GpsDirectory;
+import services.PicLdLogger;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
+import java.util.logging.Level;
 
 /**
  * class used to store information about the photos
@@ -28,11 +30,14 @@ public class Picture {
     private String fileName;
     private List<String> tags;
 
+    //Create logger object from PicLdLogger class.
+    private PicLdLogger picLdLogger = new PicLdLogger();
+
     public void setTags(List<String> tags) {
         this.tags = tags;
     }
 
-    public Picture(int id, String fileName, String filepath, double fileSize, Date dateTime, int ISO, int shutterSpeed, double exposureTime, boolean isFlashUsed, double latitude, double longitude) {
+    public Picture(int id, String fileName, String filepath, double fileSize, Date dateTime, int ISO, int shutterSpeed, double exposureTime, boolean isFlashUsed, double latitude, double longitude) throws IOException {
         this.id = id;
         this.filepath = filepath;
         this.dateTime = dateTime;
@@ -51,7 +56,7 @@ public class Picture {
      * cosntructor
      * @param filepath the filepath to the image whose metadata is to be stored
      */
-    public Picture(String filepath) {
+    public Picture(String filepath) throws IOException {
         this.filepath = filepath;
         File file =  new File(filepath);
         this.fileName = file.getName();
@@ -83,9 +88,9 @@ public class Picture {
                 }
             }
         } catch (ImageProcessingException e) {
-            e.printStackTrace();
+            picLdLogger.getLogger().log(Level.FINE, e.getMessage());
         } catch (IOException e) {
-            e.printStackTrace();
+            picLdLogger.getLogger().log(Level.FINE, e.getMessage());
         }
         this.tags = new ArrayList<String>();
     }
