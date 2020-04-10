@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
-
 import entities.Album;
 import entities.Picture;
 import javafx.event.ActionEvent;
@@ -58,8 +57,8 @@ public class SecondaryController implements Initializable {
 
 
     public void fillList () {
-        ArrayList<Picture> pics = pictureService.getAllPictures(album.getId(), Context.getInstance().currentUser().getId());
         if (Context.getInstance().currentAlbum().getPictures() == null) {
+            ArrayList<Picture> pics = pictureService.getAllPictures(album.getId(), Context.getInstance().currentUser().getId());
             album.setPictures(pics);
         }
         else {
@@ -77,6 +76,7 @@ public class SecondaryController implements Initializable {
 
     @FXML
     private void switchToPrimary() throws IOException {
+        Context.getInstance().setAlbumPicturesNull();
         App.setRoot("primary");
     }
 
