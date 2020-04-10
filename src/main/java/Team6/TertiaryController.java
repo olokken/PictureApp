@@ -13,15 +13,11 @@ import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import services.PicLdLogger;
 import services.PictureService;
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 import java.util.logging.Level;
 
 public class TertiaryController implements Initializable {
