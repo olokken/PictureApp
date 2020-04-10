@@ -52,9 +52,9 @@ public class PrimaryController implements Initializable  {
 
     public void fillListView() {
         yourAlbums = albumService.getAllAlbums(user.getId());
-        //Album album = new Album("All Photos");
-        //album.setId(0);
-        //yourAlbums.add(0, album);
+        Album album = new Album("All Photos");
+        album.setId(0);
+        yourAlbums.add(0, album);
         albumView.getItems().addAll(yourAlbums);
     }
 

@@ -14,6 +14,7 @@ import entities.Picture;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.SplitPane;
 import javafx.scene.image.Image;
@@ -28,6 +29,10 @@ import services.PictureService;
 
 
 public class SecondaryController implements Initializable {
+    @FXML
+    Button addButton;
+    @FXML
+    Button deleteButton;
     @FXML
     ScrollPane scrollPane;
     @FXML
@@ -46,12 +51,23 @@ public class SecondaryController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        albumSetup();
+        fillList();
+        pictureViewSetup();
+        createElements();
+        buttonSetup();
+    }
+
+    void albumSetup() {
         album.setName(Context.getInstance().currentAlbum().getName());
         album.setId(Context.getInstance().currentAlbum().getId());
         albumName.setText(album.getName());
-        fillList();
-        setup();
-        createElements();
+    }
+
+    void buttonSetup() {
+        if (album.getId() == 0) {
+            anchorPane.getChildren().removeAll(addButton, deleteButton);
+        }
     }
 
 
@@ -66,7 +82,7 @@ public class SecondaryController implements Initializable {
     }
 
 
-    void setup() {
+    void pictureViewSetup() {
         tilePane.setHgap(GAP);
         tilePane.setVgap(GAP);
         scrollPane.setFitToWidth(true);
