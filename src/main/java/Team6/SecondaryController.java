@@ -58,10 +58,7 @@ public class SecondaryController implements Initializable {
 
 
     public void fillList () {
-        long startTime = System.currentTimeMillis();
         ArrayList<Picture> pics = pictureService.getAllPictures(album.getId(), Context.getInstance().currentUser().getId());
-        long endTime = System.currentTimeMillis();
-        System.out.println("Tidtaker : " + (endTime - startTime));
         if (Context.getInstance().currentAlbum().getPictures() == null) {
             album.setPictures(pics);
         }
@@ -162,6 +159,7 @@ public class SecondaryController implements Initializable {
             Picture p = new Picture(file.getPath());
             album.getPictures().add(p);
             pictureService.createPicture(p, album.getId());
+            createElements();
         }
     }
 }
