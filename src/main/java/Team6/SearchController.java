@@ -1,6 +1,7 @@
 package Team6;
 
 import entities.Picture;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ScrollPane;
@@ -108,4 +109,9 @@ public class SearchController implements Initializable {
             vBox.getChildren().add(x);
             return vBox;
         }).collect(Collectors.toList());
-    }}
+    }
+
+    public void switchToPrimary(ActionEvent actionEvent) throws IOException {
+        App.setRoot("primary");
+    }
+}

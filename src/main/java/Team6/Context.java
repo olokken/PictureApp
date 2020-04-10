@@ -38,7 +38,4 @@ public class Context {
         return index;
     }
 
-    public void setAlbumPicturesNull() {
-        album.setPictures(null);
-    }
 }

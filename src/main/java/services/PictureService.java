@@ -21,8 +21,8 @@ public class PictureService {
                     "join albumpicture ap on p.id = ap.pictureId " +
                     "join album a on a.id = ap.albumId " +
                     "where a.userid = ?";
-
         }
+
         ArrayList<Picture> pictures = new ArrayList<>();
 
         Connection conn = Database.ConnectDB();
