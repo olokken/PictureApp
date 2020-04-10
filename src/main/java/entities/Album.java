@@ -5,6 +5,7 @@
  */
 package entities;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Album {
     private int id;
@@ -191,5 +192,9 @@ public class Album {
 
     public void sortShutterSpeed() {
         pictures.sort(Comparator.comparing(x -> x.getShutterSpeed()));
+    }
+
+    public void reverseOrder() {
+        Collections.reverse(pictures);
     }
 }

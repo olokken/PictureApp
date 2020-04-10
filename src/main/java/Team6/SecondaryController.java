@@ -162,4 +162,9 @@ public class SecondaryController implements Initializable {
             createElements();
         }
     }
+
+    public void reverseOrder(ActionEvent actionEvent) {
+        album.reverseOrder();
+        createElements();
+    }
 }
