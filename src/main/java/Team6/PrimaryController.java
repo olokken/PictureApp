@@ -67,12 +67,6 @@ public class PrimaryController implements Initializable  {
     }
 
 
-    @FXML
-    private void switchToSecondary() throws IOException {
-        App.setRoot("secondary");
-    }
-
-
     public void createAlbum(ActionEvent actionEvent) throws IOException {
         TextInputDialog t = new TextInputDialog();
         t.setTitle("Album");
@@ -100,8 +94,9 @@ public class PrimaryController implements Initializable  {
     public void doubleClick() {
         albumView.setOnMouseClicked(e -> {
             if(e.getClickCount() == 2 && albumView.getSelectionModel().getSelectedIndex() > -1) {
-                Context.getInstance().currentAlbum().setId(albumView.getSelectionModel().getSelectedItem().getId());
-                Context.getInstance().currentAlbum().setName(albumView.getSelectionModel().getSelectedItem().getName());
+                Album album = albumView.getSelectionModel().getSelectedItem();
+                Context.getInstance().currentAlbum().setId(album.getId());
+                Context.getInstance().currentAlbum().setName(album.getName());
                 try {
                     App.setRoot("secondary");
                 } catch (IOException ex) {
@@ -113,8 +108,9 @@ public class PrimaryController implements Initializable  {
 
     public void openAlbum() throws IOException {
         if (albumView.getSelectionModel().getSelectedIndex() > -1) {
-            Context.getInstance().currentAlbum().setId(albumView.getSelectionModel().getSelectedItem().getId());
-            Context.getInstance().currentAlbum().setName(albumView.getSelectionModel().getSelectedItem().getName());
+            Album album = albumView.getSelectionModel().getSelectedItem();
+            Context.getInstance().currentAlbum().setId(album.getId());
+            Context.getInstance().currentAlbum().setName(album.getName());
             App.setRoot("secondary");
         }
     }

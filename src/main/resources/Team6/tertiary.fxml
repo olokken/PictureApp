@@ -14,73 +14,38 @@
       <ImageView fx:id="imageView" fitHeight="321.0" fitWidth="423.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
    </center>
    <bottom>
-      <HBox alignment="CENTER" prefHeight="78.0" prefWidth="600.0" spacing="10.0">
+      <HBox fx:id="hBox" alignment="CENTER" prefHeight="78.0" prefWidth="600.0" spacing="10.0">
          <children>
             <Button mnemonicParsing="false" onAction="#switchToSecondary" prefHeight="25.0" prefWidth="55.0" text="&lt;--" />
-            <Button mnemonicParsing="false" onAction="#deletePicture" text="Delete" />
-            <Button mnemonicParsing="false" text="Add tag" />
+            <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#deletePicture" text="Delete" />
+            <Button mnemonicParsing="false" onAction="#addTag" text="Add tag" />
+            <Button mnemonicParsing="false" onAction="#deleteTag" text="Delete tag" />
          </children>
       </HBox>
    </bottom>
    <right>
       <VBox alignment="TOP_CENTER" prefHeight="257.0" prefWidth="163.0" spacing="5.0" BorderPane.alignment="CENTER">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Metadata">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Metadata" underline="true">
                <font>
-                  <Font size="18.0" />
+                  <Font size="16.0" />
                </font>
             </Text>
-            <Text fx:id="filePath" strokeType="OUTSIDE" strokeWidth="0.0" text="File Path : ">
+            <Text fx:id="fileName" strokeType="OUTSIDE" strokeWidth="0.0" text="File name :" />
+            <Text fx:id="fileSize" strokeType="OUTSIDE" strokeWidth="0.0" text="File size : " />
+            <Text fx:id="date" strokeType="OUTSIDE" strokeWidth="0.0" text="Date taken : " />
+            <Text fx:id="iso" strokeType="OUTSIDE" strokeWidth="0.0" text="ISO" />
+            <Text fx:id="shutterspeed" strokeType="OUTSIDE" strokeWidth="0.0" text="Shutterspeed :" />
+            <Text fx:id="exposureTime" strokeType="OUTSIDE" strokeWidth="0.0" text="Exposure time :" />
+            <Text fx:id="flash" strokeType="OUTSIDE" strokeWidth="0.0" text="Is Flash used : " />
+            <Text fx:id="latitude" strokeType="OUTSIDE" strokeWidth="0.0" text="Latitude :" />
+            <Text fx:id="longitude" strokeType="OUTSIDE" strokeWidth="0.0" text="Longitude :" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tags" underline="true">
                <font>
-                  <Font size="14.0" />
+                  <Font size="16.0" />
                </font>
             </Text>
-            <Text fx:id="fileName" strokeType="OUTSIDE" strokeWidth="0.0" text="File name :">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Text>
-            <Text fx:id="fileSize" strokeType="OUTSIDE" strokeWidth="0.0" text="File size : ">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Text>
-            <Text fx:id="date" strokeType="OUTSIDE" strokeWidth="0.0" text="Date taken : ">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Text>
-            <Text fx:id="iso" strokeType="OUTSIDE" strokeWidth="0.0" text="ISO">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Text>
-            <Text fx:id="shutterspeed" strokeType="OUTSIDE" strokeWidth="0.0" text="Shutterspeed :">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Text>
-            <Text fx:id="exposureTime" strokeType="OUTSIDE" strokeWidth="0.0" text="Exposure time :">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Text>
-            <Text fx:id="flash" strokeType="OUTSIDE" strokeWidth="0.0" text="Is Flash used : ">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Text>
-            <Text fx:id="latitude" strokeType="OUTSIDE" strokeWidth="0.0" text="Latitude :">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Text>
-            <Text fx:id="longitude" strokeType="OUTSIDE" strokeWidth="0.0" text="Longitude :">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Text>
-            <ListView fx:id="listView" prefHeight="200.0" prefWidth="200.0" />
+            <ListView fx:id="listView" editable="true" prefHeight="89.0" prefWidth="163.0" />
          </children>
       </VBox>
    </right>

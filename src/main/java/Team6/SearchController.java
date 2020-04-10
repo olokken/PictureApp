@@ -1,6 +1,7 @@
 package Team6;
 
 import entities.Picture;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ScrollPane;
@@ -15,7 +16,6 @@ import services.PictureService;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,9 +45,18 @@ public class SearchController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         bind();
+        rememberLastSearch();
         search();
     }
 
+    void rememberLastSearch() {
+        if (Context.getInstance().currentSearchingword() != null) {
+            String lastSearched = Context.getInstance().currentSearchingword();
+            addPictures(lastSearched);
+            textField.setText(lastSearched);
+            createElements();
+        }
+    }
     void bind() {
         tilePane.setHgap(GAP);
         tilePane.setVgap(GAP);
@@ -70,8 +79,9 @@ public class SearchController implements Initializable {
     void addPictures(String searchingWord) {
         pictures.forEach(x -> {
             Optional<String> tag = x.getTags().stream().filter(e -> e.equalsIgnoreCase(searchingWord)).findAny();
-            if (tag.isPresent()) {
-                if (!searchedPictures.contains(x)){
+            String[] fileName = x.getFileName().split("\\.");
+            if (tag.isPresent() || searchingWord.equalsIgnoreCase(fileName[0])) {
+                if (!searchedPictures.contains(x) || searchingWord.equalsIgnoreCase(fileName[0])){
                     searchedPictures.add(x);
                 }
             }
@@ -97,6 +107,7 @@ public class SearchController implements Initializable {
             imageView.setSmooth(true);
             imageView.setCache(true);
             imageView.setOnMouseClicked(e -> {
+                Context.getInstance().setCurrentSearchingword(textField.getText());
                 Context.getInstance().currentAlbum().setPictures(searchedPictures);
                 Context.getInstance().currentAlbum().setId(-1);
                 Context.getInstance().setIndex(searchedPictures.indexOf(x));
@@ -116,4 +127,9 @@ public class SearchController implements Initializable {
             vBox.getChildren().add(x);
             return vBox;
         }).collect(Collectors.toList());
-    }}
+    }
+
+    public void switchToPrimary(ActionEvent actionEvent) throws IOException {
+        App.setRoot("primary");
+    }
+}

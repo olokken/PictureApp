@@ -10,12 +10,12 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.stream.Collectors;
-
 import entities.Album;
 import entities.Picture;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.SplitPane;
 import javafx.scene.image.Image;
@@ -32,6 +32,10 @@ import services.PictureService;
 
 public class SecondaryController implements Initializable {
     @FXML
+    Button addButton;
+    @FXML
+    Button deleteButton;
+    @FXML
     ScrollPane scrollPane;
     @FXML
     SplitPane splitPane;
@@ -42,7 +46,6 @@ public class SecondaryController implements Initializable {
 
     PictureService pictureService = new PictureService();
     Album album = new Album();
-    List<VBox> pics;
     TilePane tilePane = new TilePane();
 
     private static double ELEMENT_SIZE = 170;
@@ -56,21 +59,29 @@ public class SecondaryController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        albumSetup();
+        fillList();
+        pictureViewSetup();
+        createElements();
+        buttonSetup();
+    }
+
+    void albumSetup() {
         album.setName(Context.getInstance().currentAlbum().getName());
         album.setId(Context.getInstance().currentAlbum().getId());
         albumName.setText(album.getName());
-        fillList();
-        setup();
-        createElements();
+    }
+
+    void buttonSetup() {
+        if (album.getId() == 0) {
+            anchorPane.getChildren().removeAll(addButton, deleteButton);
+        }
     }
 
 
     public void fillList () {
-        long startTime = System.currentTimeMillis();
-        ArrayList<Picture> pics = pictureService.getAllPictures(album.getId(), Context.getInstance().currentUser().getId());
-        long endTime = System.currentTimeMillis();
-        System.out.println("Tidtaker : " + (endTime - startTime));
         if (Context.getInstance().currentAlbum().getPictures() == null) {
+            ArrayList<Picture> pics = pictureService.getAllPictures(album.getId(), Context.getInstance().currentUser().getId());
             album.setPictures(pics);
         }
         else {
@@ -79,7 +90,7 @@ public class SecondaryController implements Initializable {
     }
 
 
-    void setup() {
+    void pictureViewSetup() {
         tilePane.setHgap(GAP);
         tilePane.setVgap(GAP);
         scrollPane.setFitToWidth(true);
@@ -88,6 +99,7 @@ public class SecondaryController implements Initializable {
 
     @FXML
     private void switchToPrimary() throws IOException {
+        Context.getInstance().currentAlbum().setPictures(null);
         App.setRoot("primary");
     }
 
@@ -170,6 +182,12 @@ public class SecondaryController implements Initializable {
             Picture p = new Picture(file.getPath());
             album.getPictures().add(p);
             pictureService.createPicture(p, album.getId());
+            createElements();
         }
+    }
+
+    public void reverseOrder(ActionEvent actionEvent) {
+        album.reverseOrder();
+        createElements();
     }
 }
