@@ -181,15 +181,14 @@ public class PictureService {
         }
     }
 
-    /**public boolean deleteTag(int pictureId, String tag) {
-        String deleteTag = "Delete from picturetag where ";
+    public boolean deleteTag(Picture picture, String tag) {
+        String query = "Delete from picturetag where pictureId = ? and tagName = ?";
 
         Connection conn = Database.ConnectDB();
         PreparedStatement pst = null;
-        ResultSet result = null;
         try {
-            pst = conn.prepareStatement(insertPictureTag,Statement.RETURN_GENERATED_KEYS);
-            pst.setInt(1, p.getId());
+            pst = conn.prepareStatement(query);
+            pst.setInt(1, picture.getId());
             pst.setString(2, tag);
             pst.executeUpdate();
             return true;
@@ -197,10 +196,11 @@ public class PictureService {
             //picLdLogger.getLogger().log(Level.FINE, se.getMessage());
             return false;
         } finally {
-            Database.closeConnection(conn, pst, result);
+            Database.closeConnection(conn, pst);
         }
+    }
 
-    }*/
+
 
 
 }

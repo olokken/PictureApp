@@ -145,16 +145,14 @@ public class TertiaryController implements Initializable {
         }
     }
 
-    public void deleteTag(ActionEvent actionEvent) {
-    }
 
-    /**public void deleteTag(ActionEvent actionEvent) {
+    public void deleteTag(ActionEvent actionEvent) {
         if (listView.getSelectionModel().getSelectedIndex() > -1) {
+            Picture picture = album.getPictures().get(index);
             String tag = listView.getSelectionModel().getSelectedItem();
-            pictureService.d(album);
-            yourAlbums.remove(album);
-            list = FXCollections.observableArrayList(yourAlbums);
-            albumView.setItems(list);
+            pictureService.deleteTag(picture, tag);
+            picture.getTags().remove(tag);
+            listSetup();
         }
-    }*/
+    }
 }
