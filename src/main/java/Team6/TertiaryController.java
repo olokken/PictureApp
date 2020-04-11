@@ -14,7 +14,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
-import services.PicLdLogger;
 import services.PictureService;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -58,7 +57,7 @@ public class TertiaryController implements Initializable {
     Album album = new Album();
 
     //Create logger object from PicLdLogger class.
-    private PicLdLogger picLdLogger = new PicLdLogger();
+    //private PicLdLogger picLdLogger = new PicLdLogger();
 
     public TertiaryController() throws IOException {
     }
@@ -90,7 +89,7 @@ public class TertiaryController implements Initializable {
         try {
             image = new Image(new FileInputStream(album.getPictures().get(index).getFilepath()));
         } catch (FileNotFoundException e) {
-            picLdLogger.getLogger().log(Level.FINE, e.getMessage());
+            //picLdLogger.getLogger().log(Level.FINE, e.getMessage());
         }
         imageView.setImage(image);
     }

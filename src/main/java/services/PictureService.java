@@ -13,13 +13,13 @@ import java.util.logging.Level;
 public class PictureService {
 
     //Create logger object from PicLdLogger class.
-    private PicLdLogger picLdLogger = new PicLdLogger();
+    //private PicLdLogger picLdLogger = new PicLdLogger();
 
     public PictureService() throws IOException { }
 
     public ArrayList<Picture> getAllPictures(int albumId, int userId) {
         String query;
-        if (albumId > 0) {
+        if (albumId >= 0) {
             query = "SELECT *  From picture as p INNER JOIN albumpicture as ap WHERE p.id = ap.pictureId and ap.albumId = ?";
         }
         else {
@@ -36,10 +36,10 @@ public class PictureService {
         ResultSet result = null;
         try {
             pst = conn.prepareStatement(query);
-            if (albumId > 0) {
+            if (albumId >= 0) {
                 pst.setInt(1,albumId);
             }
-            else if (albumId == 0) {
+            else if (albumId < 0) {
                 pst.setInt(1, userId);
             }
             result = pst.executeQuery();
@@ -53,7 +53,7 @@ public class PictureService {
             }
                 return pictures;
         } catch(SQLException | IOException se) {
-            picLdLogger.getLogger().log(Level.FINE, se.getMessage());
+            //picLdLogger.getLogger().log(Level.FINE, se.getMessage());
             return null;
         } finally {
             Database.closeConnection(conn, pst, result);
@@ -100,7 +100,7 @@ public class PictureService {
 
             return true;
         } catch(SQLException se) {
-            picLdLogger.getLogger().log(Level.FINE, se.getMessage());
+            //picLdLogger.getLogger().log(Level.FINE, se.getMessage());
             return false;
         } finally {
             Database.closeConnection(conn, pst, result);
@@ -129,7 +129,7 @@ public class PictureService {
             pst.executeUpdate();
             return true;
         } catch(SQLException se) {
-            picLdLogger.getLogger().log(Level.FINE, se.getMessage());
+            //picLdLogger.getLogger().log(Level.FINE, se.getMessage());
             return false;
         } finally {
             Database.closeConnection(conn, pst);
@@ -149,7 +149,7 @@ public class PictureService {
             pst.executeUpdate();
             return true;
         } catch(SQLException se) {
-            picLdLogger.getLogger().log(Level.FINE, se.getMessage());
+            //picLdLogger.getLogger().log(Level.FINE, se.getMessage());
             return false;
         } finally {
             Database.closeConnection(conn, pst, result);
@@ -174,7 +174,7 @@ public class PictureService {
             }
             return tags;
         } catch(SQLException se) {
-            picLdLogger.getLogger().log(Level.FINE, se.getMessage());
+            //picLdLogger.getLogger().log(Level.FINE, se.getMessage());
             return null;
         } finally {
             Database.closeConnection(conn, pst, result);
