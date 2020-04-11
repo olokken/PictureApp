@@ -110,7 +110,7 @@ public class TertiaryController implements Initializable {
 
     @FXML
     private void switchToSecondary() throws IOException {
-        if(album.getId() == -1) {
+        if(album.getId() == -2) {
             Context.getInstance().currentAlbum().setPictures(null);
             App.setRoot("search");
         }
