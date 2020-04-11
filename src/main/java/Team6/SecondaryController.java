@@ -73,7 +73,7 @@ public class SecondaryController implements Initializable {
     }
 
     void buttonSetup() {
-        if (album.getId() == 0) {
+        if (album.getId() < 0) {
             anchorPane.getChildren().removeAll(addButton, deleteButton);
         }
     }
