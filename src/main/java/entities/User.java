@@ -61,5 +61,4 @@ public class User {
         this.albums = albums;
     }
 
-
 }
