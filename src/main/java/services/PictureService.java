@@ -13,7 +13,7 @@ import java.util.logging.Level;
 public class PictureService {
 
     //Create logger object from PicLdLogger class.
-    private PicLdLogger picLdLogger = new PicLdLogger();
+    //private PicLdLogger picLdLogger = new PicLdLogger();
 
     public PictureService() throws IOException { }
 
@@ -53,7 +53,7 @@ public class PictureService {
             }
                 return pictures;
         } catch(SQLException | IOException se) {
-            picLdLogger.getLogger().log(Level.FINE, se.getMessage());
+            //picLdLogger.getLogger().log(Level.FINE, se.getMessage());
             return null;
         } finally {
             Database.closeConnection(conn, pst, result);

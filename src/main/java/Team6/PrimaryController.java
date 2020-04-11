@@ -145,7 +145,7 @@ public class PrimaryController implements Initializable  {
         if (result.isPresent()) {
             albumService.createAlbum(result.get(), user.getId());
             yourAlbums.add(new Album(result.get(), user.getId()));
-            createElements();
+            fillListView();
         }
     }
 
