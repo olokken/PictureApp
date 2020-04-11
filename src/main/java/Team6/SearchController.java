@@ -108,7 +108,7 @@ public class SearchController implements Initializable {
             imageView.setOnMouseClicked(e -> {
                 Context.getInstance().setCurrentSearchingword(textField.getText());
                 Context.getInstance().currentAlbum().setPictures(searchedPictures);
-                Context.getInstance().currentAlbum().setId(-1);
+                Context.getInstance().currentAlbum().setId(-2);
                 Context.getInstance().setIndex(searchedPictures.indexOf(x));
                 try {
                     App.setRoot("tertiary");
