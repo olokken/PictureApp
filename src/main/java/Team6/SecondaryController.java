@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.stream.Collectors;
@@ -182,6 +183,9 @@ public class SecondaryController implements Initializable {
             album.getPictures().add(p);
             pictureService.createPicture(p, album.getId());
             createElements();
+            ArrayList<Picture> pics = pictureService.getAllPictures(album.getId(), Context.getInstance().currentUser().getId());
+            album.setPictures(pics);
+
         }
     }
 
