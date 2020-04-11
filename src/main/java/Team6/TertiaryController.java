@@ -50,7 +50,7 @@ public class TertiaryController implements Initializable {
     @FXML
     ImageView imageView;
     @FXML
-    ListView listView;
+    ListView<String> listView;
 
     PictureService pictureService = new PictureService();
     int index = Context.getInstance().currentIndex();
@@ -110,7 +110,7 @@ public class TertiaryController implements Initializable {
 
     @FXML
     private void switchToSecondary() throws IOException {
-        if(album.getId() == -1) {
+        if(album.getId() == -2) {
             Context.getInstance().currentAlbum().setPictures(null);
             App.setRoot("search");
         }
@@ -147,4 +147,14 @@ public class TertiaryController implements Initializable {
 
     public void deleteTag(ActionEvent actionEvent) {
     }
+
+    /**public void deleteTag(ActionEvent actionEvent) {
+        if (listView.getSelectionModel().getSelectedIndex() > -1) {
+            String tag = listView.getSelectionModel().getSelectedItem();
+            pictureService.d(album);
+            yourAlbums.remove(album);
+            list = FXCollections.observableArrayList(yourAlbums);
+            albumView.setItems(list);
+        }
+    }*/
 }

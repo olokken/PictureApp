@@ -25,7 +25,6 @@ import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
-import services.PicLdLogger;
 import services.PictureService;
 
 
@@ -52,7 +51,7 @@ public class SecondaryController implements Initializable {
     private static final double GAP = ELEMENT_SIZE/10;
 
     //Create logger object from PicLdLogger class.
-    private PicLdLogger picLdLogger = new PicLdLogger();
+    //private PicLdLogger picLdLogger = new PicLdLogger();
 
     public SecondaryController() throws IOException {
     }
@@ -73,7 +72,7 @@ public class SecondaryController implements Initializable {
     }
 
     void buttonSetup() {
-        if (album.getId() == 0) {
+        if (album.getId() < 0) {
             anchorPane.getChildren().removeAll(addButton, deleteButton);
         }
     }
@@ -115,7 +114,7 @@ public class SecondaryController implements Initializable {
             try {
                 image = new Image(new FileInputStream(x.getFilepath()));
             } catch (FileNotFoundException e) {
-                picLdLogger.getLogger().log(Level.FINE, e.getMessage());
+                //picLdLogger.getLogger().log(Level.FINE, e.getMessage());
             }
             ImageView imageView = new ImageView(image);
             imageView.setFitHeight(ELEMENT_SIZE);
@@ -129,7 +128,7 @@ public class SecondaryController implements Initializable {
                 try {
                     App.setRoot("tertiary");
                 } catch (IOException ex) {
-                    picLdLogger.getLogger().log(Level.FINE, ex.getMessage());
+                    //picLdLogger.getLogger().log(Level.FINE, ex.getMessage());
                 }
             });
             return imageView;

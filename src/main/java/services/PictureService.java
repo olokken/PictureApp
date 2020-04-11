@@ -181,5 +181,26 @@ public class PictureService {
         }
     }
 
+    /**public boolean deleteTag(int pictureId, String tag) {
+        String deleteTag = "Delete from picturetag where ";
+
+        Connection conn = Database.ConnectDB();
+        PreparedStatement pst = null;
+        ResultSet result = null;
+        try {
+            pst = conn.prepareStatement(insertPictureTag,Statement.RETURN_GENERATED_KEYS);
+            pst.setInt(1, p.getId());
+            pst.setString(2, tag);
+            pst.executeUpdate();
+            return true;
+        } catch(SQLException se) {
+            //picLdLogger.getLogger().log(Level.FINE, se.getMessage());
+            return false;
+        } finally {
+            Database.closeConnection(conn, pst, result);
+        }
+
+    }*/
+
 
 }
