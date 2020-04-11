@@ -10,7 +10,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
-import services.PicLdLogger;
 import services.PictureService;
 
 import java.io.FileInputStream;
@@ -32,12 +31,12 @@ public class SearchController implements Initializable {
     @FXML
     ScrollPane scrollPane;
     PictureService pictureService = new PictureService();
-    ArrayList<Picture> pictures = pictureService.getAllPictures(0, Context.getInstance().currentUser().getId());
+    ArrayList<Picture> pictures = pictureService.getAllPictures(-1, Context.getInstance().currentUser().getId());
     ArrayList<Picture> searchedPictures = new ArrayList<>();
     TilePane tilePane = new TilePane();
 
     //Create logger object from PicLdLogger class.
-    private PicLdLogger picLdLogger = new PicLdLogger();
+    //private PicLdLogger picLdLogger = new PicLdLogger();
 
     public SearchController() throws IOException {
     }
@@ -99,7 +98,7 @@ public class SearchController implements Initializable {
             try {
                 image = new Image(new FileInputStream(x.getFilepath()));
             } catch (FileNotFoundException e) {
-                picLdLogger.getLogger().log(Level.FINE, e.getMessage());
+                //picLdLogger.getLogger().log(Level.FINE, e.getMessage());
             }
             ImageView imageView = new ImageView(image);
             imageView.setFitHeight(ELEMENT_SIZE);
@@ -114,7 +113,7 @@ public class SearchController implements Initializable {
                 try {
                     App.setRoot("tertiary");
                 } catch (IOException ex) {
-                    picLdLogger.getLogger().log(Level.FINE, ex.getMessage());
+                    //picLdLogger.getLogger().log(Level.FINE, ex.getMessage());
                 }
             });
             return imageView;
@@ -130,6 +129,7 @@ public class SearchController implements Initializable {
     }
 
     public void switchToPrimary(ActionEvent actionEvent) throws IOException {
+        Context.getInstance().currentAlbum().setPictures(null);
         App.setRoot("primary");
     }
 }

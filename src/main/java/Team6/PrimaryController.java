@@ -24,7 +24,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import services.AlbumService;
-import services.PicLdLogger;
 import services.PictureService;
 
 
@@ -45,7 +44,7 @@ public class PrimaryController implements Initializable  {
     User user = Context.getInstance().currentUser();
 
     //Create logger object from PicLdLogger class.
-    private PicLdLogger picLdLogger = new PicLdLogger();
+    //private PicLdLogger picLdLogger = new PicLdLogger();
 
     public PrimaryController() throws IOException {
     }
@@ -61,7 +60,8 @@ public class PrimaryController implements Initializable  {
     public void fillListView() {
         yourAlbums = albumService.getAllAlbums(user.getId());
         Album album = new Album("All Photos");
-        album.setId(0);
+        album.setId(-1);
+        album.setUserId(Context.getInstance().currentUser().getId());
         yourAlbums.add(0, album);
         albumView.getItems().addAll(yourAlbums);
     }
@@ -100,7 +100,7 @@ public class PrimaryController implements Initializable  {
                 try {
                     App.setRoot("secondary");
                 } catch (IOException ex) {
-                    picLdLogger.getLogger().log(Level.FINE, ex.getMessage());
+                    //picLdLogger.getLogger().log(Level.FINE, ex.getMessage());
                 }
             }
         });
@@ -120,7 +120,7 @@ public class PrimaryController implements Initializable  {
             try {
                 App.setRoot("search");
             } catch (IOException ex) {
-                picLdLogger.getLogger().log(Level.FINE, ex.getMessage());
+                //picLdLogger.getLogger().log(Level.FINE, ex.getMessage());
             }
         });
     }
