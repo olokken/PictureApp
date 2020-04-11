@@ -111,16 +111,21 @@ public class PictureService {
         String query = "Delete from picture where id = ?";
         String deleteFromAlbumQuery = "Delete from albumpicture where pictureid = ? and albumid = ?";
         String deleteFromAllAlbumsQuery = "Delete from albumpicture where pictureid = ?";
+        String deleteFromPictureTagQuery = "Delete from picturetag where pictureid = ?";
 
         Connection conn = Database.ConnectDB();
         PreparedStatement pst = null;
         try {
-            if(albumid == 0) {
+            if(albumid == -1) {
                 pst = conn.prepareStatement(deleteFromAllAlbumsQuery);
             } else {
                 pst = conn.prepareStatement(deleteFromAlbumQuery);
                 pst.setInt(2, albumid);
             }
+            pst.setInt(1, pictureid);
+            pst.executeUpdate();
+
+            pst = conn.prepareStatement(deleteFromPictureTagQuery);
             pst.setInt(1, pictureid);
             pst.executeUpdate();
 

@@ -1,11 +1,15 @@
 package Team6;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
+import java.util.stream.Collectors;
 
 import entities.Album;
 import entities.Picture;
@@ -15,13 +19,16 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TextInputDialog;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import services.AlbumService;
 import services.PictureService;
@@ -29,19 +36,21 @@ import services.PictureService;
 
 public class PrimaryController implements Initializable  {
     @FXML
+    ScrollPane scrollPane;
+    @FXML
     TextField textField;
     @FXML
-    VBox vBox;
-    @FXML
     AnchorPane anchorPane;
-    @FXML
-    ListView<Album> albumView;
+    TilePane tilePane = new TilePane();
 
     ArrayList<Album> yourAlbums = new ArrayList<Album>();
-    ObservableList<Album> list = FXCollections.observableArrayList(yourAlbums);
+    ArrayList<Album> chosenOnes = new ArrayList<Album>();
     AlbumService albumService = new AlbumService();
     PictureService pictureService = new PictureService();
     User user = Context.getInstance().currentUser();
+
+    private static double ELEMENT_SIZE = 100;
+    private static final double GAP = ELEMENT_SIZE/10;
 
     //Create logger object from PicLdLogger class.
     //private PicLdLogger picLdLogger = new PicLdLogger();
@@ -52,9 +61,69 @@ public class PrimaryController implements Initializable  {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        albumViewSetup();
         fillListView();
-        doubleClick();
         search();
+    }
+
+    void createElements() {
+        tilePane.getChildren().clear();
+        tilePane.getChildren().addAll(createPages());
+    }
+
+    List<VBox> createPages() {
+        return yourAlbums.stream().map(x -> {
+            VBox vBox = new VBox();
+            vBox.setStyle("-fx-background-color: white");
+            Text text = new Text(x.getName());
+            text.setTextAlignment(TextAlignment.CENTER);
+            vBox.setPadding(new Insets(5,5,0,5));
+            try {
+                vBox.getChildren().add(createImageView());
+                text.setWrappingWidth(createImageView().getFitWidth());
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            vBox.getChildren().add(text);
+            vBox.setOnMouseClicked(e -> {
+                if(chosenOnes.contains(x)) {
+                    vBox.setStyle("-fx-background-color: white");
+                    chosenOnes.remove(x);
+                }
+                else {
+                    vBox.setStyle("-fx-background-color: green");
+                    chosenOnes.add(x);
+                }
+                if (e.getClickCount() == 2) {
+                    Context.getInstance().currentAlbum().setId(x.getId());
+                    Context.getInstance().currentAlbum().setName(x.getName());
+                    try {
+                        App.setRoot("secondary");
+                    } catch (IOException ex) {
+                        //picLdLogger.getLogger().log(Level.FINE, ex.getMessage());
+                    }
+                }
+            });
+            return vBox;
+        }).collect(Collectors.toList());
+    }
+
+    ImageView createImageView() throws FileNotFoundException {
+        Image image = null;
+        image = new Image(new FileInputStream(".\\images\\mappetest.png"));
+        ImageView imageView = new ImageView(image);
+        imageView.setFitHeight(ELEMENT_SIZE);
+        imageView.setFitWidth(ELEMENT_SIZE);
+        imageView.setSmooth(true);
+        imageView.setCache(true);
+        return imageView;
+    }
+
+    void albumViewSetup() {
+        tilePane.setHgap(GAP);
+        tilePane.setVgap(GAP);
+        scrollPane.setFitToWidth(true);
+        scrollPane.setContent(tilePane);
     }
 
     public void fillListView() {
@@ -63,7 +132,7 @@ public class PrimaryController implements Initializable  {
         album.setId(-1);
         album.setUserId(Context.getInstance().currentUser().getId());
         yourAlbums.add(0, album);
-        albumView.getItems().addAll(yourAlbums);
+        createElements();
     }
 
 
@@ -76,39 +145,23 @@ public class PrimaryController implements Initializable  {
         if (result.isPresent()) {
             albumService.createAlbum(result.get(), user.getId());
             yourAlbums.add(new Album(result.get(), user.getId()));
-            list = FXCollections.observableArrayList(yourAlbums);
-            albumView.setItems(list);
+            createElements();
         }
     }
 
     public void deleteAlbum(ActionEvent actionEvent) {
-        if (albumView.getSelectionModel().getSelectedIndex() > -1) {
-            Album album = albumView.getSelectionModel().getSelectedItem();
-            albumService.deleteAlbum(album);
-            yourAlbums.remove(album);
-            list = FXCollections.observableArrayList(yourAlbums);
-            albumView.setItems(list);
+        if (chosenOnes.size() > 0) {
+            chosenOnes.forEach(e -> {
+                albumService.deleteAlbum(e);
+                yourAlbums.remove(e);
+            });
+            createElements();
         }
     }
 
-    public void doubleClick() {
-        albumView.setOnMouseClicked(e -> {
-            if(e.getClickCount() == 2 && albumView.getSelectionModel().getSelectedIndex() > -1) {
-                Album album = albumView.getSelectionModel().getSelectedItem();
-                Context.getInstance().currentAlbum().setId(album.getId());
-                Context.getInstance().currentAlbum().setName(album.getName());
-                try {
-                    App.setRoot("secondary");
-                } catch (IOException ex) {
-                    //picLdLogger.getLogger().log(Level.FINE, ex.getMessage());
-                }
-            }
-        });
-    }
-
     public void openAlbum() throws IOException {
-        if (albumView.getSelectionModel().getSelectedIndex() > -1) {
-            Album album = albumView.getSelectionModel().getSelectedItem();
+        if (chosenOnes.size() == 1) {
+            Album album = chosenOnes.get(0);
             Context.getInstance().currentAlbum().setId(album.getId());
             Context.getInstance().currentAlbum().setName(album.getName());
             App.setRoot("secondary");
