@@ -7,13 +7,13 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 
 public class Database {
-    private static final String CONNECTION_STRING = "jdbc:mysql://mysql-ait.stud.idi.ntnu.no:3306/olelok?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+    private static final String CONNECTION_STRING = "jdbc:mysql://127.0.0.1:3306/picld?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
     private static final String DRIVER = "com.mysql.jdbc.Driver";
-    private static final String USERNAME = "olelok"; // Skriv eget brukernavn som du har på mail fra ntnu databasegreier
-    private static final String PASSWORD = "xRoHhYJn"; //Skriv eget passord som du har på mail fra ntnu databasegreier
+    private static final String USERNAME = "root"; // Skriv eget brukernavn som du har på mail fra ntnu databasegreier
+    private static final String PASSWORD = "Tottenham<3"; //Skriv eget passord som du har på mail fra ntnu databasegreier
 
     //Create logger object from PicLdLogger class.
-    private static PicLdLogger picLdLogger;
+    //private static PicLdLogger picLdLogger;
 
     public Database() { }
     /**
@@ -26,7 +26,7 @@ public class Database {
         try {
             return DriverManager.getConnection(CONNECTION_STRING, USERNAME, PASSWORD);
         } catch (SQLException se) {
-            picLdLogger.getLogger().log(Level.FINE, se.getMessage());
+            //picLdLogger.getLogger().log(Level.FINE, se.getMessage());
             return null;
         }
     }
@@ -41,7 +41,7 @@ public class Database {
         try {
             conn.rollback();
         } catch (SQLException ex) {
-            picLdLogger.getLogger().log(Level.FINE, ex.getMessage());
+            //picLdLogger.getLogger().log(Level.FINE, ex.getMessage());
         }
     }
 
@@ -62,21 +62,21 @@ public class Database {
                 conn.close();
             }
         } catch (SQLException se) {
-            picLdLogger.getLogger().log(Level.FINE, se.getMessage());
+            //picLdLogger.getLogger().log(Level.FINE, se.getMessage());
         }
         try {
             if (pst != null) {
                 pst.close();
             }
         } catch (SQLException se) {
-            picLdLogger.getLogger().log(Level.FINE, se.getMessage());
+            //picLdLogger.getLogger().log(Level.FINE, se.getMessage());
         }
         try {
             if (result != null) {
                 result.close();
             }
         } catch (SQLException se) {
-            picLdLogger.getLogger().log(Level.FINE, se.getMessage());
+            //picLdLogger.getLogger().log(Level.FINE, se.getMessage());
         }
     }
     /**
@@ -95,21 +95,21 @@ public class Database {
                 conn.close();
             }
         } catch (SQLException se) {
-            picLdLogger.getLogger().log(Level.FINE, se.getMessage());
+            //picLdLogger.getLogger().log(Level.FINE, se.getMessage());
         }
         try {
             if (stmt != null) {
                 stmt.close();
             }
         } catch (SQLException se) {
-            picLdLogger.getLogger().log(Level.FINE, se.getMessage());
+            //picLdLogger.getLogger().log(Level.FINE, se.getMessage());
         }
         try {
             if (result != null) {
                 result.close();
             }
         } catch (SQLException se) {
-            picLdLogger.getLogger().log(Level.FINE, se.getMessage());
+            //picLdLogger.getLogger().log(Level.FINE, se.getMessage());
         }
     }
 
@@ -127,14 +127,14 @@ public class Database {
                 conn.close();
             }
         } catch (SQLException se) {
-            picLdLogger.getLogger().log(Level.FINE, se.getMessage());
+            //picLdLogger.getLogger().log(Level.FINE, se.getMessage());
         }
         try {
             if (pst != null) {
                 pst.close();
             }
         } catch (SQLException se) {
-            picLdLogger.getLogger().log(Level.FINE, se.getMessage());
+            //picLdLogger.getLogger().log(Level.FINE, se.getMessage());
         }
     }
 
@@ -152,18 +152,18 @@ public class Database {
                 conn.close();
             }
         } catch (SQLException se) {
-            picLdLogger.getLogger().log(Level.FINE, se.getMessage());
+            //picLdLogger.getLogger().log(Level.FINE, se.getMessage());
         }
         try {
             if (stmt != null) {
                 stmt.close();
             }
         } catch (SQLException se) {
-            picLdLogger.getLogger().log(Level.FINE, se.getMessage());
+            //picLdLogger.getLogger().log(Level.FINE, se.getMessage());
         }
     }
 
-    public static void setPicLdLogger(PicLdLogger picLdLogger) {
-        Database.picLdLogger = picLdLogger;
-    }
+    //public static void setPicLdLogger(PicLdLogger picLdLogger) {
+        //Database.picLdLogger = picLdLogger;
+    //}
 }

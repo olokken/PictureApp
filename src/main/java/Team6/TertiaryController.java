@@ -50,7 +50,7 @@ public class TertiaryController implements Initializable {
     @FXML
     ImageView imageView;
     @FXML
-    ListView listView;
+    ListView<String> listView;
 
     PictureService pictureService = new PictureService();
     int index = Context.getInstance().currentIndex();
@@ -145,6 +145,14 @@ public class TertiaryController implements Initializable {
         }
     }
 
+
     public void deleteTag(ActionEvent actionEvent) {
+        if (listView.getSelectionModel().getSelectedIndex() > -1) {
+            Picture picture = album.getPictures().get(index);
+            String tag = listView.getSelectionModel().getSelectedItem();
+            pictureService.deleteTag(picture, tag);
+            picture.getTags().remove(tag);
+            listSetup();
+        }
     }
 }

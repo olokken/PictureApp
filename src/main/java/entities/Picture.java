@@ -6,7 +6,6 @@ import com.drew.metadata.Metadata;
 import com.drew.metadata.Tag;
 import com.drew.metadata.exif.ExifSubIFDDirectory;
 import com.drew.metadata.exif.GpsDirectory;
-import services.PicLdLogger;
 
 import java.io.File;
 import java.io.IOException;
@@ -31,7 +30,7 @@ public class Picture {
     private List<String> tags;
 
     //Create logger object from PicLdLogger class.
-    private PicLdLogger picLdLogger = new PicLdLogger();
+    //private PicLdLogger picLdLogger = new PicLdLogger();
 
     public void setTags(List<String> tags) {
         this.tags = tags;
@@ -88,9 +87,9 @@ public class Picture {
                 }
             }
         } catch (ImageProcessingException e) {
-            picLdLogger.getLogger().log(Level.FINE, e.getMessage());
+            //picLdLogger.getLogger().log(Level.FINE, e.getMessage());
         } catch (IOException e) {
-            picLdLogger.getLogger().log(Level.FINE, e.getMessage());
+            //picLdLogger.getLogger().log(Level.FINE, e.getMessage());
         }
         this.tags = new ArrayList<String>();
     }
