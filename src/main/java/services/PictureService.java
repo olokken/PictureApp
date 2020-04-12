@@ -63,41 +63,48 @@ public class PictureService {
     public boolean createPicture(Picture picture, int albumId) {
         String insertPicture = "INSERT INTO picture VALUES (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         String insertAlbumPicture = "INSERT INTO albumpicture VALUES (default, ?, ?)";
+        String checkPictureQuery = "Select * from picture where filePath = ?";
+        int pictureId = 0;
 
         Connection conn = Database.ConnectDB();
         PreparedStatement pst = null;
         ResultSet result = null;
         try {
-            pst = conn.prepareStatement(insertPicture,Statement.RETURN_GENERATED_KEYS);
-            pst.setString(1, picture.getFileName());
-            pst.setString(2, picture.getFilepath());
-            pst.setDouble(3, picture.getFileSize());
-            Date d = picture.getDateTime();
-            SimpleDateFormat sdf;
-            String currentTime = null;
-            if (d!= null) {
-                sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                currentTime = sdf.format(d);
-            }
-            pst.setString(4, currentTime);
-            pst.setInt(5, picture.getISO());
-            pst.setInt(6, picture.getShutterSpeed());
-            pst.setDouble(7, picture.getExposureTime());
-            pst.setBoolean(8, picture.isFlashUsed());
-            pst.setDouble(9, picture.getLatitude());
-            pst.setDouble(10, picture.getLongitude());
-            pst.executeUpdate();
-            if (albumId != 0) {
+            pst = conn.prepareStatement(checkPictureQuery);
+            pst.setString(1, picture.getFilepath());
+            result = pst.executeQuery();
+            if(!result.next()) {
+                pst = conn.prepareStatement(insertPicture,Statement.RETURN_GENERATED_KEYS);
+                pst.setString(1, picture.getFileName());
+                pst.setString(2, picture.getFilepath());
+                pst.setDouble(3, picture.getFileSize());
+                Date d = picture.getDateTime();
+                SimpleDateFormat sdf;
+                String currentTime = null;
+                if (d!= null) {
+                    sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    currentTime = sdf.format(d);
+                }
+                pst.setString(4, currentTime);
+                pst.setInt(5, picture.getISO());
+                pst.setInt(6, picture.getShutterSpeed());
+                pst.setDouble(7, picture.getExposureTime());
+                pst.setBoolean(8, picture.isFlashUsed());
+                pst.setDouble(9, picture.getLatitude());
+                pst.setDouble(10, picture.getLongitude());
+                pst.executeUpdate();
                 ResultSet rs = pst.getGeneratedKeys();
                 if (rs.next()) {
-                    int pictureId = rs.getInt(1);
-                    pst = conn.prepareStatement(insertAlbumPicture);
-                    pst.setInt(1, albumId);
-                    pst.setInt(2, pictureId);
-                    pst.executeUpdate();
+                    pictureId = rs.getInt(1);
                 }
+            } else {
+                pictureId = result.getInt(1);
             }
 
+            pst = conn.prepareStatement(insertAlbumPicture);
+            pst.setInt(1, albumId);
+            pst.setInt(2, pictureId);
+            pst.executeUpdate();
             return true;
         } catch(SQLException se) {
             //picLdLogger.getLogger().log(Level.FINE, se.getMessage());
@@ -110,28 +117,31 @@ public class PictureService {
     public boolean deletePicture(int pictureid, int albumid) {
         String query = "Delete from picture where id = ?";
         String deleteFromAlbumQuery = "Delete from albumpicture where pictureid = ? and albumid = ?";
-        String deleteFromAllAlbumsQuery = "Delete from albumpicture where pictureid = ?";
         String deleteFromPictureTagQuery = "Delete from picturetag where pictureid = ?";
+        String checkPictureQuery = "Select * from albumpicture where pictureid = ?";
+
 
         Connection conn = Database.ConnectDB();
         PreparedStatement pst = null;
+        ResultSet result = null;
         try {
-            if(albumid == -1) {
-                pst = conn.prepareStatement(deleteFromAllAlbumsQuery);
-            } else {
-                pst = conn.prepareStatement(deleteFromAlbumQuery);
-                pst.setInt(2, albumid);
+            pst = conn.prepareStatement(deleteFromAlbumQuery);
+            pst.setInt(1, pictureid);
+            pst.setInt(2, albumid);
+            pst.executeUpdate();
+
+            pst = conn.prepareStatement(checkPictureQuery);
+            pst.setInt(1, pictureid);
+            result = pst.executeQuery();
+            if(!result.next()) {
+                pst = conn.prepareStatement(deleteFromPictureTagQuery);
+                pst.setInt(1, pictureid);
+                pst.executeUpdate();
+
+                pst = conn.prepareStatement(query);
+                pst.setInt(1, pictureid);
+                pst.executeUpdate();
             }
-            pst.setInt(1, pictureid);
-            pst.executeUpdate();
-
-            pst = conn.prepareStatement(deleteFromPictureTagQuery);
-            pst.setInt(1, pictureid);
-            pst.executeUpdate();
-
-            pst = conn.prepareStatement(query);
-            pst.setInt(1, pictureid);
-            pst.executeUpdate();
             return true;
         } catch(SQLException se) {
             //picLdLogger.getLogger().log(Level.FINE, se.getMessage());

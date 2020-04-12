@@ -10,7 +10,6 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.stream.Collectors;
-
 import entities.Album;
 import entities.Picture;
 import entities.User;
@@ -32,6 +31,7 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import services.AlbumService;
 import services.PictureService;
+import services.UserService;
 
 
 public class PrimaryController implements Initializable  {
@@ -47,6 +47,7 @@ public class PrimaryController implements Initializable  {
     ArrayList<Album> chosenOnes = new ArrayList<Album>();
     AlbumService albumService = new AlbumService();
     PictureService pictureService = new PictureService();
+    UserService userService = new UserService();
     User user = Context.getInstance().currentUser();
 
     private static double ELEMENT_SIZE = 100;
@@ -144,7 +145,6 @@ public class PrimaryController implements Initializable  {
         Optional<String> result = t.showAndWait();
         if (result.isPresent()) {
             albumService.createAlbum(result.get(), user.getId());
-            yourAlbums.add(new Album(result.get(), user.getId()));
             fillListView();
         }
     }
@@ -152,6 +152,7 @@ public class PrimaryController implements Initializable  {
     public void deleteAlbum(ActionEvent actionEvent) {
         if (chosenOnes.size() > 0) {
             chosenOnes.forEach(e -> {
+                e.setPictures(pictureService.getAllPictures(e.getId(), Context.getInstance().currentUser().getId()));
                 albumService.deleteAlbum(e);
                 yourAlbums.remove(e);
             });
@@ -181,4 +182,5 @@ public class PrimaryController implements Initializable  {
     public void logOut(ActionEvent actionEvent) throws IOException {
         App.setRoot("login");
     }
+
 }
