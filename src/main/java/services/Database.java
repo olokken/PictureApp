@@ -7,10 +7,10 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 
 public class Database {
-    private static final String CONNECTION_STRING = "jdbc:mysql://127.0.0.1:3306/picld?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+    private static final String CONNECTION_STRING = "jdbc:mysql://mysql-ait.stud.idi.ntnu.no/olelok?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
     private static final String DRIVER = "com.mysql.jdbc.Driver";
-    private static final String USERNAME = "root"; // Skriv eget brukernavn som du har på mail fra ntnu databasegreier
-    private static final String PASSWORD = "Tottenham<3"; //Skriv eget passord som du har på mail fra ntnu databasegreier
+    private static final String USERNAME = "olelok"; // Skriv eget brukernavn som du har på mail fra ntnu databasegreier
+    private static final String PASSWORD = "xRoHhYJn"; //Skriv eget passord som du har på mail fra ntnu databasegreier
 
     //Create logger object from PicLdLogger class.
     //private static PicLdLogger picLdLogger;
