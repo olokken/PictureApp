@@ -41,7 +41,7 @@ public class LoginController implements Initializable {
     }
 
     void setImage() throws FileNotFoundException {
-        Image image = new Image(new FileInputStream(".\\images\\pickles.jpg"));
+        Image image = new Image(new FileInputStream(".\\images\\pickles.png"));
         imageView.setImage(image);
     }
 
