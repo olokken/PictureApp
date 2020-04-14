@@ -4,6 +4,7 @@ import entities.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -22,6 +23,8 @@ public class LoginController implements Initializable {
     TextField password;
     @FXML
     TextField username;
+    @FXML
+    Label label;
     UserService userService = new UserService();
 
     public LoginController() throws IOException {
@@ -44,16 +47,35 @@ public class LoginController implements Initializable {
         Image image = new Image(new FileInputStream(".\\images\\pickles.png"));
         imageView.setImage(image);
     }
-
     public void signIn(ActionEvent actionEvent) throws IOException {
-        User user = userService.login(username.getText(), password.getText());
-        if (user != null) {
-            Context.getInstance().currentUser().setId(user.getId());
-            Context.getInstance().currentUser().setUsername(user.getUsername());
-            App.setRoot("primary");
+        if(checkUsername() && checkPassword()){
+            User user = userService.login(username.getText(), password.getText());
+            if (user != null) {
+                Context.getInstance().currentUser().setId(user.getId());
+                Context.getInstance().currentUser().setUsername(user.getUsername());
+                App.setRoot("primary");
+            }
+            else {
+                label.setText("Username and/or password is wrong!");
+            }
         }
-        else {
-            System.out.println("Feil brukernavn eller passord din gjøk");
+    }
+
+    public boolean checkUsername(){
+        if(username.getText().trim().equals("")){
+            label.setText("Username can't be empty!");
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public boolean checkPassword(){
+        if(password.getText().trim().equals("")){
+            label.setText("Passwordfield can't be empty!");
+            return false;
+        } else {
+            return true;
         }
     }
 
