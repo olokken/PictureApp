@@ -12,6 +12,8 @@ import entities.Album;
 import entities.Picture;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.layout.AnchorPane;
+
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +21,8 @@ import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 public class MapController implements MapComponentInitializedListener, Initializable {
+    @FXML
+    AnchorPane anchorPane;
     @FXML
     GoogleMapView mapView;
     @FXML
@@ -55,6 +59,7 @@ public class MapController implements MapComponentInitializedListener, Initializ
             return new Marker(markerOptions);
         }).collect(Collectors.toList());
     }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
