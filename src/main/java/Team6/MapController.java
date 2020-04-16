@@ -59,7 +59,15 @@ public class MapController implements MapComponentInitializedListener, Initializ
             InfoWindow infoWindow = new InfoWindow(infoWindowOptions);
             infoWindow.open(map, marker);
             map.addUIEventHandler(marker, UIEventType.click, (JSObject) -> {
-                infoWindow.open(map, marker);
+                try {
+                    int index = pictures.indexOf(x);
+                    Context.getInstance().setIndex(index);
+                    Context.getInstance().setSwitchToMap(true);
+                    App.setRoot("tertiary");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                //infoWindow.open(map, marker);
             });
         });
     }

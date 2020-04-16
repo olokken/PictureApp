@@ -114,6 +114,9 @@ public class TertiaryController implements Initializable {
             Context.getInstance().currentAlbum().setPictures(null);
             App.setRoot("search");
         }
+        else if(Context.getInstance().currentSwitchToMap() == true) {
+            App.setRoot("map");
+        }
         else {
             App.setRoot("secondary");
         }

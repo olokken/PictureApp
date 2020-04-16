@@ -58,6 +58,7 @@ public class SecondaryController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        Context.getInstance().setSwitchToMap(false);
         albumSetup();
         fillList();
         pictureViewSetup();
