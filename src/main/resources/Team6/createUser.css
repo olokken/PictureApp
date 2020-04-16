@@ -1,7 +1,7 @@
 /*Main window*/
 
 .layout {
-    -fx-background-color:linear-gradient(white,#DDDDDD);
+    -fx-background-color:linear-gradient(to bottom, #ffffff, #DDDDDD);
     -fx-alignment: center;
 }
 
@@ -29,7 +29,7 @@
 }
 
 .vBox {
-    -fx-padding: 100,50,50,50;
+    -fx-padding: 100,100,100,100;
 }
 
 /*Login button*/
@@ -50,4 +50,10 @@
 .button:hover {
     -fx-background-color: linear-gradient(to bottom,#44A21D,#348114);
 
+}
+
+.headline {
+    -fx-font-size: 14pt;
+    -fx-fill: #2B2B2B ;
+    -fx-alignment: left;
 }
