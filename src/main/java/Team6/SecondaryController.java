@@ -29,6 +29,8 @@ import services.PictureService;
 
 public class SecondaryController implements Initializable {
     @FXML
+    ImageView mapViewIcon;
+    @FXML
     Button addButton;
     @FXML
     Button deleteButton;
@@ -56,11 +58,17 @@ public class SecondaryController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        Context.getInstance().setSwitchToMap(false);
         albumSetup();
         fillList();
         pictureViewSetup();
         createElements();
         buttonSetup();
+        try {
+            mapViewSetup();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     void albumSetup() {
@@ -194,13 +202,27 @@ public class SecondaryController implements Initializable {
                     album.setPictures(pics);
                 }
             });
-        }catch (NullPointerException e ) {
+        } catch (NullPointerException e ) {
         }
     }
 
     public void reverseOrder(ActionEvent actionEvent) {
         album.reverseOrder();
         createElements();
+    }
+
+    void mapViewSetup() throws FileNotFoundException {
+        Image image = new Image(new FileInputStream(".\\images\\globe.png"));
+        mapViewIcon.setImage(image);
+        mapViewIcon.setOnMouseClicked(e -> {
+            Context.getInstance().currentAlbum().setPictures(album.getPictures());
+            try {
+                App.setRoot("map");
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+        });
+
     }
 
 

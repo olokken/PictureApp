@@ -188,9 +188,4 @@ public class PrimaryController implements Initializable  {
     public void logOut(ActionEvent actionEvent) throws IOException {
         App.setRoot("login");
     }
-
-    public void changeToMap(ActionEvent actionEvent) throws IOException{
-        App.setRoot("map");
-    }
-
 }
