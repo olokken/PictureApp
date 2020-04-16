@@ -8,6 +8,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import services.UserService;
 
 import java.io.FileInputStream;
@@ -16,7 +18,11 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+
 public class LoginController implements Initializable {
+
+
+
     @FXML
     ImageView imageView;
     @FXML
@@ -26,6 +32,9 @@ public class LoginController implements Initializable {
     @FXML
     Label label;
     UserService userService = new UserService();
+
+
+
 
     public LoginController() throws IOException {
     }
