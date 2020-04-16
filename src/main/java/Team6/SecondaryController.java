@@ -5,10 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.ResourceBundle;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.stream.Collectors;
 import entities.Album;
@@ -175,17 +172,29 @@ public class SecondaryController implements Initializable {
         createElements();
     }
 
-    public void addPicture(ActionEvent actionEvent) throws IOException {
+    public void addPicture(ActionEvent actionEvent) {
         final FileChooser dir = new FileChooser();
-        File file = dir.showOpenDialog(anchorPane.getScene().getWindow());
-        if (file.exists()) {
-            Picture p = new Picture(file.getPath());
-            album.getPictures().add(p);
-            pictureService.createPicture(p, album.getId());
-            createElements();
-            ArrayList<Picture> pics = pictureService.getAllPictures(album.getId(), Context.getInstance().currentUser().getId());
-            album.setPictures(pics);
-
+        List<String> filter = new ArrayList<>();
+        Collections.addAll(filter, "*.jpg", "'.png", "*.jfif", "*.PNG");
+        dir.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Pictures", filter));
+        List<File> files = dir.showOpenMultipleDialog(anchorPane.getScene().getWindow());
+        try {
+            files.forEach(e -> {
+                if (files.size() != 0) {
+                    Picture p = null;
+                    try {
+                        p = new Picture(e.getPath());
+                    } catch (IOException ioException) {
+                        ioException.printStackTrace();
+                    }
+                    album.getPictures().add(p);
+                    pictureService.createPicture(p, album.getId());
+                    createElements();
+                    ArrayList<Picture> pics = pictureService.getAllPictures(album.getId(), Context.getInstance().currentUser().getId());
+                    album.setPictures(pics);
+                }
+            });
+        }catch (NullPointerException e ) {
         }
     }
 
