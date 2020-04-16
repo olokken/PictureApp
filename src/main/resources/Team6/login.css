@@ -18,7 +18,7 @@
     -fx-prompt-text-fill: #4C4B4C;
     -fx-padding: 5px;
     -fx-border-insets: 5px;
-    -fx-background-insets: 5px;
+    -fx-background-insets: 6px;
 }
 
 /*Error message*/
