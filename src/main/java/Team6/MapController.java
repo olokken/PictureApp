@@ -14,7 +14,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class MapController implements MapComponentInitializedListener, Initializable {
-
     @FXML
     GoogleMapView mapView;
     @FXML
