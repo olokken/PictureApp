@@ -12,6 +12,8 @@ import entities.Album;
 import entities.Picture;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -59,5 +61,10 @@ public class MapController implements MapComponentInitializedListener, Initializ
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         mapView.addMapInializedListener(this);
+    }
+    @FXML
+    private void switchToSecondary() throws IOException {
+        Context.getInstance().currentAlbum().setPictures(null);
+        App.setRoot("secondary");
     }
 }
