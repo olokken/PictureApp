@@ -10,6 +10,7 @@ Team6\App.class
 services\UserService.class
 Team6\PrimaryController.class
 Team6\LoginController.class
+Map\Config.class
 services\AlbumService.class
 services\Database.class
 forkastet\Metadata.class

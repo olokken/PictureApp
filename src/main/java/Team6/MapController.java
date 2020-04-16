@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 public class MapController implements MapComponentInitializedListener, Initializable {
     @FXML
     GoogleMapView mapView;
-    @FXML
+
     GoogleMap map;
 
     List<Picture> pictures = Context.getInstance().currentAlbum().getPictures();
@@ -76,6 +76,7 @@ public class MapController implements MapComponentInitializedListener, Initializ
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        mapView.setKey("AIzaSyBBGsAPf7r7a5jTWm3O_VFERTAZJKX3e2k");
         mapView.addMapInializedListener(this);
     }
 
