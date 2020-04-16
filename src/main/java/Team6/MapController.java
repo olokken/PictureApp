@@ -19,6 +19,8 @@ public class MapController implements MapComponentInitializedListener, Initializ
     @FXML
     GoogleMap map;
 
+    //InfoBilde over markers
+
     @Override
     public void mapInitialized() {
         //Set the initial properties of the map.
