@@ -16,6 +16,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 public class MapController implements MapComponentInitializedListener, Initializable {
     @FXML
@@ -43,18 +44,16 @@ public class MapController implements MapComponentInitializedListener, Initializ
                 .zoom(12);
 
         map = mapView.createMap(mapOptions);
+        map.addMarkers(createMarkers());
+    }
 
-        //Add a marker to the map
-        MarkerOptions markerOptions = new MarkerOptions();
-
-        markerOptions.position( new LatLong(63.427029, 10.396700) )
-                .visible(Boolean.TRUE)
-                .title("My Marker");
-
-        Marker marker = new Marker( markerOptions );
-
-        map.addMarker(marker);
-
+    List<Marker> createMarkers () {
+        return pictures.stream().map(x -> {
+            MarkerOptions markerOptions = new MarkerOptions();
+            markerOptions.position(new LatLong(x.getLatitude(), x.getLongitude()))
+                    .visible(true);
+            return new Marker(markerOptions);
+        }).collect(Collectors.toList());
     }
 
     @Override
