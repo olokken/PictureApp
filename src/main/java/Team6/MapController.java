@@ -2,12 +2,7 @@ package Team6;
 
 import com.lynden.gmapsfx.GoogleMapView;
 import com.lynden.gmapsfx.MapComponentInitializedListener;
-import com.lynden.gmapsfx.javascript.object.GoogleMap;
-import com.lynden.gmapsfx.javascript.object.LatLong;
-import com.lynden.gmapsfx.javascript.object.MapOptions;
-import com.lynden.gmapsfx.javascript.object.MapTypeIdEnum;
-import com.lynden.gmapsfx.javascript.object.Marker;
-import com.lynden.gmapsfx.javascript.object.MarkerOptions;
+import com.lynden.gmapsfx.javascript.object.*;
 import entities.Album;
 import entities.Picture;
 import javafx.fxml.FXML;
@@ -46,25 +41,35 @@ public class MapController implements MapComponentInitializedListener, Initializ
                 .zoom(12);
 
         map = mapView.createMap(mapOptions);
-        map.addMarkers(createMarkers());
+        createMarkers();
     }
 
-    List<Marker> createMarkers () {
-        return pictures.stream().map(x -> {
+    void createMarkers () {
+         pictures.stream().forEach(x -> {
             MarkerOptions markerOptions = new MarkerOptions();
             markerOptions.position(new LatLong(x.getLatitude(), x.getLongitude()))
                     .visible(true);
-            return new Marker(markerOptions);
-        }).collect(Collectors.toList());
+            Marker marker = new Marker(markerOptions);
+            map.addMarker(marker);
+            InfoWindowOptions infoWindowOptions = new InfoWindowOptions();
+            String imageUrl = "<img src=" + x.getFilepath() + ">";
+            infoWindowOptions.content(imageUrl);
+            InfoWindow infoWindow = new InfoWindow(infoWindowOptions);
+            infoWindow.open(map, marker);
+        });
     }
+
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         mapView.addMapInializedListener(this);
     }
+
     @FXML
     private void switchToSecondary() throws IOException {
         Context.getInstance().currentAlbum().setPictures(null);
         App.setRoot("secondary");
     }
+
 }
