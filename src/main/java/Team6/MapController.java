@@ -8,9 +8,13 @@ import com.lynden.gmapsfx.javascript.object.MapOptions;
 import com.lynden.gmapsfx.javascript.object.MapTypeIdEnum;
 import com.lynden.gmapsfx.javascript.object.Marker;
 import com.lynden.gmapsfx.javascript.object.MarkerOptions;
+import entities.Album;
+import entities.Picture;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class MapController implements MapComponentInitializedListener, Initializable {
@@ -18,6 +22,8 @@ public class MapController implements MapComponentInitializedListener, Initializ
     GoogleMapView mapView;
     @FXML
     GoogleMap map;
+
+    List<Picture> pictures = Context.getInstance().currentAlbum().getPictures();
 
     //InfoBilde over markers
 
