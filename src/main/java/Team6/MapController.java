@@ -2,11 +2,14 @@ package Team6;
 
 import com.lynden.gmapsfx.GoogleMapView;
 import com.lynden.gmapsfx.MapComponentInitializedListener;
+import com.lynden.gmapsfx.javascript.event.UIEventType;
 import com.lynden.gmapsfx.javascript.object.*;
+import com.lynden.gmapsfx.util.MarkerImageFactory;
 import entities.Album;
 import entities.Picture;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import netscape.javascript.JSObject;
 
 import java.io.IOException;
 import java.net.URL;
@@ -22,8 +25,6 @@ public class MapController implements MapComponentInitializedListener, Initializ
     GoogleMap map;
 
     List<Picture> pictures = Context.getInstance().currentAlbum().getPictures();
-
-    //InfoBilde over markers
 
     @Override
     public void mapInitialized() {
@@ -45,6 +46,7 @@ public class MapController implements MapComponentInitializedListener, Initializ
     }
 
     void createMarkers () {
+
          pictures.stream().forEach(x -> {
             MarkerOptions markerOptions = new MarkerOptions();
             markerOptions.position(new LatLong(x.getLatitude(), x.getLongitude()))
@@ -52,10 +54,13 @@ public class MapController implements MapComponentInitializedListener, Initializ
             Marker marker = new Marker(markerOptions);
             map.addMarker(marker);
             InfoWindowOptions infoWindowOptions = new InfoWindowOptions();
-            String imageUrl = "<img src=" + x.getFilepath() + ">";
+            String imageUrl = MarkerImageFactory.createMarkerImage("<img src=\"" + x.getFilepath() + "\" />", "jpg");
             infoWindowOptions.content(imageUrl);
             InfoWindow infoWindow = new InfoWindow(infoWindowOptions);
             infoWindow.open(map, marker);
+            map.addUIEventHandler(marker, UIEventType.click, (JSObject) -> {
+                infoWindow.open(map, marker);
+            });
         });
     }
 
