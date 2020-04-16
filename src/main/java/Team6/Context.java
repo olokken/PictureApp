@@ -18,6 +18,14 @@ public class Context {
     private Album album = new Album();
     private User user = new User();
     private ArrayList<Album> albums;
+    private boolean switchToMap;
+
+    public boolean currentSwitchToMap () {
+        return switchToMap;
+    }
+    public void setSwitchToMap(boolean b) {
+        switchToMap = b;
+    }
 
     public User currentUser() {
         return user;

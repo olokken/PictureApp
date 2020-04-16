@@ -26,6 +26,5 @@
       <Button layoutX="105.0" layoutY="22.0" mnemonicParsing="false" onAction="#logOut" text="Log out" />
       <ScrollPane fx:id="scrollPane" layoutY="131.0" prefHeight="270.0" prefWidth="600.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="131.0" />
       <Button layoutX="18.0" layoutY="22.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="81.0" text="Delete User" />
-      <Button fx:id="button" layoutX="528.0" layoutY="22.0" mnemonicParsing="false" onAction="#changeToMap" text="Button" />
    </children>
 </AnchorPane>
