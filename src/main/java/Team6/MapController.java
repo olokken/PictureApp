@@ -12,8 +12,8 @@ import entities.Album;
 import entities.Picture;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.layout.AnchorPane;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,8 +21,6 @@ import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 public class MapController implements MapComponentInitializedListener, Initializable {
-    @FXML
-    AnchorPane anchorPane;
     @FXML
     GoogleMapView mapView;
     @FXML
@@ -60,9 +58,13 @@ public class MapController implements MapComponentInitializedListener, Initializ
         }).collect(Collectors.toList());
     }
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         mapView.addMapInializedListener(this);
+    }
+    @FXML
+    private void switchToSecondary() throws IOException {
+        Context.getInstance().currentAlbum().setPictures(null);
+        App.setRoot("secondary");
     }
 }
