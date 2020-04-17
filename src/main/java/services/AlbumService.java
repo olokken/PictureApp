@@ -102,7 +102,10 @@ public class AlbumService {
             pst = conn.prepareStatement(query);
             pst.setInt(1, userId);
             result = pst.executeQuery();
-            return result.getInt("max(id)");
+            while (result.next()) {
+                return result.getInt("max(id)");
+            }
+            return null;
         } catch(SQLException se) {
             return null;
         } finally {
