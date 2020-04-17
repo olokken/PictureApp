@@ -44,8 +44,6 @@ public class PrimaryController implements Initializable  {
     TextField textField;
     @FXML
     AnchorPane anchorPane;
-    @FXML
-    Button button;
 
     TilePane tilePane = new TilePane();
 

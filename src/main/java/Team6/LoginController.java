@@ -1,6 +1,7 @@
 package Team6;
 
 import entities.User;
+import idk.AppLogger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -17,6 +18,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
 
 
 public class LoginController implements Initializable {
@@ -55,16 +57,20 @@ public class LoginController implements Initializable {
         imageView.setImage(image);
     }
     public void signIn(ActionEvent actionEvent) throws IOException {
-        if(checkUsername() && checkPassword()){
-            User user = userService.login(username.getText(), password.getText());
-            if (user != null) {
-                Context.getInstance().currentUser().setId(user.getId());
-                Context.getInstance().currentUser().setUsername(user.getUsername());
-                App.setRoot("primary");
+        try{
+            if(checkUsername() && checkPassword()){
+                User user = userService.login(username.getText(), password.getText());
+                if (user != null) {
+                    Context.getInstance().currentUser().setId(user.getId());
+                    Context.getInstance().currentUser().setUsername(user.getUsername());
+                    App.setRoot("primary");
+                }
+                else {
+                    label.setText("Username and/or password is wrong!");
+                }
             }
-            else {
-                label.setText("Username and/or password is wrong!");
-            }
+        } catch (IOException ex){
+            AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
         }
     }
 

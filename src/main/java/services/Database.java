@@ -1,19 +1,40 @@
 package services;
 
+import idk.AppLogger;
+
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.*;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Properties;
 import java.util.logging.Level;
 
 public class Database {
     private static final String CONNECTION_STRING = "jdbc:mysql://mysql-ait.stud.idi.ntnu.no/olelok?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
     private static final String DRIVER = "com.mysql.jdbc.Driver";
-    private static final String USERNAME = "olelok"; // Skriv eget brukernavn som du har på mail fra ntnu databasegreier
-    private static final String PASSWORD = "xRoHhYJn"; //Skriv eget passord som du har på mail fra ntnu databasegreier
+    private final String USERNAME = getProperties().get("username").toString(); // Skriv eget brukernavn som du har på mail fra ntnu databasegreier
+    private final String PASSWORD = getProperties().get("password").toString(); //Skriv eget passord som du har på mail fra ntnu databasegreier
 
     //Create logger object from PicLdLogger class.
     //private static PicLdLogger picLdLogger;
+
+    private Map getProperties() {
+        Map result = new HashMap();
+        try (InputStream input = new FileInputStream("config.properties")) {
+            Properties prop = new Properties();
+            prop.load(input);
+            result.put("username", prop.getProperty("USERNAME"));
+            result.put("password", prop.getProperty("PASSWORD"));
+        } catch (IOException ex) {
+            AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
+            AppLogger.closeHandler();
+        }
+        return result;
+    }
 
     public Database() { }
     /**
@@ -152,14 +173,16 @@ public class Database {
                 conn.close();
             }
         } catch (SQLException se) {
-            //picLdLogger.getLogger().log(Level.FINE, se.getMessage());
+            AppLogger.getAppLogger().log(Level.FINE, se.getMessage());
+            AppLogger.closeHandler();
         }
         try {
             if (stmt != null) {
                 stmt.close();
             }
         } catch (SQLException se) {
-            //picLdLogger.getLogger().log(Level.FINE, se.getMessage());
+            AppLogger.getAppLogger().log(Level.FINE, se.getMessage());
+            AppLogger.closeHandler();
         }
     }
 
