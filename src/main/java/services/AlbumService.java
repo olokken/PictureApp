@@ -10,7 +10,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
 
 public class AlbumService {
 
@@ -90,7 +89,25 @@ public class AlbumService {
         } finally {
             Database.closeConnection(conn, pst);
         }
-    }//For hvert bilde sjekk albumpicture, finnes det en record i albumpicture der albumid != album du sender inn.
-    //Hvis finnes ikke gjør nåkka;
-    //Hvis ikke finnes da må delete from picture;
+    }
+
+    public Integer getIdLastAlbumRegistered(int userId) {
+        String query = "SELECT max(id)\n" +
+                "FROM album\n" +
+                "WHERE userId = ?;";
+        Connection conn = Database.ConnectDB();
+        PreparedStatement pst = null;
+        ResultSet result = null;
+        try {
+            pst = conn.prepareStatement(query);
+            pst.setInt(1, userId);
+            result = pst.executeQuery();
+            return result.getInt("max(id)");
+        } catch(SQLException se) {
+            return null;
+        } finally {
+            Database.closeConnection(conn, pst, result);
+        }
+
+    }
 }
