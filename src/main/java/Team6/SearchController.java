@@ -39,6 +39,7 @@ public class SearchController implements Initializable {
     ArrayList<Picture> searchedPictures = new ArrayList<>();
     ArrayList<Picture> selectedPhotos = new ArrayList<>();
     TilePane tilePane = new TilePane();
+    List<VBox> pages;
 
     //Create logger object from PicLdLogger class.
     //private PicLdLogger picLdLogger = new PicLdLogger();
@@ -129,7 +130,7 @@ public class SearchController implements Initializable {
     }
 
     List<VBox> createPages() {
-        List<VBox> pages = createImageViews().stream().map(x -> {
+        pages = createImageViews().stream().map(x -> {
             VBox vBox = new VBox();
             vBox.setPadding(new Insets(3,3,3,3));
             vBox.getChildren().add(x);
@@ -165,8 +166,12 @@ public class SearchController implements Initializable {
     }
 
     public void selectAll() {
-        searchedPictures.forEach(x -> selectedPhotos.add(x));
-        createPages().forEach(x -> x.setStyle("-fx-background-color: green"));
+        searchedPictures.forEach(x -> {
+            if (!selectedPhotos.contains(x)) {
+                selectedPhotos.add(x);
+            }
+        });
+        pages.forEach(e -> e.setStyle("-fx-background-color: green"));
     }
 
 
