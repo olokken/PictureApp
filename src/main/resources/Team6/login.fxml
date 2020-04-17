@@ -7,16 +7,33 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
+<?import java.net.URL?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Hyperlink?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" snapToPixel="false" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Team6.LoginController">
-   <children>
-      <TextField fx:id="username" focusTraversable="false" layoutX="76.0" layoutY="415.0" prefHeight="25.0" prefWidth="514.0" promptText="Enter username" />
-      <Text layoutX="14.0" layoutY="432.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username: " />
-      <PasswordField fx:id="password" focusTraversable="false" layoutX="76.0" layoutY="443.0" prefHeight="25.0" prefWidth="514.0" promptText="Enter password" />
-      <Text layoutX="14.0" layoutY="460.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password:" />
-      <Button focusTraversable="false" layoutX="478.0" layoutY="384.0" mnemonicParsing="false" onAction="#createNewUser" prefHeight="25.0" prefWidth="108.0" text="Create new user" />
-      <Button focusTraversable="false" layoutX="478.0" layoutY="473.0" mnemonicParsing="false" onAction="#signIn" prefHeight="25.0" prefWidth="108.0" text="Sign in" />
-      <ImageView fx:id="imageView" fitHeight="367.0" fitWidth="535.0" layoutX="33.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="label" layoutX="78.0" layoutY="475.0" prefHeight="17.0" prefWidth="386.0" />
-   </children>
+<AnchorPane prefHeight="465.0"
+            prefWidth="600.0"
+            styleClass="layout"
+            snapToPixel="false"
+            xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="Team6.LoginController">
+
+   <stylesheets>
+      <URL value="@login.css" />
+   </stylesheets>
+
+   <VBox alignment="CENTER" prefHeight="465.0" prefWidth="171.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" styleClass="vBox">
+      <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="label" prefHeight="17.0" prefWidth="386.0" />
+      <TextField fx:id="username" focusTraversable="false" styleClass="text-field"  prefHeight="25.0" promptText="Enter username"/>
+      <PasswordField fx:id="password" focusTraversable="false" styleClass="text-field"  prefHeight="25.0" promptText="Enter password" />
+      <VBox alignment="TOP_RIGHT">
+         <Button focusTraversable="false" mnemonicParsing="false" onAction="#signIn" minHeight="35.0" prefWidth="70.0" text="Login" styleClass="button"/>
+         <VBox alignment="BOTTOM_CENTER">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0"  text="New user? "/>
+            <Hyperlink focusTraversable="false" onAction="#createNewUser" text="Create new account" />
+         </VBox>
+      </VBox>
+   </VBox>
 </AnchorPane>

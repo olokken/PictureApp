@@ -5,44 +5,39 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="switchToPrimary" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Team6.CreateUserController">
-   <children>
-      <TextField fx:id="username" focusTraversable="false" layoutX="38.0" layoutY="126.0" prefHeight="25.0" prefWidth="525.0" promptText="Write your new username">
-         <font>
-            <Font name="Ink Free" size="24.0" />
-         </font></TextField>
-      <PasswordField fx:id="password" focusTraversable="false" layoutX="38.0" layoutY="190.0" prefHeight="26.0" prefWidth="526.0" promptText="Write your password">
-         <font>
-            <Font name="Ink Free" size="24.0" />
-         </font></PasswordField>
-      <PasswordField fx:id="confirmPassword" focusTraversable="false" layoutX="38.0" layoutY="255.0" prefHeight="26.0" prefWidth="526.0" promptText="Confirm your password">
-         <font>
-            <Font name="Ink Free" size="24.0" />
-         </font></PasswordField>
-      <Text fill="#28710d" layoutX="219.0" layoutY="65.0" stroke="BLACK" strokeType="OUTSIDE" text="PicLd" textAlignment="CENTER" wrappingWidth="162.2847900390625">
-         <font>
-            <Font name="Ink Free" size="48.0" />
-         </font>
-      </Text>
-      <Text fill="#28710d" layoutX="38.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create new user">
-         <font>
-            <Font name="Ink Free" size="27.0" />
-         </font></Text>
-      <Button focusTraversable="false" layoutX="346.0" layoutY="324.0" mnemonicParsing="false" onAction="#createUser" text="Create user" textFill="#28710d">
-         <font>
-            <Font name="Ink Free" size="20.0" />
-         </font></Button>
-      <Button focusTraversable="false" layoutX="484.0" layoutY="324.0" mnemonicParsing="false" onAction="#switchToLogin" text="Cancel" textFill="#28710d">
-         <font>
-            <Font name="Ink Free" size="20.0" />
-         </font>
-      </Button>
-      <Label fx:id="label" layoutX="38.0" layoutY="334.0">
-         <font>
-            <Font name="Nirmala UI Semilight" size="18.0" />
-         </font></Label>
-   </children>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import java.net.URL?>
+<AnchorPane fx:id="switchToPrimary"
+            prefHeight="400.0"
+            prefWidth="600.0"
+            xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="Team6.CreateUserController"
+            styleClass="layout">
+
+   <stylesheets>
+      <URL value="@createUser.css" />
+   </stylesheets>
+
+   <VBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" styleClass="vBox">
+      <Text text="Create new user" styleClass="headline"/>
+      <TextField fx:id="username" focusTraversable="false" prefHeight="25.0"
+                 prefWidth="525.0" promptText="Write your new username"/>
+      <PasswordField fx:id="password" focusTraversable="false"
+                     prefHeight="26.0" prefWidth="526.0" promptText="Write your password"/>
+      <PasswordField fx:id="confirmPassword" focusTraversable="false" prefHeight="26.0" prefWidth="526.0"
+                     promptText="Confirm your password"/>
+      <Label fx:id="label"/>
+      <HBox alignment="CENTER">
+         <Button focusTraversable="false" mnemonicParsing="false"
+                 onAction="#createUser" text="Create user" textFill="#28710d"
+                 minHeight="35.0" prefWidth="120.0"/>
+         <Button focusTraversable="false"  mnemonicParsing="false"
+                 onAction="#switchToLogin" text="Cancel" textFill="#28710d"
+                 minHeight="35.0" prefWidth="70.0"/>
+      </HBox>
+   </VBox>
 </AnchorPane>
