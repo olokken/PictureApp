@@ -7,15 +7,17 @@ import com.lynden.gmapsfx.javascript.object.*;
 import com.lynden.gmapsfx.util.MarkerImageFactory;
 import entities.Album;
 import entities.Picture;
+import idk.AppLogger;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import netscape.javascript.JSObject;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
+import java.util.logging.Level;
 import java.util.stream.Collectors;
 
 public class MapController implements MapComponentInitializedListener, Initializable {
@@ -76,7 +78,7 @@ public class MapController implements MapComponentInitializedListener, Initializ
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        mapView.setKey("AIzaSyBBGsAPf7r7a5jTWm3O_VFERTAZJKX3e2k");
+        mapView.setKey(getProperties().get("GOOGLE_API_KEY").toString());
         mapView.addMapInializedListener(this);
     }
 
@@ -84,6 +86,18 @@ public class MapController implements MapComponentInitializedListener, Initializ
     private void switchToSecondary() throws IOException {
         Context.getInstance().currentAlbum().setPictures(null);
         App.setRoot("secondary");
+    }
+    private Map getProperties() {
+        Map result = new HashMap();
+        try (InputStream input = new FileInputStream("config.properties")) {
+            Properties prop = new Properties();
+            prop.load(input);
+            result.put("GOOGLE_API_KEY", prop.getProperty("GOOGLE_API_KEY"));
+        } catch (IOException ex) {
+            AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
+            AppLogger.closeHandler();
+        }
+        return result;
     }
 
 }

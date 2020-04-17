@@ -31,7 +31,6 @@
       <VBox alignment="BASELINE_LEFT">
          <TextField fx:id="textField" prefHeight="20.0" prefWidth="450.0" promptText="Search"/>
          <Text text="Your Albums" styleClass="h2"/>
-         <Button fx:id="button" layoutX="528.0" layoutY="22.0" mnemonicParsing="false" onAction="#changeToMap" text="Button" />
          <ScrollPane fx:id="scrollPane" prefHeight="270.0" prefWidth="450.0"/>
       </VBox>
    </right>

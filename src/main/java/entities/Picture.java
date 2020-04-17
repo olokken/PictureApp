@@ -1,11 +1,13 @@
 package entities;
 
+import Team6.App;
 import com.drew.imaging.ImageMetadataReader;
 import com.drew.imaging.ImageProcessingException;
 import com.drew.metadata.Metadata;
 import com.drew.metadata.Tag;
 import com.drew.metadata.exif.ExifSubIFDDirectory;
 import com.drew.metadata.exif.GpsDirectory;
+import idk.AppLogger;
 
 import java.io.File;
 import java.io.IOException;
@@ -60,9 +62,8 @@ public class Picture {
         File file =  new File(filepath);
         this.fileName = file.getName();
         this.fileSize = file.length()/(1024*1024);
-        /**
-         * Try catch block if the image does not have all the interesting metadata.
-         */
+
+         //Try catch block if the image does not have all the interesting metadata.
         try {
             Metadata metadata = ImageMetadataReader.readMetadata(file);
             ExifSubIFDDirectory subIfd = metadata.getFirstDirectoryOfType(ExifSubIFDDirectory.class);
@@ -87,9 +88,11 @@ public class Picture {
                 }
             }
         } catch (ImageProcessingException e) {
-            //picLdLogger.getLogger().log(Level.FINE, e.getMessage());
+            AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+            AppLogger.closeHandler();
         } catch (IOException e) {
-            //picLdLogger.getLogger().log(Level.FINE, e.getMessage());
+            AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+            AppLogger.closeHandler();
         }
         this.tags = new ArrayList<String>();
     }
