@@ -6,7 +6,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
-import java.util.logging.Level;
 import java.util.stream.Collectors;
 import entities.Album;
 import entities.Picture;
@@ -259,8 +258,8 @@ public class SecondaryController implements Initializable {
         PdfHandler pdfHandler = new PdfHandler();
         pdfIcon.setImage(image);
         pdfIcon.setOnMouseClicked(e -> {
-            pdfHandler.createAlbumPdf(album);
-            }
+                    pdfHandler.createAlbumPdf(selectedPhotos);
+                }
         );
     }
 
