@@ -2,6 +2,7 @@ package services;
 
 import entities.Album;
 import entities.Picture;
+import idk.AppLogger;
 
 import java.io.IOException;
 import java.sql.*;
@@ -107,7 +108,8 @@ public class PictureService {
             pst.executeUpdate();
             return true;
         } catch(SQLException se) {
-            //picLdLogger.getLogger().log(Level.FINE, se.getMessage());
+            AppLogger.getAppLogger().log(Level.FINE, se.getMessage());
+            AppLogger.closeHandler();
             return false;
         } finally {
             Database.closeConnection(conn, pst, result);
@@ -144,7 +146,8 @@ public class PictureService {
             }
             return true;
         } catch(SQLException se) {
-            //picLdLogger.getLogger().log(Level.FINE, se.getMessage());
+            AppLogger.getAppLogger().log(Level.FINE, se.getMessage());
+            AppLogger.closeHandler();
             return false;
         } finally {
             Database.closeConnection(conn, pst);

@@ -127,12 +127,6 @@ public class Album {
         pictures.sort(Comparator.comparing(x -> x.getISO()));
     }
 
-    /**
-     * sorts the images in the album based on the ISO data in the opposite order
-     */
-    public void sortIsoReversed() {
-        pictures.sort(Comparator.comparing(x -> x.getISO()));
-    }
 
     /**
      * sorts the images in the album based on the date the photo was taken

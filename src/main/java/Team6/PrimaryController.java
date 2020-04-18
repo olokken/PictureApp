@@ -44,8 +44,6 @@ public class PrimaryController implements Initializable  {
     TextField textField;
     @FXML
     AnchorPane anchorPane;
-    @FXML
-    Button button;
 
     TilePane tilePane = new TilePane();
 
@@ -69,7 +67,7 @@ public class PrimaryController implements Initializable  {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         albumViewSetup();
-        fillListView();
+        fillList();
         search();
     }
 
@@ -133,7 +131,7 @@ public class PrimaryController implements Initializable  {
         scrollPane.setContent(tilePane);
     }
 
-    public void fillListView() {
+    public void fillList() {
         yourAlbums = albumService.getAllAlbums(user.getId());
         Album album = new Album("All Photos");
         album.setId(-1);
@@ -151,7 +149,7 @@ public class PrimaryController implements Initializable  {
         Optional<String> result = t.showAndWait();
         if (result.isPresent()) {
             albumService.createAlbum(result.get(), user.getId());
-            fillListView();
+            fillList();
         }
     }
 
