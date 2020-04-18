@@ -50,27 +50,24 @@ public class MapController implements MapComponentInitializedListener, Initializ
     void createMarkers () {
 
          pictures.stream().forEach(x -> {
-            MarkerOptions markerOptions = new MarkerOptions();
-            markerOptions.position(new LatLong(x.getLatitude(), x.getLongitude()))
-                    .visible(true);
-            Marker marker = new Marker(markerOptions);
-            map.addMarker(marker);
-            InfoWindowOptions infoWindowOptions = new InfoWindowOptions();
-            String imageUrl = MarkerImageFactory.createMarkerImage("<img src=\"" + x.getFilepath() + "\" />", "jpg");
-            infoWindowOptions.content(imageUrl);
-            InfoWindow infoWindow = new InfoWindow(infoWindowOptions);
-            infoWindow.open(map, marker);
-            map.addUIEventHandler(marker, UIEventType.click, (JSObject) -> {
-                try {
-                    int index = pictures.indexOf(x);
-                    Context.getInstance().setIndex(index);
-                    Context.getInstance().setSwitchToMap(true);
-                    App.setRoot("tertiary");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                //infoWindow.open(map, marker);
-            });
+             if(x.getLatitude() != 0 && x.getLongitude() != 0){
+                 MarkerOptions markerOptions = new MarkerOptions();
+                 markerOptions.position(new LatLong(x.getLatitude(), x.getLongitude()))
+                         .visible(true);
+                 Marker marker = new Marker(markerOptions);
+                 map.addMarker(marker);
+                 map.addUIEventHandler(marker, UIEventType.click, (JSObject) -> {
+                     try {
+                         int index = pictures.indexOf(x);
+                         Context.getInstance().setIndex(index);
+                         Context.getInstance().setSwitchToMap(true);
+                         App.setRoot("tertiary");
+                     } catch (IOException e) {
+                         e.printStackTrace();
+                     }
+                     //infoWindow.open(map, marker);
+                 });
+             }
         });
     }
 
