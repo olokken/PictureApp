@@ -10,13 +10,18 @@ import com.itextpdf.layout.property.AreaBreakType;
 import entities.Album;
 
 import java.io.*;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 
 import com.itextpdf.kernel.pdf.*;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Paragraph;
 import entities.Picture;
+import idk.AppLogger;
+
+import javax.imageio.ImageIO;
 
 
 public class PdfHandler {
@@ -43,19 +48,21 @@ public class PdfHandler {
             document.add(paragraph); // kan endre font og størrelse. Egen side?
             document.add(image1);
 
-            for(int i = 1; i <= pictures.size(); i++){
-                //Oppretter et objekt av Image-klassen fra ArrayList
-                ImageData imageData = ImageDataFactory.create(pictures.get(i).getFileName());
-                Image pdfImage = new Image(imageData);
-
-                //Ny side
-                document.add(new AreaBreak(new PageSize(pdfImage.getImageWidth(), pdfImage.getImageHeight())));
-
-                //Legger til bildet
-                document.add(pdfImage);
-
-                //document.add(new AreaBreak(AreaBreakType.NEXT_PAGE)); //vet ikke om denne fungerer
-            }
+            pictures.forEach(x -> {
+                try{
+                    //Oppretter et objekt av Image-klassen fra ArrayList
+                    ImageData imageData = ImageDataFactory.create(x.getFileName());
+                    Image pdfImage = new Image(imageData);
+                    //Ny side
+                    document.add(new AreaBreak(new PageSize(pdfImage.getImageWidth(), pdfImage.getImageHeight())));
+                    //Legger til bildet
+                    document.add(pdfImage);
+                    //document.add(new AreaBreak(AreaBreakType.NEXT_PAGE)); //vet ikke om denne fungerer
+                } catch (MalformedURLException m){
+                    AppLogger.getAppLogger().log(Level.FINE, m.getMessage());
+                    AppLogger.closeHandler();
+                }
+            });
 
             document.close();
 
