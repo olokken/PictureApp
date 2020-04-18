@@ -39,7 +39,7 @@ public class PdfHandler {
             ArrayList<Picture> pictures = new ArrayList<>(album.getPictures());
             //Koden under oppretter et objekt av klassen Image som blir brukt til å få riktig størrelse på første side
             Picture picture1 = pictures.get(0);
-            ImageData image1Data = ImageDataFactory.create(picture1.getFileName());
+            ImageData image1Data = ImageDataFactory.create(picture1.getFilepath());
             Image image1 = new Image(image1Data);
 
 

@@ -26,11 +26,14 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import services.AlbumService;
+import services.PdfHandler;
 import services.PictureService;
 
 
 
 public class SecondaryController implements Initializable {
+    @FXML
+    ImageView pdfIcon;
     @FXML
     Button createAlbumButton;
     @FXML
@@ -73,6 +76,7 @@ public class SecondaryController implements Initializable {
         createElements();
         buttonSetup();
         try {
+            pdfSetup();
             mapViewSetup();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -248,6 +252,16 @@ public class SecondaryController implements Initializable {
                 ioException.printStackTrace();
             }
         });
+    }
+
+    void pdfSetup() throws FileNotFoundException {
+        Image image = new Image(new FileInputStream(".\\images\\pdf.png"));
+        PdfHandler pdfHandler = new PdfHandler();
+        pdfIcon.setImage(image);
+        pdfIcon.setOnMouseClicked(e -> {
+            pdfHandler.createAlbumPdf(album);
+            }
+        );
     }
 
     public void deletePhotos(ActionEvent actionEvent) {

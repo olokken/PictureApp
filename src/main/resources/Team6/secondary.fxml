@@ -28,8 +28,9 @@
             <Button layoutX="51.0" layoutY="298.0" mnemonicParsing="false" onAction="#sortDate" prefHeight="25.0" prefWidth="70.0" text="Date" wrapText="true" AnchorPane.leftAnchor="51.0" AnchorPane.rightAnchor="56.0" />
             <Button layoutX="51.0" layoutY="331.0" mnemonicParsing="false" onAction="#reverseOrder" prefHeight="25.0" prefWidth="70.0" text="Reverse" wrapText="true" />
             <ImageView fx:id="mapViewIcon" fitHeight="64.0" fitWidth="69.0" layoutX="7.0" layoutY="380.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="101.0" AnchorPane.topAnchor="380.0" />
-            <Button layoutX="50.0" layoutY="368.0" mnemonicParsing="false" onAction="#selectAll" prefHeight="25.0" prefWidth="70.0" text="Select All" />
+            <Button layoutX="51.0" layoutY="368.0" mnemonicParsing="false" onAction="#selectAll" prefHeight="25.0" prefWidth="70.0" text="Select All" />
             <Button fx:id="createAlbumButton" layoutX="44.0" layoutY="400.0" mnemonicParsing="false" onAction="#createAlbum" prefHeight="25.0" prefWidth="89.0" text="Create Album" />
+            <ImageView fx:id="pdfIcon" fitHeight="64.0" fitWidth="69.0" layoutX="99.0" layoutY="385.0" pickOnBounds="true" preserveRatio="true" />
          </children></AnchorPane>
       <ScrollPane fx:id="scrollPane" prefHeight="398.0" prefWidth="439.0" />
   </items>
