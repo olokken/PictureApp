@@ -24,7 +24,7 @@ public class PictureService {
             query = "SELECT *  From picture as p INNER JOIN albumpicture as ap WHERE p.id = ap.pictureId and ap.albumId = ?";
         }
         else {
-            query = "SELECT p.* From picture p " +
+            query = "SELECT DISTINCT p.* From picture p " +
                     "join albumpicture ap on p.id = ap.pictureId " +
                     "join album a on a.id = ap.albumId " +
                     "where a.userid = ?";
