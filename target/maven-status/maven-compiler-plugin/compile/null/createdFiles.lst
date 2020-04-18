@@ -3,6 +3,7 @@ forkastet\GeoHandler.class
 Team6\TertiaryController.class
 entities\Picture.class
 forkastet\forkastet.class
+idk\AppLogger.class
 entities\User.class
 Team6\CreateUserController.class
 Team6\Context.class
@@ -14,6 +15,7 @@ services\UserService.class
 Team6\PrimaryController.class
 Team6\LoginController.class
 Team6\MapController.class
+services\PdfHandler.class
 services\AlbumService.class
 services\Database.class
 forkastet\Metadata.class

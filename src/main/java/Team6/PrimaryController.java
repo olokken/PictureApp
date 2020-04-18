@@ -79,10 +79,10 @@ public class PrimaryController implements Initializable  {
     List<VBox> createPages() {
         return yourAlbums.stream().map(x -> {
             VBox vBox = new VBox();
-            vBox.setStyle("-fx-background-color: white");
+            vBox.setStyle("-fx-background-color: transparent");
             Text text = new Text(x.getName());
             text.setTextAlignment(TextAlignment.CENTER);
-            vBox.setPadding(new Insets(5,5,0,5));
+            vBox.setPadding(new Insets(10,10,10,10));
             try {
                 vBox.getChildren().add(createImageView());
                 text.setWrappingWidth(createImageView().getFitWidth());
@@ -90,13 +90,16 @@ public class PrimaryController implements Initializable  {
                 e.printStackTrace();
             }
             vBox.getChildren().add(text);
+            //vBox.setOnMouseDragOver
+
+
             vBox.setOnMouseClicked(e -> {
                 if(chosenOnes.contains(x)) {
-                    vBox.setStyle("-fx-background-color: white");
+                    vBox.getStyleClass().add("button1");
                     chosenOnes.remove(x);
                 }
                 else {
-                    vBox.setStyle("-fx-background-color: green");
+                    vBox.setStyle("-fx-background-color:linear-gradient(white,#DDDDDD)");
                     chosenOnes.add(x);
                 }
                 if (e.getClickCount() == 2) {
@@ -115,11 +118,11 @@ public class PrimaryController implements Initializable  {
 
     ImageView createImageView() throws FileNotFoundException {
         Image image = null;
-        image = new Image(new FileInputStream(".\\images\\mappetest.png"));
+        image = new Image(new FileInputStream(".\\images\\icon_2.png"));
         ImageView imageView = new ImageView(image);
-        imageView.setFitHeight(ELEMENT_SIZE);
-        imageView.setFitWidth(ELEMENT_SIZE);
-        imageView.setSmooth(true);
+        imageView.setFitHeight(80);
+        imageView.setFitWidth(80);
+        //imageView.setSmooth(true);
         imageView.setCache(true);
         return imageView;
     }

@@ -1,0 +1,48 @@
+Apr 18, 2020 4:38:22 PM services.Database getProperties
+FINE: config.properties (The system cannot find the file specified)
+Apr 18, 2020 4:42:53 PM services.Database getProperties
+FINE: config.properties (The system cannot find the file specified)
+Apr 18, 2020 4:47:52 PM Team6.LoginController signIn
+FINE: 
+/C:/Users/Linda/Documents/Programmering%202/PictureApp/target/classes/Team6/primary.fxml
+
+Apr 18, 2020 4:47:57 PM Team6.LoginController signIn
+FINE: 
+/C:/Users/Linda/Documents/Programmering%202/PictureApp/target/classes/Team6/primary.fxml
+
+Apr 18, 2020 4:48:02 PM Team6.LoginController signIn
+FINE: 
+/C:/Users/Linda/Documents/Programmering%202/PictureApp/target/classes/Team6/primary.fxml
+
+Apr 18, 2020 4:48:04 PM Team6.LoginController signIn
+FINE: 
+/C:/Users/Linda/Documents/Programmering%202/PictureApp/target/classes/Team6/primary.fxml
+
+Apr 18, 2020 4:48:05 PM Team6.LoginController signIn
+FINE: 
+/C:/Users/Linda/Documents/Programmering%202/PictureApp/target/classes/Team6/primary.fxml
+
+Apr 18, 2020 4:48:38 PM Team6.LoginController signIn
+FINE: 
+/C:/Users/Linda/Documents/Programmering%202/PictureApp/target/classes/Team6/primary.fxml
+
+Apr 18, 2020 4:48:45 PM Team6.LoginController signIn
+FINE: 
+/C:/Users/Linda/Documents/Programmering%202/PictureApp/target/classes/Team6/primary.fxml
+
+Apr 18, 2020 4:48:46 PM Team6.LoginController signIn
+FINE: 
+/C:/Users/Linda/Documents/Programmering%202/PictureApp/target/classes/Team6/primary.fxml
+
+Apr 18, 2020 4:48:55 PM Team6.LoginController signIn
+FINE: 
+/C:/Users/Linda/Documents/Programmering%202/PictureApp/target/classes/Team6/primary.fxml
+
+Apr 18, 2020 4:49:57 PM Team6.LoginController signIn
+FINE: 
+/C:/Users/Linda/Documents/Programmering%202/PictureApp/target/classes/Team6/primary.fxml
+
+Apr 18, 2020 4:50:02 PM Team6.LoginController signIn
+FINE: 
+/C:/Users/Linda/Documents/Programmering%202/PictureApp/target/classes/Team6/primary.fxml
+
