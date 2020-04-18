@@ -113,6 +113,8 @@ public class PrimaryController implements Initializable  {
         }).collect(Collectors.toList());
     }
 
+
+
     ImageView createImageView() throws FileNotFoundException {
         Image image = null;
         image = new Image(new FileInputStream(".\\images\\mappetest.png"));

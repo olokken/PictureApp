@@ -13,9 +13,11 @@ import entities.Picture;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.SplitPane;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -23,11 +25,14 @@ import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
+import services.AlbumService;
 import services.PictureService;
 
 
 
 public class SecondaryController implements Initializable {
+    @FXML
+    Button createAlbumButton;
     @FXML
     ImageView mapViewIcon;
     @FXML
@@ -44,8 +49,11 @@ public class SecondaryController implements Initializable {
     AnchorPane anchorPane;
 
     PictureService pictureService = new PictureService();
+    AlbumService albumService = new AlbumService();
     Album album = new Album();
     TilePane tilePane = new TilePane();
+    ArrayList<Picture> selectedPhotos = new ArrayList<>();
+    List<VBox> pages;
 
     private static double ELEMENT_SIZE = 170;
     private static final double GAP = ELEMENT_SIZE/10;
@@ -80,6 +88,9 @@ public class SecondaryController implements Initializable {
     void buttonSetup() {
         if (album.getId() < 0) {
             anchorPane.getChildren().removeAll(addButton, deleteButton);
+        }
+        else if (album.getId() > 0) {
+            anchorPane.getChildren().remove(createAlbumButton);
         }
     }
 
@@ -128,13 +139,15 @@ public class SecondaryController implements Initializable {
             imageView.setSmooth(true);
             imageView.setCache(true);
             imageView.setOnMouseClicked(e -> {
-                Context.getInstance().currentAlbum().setPictures(album.getPictures());
-                Context.getInstance().currentAlbum().setId(album.getId());
-                Context.getInstance().setIndex(album.getPictures().indexOf(x));
-                try {
-                    App.setRoot("tertiary");
-                } catch (IOException ex) {
-                    //picLdLogger.getLogger().log(Level.FINE, ex.getMessage());
+                if (e.getClickCount() == 2) {
+                    Context.getInstance().currentAlbum().setPictures(album.getPictures());
+                    Context.getInstance().currentAlbum().setId(album.getId());
+                    Context.getInstance().setIndex(album.getPictures().indexOf(x));
+                    try {
+                        App.setRoot("tertiary");
+                    } catch (IOException ex) {
+                        //picLdLogger.getLogger().log(Level.FINE, ex.getMessage());
+                    }
                 }
             });
             return imageView;
@@ -142,11 +155,48 @@ public class SecondaryController implements Initializable {
     }
 
     List<VBox> createPages() {
-        return createImageViews().stream().map(x -> {
+        pages = createImageViews().stream().map(x -> {
             VBox vBox = new VBox();
+            vBox.setPadding(new Insets(3,3,3,3));
             vBox.getChildren().add(x);
             return vBox;
         }).collect(Collectors.toList());
+        pages.forEach(x -> {
+            x.setOnMouseClicked(e -> {
+                int index = pages.indexOf(x);
+                Picture picture = album.getPictures().get(index);
+                if (!selectedPhotos.contains(picture)) {
+                    selectedPhotos.add(picture);
+                    x.setStyle("-fx-background-color: green");
+                } else {
+                    selectedPhotos.remove(picture);
+                    x.setStyle("-fx-background-color: white");
+                }
+            });
+        });
+        return pages;
+    }
+
+    public void createAlbum(ActionEvent actionEvent) {
+        TextInputDialog t = new TextInputDialog();
+        t.setTitle("Album");
+        t.setHeaderText("Create new album");
+        t.setContentText("Enter name: ");
+        Optional<String> result = t.showAndWait();
+        if (result.isPresent()) {
+            int userId = Context.getInstance().currentUser().getId();
+            albumService.createAlbum(result.get(), userId);
+            selectedPhotos.forEach(e -> pictureService.createPicture(e , albumService.getIdLastAlbumRegistered(userId)));
+        }
+    }
+
+    public void selectAll() {
+        album.getPictures().forEach(x -> {
+            if (!selectedPhotos.contains(x)) {
+                selectedPhotos.add(x);
+            }
+        });
+        pages.forEach(e -> e.setStyle("-fx-background-color: green"));
     }
 
 
@@ -225,5 +275,11 @@ public class SecondaryController implements Initializable {
 
     }
 
+
+    public void deletePhotos(ActionEvent actionEvent) {
+        if (selectedPhotos.size() > 0) {
+        selectedPhotos.forEach(e -> pictureService.deletePicture(e.getId(), album.getId()));
+        }
+    }
 
 }
