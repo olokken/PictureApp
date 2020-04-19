@@ -49,7 +49,6 @@ public class SearchController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Context.getInstance().setSwitchToMap(false);
         bind();
         rememberLastSearch();
         search();
@@ -116,8 +115,8 @@ public class SearchController implements Initializable {
                 if (e.getClickCount() == 2) {
                     Context.getInstance().setCurrentSearchingword(textField.getText());
                     Context.getInstance().currentAlbum().setPictures(searchedPictures);
-                    Context.getInstance().currentAlbum().setId(-2);
                     Context.getInstance().setIndex(searchedPictures.indexOf(x));
+                    Context.getInstance().setLastScene("search");
                     try {
                         App.setRoot("tertiary");
                     } catch (IOException ex) {

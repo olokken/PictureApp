@@ -60,7 +60,7 @@ public class MapController implements MapComponentInitializedListener, Initializ
                      try {
                          int index = pictures.indexOf(x);
                          Context.getInstance().setIndex(index);
-                         Context.getInstance().setSwitchToMap(true);
+                         Context.getInstance().setLastScene("map");
                          App.setRoot("tertiary");
                      } catch (IOException e) {
                          e.printStackTrace();

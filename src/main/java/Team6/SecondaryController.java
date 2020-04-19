@@ -68,7 +68,6 @@ public class SecondaryController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Context.getInstance().setSwitchToMap(false);
         albumSetup();
         fillList();
         pictureViewSetup();
@@ -143,6 +142,7 @@ public class SecondaryController implements Initializable {
                     Context.getInstance().currentAlbum().setPictures(album.getPictures());
                     Context.getInstance().currentAlbum().setId(album.getId());
                     Context.getInstance().setIndex(album.getPictures().indexOf(x));
+                    Context.getInstance().setLastScene("secondary");
                     try {
                         App.setRoot("tertiary");
                     }   catch (IOException ex) {
@@ -258,9 +258,10 @@ public class SecondaryController implements Initializable {
         PdfHandler pdfHandler = new PdfHandler();
         pdfIcon.setImage(image);
         pdfIcon.setOnMouseClicked(e -> {
-                    pdfHandler.createAlbumPdf(selectedPhotos);
-                }
-        );
+            if (selectedPhotos.size() > 0) {
+                pdfHandler.createAlbumPdf(selectedPhotos);
+            }
+        });
     }
 
     public void deletePhotos(ActionEvent actionEvent) {
