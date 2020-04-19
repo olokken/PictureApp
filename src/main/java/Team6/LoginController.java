@@ -56,6 +56,7 @@ public class LoginController implements Initializable {
         Image image = new Image(new FileInputStream(".\\images\\pickles.png"));
         imageView.setImage(image);
     }
+
     public void signIn(ActionEvent actionEvent) throws IOException {
         try{
             if(checkUsername() && checkPassword()){

@@ -18,13 +18,13 @@ public class Context {
     private Album album = new Album();
     private User user = new User();
     private ArrayList<Album> albums;
-    private boolean switchToMap;
+    private String lastScene;
 
-    public boolean currentSwitchToMap () {
-        return switchToMap;
+    public String getLastScene () {
+        return lastScene;
     }
-    public void setSwitchToMap(boolean b) {
-        switchToMap = b;
+    public void setLastScene(String scene) {
+        lastScene = scene;
     }
 
     public User currentUser() {

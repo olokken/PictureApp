@@ -13,13 +13,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.control.Button;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.SplitPane;
-import javafx.scene.control.TextInputDialog;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -31,6 +29,8 @@ import services.PictureService;
 
 
 public class SecondaryController implements Initializable {
+    @FXML
+    MenuButton changeStatusButton;
     @FXML
     ImageView pdfIcon;
     @FXML
@@ -44,7 +44,7 @@ public class SecondaryController implements Initializable {
     @FXML
     ScrollPane scrollPane;
     @FXML
-    SplitPane splitPane;
+    BorderPane borderPane;
     @FXML
     Text albumName;
     @FXML
@@ -68,7 +68,6 @@ public class SecondaryController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Context.getInstance().setSwitchToMap(false);
         albumSetup();
         fillList();
         pictureViewSetup();
@@ -143,6 +142,7 @@ public class SecondaryController implements Initializable {
                     Context.getInstance().currentAlbum().setPictures(album.getPictures());
                     Context.getInstance().currentAlbum().setId(album.getId());
                     Context.getInstance().setIndex(album.getPictures().indexOf(x));
+                    Context.getInstance().setLastScene("secondary");
                     try {
                         App.setRoot("tertiary");
                     }   catch (IOException ex) {
@@ -258,9 +258,10 @@ public class SecondaryController implements Initializable {
         PdfHandler pdfHandler = new PdfHandler();
         pdfIcon.setImage(image);
         pdfIcon.setOnMouseClicked(e -> {
-                    pdfHandler.createAlbumPdf(selectedPhotos);
-                }
-        );
+            if (selectedPhotos.size() > 0) {
+                pdfHandler.createAlbumPdf(selectedPhotos);
+            }
+        });
     }
 
     public void deletePhotos(ActionEvent actionEvent) {
@@ -291,6 +292,5 @@ public class SecondaryController implements Initializable {
             selectedPhotos.forEach(e -> pictureService.createPicture(e , albumService.getIdLastAlbumRegistered(userId)));
         }
     }
-
 
 }

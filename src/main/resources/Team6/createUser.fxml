@@ -19,7 +19,7 @@
             styleClass="layout">
 
    <stylesheets>
-      <URL value="@createUser.css" />
+      <URL value="@css/createUser.css" />
    </stylesheets>
 
    <VBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" styleClass="vBox">

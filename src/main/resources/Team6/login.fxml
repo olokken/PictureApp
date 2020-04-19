@@ -12,7 +12,7 @@
 <?import javafx.scene.control.Hyperlink?>
 
 <AnchorPane prefHeight="465.0"
-            prefWidth="600.0"
+            prefWidth="800.0"
             styleClass="layout"
             snapToPixel="false"
             xmlns="http://javafx.com/javafx"
@@ -20,10 +20,10 @@
             fx:controller="Team6.LoginController">
 
    <stylesheets>
-      <URL value="@login.css" />
+      <URL value="@css/login.css" />
    </stylesheets>
 
-   <VBox alignment="CENTER" prefHeight="465.0" prefWidth="171.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" styleClass="vBox">
+   <VBox alignment="CENTER" prefHeight="465.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" styleClass="vBox">
       <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
       <Label fx:id="label" prefHeight="17.0" prefWidth="386.0" />
       <TextField fx:id="username" focusTraversable="false" styleClass="text-field"  prefHeight="25.0" promptText="Enter username"/>
