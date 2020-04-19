@@ -35,27 +35,22 @@ import services.PictureService;
 import services.UserService;
 
 
-public class PrimaryController implements Initializable  {
+public class PrimaryController extends BaseController implements Initializable  {
     @FXML
     BorderPane borderPane;
     @FXML
     ScrollPane scrollPane;
     @FXML
     TextField textField;
-    @FXML
-    AnchorPane anchorPane;
 
-    TilePane tilePane = new TilePane();
-
-    ArrayList<Album> yourAlbums = new ArrayList<Album>();
-    ArrayList<Album> chosenOnes = new ArrayList<Album>();
+    ArrayList<Album> yourAlbums = new ArrayList<>();
+    ArrayList<Album> chosenOnes = new ArrayList<>();
     AlbumService albumService = new AlbumService();
     PictureService pictureService = new PictureService();
-    UserService userService = new UserService();
     User user = Context.getInstance().currentUser();
 
-    private static double ELEMENT_SIZE = 100;
-    private static final double GAP = ELEMENT_SIZE/10;
+    TilePane tilePane = new TilePane();
+    List<VBox> pages = new ArrayList<>();
 
     //Create logger object from PicLdLogger class.
     //private PicLdLogger picLdLogger = new PicLdLogger();
@@ -66,80 +61,65 @@ public class PrimaryController implements Initializable  {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        albumViewSetup();
-        fillList();
+        setupVariables();
+        setupAlbumView();
         search();
     }
 
     void createElements() {
         tilePane.getChildren().clear();
-        tilePane.getChildren().addAll(createPages());
+        tilePane.getChildren().addAll(pages);
     }
 
-    List<VBox> createPages() {
-        return yourAlbums.stream().map(x -> {
-            VBox vBox = new VBox();
-            vBox.setStyle("-fx-background-color: transparent");
-            Text text = new Text(x.getName());
-            text.setTextAlignment(TextAlignment.CENTER);
-            vBox.setPadding(new Insets(10,10,10,10));
-            try {
-                vBox.getChildren().add(createImageView());
-                text.setWrappingWidth(createImageView().getFitWidth());
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
-            vBox.getChildren().add(text);
-            //vBox.setOnMouseDragOver
 
+    public void setOnMouseClicked() {
+        yourAlbums.forEach(a -> {
+            pages.forEach(v -> {
+                if (yourAlbums.indexOf(a) == pages.indexOf(v)) {
+                    v.setOnMouseClicked(e -> {
+                        if (chosenOnes.contains(a)) {
+                            v.getStyleClass().add("button1");
+                            v.setStyle("-fx-background-color: transparent");
+                            chosenOnes.remove(a);
+                        } else {
+                            v.setStyle("-fx-background-color:linear-gradient(white,#DDDDDD)");
+                            chosenOnes.add(a);
+                        }
+                        if (e.getClickCount() == 2) {
+                            Context.getInstance().currentAlbum().setId(a.getId());
+                            Context.getInstance().currentAlbum().setName(a.getName());
+                            try {
+                                switchScene("primary", "secondary");
+                            } catch (IOException ex) {
+                                //picLdLogger.getLogger().log(Level.FINE, ex.getMessage());
+                            }
+                        }
 
-            vBox.setOnMouseClicked(e -> {
-                if(chosenOnes.contains(x)) {
-                    vBox.getStyleClass().add("button1");
-                    chosenOnes.remove(x);
-                }
-                else {
-                    vBox.setStyle("-fx-background-color:linear-gradient(white,#DDDDDD)");
-                    chosenOnes.add(x);
-                }
-                if (e.getClickCount() == 2) {
-                    Context.getInstance().currentAlbum().setId(x.getId());
-                    Context.getInstance().currentAlbum().setName(x.getName());
-                    try {
-                        App.setRoot("secondary");
-                    } catch (IOException ex) {
-                        //picLdLogger.getLogger().log(Level.FINE, ex.getMessage());
-                    }
+                    });
                 }
             });
-            return vBox;
-        }).collect(Collectors.toList());
+        });
     }
 
-    ImageView createImageView() throws FileNotFoundException {
-        Image image = null;
-        image = new Image(new FileInputStream(".\\images\\icon_2.png"));
-        ImageView imageView = new ImageView(image);
-        imageView.setFitHeight(80);
-        imageView.setFitWidth(80);
-        //imageView.setSmooth(true);
-        imageView.setCache(true);
-        return imageView;
-    }
 
-    void albumViewSetup() {
-        tilePane.setHgap(GAP);
-        tilePane.setVgap(GAP);
+    void setupAlbumView() {
+        setOnMouseClicked();
         scrollPane.setFitToWidth(true);
         scrollPane.setContent(tilePane);
     }
 
-    public void fillList() {
+    void albumSetup() {
         yourAlbums = albumService.getAllAlbums(user.getId());
         Album album = new Album("All Photos");
         album.setId(-1);
         album.setUserId(Context.getInstance().currentUser().getId());
         yourAlbums.add(0, album);
+    }
+
+    public void setupVariables() {
+        albumSetup();
+        tilePane = elementPane();
+        pages = createAlbumPages(yourAlbums);
         createElements();
     }
 
@@ -152,7 +132,8 @@ public class PrimaryController implements Initializable  {
         Optional<String> result = t.showAndWait();
         if (result.isPresent()) {
             albumService.createAlbum(result.get(), user.getId());
-            fillList();
+            setupVariables();
+            setupAlbumView();
         }
     }
 
@@ -163,7 +144,8 @@ public class PrimaryController implements Initializable  {
                 albumService.deleteAlbum(e);
                 yourAlbums.remove(e);
             });
-            createElements();
+            setupVariables();
+            setupAlbumView();
         }
     }
 
@@ -172,14 +154,14 @@ public class PrimaryController implements Initializable  {
             Album album = chosenOnes.get(0);
             Context.getInstance().currentAlbum().setId(album.getId());
             Context.getInstance().currentAlbum().setName(album.getName());
-            App.setRoot("secondary");
+            switchScene("primary", "secondary");
         }
     }
 
     public void search() {
         textField.setOnMouseClicked(e -> {
             try {
-                App.setRoot("search");
+                switchScene("primary", "search");
             } catch (IOException ex) {
                 //picLdLogger.getLogger().log(Level.FINE, ex.getMessage());
             }
@@ -187,6 +169,6 @@ public class PrimaryController implements Initializable  {
     }
 
     public void logOut(ActionEvent actionEvent) throws IOException {
-        App.setRoot("login");
+        switchScene("primary", "login");
     }
 }

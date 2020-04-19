@@ -110,16 +110,8 @@ public class TertiaryController implements Initializable {
 
     @FXML
     private void switchToSecondary() throws IOException {
-        if(album.getId() == -2) {
-            Context.getInstance().currentAlbum().setPictures(null);
-            App.setRoot("search");
-        }
-        else if(Context.getInstance().currentSwitchToMap() == true) {
-            App.setRoot("map");
-        }
-        else {
-            App.setRoot("secondary");
-        }
+        String lastScene = Context.getInstance().getLastScene();
+        App.setRoot(lastScene);
     }
 
     void metadataSetup() {
