@@ -24,23 +24,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
 import java.util.stream.Collectors;
 
-public class SearchController implements Initializable {
-    private final double ELEMENT_SIZE = 170;
-    private final double GAP = ELEMENT_SIZE/10;
+public class SearchController extends BaseController implements Initializable {
     @FXML
     TextField textField;
     @FXML
     ScrollPane scrollPane;
+
     PictureService pictureService = new PictureService();
     AlbumService albumService = new AlbumService();
     ArrayList<Picture> pictures = pictureService.getAllPictures(-1, Context.getInstance().currentUser().getId());
     ArrayList<Picture> searchedPictures = new ArrayList<>();
     ArrayList<Picture> selectedPhotos = new ArrayList<>();
+
     TilePane tilePane = new TilePane();
-    List<VBox> pages;
+    List<VBox> pages = new ArrayList<>();
 
     public SearchController() throws IOException {
     }
@@ -57,12 +56,11 @@ public class SearchController implements Initializable {
             String lastSearched = Context.getInstance().currentSearchingword();
             addPictures(lastSearched);
             textField.setText(lastSearched);
-            createElements();
+            setupPicturePane();
         }
     }
+
     void bind() {
-        tilePane.setHgap(GAP);
-        tilePane.setVgap(GAP);
         scrollPane.setFitToWidth(true);
         scrollPane.setContent(tilePane);
     }
@@ -74,10 +72,40 @@ public class SearchController implements Initializable {
                     searchedPictures.clear();
                     tilePane.getChildren().remove(searchedPictures);
                     addPictures(textField.getText());
-                    createElements();
+                    setupPicturePane();
             }
         });
     }
+
+    public void setOnMouseClicked() {
+        searchedPictures.forEach(a -> {
+            pages.forEach(v -> {
+                if (searchedPictures.indexOf(a) == pages.indexOf(v)) {
+                    v.setOnMouseClicked(e -> {
+                        if (selectedPhotos.contains(a)) {
+                            v.setStyle("-fx-background-color: transparent");
+                            selectedPhotos.remove(a);
+                        } else {
+                            v.setStyle("-fx-background-color:linear-gradient(white,#DDDDDD)");
+                            selectedPhotos.add(a);
+                        }
+                        if (e.getClickCount() == 2) {
+                            Context.getInstance().currentAlbum().setPictures(searchedPictures);
+                            Context.getInstance().setIndex(searchedPictures.indexOf(a));
+                            Context.getInstance().setCurrentSearchingword(textField.getText());
+                            try {
+                                switchScene("search", "tertiary");
+                            } catch (IOException ex) {
+                                //picLdLogger.getLogger().log(Level.FINE, ex.getMessage());
+                            }
+                        }
+
+                    });
+                }
+            });
+        });
+    }
+
 
     void addPictures(String searchingWord) {
         pictures.forEach(x -> {
@@ -91,64 +119,12 @@ public class SearchController implements Initializable {
         });
     }
 
-    void createElements() {
-        tilePane.getChildren().clear();
-        tilePane.getChildren().addAll(createPages());
-    }
-
-    List<ImageView> createImageViews() {
-        return searchedPictures.stream().map(x -> {
-            Image image = null;
-            try {
-                image = new Image(new FileInputStream(x.getFilepath()));
-            } catch (FileNotFoundException e) {
-                AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
-                AppLogger.closeHandler();
-            }
-            ImageView imageView = new ImageView(image);
-            imageView.setFitHeight(ELEMENT_SIZE);
-            imageView.setFitWidth(ELEMENT_SIZE);
-            imageView.setSmooth(true);
-            imageView.setCache(true);
-            imageView.setOnMouseClicked(e -> {
-                if (e.getClickCount() == 2) {
-                    Context.getInstance().setCurrentSearchingword(textField.getText());
-                    Context.getInstance().currentAlbum().setPictures(searchedPictures);
-                    Context.getInstance().setIndex(searchedPictures.indexOf(x));
-                    Context.getInstance().setLastScene("search");
-                    try {
-                        App.setRoot("tertiary");
-                    } catch (IOException ex) {
-                        AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
-                        AppLogger.closeHandler();
-                    }
-                }
-            });
-            return imageView;
-        }).collect(Collectors.toList());
-    }
-
-    List<VBox> createPages() {
-        pages = createImageViews().stream().map(x -> {
-            VBox vBox = new VBox();
-            vBox.setPadding(new Insets(3,3,3,3));
-            vBox.getChildren().add(x);
-            return vBox;
-            }).collect(Collectors.toList());
-        pages.forEach(x -> {
-            x.setOnMouseClicked(e -> {
-                int index = pages.indexOf(x);
-                Picture picture = searchedPictures.get(index);
-                if (!selectedPhotos.contains(picture)) {
-                    selectedPhotos.add(picture);
-                    x.setStyle("-fx-background-color: green");
-                } else {
-                    selectedPhotos.remove(picture);
-                    x.setStyle("-fx-background-color: white");
-                }
-            });
-        });
-        return pages;
+    void setupPicturePane() {
+        tilePane = elementPane();
+        bind();
+        pages = createPicturePages(searchedPictures);
+        setOnMouseClicked();
+        createElements(tilePane, pages);
     }
 
     public void createAlbum(ActionEvent actionEvent) {
@@ -172,8 +148,6 @@ public class SearchController implements Initializable {
         });
         pages.forEach(e -> e.setStyle("-fx-background-color: green"));
     }
-
-
 
     public void switchToPrimary(ActionEvent actionEvent) throws IOException {
         try{

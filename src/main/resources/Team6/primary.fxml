@@ -1,49 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.text.Text?>
-<?import javafx.scene.layout.VBox?>
-
-
 <?import javafx.scene.layout.BorderPane?>
-<?import java.net.URL?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.geometry.Insets?>
-<BorderPane fx:id="borderPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
-            prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="Team6.PrimaryController">
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane fx:id="borderPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Team6.PrimaryController">
 
    <stylesheets>
       <URL value="@primary.css" />
    </stylesheets>
 
    <left>
-      <VBox VBox.vgrow="ALWAYS" minWidth="160" styleClass="vBoxLeft" alignment="TOP_CENTER">
+      <VBox alignment="TOP_CENTER" minWidth="160" styleClass="vBoxLeft" VBox.vgrow="ALWAYS">
          <VBox styleClass="pickld">
-            <Text text="PicLd" styleClass="h1"/>
+            <Text styleClass="h1" text="PicLd" />
          </VBox>
-         <Button mnemonicParsing="false" onAction="#openAlbum" prefHeight="45.0" prefWidth="110.0" text="Open"/>
-         <Button mnemonicParsing="false" onAction="#createAlbum" prefHeight="45.0" prefWidth="110.0" text="New album"/>
-         <Button mnemonicParsing="false" onAction="#deleteAlbum" prefHeight="45.0" prefWidth="110.0" text="Delete album" />
+         <Button fx:id="openButton" mnemonicParsing="false" onAction="#openAlbum" prefHeight="45.0" prefWidth="110.0" text="Open" />
+         <Button mnemonicParsing="false" onAction="#createAlbum" prefHeight="45.0" prefWidth="110.0" text="New album" />
+         <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#deleteAlbum" prefHeight="45.0" prefWidth="110.0" text="Delete album" />
          <Button mnemonicParsing="false" onAction="#logOut" prefHeight="45.0" prefWidth="110.0" text="Log out" />
       </VBox>
    </left>
 
    <right>
-      <VBox VBox.vgrow="ALWAYS" minWidth="300" styleClass="vBoxRight" prefWidth="Infinity">
+      <VBox minWidth="300" prefWidth="Infinity" styleClass="vBoxRight" VBox.vgrow="ALWAYS">
          <VBox.margin>
-            <Insets top="161.0"/>
+            <Insets top="161.0" />
          </VBox.margin>
          <HBox alignment="CENTER_LEFT" styleClass="titleBox">
-            <Text text="YOUR ALBUMS" styleClass="h2"/>
-            <HBox HBox.hgrow="ALWAYS"/>
-            <TextField fx:id="textField" prefHeight="20.0" promptText="Search" alignment="CENTER_RIGHT"/>
+            <Text styleClass="h2" text="YOUR ALBUMS" />
+            <HBox HBox.hgrow="ALWAYS" />
+            <TextField fx:id="textField" alignment="CENTER_RIGHT" prefHeight="20.0" promptText="Search" />
          </HBox>
-         <ScrollPane fx:id="scrollPane" styleClass="scrollPane" prefHeight="1050"/>
+         <ScrollPane fx:id="scrollPane" prefHeight="1050" styleClass="scrollPane" />
       </VBox>
    </right>
 
 </BorderPane>
-

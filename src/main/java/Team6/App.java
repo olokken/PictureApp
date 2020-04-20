@@ -9,6 +9,7 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -25,6 +26,8 @@ public class App extends Application {
         try {
             scene = new Scene(loadFXML("login"));
             stage.setScene(scene);
+            Image image = new Image(new FileInputStream(".\\images\\pickles.png"));
+            stage.getIcons().add(image);
             stage.show();
             scene.setFill(Color.TRANSPARENT);
         } catch (IOException e) {

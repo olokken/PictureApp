@@ -31,45 +31,33 @@ public class BaseController {
         }
     }
 
-    public ImageView createImageView (String filePath) throws FileNotFoundException {
-        try{
-            Image image = null;
-            image = new Image(new FileInputStream(filePath)); //filePath
-            ImageView imageView = new ImageView(image);
-            imageView.setFitHeight(80);
-            imageView.setFitWidth(80);
-            imageView.setSmooth(true);
-            imageView.setCache(true);
-            return imageView;
-        } catch (FileNotFoundException e){
-            AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
-            AppLogger.closeHandler();
-        }
-        return null;
+    public ImageView createImageView (String filePath, int elementSize) throws FileNotFoundException {
+        Image image = null;
+        image = new Image(new FileInputStream(filePath)); //filePath
+        ImageView imageView = new ImageView(image);
+        imageView.setFitHeight(elementSize);
+        imageView.setFitWidth(elementSize);
+        imageView.setSmooth(true);
+        imageView.setCache(true);
+        return imageView;
     }
 
-    public VBox createVBoxOptions(int padding, String imagePath) throws FileNotFoundException {
-        try{
-            VBox vBox = new VBox();
-            vBox.setStyle("-fx-background-color: transparent");
-            vBox.setPadding(new Insets(10,10,10,10));
-            vBox.getChildren().add(createImageView(imagePath));
-            return vBox;
-        } catch (FileNotFoundException e){
-            AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
-            AppLogger.closeHandler();
-        }
-        return null;
+    public VBox createVBoxOptions(int padding, String imagePath, int elementSize) throws FileNotFoundException {
+        VBox vBox = new VBox();
+        vBox.setStyle("-fx-background-color: transparent");
+        vBox.setPadding(new Insets(10,10,10,10));
+        vBox.getChildren().add(createImageView(imagePath, elementSize));
+        return vBox;
     }
 
-    public List<VBox> createAlbumPages (ArrayList<Album> yourAlbums) {
+    public List<VBox> createAlbumPages (ArrayList<Album> yourAlbums, String iconPath) {
         return yourAlbums.stream().map(x -> {
             VBox vBox = null;
             Text text = new Text(x.getName());
             text.setTextAlignment(TextAlignment.CENTER);
             try {
-                text.setWrappingWidth(createImageView(".\\images\\icon_2.png").getFitWidth());
-                vBox = createVBoxOptions(10 , ".\\images\\icon_2.png");
+                text.setWrappingWidth(createImageView(iconPath, 80).getFitWidth());
+                vBox = createVBoxOptions(10 , iconPath, 80);
             } catch (FileNotFoundException e) {
                 AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
                 AppLogger.closeHandler();
@@ -82,8 +70,8 @@ public class BaseController {
     public List<VBox> createPicturePages (ArrayList<Picture> pictures) {
         return pictures.stream().map(x -> {
             VBox vBox = null;
-            try {
-                vBox = createVBoxOptions(10 , x.getFilepath());
+            try { ;
+                vBox = createVBoxOptions(10 , x.getFilepath(), 170);
             } catch (FileNotFoundException e) {
                 AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
                 AppLogger.closeHandler();
@@ -97,6 +85,11 @@ public class BaseController {
         tilePane.setHgap(10);
         tilePane.setVgap(10);
         return tilePane;
+    }
+
+    public void createElements(TilePane tilePane, List<VBox> pages) {
+        tilePane.getChildren().clear();
+        tilePane.getChildren().addAll(pages);
     }
 
 }
