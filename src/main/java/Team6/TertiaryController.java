@@ -57,9 +57,6 @@ public class TertiaryController implements Initializable {
     int index = Context.getInstance().currentIndex();
     Album album = new Album();
 
-    //Create logger object from PicLdLogger class.
-    //private PicLdLogger picLdLogger = new PicLdLogger();
-
     public TertiaryController() throws IOException {
     }
 
