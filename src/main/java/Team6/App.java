@@ -8,6 +8,7 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 
 /**
@@ -21,6 +22,8 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("login"));
         stage.setScene(scene);
+        Image image = new Image(new FileInputStream(".\\images\\pickles.png"));
+        stage.getIcons().add(image);
         stage.show();
         scene.setFill(Color.TRANSPARENT);
     }

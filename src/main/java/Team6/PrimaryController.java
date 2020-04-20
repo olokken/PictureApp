@@ -37,6 +37,10 @@ import services.UserService;
 
 public class PrimaryController extends BaseController implements Initializable  {
     @FXML
+    Button deleteButton;
+    @FXML
+    Button openButton;
+    @FXML
     BorderPane borderPane;
     @FXML
     ScrollPane scrollPane;
@@ -44,7 +48,7 @@ public class PrimaryController extends BaseController implements Initializable  
     TextField textField;
 
     ArrayList<Album> yourAlbums = new ArrayList<>();
-    ArrayList<Album> chosenOnes = new ArrayList<>();
+    ArrayList<Album> selectedAlbums = new ArrayList<>();
     AlbumService albumService = new AlbumService();
     PictureService pictureService = new PictureService();
     User user = Context.getInstance().currentUser();
@@ -64,11 +68,17 @@ public class PrimaryController extends BaseController implements Initializable  
         setupVariables();
         setupAlbumView();
         search();
+        buttonSetup();
     }
 
-    void createElements() {
-        tilePane.getChildren().clear();
-        tilePane.getChildren().addAll(pages);
+    void buttonSetup() {
+        if (selectedAlbums.size() <= 0) {
+            openButton.setStyle("-fx-background-color: transparent");
+            deleteButton.setStyle("-fx-background-color: transparent");
+        } else {
+            openButton.setStyle("-fx-background-color: white"); //linda problemet e nok her
+            deleteButton.setStyle("-fx-background-color: white"); // teksten forsvinn osv, også veit æ ikke ka fargen hete
+        }
     }
 
 
@@ -77,13 +87,14 @@ public class PrimaryController extends BaseController implements Initializable  
             pages.forEach(v -> {
                 if (yourAlbums.indexOf(a) == pages.indexOf(v)) {
                     v.setOnMouseClicked(e -> {
-                        if (chosenOnes.contains(a)) {
-                            v.getStyleClass().add("button1");
+                        if (selectedAlbums.contains(a)) {
                             v.setStyle("-fx-background-color: transparent");
-                            chosenOnes.remove(a);
+                            selectedAlbums.remove(a);
+                            buttonSetup();
                         } else {
                             v.setStyle("-fx-background-color:linear-gradient(white,#DDDDDD)");
-                            chosenOnes.add(a);
+                            selectedAlbums.add(a);
+                            buttonSetup();
                         }
                         if (e.getClickCount() == 2) {
                             Context.getInstance().currentAlbum().setId(a.getId());
@@ -94,7 +105,6 @@ public class PrimaryController extends BaseController implements Initializable  
                                 //picLdLogger.getLogger().log(Level.FINE, ex.getMessage());
                             }
                         }
-
                     });
                 }
             });
@@ -119,8 +129,8 @@ public class PrimaryController extends BaseController implements Initializable  
     public void setupVariables() {
         albumSetup();
         tilePane = elementPane();
-        pages = createAlbumPages(yourAlbums);
-        createElements();
+        pages = createAlbumPages(yourAlbums, "./images/icon_2.png");
+        createElements(tilePane, pages);
     }
 
 
@@ -138,8 +148,8 @@ public class PrimaryController extends BaseController implements Initializable  
     }
 
     public void deleteAlbum(ActionEvent actionEvent) {
-        if (chosenOnes.size() > 0) {
-            chosenOnes.forEach(e -> {
+        if (selectedAlbums.size() > 0) {
+            selectedAlbums.forEach(e -> {
                 e.setPictures(pictureService.getAllPictures(e.getId(), Context.getInstance().currentUser().getId()));
                 albumService.deleteAlbum(e);
                 yourAlbums.remove(e);
@@ -150,8 +160,8 @@ public class PrimaryController extends BaseController implements Initializable  
     }
 
     public void openAlbum() throws IOException {
-        if (chosenOnes.size() == 1) {
-            Album album = chosenOnes.get(0);
+        if (selectedAlbums.size() == 1) {
+            Album album = selectedAlbums.get(0);
             Context.getInstance().currentAlbum().setId(album.getId());
             Context.getInstance().currentAlbum().setName(album.getName());
             switchScene("primary", "secondary");
