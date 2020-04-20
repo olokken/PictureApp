@@ -1,6 +1,7 @@
 package Team6;
 
 import entities.Picture;
+import idk.AppLogger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -40,9 +41,6 @@ public class SearchController implements Initializable {
     ArrayList<Picture> selectedPhotos = new ArrayList<>();
     TilePane tilePane = new TilePane();
     List<VBox> pages;
-
-    //Create logger object from PicLdLogger class.
-    //private PicLdLogger picLdLogger = new PicLdLogger();
 
     public SearchController() throws IOException {
     }
@@ -104,7 +102,8 @@ public class SearchController implements Initializable {
             try {
                 image = new Image(new FileInputStream(x.getFilepath()));
             } catch (FileNotFoundException e) {
-                //picLdLogger.getLogger().log(Level.FINE, e.getMessage());
+                AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+                AppLogger.closeHandler();
             }
             ImageView imageView = new ImageView(image);
             imageView.setFitHeight(ELEMENT_SIZE);
@@ -120,7 +119,8 @@ public class SearchController implements Initializable {
                     try {
                         App.setRoot("tertiary");
                     } catch (IOException ex) {
-                        //picLdLogger.getLogger().log(Level.FINE, ex.getMessage());
+                        AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
+                        AppLogger.closeHandler();
                     }
                 }
             });
@@ -176,7 +176,12 @@ public class SearchController implements Initializable {
 
 
     public void switchToPrimary(ActionEvent actionEvent) throws IOException {
-        Context.getInstance().currentAlbum().setPictures(null);
-        App.setRoot("primary");
+        try{
+            Context.getInstance().currentAlbum().setPictures(null);
+            App.setRoot("primary");
+        } catch (IOException e){
+            AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+            AppLogger.closeHandler();
+        }
     }
 }

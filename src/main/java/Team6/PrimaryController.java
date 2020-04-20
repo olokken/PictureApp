@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 import entities.Album;
 import entities.Picture;
 import entities.User;
+import idk.AppLogger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -52,9 +53,6 @@ public class PrimaryController extends BaseController implements Initializable  
     TilePane tilePane = new TilePane();
     List<VBox> pages = new ArrayList<>();
 
-    //Create logger object from PicLdLogger class.
-    //private PicLdLogger picLdLogger = new PicLdLogger();
-
     public PrimaryController() throws IOException {
     }
 
@@ -91,7 +89,8 @@ public class PrimaryController extends BaseController implements Initializable  
                             try {
                                 switchScene("primary", "secondary");
                             } catch (IOException ex) {
-                                //picLdLogger.getLogger().log(Level.FINE, ex.getMessage());
+                                AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
+                                AppLogger.closeHandler();
                             }
                         }
 
@@ -124,7 +123,7 @@ public class PrimaryController extends BaseController implements Initializable  
     }
 
 
-    public void createAlbum(ActionEvent actionEvent) throws IOException {
+    public void createAlbum(ActionEvent actionEvent) {
         TextInputDialog t = new TextInputDialog();
         t.setTitle("Album");
         t.setHeaderText("Create new album");
@@ -150,11 +149,16 @@ public class PrimaryController extends BaseController implements Initializable  
     }
 
     public void openAlbum() throws IOException {
-        if (chosenOnes.size() == 1) {
-            Album album = chosenOnes.get(0);
-            Context.getInstance().currentAlbum().setId(album.getId());
-            Context.getInstance().currentAlbum().setName(album.getName());
-            switchScene("primary", "secondary");
+        try {
+            if (chosenOnes.size() == 1) {
+                Album album = chosenOnes.get(0);
+                Context.getInstance().currentAlbum().setId(album.getId());
+                Context.getInstance().currentAlbum().setName(album.getName());
+                switchScene("primary", "secondary");
+            }
+        } catch (IOException ex) {
+            AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
+            AppLogger.closeHandler();
         }
     }
 
@@ -163,7 +167,8 @@ public class PrimaryController extends BaseController implements Initializable  
             try {
                 switchScene("primary", "search");
             } catch (IOException ex) {
-                //picLdLogger.getLogger().log(Level.FINE, ex.getMessage());
+                AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
+                AppLogger.closeHandler();
             }
         });
     }

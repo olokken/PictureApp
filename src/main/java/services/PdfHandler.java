@@ -55,10 +55,9 @@ public class PdfHandler {
                     }
             });
             document.close();
-        }catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }catch(IOException e) {
-            e.printStackTrace();
+        } catch (IOException e) {
+            AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+            AppLogger.closeHandler();
         }
     }
 

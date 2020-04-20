@@ -16,11 +16,9 @@ import java.util.logging.Level;
 public class Database {
     private static final String CONNECTION_STRING = "jdbc:mysql://mysql-ait.stud.idi.ntnu.no/olelok?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
     private static final String DRIVER = "com.mysql.jdbc.Driver";
-    private static final String USERNAME = getProperties().get("username").toString(); // Skriv eget brukernavn som du har på mail fra ntnu databasegreier
-    private static final String PASSWORD = getProperties().get("password").toString(); //Skriv eget passord som du har på mail fra ntnu databasegreier
+    private static final String USERNAME = getProperties().get("username").toString();
+    private static final String PASSWORD = getProperties().get("password").toString();
 
-    //Create logger object from PicLdLogger class.
-    //private static PicLdLogger picLdLogger;
 
     private static Map getProperties() {
         Map result = new HashMap();
@@ -29,8 +27,8 @@ public class Database {
             prop.load(input);
             result.put("username", prop.getProperty("USERNAME"));
             result.put("password", prop.getProperty("PASSWORD"));
-        } catch (IOException ex) {
-            AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
+        } catch (IOException e) {
+            AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
             AppLogger.closeHandler();
         }
         return result;
@@ -47,7 +45,8 @@ public class Database {
         try {
             return DriverManager.getConnection(CONNECTION_STRING, USERNAME, PASSWORD);
         } catch (SQLException se) {
-            //picLdLogger.getLogger().log(Level.FINE, se.getMessage());
+            AppLogger.getAppLogger().log(Level.FINE, se.getMessage());
+            AppLogger.closeHandler();
             return null;
         }
     }
@@ -61,8 +60,9 @@ public class Database {
     public static void rollBack(Connection conn) {
         try {
             conn.rollback();
-        } catch (SQLException ex) {
-            //picLdLogger.getLogger().log(Level.FINE, ex.getMessage());
+        } catch (SQLException se) {
+            AppLogger.getAppLogger().log(Level.FINE, se.getMessage());
+            AppLogger.closeHandler();
         }
     }
 
@@ -83,57 +83,26 @@ public class Database {
                 conn.close();
             }
         } catch (SQLException se) {
-            //picLdLogger.getLogger().log(Level.FINE, se.getMessage());
+            AppLogger.getAppLogger().log(Level.FINE, se.getMessage());
+            AppLogger.closeHandler();
         }
         try {
             if (pst != null) {
                 pst.close();
             }
         } catch (SQLException se) {
-            //picLdLogger.getLogger().log(Level.FINE, se.getMessage());
+            AppLogger.getAppLogger().log(Level.FINE, se.getMessage());
+            AppLogger.closeHandler();
         }
         try {
             if (result != null) {
                 result.close();
             }
         } catch (SQLException se) {
-            //picLdLogger.getLogger().log(Level.FINE, se.getMessage());
+            AppLogger.getAppLogger().log(Level.FINE, se.getMessage());
+            AppLogger.closeHandler();
         }
     }
-    /**
-     * Closing connection
-     *
-     * @param conn
-     *        - A given Connection-object.
-     * @param result
-     *        - A given ResultSet-object.
-     * @param stmt
-     *        - A given Statement-object.
-     */
-    public static void closeConnection(Connection conn, Statement stmt, ResultSet result) {
-        try {
-            if (conn != null) {
-                conn.close();
-            }
-        } catch (SQLException se) {
-            //picLdLogger.getLogger().log(Level.FINE, se.getMessage());
-        }
-        try {
-            if (stmt != null) {
-                stmt.close();
-            }
-        } catch (SQLException se) {
-            //picLdLogger.getLogger().log(Level.FINE, se.getMessage());
-        }
-        try {
-            if (result != null) {
-                result.close();
-            }
-        } catch (SQLException se) {
-            //picLdLogger.getLogger().log(Level.FINE, se.getMessage());
-        }
-    }
-
     /**
      * Closing connection
      *
@@ -148,45 +117,16 @@ public class Database {
                 conn.close();
             }
         } catch (SQLException se) {
-            //picLdLogger.getLogger().log(Level.FINE, se.getMessage());
+            AppLogger.getAppLogger().log(Level.FINE, se.getMessage());
+            AppLogger.closeHandler();
         }
         try {
             if (pst != null) {
                 pst.close();
             }
         } catch (SQLException se) {
-            //picLdLogger.getLogger().log(Level.FINE, se.getMessage());
-        }
-    }
-
-    /**
-     * Closing connection
-     *
-     * @param conn
-     *        - A given Connection-object.
-     * @param stmt
-     *        - A given Statement-object.
-     */
-    public static void closeConnection(Connection conn, Statement stmt) {
-        try {
-            if (conn != null) {
-                conn.close();
-            }
-        } catch (SQLException se) {
-            AppLogger.getAppLogger().log(Level.FINE, se.getMessage());
-            AppLogger.closeHandler();
-        }
-        try {
-            if (stmt != null) {
-                stmt.close();
-            }
-        } catch (SQLException se) {
             AppLogger.getAppLogger().log(Level.FINE, se.getMessage());
             AppLogger.closeHandler();
         }
     }
-
-    //public static void setPicLdLogger(PicLdLogger picLdLogger) {
-        //Database.picLdLogger = picLdLogger;
-    //}
 }

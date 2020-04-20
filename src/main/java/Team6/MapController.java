@@ -63,9 +63,9 @@ public class MapController implements MapComponentInitializedListener, Initializ
                          Context.getInstance().setLastScene("map");
                          App.setRoot("tertiary");
                      } catch (IOException e) {
-                         e.printStackTrace();
+                         AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+                         AppLogger.closeHandler();
                      }
-                     //infoWindow.open(map, marker);
                  });
              }
         });
@@ -81,8 +81,13 @@ public class MapController implements MapComponentInitializedListener, Initializ
 
     @FXML
     private void switchToSecondary() throws IOException {
-        Context.getInstance().currentAlbum().setPictures(null);
-        App.setRoot("secondary");
+        try{
+            Context.getInstance().currentAlbum().setPictures(null);
+            App.setRoot("secondary");
+        } catch (IOException e){
+            AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+            AppLogger.closeHandler();
+        }
     }
     private Map getProperties() {
         Map result = new HashMap();
@@ -90,8 +95,8 @@ public class MapController implements MapComponentInitializedListener, Initializ
             Properties prop = new Properties();
             prop.load(input);
             result.put("GOOGLE_API_KEY", prop.getProperty("GOOGLE_API_KEY"));
-        } catch (IOException ex) {
-            AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
+        } catch (IOException e) {
+            AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
             AppLogger.closeHandler();
         }
         return result;
