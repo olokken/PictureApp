@@ -22,13 +22,13 @@ public class Album {
         this.id = id;
         this.name = name;
         this.userId = userId;
-        this.pictures = new ArrayList<Picture>();
+        this.pictures = new ArrayList<>();
     }
 
     public Album(String name) {
         this.id = 0;
         this.name = name;
-        this.pictures = new ArrayList<Picture>();
+        this.pictures = new ArrayList<>();
     }
 
     public Album() {}
@@ -93,7 +93,7 @@ public class Album {
      * Method to add a picture to the album, only if it isnt already
      * @param filePath filepath of the image to be added
      */
-    public void addPicture(String filePath) throws IOException {
+    public void addPicture(String filePath) {
         if(isRegistered(filePath)) {
             throw new IllegalArgumentException("Bildet er allerede registert");
         }
@@ -108,7 +108,7 @@ public class Album {
     public void removePicture(String filePath) {
         Optional<Picture> o = pictures.stream().filter(x -> x.getFilepath().equals(filePath)).findFirst();
         if (o.isPresent()) {
-            pictures.remove(o);
+            pictures.remove(o.get());
         }
     }
 

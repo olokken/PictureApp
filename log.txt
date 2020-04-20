@@ -46,3 +46,25 @@ Apr 18, 2020 4:50:02 PM Team6.LoginController signIn
 FINE: 
 /C:/Users/Linda/Documents/Programmering%202/PictureApp/target/classes/Team6/primary.fxml
 
+apr. 20, 2020 3:17:32 P.M. Team6.App loadFXML
+FINE: 
+/C:/Dev/PictureApp/target/classes/Team6/primary.fxml
+
+apr. 20, 2020 3:18:53 P.M. Team6.App loadFXML
+FINE: 
+/C:/Dev/PictureApp/target/classes/Team6/primary.fxml
+
+apr. 20, 2020 3:20:17 P.M. Team6.App loadFXML
+FINE: 
+/C:/Dev/PictureApp/target/classes/Team6/primary.fxml
+
+apr. 20, 2020 3:22:42 P.M. Team6.App loadFXML
+FINE: 
+/C:/Dev/PictureApp/target/classes/Team6/secondary.fxml
+
+apr. 20, 2020 3:25:25 P.M. Team6.App loadFXML
+FINE: 
+/C:/Dev/PictureApp/target/classes/Team6/secondary.fxml
+
+apr. 20, 2020 3:29:02 P.M. Team6.SecondaryController addPicture
+FINE: null

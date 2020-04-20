@@ -24,9 +24,9 @@
          <VBox styleClass="pickld">
             <Text text="PicLd" styleClass="h1"/>
          </VBox>
-         <Button mnemonicParsing="false" onAction="#openAlbum" prefHeight="45.0" prefWidth="110.0" text="Open"/>
+         <Button mnemonicParsing="false" fx:id="openButton" onAction="#openAlbum" prefHeight="45.0" prefWidth="110.0" text="Open"/>
          <Button mnemonicParsing="false" onAction="#createAlbum" prefHeight="45.0" prefWidth="110.0" text="New album"/>
-         <Button mnemonicParsing="false" onAction="#deleteAlbum" prefHeight="45.0" prefWidth="110.0" text="Delete album" />
+         <Button mnemonicParsing="false" fx:id="deleteButton" onAction="#deleteAlbum" prefHeight="45.0" prefWidth="110.0" text="Delete album" />
          <Button mnemonicParsing="false" onAction="#logOut" prefHeight="45.0" prefWidth="110.0" text="Log out" />
       </VBox>
    </left>

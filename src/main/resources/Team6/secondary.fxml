@@ -51,7 +51,7 @@
 </stylesheets>
 
 <left>
-    <VBox VBox.vgrow="ALWAYS" minWidth="160" styleClass="vBoxLeft" alignment="TOP_CENTER">
+    <VBox VBox.vgrow="ALWAYS" minWidth="160" fx:id="vBox" styleClass="vBoxLeft" alignment="TOP_CENTER">
         <VBox>
             <Button mnemonicParsing="false" onAction="#switchToPrimary" prefHeight="45.0" prefWidth="70.0" text="Go back"/>
         </VBox>

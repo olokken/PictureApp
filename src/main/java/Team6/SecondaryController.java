@@ -32,6 +32,12 @@ import services.PictureService;
 
 public class SecondaryController implements Initializable {
     @FXML
+    VBox vBox;
+    @FXML
+    Button deleteButton;
+    @FXML
+    Button addButton;
+    @FXML
     MenuButton changeStatusButton;
     @FXML
     ImageView pdfIcon;
@@ -40,17 +46,12 @@ public class SecondaryController implements Initializable {
     @FXML
     ImageView mapViewIcon;
     @FXML
-    Button addButton;
-    @FXML
-    Button deleteButton;
-    @FXML
     ScrollPane scrollPane;
     @FXML
     BorderPane borderPane;
     @FXML
     Text albumName;
-    @FXML
-    AnchorPane anchorPane;
+
 
     PictureService pictureService = new PictureService();
     AlbumService albumService = new AlbumService();
@@ -89,7 +90,7 @@ public class SecondaryController implements Initializable {
 
     void buttonSetup() {
         if (album.getId() < 0) {
-            anchorPane.getChildren().removeAll(addButton, deleteButton);
+            vBox.getChildren().removeAll(addButton, deleteButton);
         }
     }
 
@@ -222,7 +223,7 @@ public class SecondaryController implements Initializable {
         List<String> filter = new ArrayList<>();
         Collections.addAll(filter, "*.jpg", "'.png", "*.jfif", "*.PNG");
         dir.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Pictures", filter));
-        List<File> files = dir.showOpenMultipleDialog(anchorPane.getScene().getWindow());
+        List<File> files = dir.showOpenMultipleDialog(vBox.getScene().getWindow());
         try {
             files.forEach(e -> {
                 if (files.size() != 0) {
