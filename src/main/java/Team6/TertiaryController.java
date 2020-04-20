@@ -2,6 +2,7 @@ package Team6;
 
 import entities.Album;
 import entities.Picture;
+import idk.AppLogger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -56,9 +57,6 @@ public class TertiaryController implements Initializable {
     int index = Context.getInstance().currentIndex();
     Album album = new Album();
 
-    //Create logger object from PicLdLogger class.
-    //private PicLdLogger picLdLogger = new PicLdLogger();
-
     public TertiaryController() throws IOException {
     }
 
@@ -89,17 +87,24 @@ public class TertiaryController implements Initializable {
         try {
             image = new Image(new FileInputStream(album.getPictures().get(index).getFilepath()));
         } catch (FileNotFoundException e) {
-            //picLdLogger.getLogger().log(Level.FINE, e.getMessage());
+            AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+            AppLogger.closeHandler();
         }
         imageView.setImage(image);
     }
 
     @FXML
     void deletePicture() throws IOException {
-        Picture picture = album.getPictures().get(index);
-        pictureService.deletePicture(picture.getId(), album.getId());
-        Context.getInstance().currentAlbum().removePicture(picture);
-        App.setRoot("secondary");
+        try{
+            Picture picture = album.getPictures().get(index);
+            pictureService.deletePicture(picture.getId(), album.getId());
+            Context.getInstance().currentAlbum().removePicture(picture);
+            App.setRoot("secondary");
+        } catch (IOException e){
+            AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+            AppLogger.closeHandler();
+        }
+
     }
 
     void listSetup() {
@@ -110,8 +115,14 @@ public class TertiaryController implements Initializable {
 
     @FXML
     private void switchToSecondary() throws IOException {
-        String lastScene = Context.getInstance().getLastScene();
-        App.setRoot(lastScene);
+        try{
+            String lastScene = Context.getInstance().getLastScene();
+            App.setRoot(lastScene);
+        } catch (IOException e){
+            AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+            AppLogger.closeHandler();
+        }
+
     }
 
     void metadataSetup() {

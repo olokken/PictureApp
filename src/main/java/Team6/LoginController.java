@@ -44,17 +44,28 @@ public class LoginController implements Initializable {
         try {
             setImage();
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+            AppLogger.closeHandler();
         }
     }
 
     public void createNewUser(ActionEvent actionEvent) throws IOException {
-        App.setRoot("createUser");
+        try{
+            App.setRoot("createUser");
+        } catch (IOException e){
+            AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+            AppLogger.closeHandler();
+        }
     }
 
     void setImage() throws FileNotFoundException {
-        Image image = new Image(new FileInputStream(".\\images\\pickles.png"));
-        imageView.setImage(image);
+        try{
+            Image image = new Image(new FileInputStream("./images/pickles.png"));
+            imageView.setImage(image);
+        } catch (FileNotFoundException e){
+            AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+            AppLogger.closeHandler();
+        }
     }
 
     public void signIn(ActionEvent actionEvent) throws IOException {
@@ -70,8 +81,9 @@ public class LoginController implements Initializable {
                     label.setText("Username and/or password is wrong!");
                 }
             }
-        } catch (IOException ex){
-            AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
+        } catch (IOException e){
+            AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+            AppLogger.closeHandler();
         }
     }
 

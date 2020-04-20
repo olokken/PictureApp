@@ -1,6 +1,5 @@
 package entities;
 
-import Team6.App;
 import com.drew.imaging.ImageMetadataReader;
 import com.drew.imaging.ImageProcessingException;
 import com.drew.metadata.Metadata;
@@ -11,7 +10,10 @@ import idk.AppLogger;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Optional;
 import java.util.logging.Level;
 
 /**
@@ -30,9 +32,6 @@ public class Picture {
     private double fileSize;
     private String fileName;
     private List<String> tags;
-
-    //Create logger object from PicLdLogger class.
-    //private PicLdLogger picLdLogger = new PicLdLogger();
 
     public void setTags(List<String> tags) {
         this.tags = tags;
@@ -57,7 +56,7 @@ public class Picture {
      * cosntructor
      * @param filepath the filepath to the image whose metadata is to be stored
      */
-    public Picture(String filepath) throws IOException {
+    public Picture(String filepath) {
         this.filepath = filepath;
         File file =  new File(filepath);
         this.fileName = file.getName();
@@ -87,10 +86,7 @@ public class Picture {
                     }
                 }
             }
-        } catch (ImageProcessingException e) {
-            AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
-            AppLogger.closeHandler();
-        } catch (IOException e) {
+        } catch (ImageProcessingException | IOException e) {
             AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
             AppLogger.closeHandler();
         }

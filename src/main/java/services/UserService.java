@@ -3,6 +3,7 @@ package services;
 import at.favre.lib.crypto.bcrypt.BCrypt;
 import entities.Album;
 import entities.User;
+import idk.AppLogger;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -57,8 +58,9 @@ public class UserService {
                     return res.verified ? user : null;
                 }
             return null;
-        } catch(SQLException se) {
-            //picLdLogger.getLogger().log(Level.FINE, se.getMessage());
+        } catch(SQLException e) {
+            AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+            AppLogger.closeHandler();
             return null;
         } finally {
             Database.closeConnection(conn, pst, null);

@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 import entities.Album;
 import entities.Picture;
 import entities.User;
+import idk.AppLogger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -37,6 +38,10 @@ import services.UserService;
 
 public class PrimaryController extends BaseController implements Initializable  {
     @FXML
+    Button deleteButton;
+    @FXML
+    Button openButton;
+    @FXML
     BorderPane borderPane;
     @FXML
     ScrollPane scrollPane;
@@ -44,16 +49,13 @@ public class PrimaryController extends BaseController implements Initializable  
     TextField textField;
 
     ArrayList<Album> yourAlbums = new ArrayList<>();
-    ArrayList<Album> chosenOnes = new ArrayList<>();
+    ArrayList<Album> selectedAlbums = new ArrayList<>();
     AlbumService albumService = new AlbumService();
     PictureService pictureService = new PictureService();
     User user = Context.getInstance().currentUser();
 
     TilePane tilePane = new TilePane();
     List<VBox> pages = new ArrayList<>();
-
-    //Create logger object from PicLdLogger class.
-    //private PicLdLogger picLdLogger = new PicLdLogger();
 
     public PrimaryController() throws IOException {
     }
@@ -64,11 +66,17 @@ public class PrimaryController extends BaseController implements Initializable  
         setupVariables();
         setupAlbumView();
         search();
+        buttonSetup();
     }
 
-    void createElements() {
-        tilePane.getChildren().clear();
-        tilePane.getChildren().addAll(pages);
+    void buttonSetup() {
+        if (selectedAlbums.size() <= 0) {
+            openButton.setStyle("-fx-background-color: transparent");
+            deleteButton.setStyle("-fx-background-color: transparent");
+        } else {
+            openButton.setStyle("-fx-background-color: white"); //linda problemet e nok her
+            deleteButton.setStyle("-fx-background-color: white"); // teksten forsvinn osv, også veit æ ikke ka fargen hete
+        }
     }
 
 
@@ -77,13 +85,14 @@ public class PrimaryController extends BaseController implements Initializable  
             pages.forEach(v -> {
                 if (yourAlbums.indexOf(a) == pages.indexOf(v)) {
                     v.setOnMouseClicked(e -> {
-                        if (chosenOnes.contains(a)) {
-                            v.getStyleClass().add("button1");
+                        if (selectedAlbums.contains(a)) {
                             v.setStyle("-fx-background-color: transparent");
-                            chosenOnes.remove(a);
+                            selectedAlbums.remove(a);
+                            buttonSetup();
                         } else {
                             v.setStyle("-fx-background-color:linear-gradient(white,#DDDDDD)");
-                            chosenOnes.add(a);
+                            selectedAlbums.add(a);
+                            buttonSetup();
                         }
                         if (e.getClickCount() == 2) {
                             Context.getInstance().currentAlbum().setId(a.getId());
@@ -91,10 +100,10 @@ public class PrimaryController extends BaseController implements Initializable  
                             try {
                                 switchScene("primary", "secondary");
                             } catch (IOException ex) {
-                                //picLdLogger.getLogger().log(Level.FINE, ex.getMessage());
+                                AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
+                                AppLogger.closeHandler();
                             }
                         }
-
                     });
                 }
             });
@@ -119,12 +128,12 @@ public class PrimaryController extends BaseController implements Initializable  
     public void setupVariables() {
         albumSetup();
         tilePane = elementPane();
-        pages = createAlbumPages(yourAlbums);
-        createElements();
+        pages = createAlbumPages(yourAlbums, "./images/icon_2.png");
+        createElements(tilePane, pages);
     }
 
 
-    public void createAlbum(ActionEvent actionEvent) throws IOException {
+    public void createAlbum(ActionEvent actionEvent) {
         TextInputDialog t = new TextInputDialog();
         t.setTitle("Album");
         t.setHeaderText("Create new album");
@@ -138,8 +147,8 @@ public class PrimaryController extends BaseController implements Initializable  
     }
 
     public void deleteAlbum(ActionEvent actionEvent) {
-        if (chosenOnes.size() > 0) {
-            chosenOnes.forEach(e -> {
+        if (selectedAlbums.size() > 0) {
+            selectedAlbums.forEach(e -> {
                 e.setPictures(pictureService.getAllPictures(e.getId(), Context.getInstance().currentUser().getId()));
                 albumService.deleteAlbum(e);
                 yourAlbums.remove(e);
@@ -150,11 +159,16 @@ public class PrimaryController extends BaseController implements Initializable  
     }
 
     public void openAlbum() throws IOException {
-        if (chosenOnes.size() == 1) {
-            Album album = chosenOnes.get(0);
-            Context.getInstance().currentAlbum().setId(album.getId());
-            Context.getInstance().currentAlbum().setName(album.getName());
-            switchScene("primary", "secondary");
+        try {
+            if (selectedAlbums.size() == 1) {
+                Album album = selectedAlbums.get(0);
+                Context.getInstance().currentAlbum().setId(album.getId());
+                Context.getInstance().currentAlbum().setName(album.getName());
+                switchScene("primary", "secondary");
+            }
+        } catch (IOException ex) {
+            AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
+            AppLogger.closeHandler();
         }
     }
 
@@ -163,7 +177,8 @@ public class PrimaryController extends BaseController implements Initializable  
             try {
                 switchScene("primary", "search");
             } catch (IOException ex) {
-                //picLdLogger.getLogger().log(Level.FINE, ex.getMessage());
+                AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
+                AppLogger.closeHandler();
             }
         });
     }

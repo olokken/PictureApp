@@ -1,6 +1,7 @@
 package Team6;
 
 import entities.User;
+import idk.AppLogger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -9,6 +10,7 @@ import javafx.scene.control.TextField;
 import services.UserService;
 
 import java.io.IOException;
+import java.util.logging.Level;
 
 public class CreateUserController {
     @FXML
@@ -26,9 +28,14 @@ public class CreateUserController {
     }
 
     public void createUser(ActionEvent actionEvent) throws IOException {
-        if(checkUsername() && checkPassword() && passwordEqual()) {
-            userService.createUser(username.getText(), password.getText());
-            App.setRoot("login");
+        try{
+            if(checkUsername() && checkPassword() && passwordEqual()) {
+                userService.createUser(username.getText(), password.getText());
+                App.setRoot("login");
+            }
+        } catch (IOException e){
+            AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+            AppLogger.closeHandler();
         }
     }
 
@@ -61,7 +68,12 @@ public class CreateUserController {
 
     @FXML
     private void switchToLogin() throws IOException {
-        Context.getInstance().currentAlbum().setPictures(null);
-        App.setRoot("login");
+        try{
+            Context.getInstance().currentAlbum().setPictures(null);
+            App.setRoot("login");
+        } catch (IOException e){
+            AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+            AppLogger.closeHandler();
+        }
     }
 }
