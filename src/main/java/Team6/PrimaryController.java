@@ -160,8 +160,8 @@ public class PrimaryController extends BaseController implements Initializable  
 
     public void openAlbum() throws IOException {
         try {
-            if (chosenOnes.size() == 1) {
-                Album album = chosenOnes.get(0);
+            if (selectedAlbums.size() == 1) {
+                Album album = selectedAlbums.get(0);
                 Context.getInstance().currentAlbum().setId(album.getId());
                 Context.getInstance().currentAlbum().setName(album.getName());
                 switchScene("primary", "secondary");

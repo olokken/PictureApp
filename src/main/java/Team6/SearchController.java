@@ -154,7 +154,7 @@ public class SearchController extends BaseController implements Initializable {
             Context.getInstance().currentAlbum().setPictures(null);
             App.setRoot("primary");
         } catch (IOException e){
-            AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+            //AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
             AppLogger.closeHandler();
         }
     }

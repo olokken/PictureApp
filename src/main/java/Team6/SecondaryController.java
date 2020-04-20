@@ -227,12 +227,7 @@ public class SecondaryController implements Initializable {
             files.forEach(e -> {
                 if (files.size() != 0) {
                     Picture p = null;
-                    try {
-                        p = new Picture(e.getPath());
-                    } catch (IOException e) {
-                        AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
-                        AppLogger.closeHandler();
-                    }
+                    p = new Picture(e.getPath());
                     album.getPictures().add(p);
                     pictureService.createPicture(p, album.getId());
                     createElements();
@@ -260,7 +255,7 @@ public class SecondaryController implements Initializable {
                 try {
                     App.setRoot("map");
                 } catch (IOException ex) {
-                    AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+                    //AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
                     AppLogger.closeHandler();;
                 }
             });
@@ -281,8 +276,8 @@ public class SecondaryController implements Initializable {
                     pdfHandler.createAlbumPdf(selectedPhotos);
                 }
             });
-        } catch (FileNotFoundException e){
-            AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+        } catch (FileNotFoundException ex){
+            AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
             AppLogger.closeHandler();
         }
 
