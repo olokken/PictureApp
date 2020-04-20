@@ -6,9 +6,11 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
+import java.util.logging.Level;
 import java.util.stream.Collectors;
 import entities.Album;
 import entities.Picture;
+import idk.AppLogger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -60,9 +62,6 @@ public class SecondaryController implements Initializable {
     private static double ELEMENT_SIZE = 170;
     private static final double GAP = ELEMENT_SIZE/10;
 
-    //Create logger object from PicLdLogger class.
-    //private PicLdLogger picLdLogger = new PicLdLogger();
-
     public SecondaryController() throws IOException {
     }
 
@@ -77,7 +76,8 @@ public class SecondaryController implements Initializable {
             pdfSetup();
             mapViewSetup();
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+            AppLogger.closeHandler();
         }
     }
 
@@ -114,8 +114,14 @@ public class SecondaryController implements Initializable {
 
     @FXML
     private void switchToPrimary() throws IOException {
-        Context.getInstance().currentAlbum().setPictures(null);
-        App.setRoot("primary");
+        try{
+            Context.getInstance().currentAlbum().setPictures(null);
+            App.setRoot("primary");
+        } catch (IOException e){
+            AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+            AppLogger.closeHandler();
+        }
+
     }
 
 
@@ -130,7 +136,8 @@ public class SecondaryController implements Initializable {
             try {
                 image = new Image(new FileInputStream(x.getFilepath()));
             } catch (FileNotFoundException e) {
-                //picLdLogger.getLogger().log(Level.FINE, e.getMessage());
+                AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+                AppLogger.closeHandler();
             }
             ImageView imageView = new ImageView(image);
             imageView.setFitHeight(ELEMENT_SIZE);
@@ -146,7 +153,8 @@ public class SecondaryController implements Initializable {
                     try {
                         App.setRoot("tertiary");
                     }   catch (IOException ex) {
-                    //picLdLogger.getLogger().log(Level.FINE, ex.getMessage());
+                        AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
+                        AppLogger.closeHandler();
                     }
                 }
             });
@@ -179,32 +187,32 @@ public class SecondaryController implements Initializable {
         }
 
 
-    public void sortIso(ActionEvent actionEvent) throws FileNotFoundException {
+    public void sortIso(ActionEvent actionEvent) {
         album.sortIso();
         createElements();
     }
 
-    public void sortFlash(ActionEvent actionEvent) throws FileNotFoundException {
+    public void sortFlash(ActionEvent actionEvent) {
         album.sortFlashUsed();
         createElements();
     }
 
-    public void sortShutterSpeed(ActionEvent actionEvent) throws FileNotFoundException {
+    public void sortShutterSpeed(ActionEvent actionEvent) {
         album.sortShutterSpeed();
         createElements();
     }
 
-    public void sortFileSize(ActionEvent actionEvent) throws FileNotFoundException {
+    public void sortFileSize(ActionEvent actionEvent) {
         album.sortFileSize();
         createElements();
     }
 
-    public void sortExposureTime(ActionEvent actionEvent) throws FileNotFoundException {
+    public void sortExposureTime(ActionEvent actionEvent) {
         album.sortExposureTime();
         createElements();
     }
 
-    public void sortDate() throws FileNotFoundException {
+    public void sortDate() {
         album.sortDate();
         createElements();
     }
@@ -221,8 +229,9 @@ public class SecondaryController implements Initializable {
                     Picture p = null;
                     try {
                         p = new Picture(e.getPath());
-                    } catch (IOException ioException) {
-                        ioException.printStackTrace();
+                    } catch (IOException e) {
+                        AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+                        AppLogger.closeHandler();
                     }
                     album.getPictures().add(p);
                     pictureService.createPicture(p, album.getId());
@@ -232,6 +241,8 @@ public class SecondaryController implements Initializable {
                 }
             });
         } catch (NullPointerException e ) {
+            AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+            AppLogger.closeHandler();
         }
     }
 
@@ -241,27 +252,40 @@ public class SecondaryController implements Initializable {
     }
 
     void mapViewSetup() throws FileNotFoundException {
-        Image image = new Image(new FileInputStream(".\\images\\globe.png"));
-        mapViewIcon.setImage(image);
-        mapViewIcon.setOnMouseClicked(e -> {
-            Context.getInstance().currentAlbum().setPictures(album.getPictures());
-            try {
-                App.setRoot("map");
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            }
-        });
+        try{
+            Image image = new Image(new FileInputStream(".\\images\\globe.png"));
+            mapViewIcon.setImage(image);
+            mapViewIcon.setOnMouseClicked(e -> {
+                Context.getInstance().currentAlbum().setPictures(album.getPictures());
+                try {
+                    App.setRoot("map");
+                } catch (IOException ex) {
+                    AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+                    AppLogger.closeHandler();;
+                }
+            });
+        } catch (FileNotFoundException e){
+            AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+            AppLogger.closeHandler();
+        }
+
     }
 
     void pdfSetup() throws FileNotFoundException {
-        Image image = new Image(new FileInputStream(".\\images\\pdf.png"));
-        PdfHandler pdfHandler = new PdfHandler();
-        pdfIcon.setImage(image);
-        pdfIcon.setOnMouseClicked(e -> {
-            if (selectedPhotos.size() > 0) {
-                pdfHandler.createAlbumPdf(selectedPhotos);
-            }
-        });
+        try{
+            Image image = new Image(new FileInputStream(".\\images\\pdf.png"));
+            PdfHandler pdfHandler = new PdfHandler();
+            pdfIcon.setImage(image);
+            pdfIcon.setOnMouseClicked(e -> {
+                if (selectedPhotos.size() > 0) {
+                    pdfHandler.createAlbumPdf(selectedPhotos);
+                }
+            });
+        } catch (FileNotFoundException e){
+            AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+            AppLogger.closeHandler();
+        }
+
     }
 
     public void deletePhotos(ActionEvent actionEvent) {

@@ -4,9 +4,9 @@
  * @author team6
  */
 package entities;
+
 import java.io.IOException;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Album {
     private int id;

@@ -12,6 +12,7 @@ forkastet\InterestingMetadata.class
 Team6\SearchController.class
 Team6\App.class
 services\UserService.class
+Team6\BaseController.class
 Team6\PrimaryController.class
 Team6\LoginController.class
 Team6\MapController.class

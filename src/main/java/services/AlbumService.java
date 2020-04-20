@@ -2,21 +2,19 @@ package services;
 
 import entities.Album;
 import entities.Picture;
+import idk.AppLogger;
 
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 
 public class AlbumService {
 
-    //Create logger object from PicLdLogger class.
-    //private PicLdLogger picLdLogger = new PicLdLogger();
-
-    public AlbumService() throws IOException { }
+    public AlbumService() { }
 
     public ArrayList<Album> getAllAlbums(int userId) {
         String query = "Select * from album where userid = ?";
@@ -32,8 +30,9 @@ public class AlbumService {
             while(result.next())
                 albums.add(new Album(result.getInt("id"), result.getString("name"), userId));
             return albums;
-        } catch(SQLException se) {
-            //picLdLogger.getLogger().log(Level.FINE, se.getMessage());
+        } catch(SQLException e) {
+            AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+            AppLogger.closeHandler();
             return null;
         } finally {
             Database.closeConnection(conn, pst, result);
@@ -50,8 +49,9 @@ public class AlbumService {
             pst.setInt(2, userId);
             pst.executeUpdate();
             return true;
-        } catch(SQLException se) {
-            //picLdLogger.getLogger().log(Level.FINE, se.getMessage());
+        } catch(SQLException e) {
+            AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+            AppLogger.closeHandler();
             return false;
         } finally {
             Database.closeConnection(conn, pst, null);
@@ -83,8 +83,9 @@ public class AlbumService {
                 }
             }
             return true;
-        } catch(SQLException se) {
-            //picLdLogger.getLogger().log(Level.FINE, se.getMessage());
+        } catch(SQLException e) {
+            AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+            AppLogger.closeHandler();
             return false;
         } finally {
             Database.closeConnection(conn, pst);
@@ -106,7 +107,9 @@ public class AlbumService {
                 return result.getInt("max(id)");
             }
             return null;
-        } catch(SQLException se) {
+        } catch(SQLException e) {
+            AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+            AppLogger.closeHandler();
             return null;
         } finally {
             Database.closeConnection(conn, pst, result);
