@@ -30,7 +30,7 @@ import services.PictureService;
 
 
 
-public class SecondaryController implements Initializable {
+public class SecondaryController extends BaseController implements Initializable {
     @FXML
     ImageView pdfIcon;
     @FXML
@@ -53,9 +53,9 @@ public class SecondaryController implements Initializable {
     PictureService pictureService = new PictureService();
     AlbumService albumService = new AlbumService();
     Album album = new Album();
-    TilePane tilePane = new TilePane();
-    List<VBox> pages;
     ArrayList<Picture> selectedPhotos = new ArrayList<>();
+    TilePane tilePane = new TilePane();
+    List<VBox> pages = new ArrayList<>();
 
     private static double ELEMENT_SIZE = 170;
     private static final double GAP = ELEMENT_SIZE/10;
@@ -70,14 +70,25 @@ public class SecondaryController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         albumSetup();
         fillList();
-        pictureViewSetup();
-        createElements();
+        setupPicturePane();
         buttonSetup();
+<<<<<<< Updated upstream
         try {
             pdfSetup();
             mapViewSetup();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+        }
+=======
+        createPdf();
+        openMapView();
+>>>>>>> Stashed changes
+    }
+
+
+    void buttonSetup() {
+        if (album.getId() < 0) {
+            anchorPane.getChildren().removeAll(addButton, deleteButton);
         }
     }
 
@@ -86,13 +97,6 @@ public class SecondaryController implements Initializable {
         album.setId(Context.getInstance().currentAlbum().getId());
         albumName.setText(album.getName());
     }
-
-    void buttonSetup() {
-        if (album.getId() < 0) {
-            anchorPane.getChildren().removeAll(addButton, deleteButton);
-        }
-    }
-
 
     public void fillList () {
         if (Context.getInstance().currentAlbum().getPictures() == null) {
@@ -104,10 +108,7 @@ public class SecondaryController implements Initializable {
         }
     }
 
-
-    void pictureViewSetup() {
-        tilePane.setHgap(GAP);
-        tilePane.setVgap(GAP);
+    void bind() {
         scrollPane.setFitToWidth(true);
         scrollPane.setContent(tilePane);
     }
@@ -119,6 +120,7 @@ public class SecondaryController implements Initializable {
     }
 
 
+<<<<<<< Updated upstream
     void createElements() {
         tilePane.getChildren().clear();
         tilePane.getChildren().addAll(createPages());
@@ -210,11 +212,32 @@ public class SecondaryController implements Initializable {
     }
 
     public void addPicture(ActionEvent actionEvent) {
+=======
+    public void setupPicturePane() {
+        tilePane = elementPane();
+        bind();
+        pages = createPicturePages((ArrayList<Picture>) album.getPictures());
+        setOnMouseClicked((ArrayList<Picture>) album.getPictures(), selectedPhotos, pages, "secondary");
+        createElements(tilePane, pages);
+    }
+
+
+    public List<File> choosePictures() {
+>>>>>>> Stashed changes
         final FileChooser dir = new FileChooser();
         List<String> filter = new ArrayList<>();
         Collections.addAll(filter, "*.jpg", "'.png", "*.jfif", "*.PNG");
         dir.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Pictures", filter));
+<<<<<<< Updated upstream
         List<File> files = dir.showOpenMultipleDialog(anchorPane.getScene().getWindow());
+=======
+        List<File> files = dir.showOpenMultipleDialog(vBox.getScene().getWindow());
+        return files;
+    }
+
+    public void addPicture() {
+        List<File> files = choosePictures();
+>>>>>>> Stashed changes
         try {
             files.forEach(e -> {
                 if (files.size() != 0) {
@@ -226,20 +249,23 @@ public class SecondaryController implements Initializable {
                     }
                     album.getPictures().add(p);
                     pictureService.createPicture(p, album.getId());
-                    createElements();
+                    setupPicturePane();
                     ArrayList<Picture> pics = pictureService.getAllPictures(album.getId(), Context.getInstance().currentUser().getId());
                     album.setPictures(pics);
                 }
             });
+<<<<<<< Updated upstream
         } catch (NullPointerException e ) {
+=======
+        } catch (NullPointerException e) {
+            AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+            AppLogger.closeHandler();
+>>>>>>> Stashed changes
         }
     }
 
-    public void reverseOrder(ActionEvent actionEvent) {
-        album.reverseOrder();
-        createElements();
-    }
 
+<<<<<<< Updated upstream
     void mapViewSetup() throws FileNotFoundException {
         Image image = new Image(new FileInputStream(".\\images\\globe.png"));
         mapViewIcon.setImage(image);
@@ -262,12 +288,50 @@ public class SecondaryController implements Initializable {
                 pdfHandler.createAlbumPdf(selectedPhotos);
             }
         });
+=======
+
+    void openMapView() {
+        try{
+            Image image = new Image(new FileInputStream(".\\images\\globe.png"));
+            mapViewIcon.setImage(image);
+            mapViewIcon.setOnMouseClicked(e -> {
+                Context.getInstance().currentAlbum().setPictures(album.getPictures());
+                try {
+                    App.setRoot("map");
+                } catch (IOException ex) {
+                    //AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+                    AppLogger.closeHandler();;
+                }
+            });
+        } catch (FileNotFoundException e){
+            AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+            AppLogger.closeHandler();
+        }
+
+    }
+
+    void createPdf() {
+        try{
+            Image image = new Image(new FileInputStream(".\\images\\pdf.png"));
+            PdfHandler pdfHandler = new PdfHandler();
+            pdfIcon.setImage(image);
+            pdfIcon.setOnMouseClicked(e -> {
+                if (selectedPhotos.size() > 0) {
+                    pdfHandler.createAlbumPdf(selectedPhotos);
+                }
+            });
+        } catch (FileNotFoundException ex){
+            AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
+            AppLogger.closeHandler();
+        }
+
+>>>>>>> Stashed changes
     }
 
     public void deletePhotos(ActionEvent actionEvent) {
         if (selectedPhotos.size() > 0) {
             selectedPhotos.forEach(e -> pictureService.deletePicture(e.getId(), album.getId()));
-            createElements();
+            setupPicturePane();
         }
     }
 
@@ -277,7 +341,7 @@ public class SecondaryController implements Initializable {
                 selectedPhotos.add(x);
             }
         });
-        pages.forEach(e -> e.setStyle("-fx-background-color: green"));
+        pages.forEach(e -> e.setStyle("-fx-background-color:linear-gradient(white,#DDDDDD)"));
     }
 
     public void createAlbum(ActionEvent actionEvent) {
@@ -293,5 +357,42 @@ public class SecondaryController implements Initializable {
         }
     }
 
+<<<<<<< Updated upstream
+=======
+    public void sortIso(ActionEvent actionEvent) {
+        album.sortIso();
+        setupPicturePane();
+    }
+
+    public void sortFlash(ActionEvent actionEvent) {
+        album.sortFlashUsed();
+        setupPicturePane();
+    }
+
+    public void sortShutterSpeed(ActionEvent actionEvent) {
+        album.sortShutterSpeed();
+        setupPicturePane();
+    }
+
+    public void sortFileSize(ActionEvent actionEvent) {
+        album.sortFileSize();
+        setupPicturePane();
+    }
+
+    public void sortExposureTime(ActionEvent actionEvent) {
+        album.sortExposureTime();
+        setupPicturePane();
+    }
+
+    public void sortDate() {
+        album.sortDate();
+        setupPicturePane();
+    }
+
+    public void reverseOrder(ActionEvent actionEvent) {
+        album.reverseOrder();
+        setupPicturePane();
+    }
+>>>>>>> Stashed changes
 
 }

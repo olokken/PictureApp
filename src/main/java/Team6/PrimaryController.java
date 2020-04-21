@@ -76,8 +76,8 @@ public class PrimaryController extends BaseController implements Initializable  
             openButton.setStyle("-fx-background-color: transparent");
             deleteButton.setStyle("-fx-background-color: transparent");
         } else {
-            openButton.setStyle("-fx-background-color: white"); //linda problemet e nok her
-            deleteButton.setStyle("-fx-background-color: white"); // teksten forsvinn osv, også veit æ ikke ka fargen hete
+            openButton.setStyle("-fx-background-color: linear-gradient(to bottom,#3F3F3F,#2B2B2B)"); //linda problemet e nok her
+            deleteButton.setStyle("-fx-background-color: linear-gradient(to bottom,#3F3F3F,#2B2B2B)"); // teksten forsvinn osv, også veit æ ikke ka fargen hete
         }
     }
 
