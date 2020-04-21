@@ -30,7 +30,7 @@ import services.PictureService;
 
 
 
-public class SecondaryController implements Initializable {
+public class SecondaryController extends BaseController implements Initializable {
     @FXML
     VBox vBox;
     @FXML
@@ -56,9 +56,9 @@ public class SecondaryController implements Initializable {
     PictureService pictureService = new PictureService();
     AlbumService albumService = new AlbumService();
     Album album = new Album();
-    TilePane tilePane = new TilePane();
-    List<VBox> pages;
     ArrayList<Picture> selectedPhotos = new ArrayList<>();
+    TilePane tilePane = new TilePane();
+    List<VBox> pages = new ArrayList<>();
 
     private static double ELEMENT_SIZE = 170;
     private static final double GAP = ELEMENT_SIZE/10;
@@ -70,15 +70,16 @@ public class SecondaryController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         albumSetup();
         fillList();
-        pictureViewSetup();
-        createElements();
+        setupPicturePane();
         buttonSetup();
-        try {
-            pdfSetup();
-            mapViewSetup();
-        } catch (FileNotFoundException e) {
-            AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
-            AppLogger.closeHandler();
+        createPdf();
+        openMapView();
+    }
+
+
+    void buttonSetup() {
+        if (album.getId() < 0) {
+            vBox.getChildren().removeAll(addButton, deleteButton);
         }
     }
 
@@ -87,13 +88,6 @@ public class SecondaryController implements Initializable {
         album.setId(Context.getInstance().currentAlbum().getId());
         albumName.setText(album.getName());
     }
-
-    void buttonSetup() {
-        if (album.getId() < 0) {
-            vBox.getChildren().removeAll(addButton, deleteButton);
-        }
-    }
-
 
     public void fillList () {
         if (Context.getInstance().currentAlbum().getPictures() == null) {
@@ -105,10 +99,7 @@ public class SecondaryController implements Initializable {
         }
     }
 
-
-    void pictureViewSetup() {
-        tilePane.setHgap(GAP);
-        tilePane.setVgap(GAP);
+    void bind() {
         scrollPane.setFitToWidth(true);
         scrollPane.setContent(tilePane);
     }
@@ -126,104 +117,26 @@ public class SecondaryController implements Initializable {
     }
 
 
-    void createElements() {
-        tilePane.getChildren().clear();
-        tilePane.getChildren().addAll(createPages());
+    public void setupPicturePane() {
+        tilePane = elementPane();
+        bind();
+        pages = createPicturePages((ArrayList<Picture>) album.getPictures());
+        setOnMouseClicked((ArrayList<Picture>) album.getPictures(), selectedPhotos, pages, "secondary");
+        createElements(tilePane, pages);
     }
 
-     List<ImageView> createImageViews() {
-        return album.getPictures().stream().map(x -> {
-            Image image = null;
-            try {
-                image = new Image(new FileInputStream(x.getFilepath()));
-            } catch (FileNotFoundException e) {
-                AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
-                AppLogger.closeHandler();
-            }
-            ImageView imageView = new ImageView(image);
-            imageView.setFitHeight(ELEMENT_SIZE);
-            imageView.setFitWidth(ELEMENT_SIZE);
-            imageView.setSmooth(true);
-            imageView.setCache(true);
-            imageView.setOnMouseClicked(e -> {
-                if (e.getClickCount() == 2) {
-                    Context.getInstance().currentAlbum().setPictures(album.getPictures());
-                    Context.getInstance().currentAlbum().setId(album.getId());
-                    Context.getInstance().setIndex(album.getPictures().indexOf(x));
-                    Context.getInstance().setLastScene("secondary");
-                    try {
-                        App.setRoot("tertiary");
-                    }   catch (IOException ex) {
-                        AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
-                        AppLogger.closeHandler();
-                    }
-                }
-            });
-            return imageView;
-        }).collect(Collectors.toList());
-    }
 
-    List<VBox> createPages() {
-            pages = createImageViews().stream().map(x -> {
-                VBox vBox = new VBox();
-                vBox.setPadding(new Insets(3,3,3,3));
-                vBox.getChildren().add(x);
-                return vBox;
-            }).collect(Collectors.toList());
-
-            pages.forEach(x -> {
-                x.setOnMouseClicked(e -> {
-                    int index = pages.indexOf(x);
-                    Picture picture = album.getPictures().get(index);
-                    if (!selectedPhotos.contains(picture)) {
-                        selectedPhotos.add(picture);
-                        x.setStyle("-fx-background-color: green");
-                    } else {
-                        selectedPhotos.remove(picture);
-                        x.setStyle("-fx-background-color: white");
-                    }
-                });
-            });
-            return pages;
-        }
-
-
-    public void sortIso(ActionEvent actionEvent) {
-        album.sortIso();
-        createElements();
-    }
-
-    public void sortFlash(ActionEvent actionEvent) {
-        album.sortFlashUsed();
-        createElements();
-    }
-
-    public void sortShutterSpeed(ActionEvent actionEvent) {
-        album.sortShutterSpeed();
-        createElements();
-    }
-
-    public void sortFileSize(ActionEvent actionEvent) {
-        album.sortFileSize();
-        createElements();
-    }
-
-    public void sortExposureTime(ActionEvent actionEvent) {
-        album.sortExposureTime();
-        createElements();
-    }
-
-    public void sortDate() {
-        album.sortDate();
-        createElements();
-    }
-
-    public void addPicture(ActionEvent actionEvent) {
+    public List<File> choosePictures() {
         final FileChooser dir = new FileChooser();
         List<String> filter = new ArrayList<>();
         Collections.addAll(filter, "*.jpg", "'.png", "*.jfif", "*.PNG");
         dir.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Pictures", filter));
         List<File> files = dir.showOpenMultipleDialog(vBox.getScene().getWindow());
+        return files;
+    }
+
+    public void addPicture() {
+        List<File> files = choosePictures();
         try {
             files.forEach(e -> {
                 if (files.size() != 0) {
@@ -231,7 +144,7 @@ public class SecondaryController implements Initializable {
                     p = new Picture(e.getPath());
                     album.getPictures().add(p);
                     pictureService.createPicture(p, album.getId());
-                    createElements();
+                    setupPicturePane();
                     ArrayList<Picture> pics = pictureService.getAllPictures(album.getId(), Context.getInstance().currentUser().getId());
                     album.setPictures(pics);
                 }
@@ -242,14 +155,11 @@ public class SecondaryController implements Initializable {
         }
     }
 
-    public void reverseOrder(ActionEvent actionEvent) {
-        album.reverseOrder();
-        createElements();
-    }
 
-    void mapViewSetup() throws FileNotFoundException {
+
+    void openMapView() {
         try{
-            Image image = new Image(new FileInputStream(".\\images\\globe.png"));
+            Image image = new Image(new FileInputStream("./images/globe.png"));
             mapViewIcon.setImage(image);
             mapViewIcon.setOnMouseClicked(e -> {
                 Context.getInstance().currentAlbum().setPictures(album.getPictures());
@@ -267,9 +177,9 @@ public class SecondaryController implements Initializable {
 
     }
 
-    void pdfSetup() throws FileNotFoundException {
+    void createPdf() {
         try{
-            Image image = new Image(new FileInputStream(".\\images\\pdf.png"));
+            Image image = new Image(new FileInputStream("./images/pdf.png"));
             PdfHandler pdfHandler = new PdfHandler();
             pdfIcon.setImage(image);
             pdfIcon.setOnMouseClicked(e -> {
@@ -281,13 +191,12 @@ public class SecondaryController implements Initializable {
             AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
             AppLogger.closeHandler();
         }
-
     }
 
     public void deletePhotos(ActionEvent actionEvent) {
         if (selectedPhotos.size() > 0) {
             selectedPhotos.forEach(e -> pictureService.deletePicture(e.getId(), album.getId()));
-            createElements();
+            setupPicturePane();
         }
     }
 
@@ -297,7 +206,7 @@ public class SecondaryController implements Initializable {
                 selectedPhotos.add(x);
             }
         });
-        pages.forEach(e -> e.setStyle("-fx-background-color: green"));
+        pages.forEach(e -> e.setStyle("-fx-background-color:linear-gradient(white,#DDDDDD)"));
     }
 
     public void createAlbum(ActionEvent actionEvent) {
@@ -313,4 +222,38 @@ public class SecondaryController implements Initializable {
         }
     }
 
+    public void sortIso(ActionEvent actionEvent) {
+        album.sortIso();
+        setupPicturePane();
+    }
+
+    public void sortFlash(ActionEvent actionEvent) {
+        album.sortFlashUsed();
+        setupPicturePane();
+    }
+
+    public void sortShutterSpeed(ActionEvent actionEvent) {
+        album.sortShutterSpeed();
+        setupPicturePane();
+    }
+
+    public void sortFileSize(ActionEvent actionEvent) {
+        album.sortFileSize();
+        setupPicturePane();
+    }
+
+    public void sortExposureTime(ActionEvent actionEvent) {
+        album.sortExposureTime();
+        setupPicturePane();
+    }
+
+    public void sortDate() {
+        album.sortDate();
+        setupPicturePane();
+    }
+
+    public void reverseOrder(ActionEvent actionEvent) {
+        album.reverseOrder();
+        setupPicturePane();
+    }
 }

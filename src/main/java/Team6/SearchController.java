@@ -72,37 +72,9 @@ public class SearchController extends BaseController implements Initializable {
                     searchedPictures.clear();
                     tilePane.getChildren().remove(searchedPictures);
                     addPictures(textField.getText());
+                    Context.getInstance().setCurrentSearchingword(textField.getText());
                     setupPicturePane();
             }
-        });
-    }
-
-    public void setOnMouseClicked() {
-        searchedPictures.forEach(a -> {
-            pages.forEach(v -> {
-                if (searchedPictures.indexOf(a) == pages.indexOf(v)) {
-                    v.setOnMouseClicked(e -> {
-                        if (selectedPhotos.contains(a)) {
-                            v.setStyle("-fx-background-color: transparent");
-                            selectedPhotos.remove(a);
-                        } else {
-                            v.setStyle("-fx-background-color:linear-gradient(white,#DDDDDD)");
-                            selectedPhotos.add(a);
-                        }
-                        if (e.getClickCount() == 2) {
-                            Context.getInstance().currentAlbum().setPictures(searchedPictures);
-                            Context.getInstance().setIndex(searchedPictures.indexOf(a));
-                            Context.getInstance().setCurrentSearchingword(textField.getText());
-                            try {
-                                switchScene("search", "tertiary");
-                            } catch (IOException ex) {
-                                //picLdLogger.getLogger().log(Level.FINE, ex.getMessage());
-                            }
-                        }
-
-                    });
-                }
-            });
         });
     }
 
@@ -119,11 +91,11 @@ public class SearchController extends BaseController implements Initializable {
         });
     }
 
-    void setupPicturePane() {
+    public void setupPicturePane() {
         tilePane = elementPane();
         bind();
         pages = createPicturePages(searchedPictures);
-        setOnMouseClicked();
+        setOnMouseClicked(searchedPictures, searchedPictures, pages, "search");
         createElements(tilePane, pages);
     }
 
@@ -146,7 +118,7 @@ public class SearchController extends BaseController implements Initializable {
                 selectedPhotos.add(x);
             }
         });
-        pages.forEach(e -> e.setStyle("-fx-background-color: green"));
+        pages.forEach(e -> e.setStyle("-fx-background-color:linear-gradient(white,#DDDDDD)"));
     }
 
     public void switchToPrimary(ActionEvent actionEvent) throws IOException {

@@ -92,4 +92,32 @@ public class BaseController {
         tilePane.getChildren().addAll(pages);
     }
 
+    public void setOnMouseClicked(ArrayList<Picture> pictures, ArrayList<Picture> selectedPictures, List<VBox> pages, String currentScene) {
+        pictures.forEach(a -> {
+            pages.forEach(v -> {
+                if (pictures.indexOf(a) == pages.indexOf(v)) {
+                    v.setOnMouseClicked(e -> {
+                        if (selectedPictures.contains(a)) {
+                            v.setStyle("-fx-background-color: transparent");
+                            selectedPictures.remove(a);
+                        } else {
+                            v.setStyle("-fx-background-color:linear-gradient(white,#DDDDDD)");
+                            selectedPictures.add(a);
+                        }
+                        if (e.getClickCount() == 2) {
+                            Context.getInstance().currentAlbum().setPictures(pictures);
+                            Context.getInstance().setIndex(pictures.indexOf(a));
+                            try {
+                                switchScene(currentScene, "tertiary");
+                            } catch (IOException ex) {
+                                //picLdLogger.getLogger().log(Level.FINE, ex.getMessage());
+                            }
+                        }
+
+                    });
+                }
+            });
+        });
+    }
+
 }
