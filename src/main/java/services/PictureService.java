@@ -152,7 +152,7 @@ public class PictureService {
         }
     }
 
-    public boolean addTags (Picture p, String tag) {
+    public boolean addTag(Picture p, String tag) {
         String insertPictureTag = "INSERT INTO picturetag VALUES (default, ?, ?)";
 
         Connection conn = Database.ConnectDB();
