@@ -100,8 +100,8 @@ public class TertiaryController implements Initializable {
             pictureService.deletePicture(picture.getId(), album.getId());
             Context.getInstance().currentAlbum().removePicture(picture);
             App.setRoot("secondary");
-        } catch (IOException e){
-            AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+        } catch (IOException ex){
+            AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
             AppLogger.closeHandler();
         }
 
@@ -118,8 +118,8 @@ public class TertiaryController implements Initializable {
         try{
             String lastScene = Context.getInstance().getLastScene();
             App.setRoot(lastScene);
-        } catch (IOException e){
-            AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+        } catch (IOException ex){
+            AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
             AppLogger.closeHandler();
         }
 
@@ -145,7 +145,7 @@ public class TertiaryController implements Initializable {
         t.setContentText("Enter tag: ");
         Optional<String> result = t.showAndWait();
         if (result.isPresent()) {
-            pictureService.addTags(album.getPictures().get(index), result.get());
+            pictureService.addTag(album.getPictures().get(index), result.get());
             album.getPictures().get(index).getTags().add(result.get());
             listSetup();
         }

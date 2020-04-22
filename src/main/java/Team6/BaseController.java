@@ -14,6 +14,7 @@ import javafx.scene.text.TextAlignment;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -25,8 +26,8 @@ public class BaseController {
         try {
             Context.getInstance().setLastScene(currentScene);
             App.setRoot(nextScene);
-        } catch (IOException e) {
-            AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+        } catch (IOException ex) {
+            AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
             AppLogger.closeHandler();
         }
     }
@@ -45,7 +46,7 @@ public class BaseController {
     public VBox createVBoxOptions(int padding, String imagePath, int elementSize) throws FileNotFoundException {
         VBox vBox = new VBox();
         vBox.setStyle("-fx-background-color: transparent");
-        vBox.setPadding(new Insets(10,10,10,10));
+        vBox.setPadding(new Insets(padding,padding,padding,padding));
         vBox.getChildren().add(createImageView(imagePath, elementSize));
         return vBox;
     }
@@ -70,8 +71,8 @@ public class BaseController {
     public List<VBox> createPicturePages (ArrayList<Picture> pictures) {
         return pictures.stream().map(x -> {
             VBox vBox = null;
-            try { ;
-                vBox = createVBoxOptions(10 , x.getFilepath(), 170);
+            try {
+                vBox = createVBoxOptions(5 , x.getFilepath(), 170);
             } catch (FileNotFoundException e) {
                 AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
                 AppLogger.closeHandler();
@@ -101,7 +102,7 @@ public class BaseController {
                             v.setStyle("-fx-background-color: transparent");
                             selectedPictures.remove(a);
                         } else {
-                            v.setStyle("-fx-background-color:linear-gradient(white,#DDDDDD)");
+                            v.setStyle("-fx-background-color:linear-gradient(black,#DDDDDD)");
                             selectedPictures.add(a);
                         }
                         if (e.getClickCount() == 2) {
@@ -110,7 +111,8 @@ public class BaseController {
                             try {
                                 switchScene(currentScene, "tertiary");
                             } catch (IOException ex) {
-                                //picLdLogger.getLogger().log(Level.FINE, ex.getMessage());
+                                AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
+                                AppLogger.closeHandler();
                             }
                         }
 
@@ -118,6 +120,15 @@ public class BaseController {
                 }
             });
         });
+    }
+
+    public void selectAll(List<Picture> pictures, List<Picture> selectedPictuers, List<VBox> pages) {
+        pictures.forEach(x -> {
+            if (!selectedPictuers.contains(x)) {
+                selectedPictuers.add(x);
+            }
+        });
+        pages.forEach(e -> e.setStyle("-fx-background-color:linear-gradient(black,#DDDDDD)"));
     }
 
 }

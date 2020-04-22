@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
 import java.util.stream.Collectors;
 
 public class SearchController extends BaseController implements Initializable {
@@ -113,20 +114,15 @@ public class SearchController extends BaseController implements Initializable {
     }
 
     public void selectAll() {
-        searchedPictures.forEach(x -> {
-            if (!selectedPhotos.contains(x)) {
-                selectedPhotos.add(x);
-            }
-        });
-        pages.forEach(e -> e.setStyle("-fx-background-color:linear-gradient(white,#DDDDDD)"));
+        selectAll(searchedPictures, selectedPhotos, pages);
     }
 
     public void switchToPrimary(ActionEvent actionEvent) throws IOException {
         try{
             Context.getInstance().currentAlbum().setPictures(null);
             App.setRoot("primary");
-        } catch (IOException e){
-            //AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+        } catch (IOException ex){
+            AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
             AppLogger.closeHandler();
         }
     }

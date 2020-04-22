@@ -21,7 +21,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 
 
-public class LoginController implements Initializable {
+public class LoginController extends BaseController implements Initializable {
 
     @FXML
     ImageView imageView;
@@ -51,9 +51,9 @@ public class LoginController implements Initializable {
 
     public void createNewUser(ActionEvent actionEvent) throws IOException {
         try{
-            App.setRoot("createUser");
-        } catch (IOException e){
-            AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+            switchScene("login", "createUser");
+        } catch (IOException ex){
+            AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
             AppLogger.closeHandler();
         }
     }
@@ -81,8 +81,8 @@ public class LoginController implements Initializable {
                     label.setText("Username and/or password is wrong!");
                 }
             }
-        } catch (IOException e){
-            AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+        } catch (IOException ex){
+            AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
             AppLogger.closeHandler();
         }
     }

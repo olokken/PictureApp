@@ -14,7 +14,7 @@ public class PictureTest {
 
     @BeforeEach
     public void beforeEach() throws IOException {
-        this.picture = new Picture("C:\\Users\\sstn\\OneDrive - NTNU\\Programmering\\PictureApp\\test\\garn.jpg");
+        this.picture = new Picture("./test/garn.jpg");
     }
 
     @Test

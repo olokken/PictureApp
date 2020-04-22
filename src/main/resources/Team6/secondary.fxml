@@ -30,9 +30,8 @@
         <Button fx:id="deleteButton"  mnemonicParsing="false" onAction="#deletePhotos" prefHeight="45.0" prefWidth="110.0" text="Delete photo"/>
         <Button mnemonicParsing="false" onAction="#selectAll" prefHeight="45.0" prefWidth="110.0" text="Select All" />
         <Button fx:id="createAlbumButton"  mnemonicParsing="false" onAction="#createAlbum" prefHeight="45.0" prefWidth="110.0" text="Create Album" />
-        <ImageView fx:id="pdfIcon" fitHeight="64.0" fitWidth="69.0" layoutX="99.0" layoutY="385.0" pickOnBounds="true" preserveRatio="true" />
+        <Button fx:id="createPdfButton"  mnemonicParsing="false" onAction="#createPdf" prefHeight="45.0" prefWidth="110.0" text="Create PDF" />
         <ImageView fx:id="mapViewIcon" fitHeight="64.0" fitWidth="69.0" layoutX="7.0" layoutY="380.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="101.0" AnchorPane.topAnchor="380.0" />
-
     </VBox>
 </left>
 

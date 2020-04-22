@@ -5,8 +5,11 @@
  */
 package entities;
 
+import idk.AppLogger;
+
 import java.io.IOException;
 import java.util.*;
+import java.util.logging.Level;
 
 public class Album {
     private int id;
@@ -94,11 +97,15 @@ public class Album {
      * @param filePath filepath of the image to be added
      */
     public void addPicture(String filePath) {
-        if(isRegistered(filePath)) {
-            throw new IllegalArgumentException("Bildet er allerede registert");
+        try{
+            if(!isRegistered(filePath)) {
+                Picture p = new Picture(filePath);
+                this.pictures.add(p);
+            }
+        } catch (IllegalArgumentException e){
+            AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+            AppLogger.closeHandler();
         }
-        Picture p = new Picture(filePath);
-        this.pictures.add(p);
     }
 
     /**

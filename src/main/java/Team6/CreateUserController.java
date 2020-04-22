@@ -12,7 +12,7 @@ import services.UserService;
 import java.io.IOException;
 import java.util.logging.Level;
 
-public class CreateUserController {
+public class CreateUserController extends BaseController {
     @FXML
     TextField username;
     @FXML
@@ -31,10 +31,10 @@ public class CreateUserController {
         try{
             if(checkUsername() && checkPassword() && passwordEqual()) {
                 userService.createUser(username.getText(), password.getText());
-                App.setRoot("login");
+                switchScene("createUser", "login");
             }
-        } catch (IOException e){
-            AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+        } catch (IOException ex){
+            AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
             AppLogger.closeHandler();
         }
     }
@@ -71,8 +71,8 @@ public class CreateUserController {
         try{
             Context.getInstance().currentAlbum().setPictures(null);
             App.setRoot("login");
-        } catch (IOException e){
-            AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+        } catch (IOException ex){
+            AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
             AppLogger.closeHandler();
         }
     }

@@ -20,7 +20,7 @@ import java.util.*;
 import java.util.logging.Level;
 import java.util.stream.Collectors;
 
-public class MapController implements MapComponentInitializedListener, Initializable {
+public class MapController extends BaseController implements MapComponentInitializedListener, Initializable {
     @FXML
     GoogleMapView mapView;
 
@@ -47,8 +47,8 @@ public class MapController implements MapComponentInitializedListener, Initializ
         createMarkers();
     }
 
-    void createMarkers () {
 
+    void createMarkers () {
          pictures.stream().forEach(x -> {
              if(x.getLatitude() != 0 && x.getLongitude() != 0){
                  MarkerOptions markerOptions = new MarkerOptions();
@@ -60,18 +60,15 @@ public class MapController implements MapComponentInitializedListener, Initializ
                      try {
                          int index = pictures.indexOf(x);
                          Context.getInstance().setIndex(index);
-                         Context.getInstance().setLastScene("map");
-                         App.setRoot("tertiary");
-                     } catch (IOException e) {
-                         AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+                         switchScene("map", "tertiary");
+                     } catch (IOException ex) {
+                         AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
                          AppLogger.closeHandler();
                      }
                  });
              }
         });
     }
-
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -80,12 +77,11 @@ public class MapController implements MapComponentInitializedListener, Initializ
     }
 
     @FXML
-    private void switchToSecondary() throws IOException {
+    private void switchToSecondary() {
         try{
-            Context.getInstance().currentAlbum().setPictures(null);
-            App.setRoot("secondary");
-        } catch (IOException e){
-            AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+            switchScene("map", "secondary");
+        } catch (IOException ex){
+            AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
             AppLogger.closeHandler();
         }
     }
@@ -95,8 +91,8 @@ public class MapController implements MapComponentInitializedListener, Initializ
             Properties prop = new Properties();
             prop.load(input);
             result.put("GOOGLE_API_KEY", prop.getProperty("GOOGLE_API_KEY"));
-        } catch (IOException e) {
-            AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+        } catch (IOException ex) {
+            AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
             AppLogger.closeHandler();
         }
         return result;
