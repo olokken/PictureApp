@@ -23,7 +23,7 @@ import java.net.URL;
 import java.util.*;
 import java.util.logging.Level;
 
-public class TertiaryController extends BaseController implements Initializable {
+public class TertiaryController implements Initializable {
     @FXML
     HBox hBox;
     @FXML
@@ -99,7 +99,7 @@ public class TertiaryController extends BaseController implements Initializable 
             Picture picture = album.getPictures().get(index);
             pictureService.deletePicture(picture.getId(), album.getId());
             Context.getInstance().currentAlbum().removePicture(picture);
-            switchScene("tertiary", "secondary");
+            App.setRoot("secondary");
         } catch (IOException e){
             AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
             AppLogger.closeHandler();
@@ -115,7 +115,14 @@ public class TertiaryController extends BaseController implements Initializable 
 
     @FXML
     private void switchToSecondary() throws IOException {
-        switchScene("tertiary", "secondary");
+        try{
+            String lastScene = Context.getInstance().getLastScene();
+            App.setRoot(lastScene);
+        } catch (IOException e){
+            AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+            AppLogger.closeHandler();
+        }
+
     }
 
     void metadataSetup() {
