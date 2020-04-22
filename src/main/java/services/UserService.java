@@ -15,9 +15,6 @@ import java.util.logging.Level;
 
 public class UserService {
 
-    //Create logger object from PicLdLogger class.
-    //private PicLdLogger picLdLogger = new PicLdLogger();
-
     public UserService() throws IOException { }
 
     public boolean createUser(String name, String password) {
@@ -31,7 +28,8 @@ public class UserService {
             pst.executeUpdate();
             return true;
         } catch(SQLException se) {
-            //picLdLogger.getLogger().log(Level.FINE, se.getMessage());
+            AppLogger.getAppLogger().log(Level.FINE, se.getMessage());
+            AppLogger.closeHandler();
             return false;
         } finally {
             Database.closeConnection(conn, pst, null);
@@ -58,8 +56,8 @@ public class UserService {
                     return res.verified ? user : null;
                 }
             return null;
-        } catch(SQLException e) {
-            AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+        } catch(SQLException se) {
+            AppLogger.getAppLogger().log(Level.FINE, se.getMessage());
             AppLogger.closeHandler();
             return null;
         } finally {

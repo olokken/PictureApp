@@ -33,8 +33,8 @@ public class CreateUserController extends BaseController {
                 userService.createUser(username.getText(), password.getText());
                 switchScene("createUser", "login");
             }
-        } catch (IOException e){
-            AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+        } catch (IOException ex){
+            AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
             AppLogger.closeHandler();
         }
     }
@@ -71,8 +71,8 @@ public class CreateUserController extends BaseController {
         try{
             Context.getInstance().currentAlbum().setPictures(null);
             App.setRoot("login");
-        } catch (IOException e){
-            AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+        } catch (IOException ex){
+            AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
             AppLogger.closeHandler();
         }
     }

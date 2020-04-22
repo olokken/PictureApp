@@ -61,8 +61,8 @@ public class MapController extends BaseController implements MapComponentInitial
                          int index = pictures.indexOf(x);
                          Context.getInstance().setIndex(index);
                          switchScene("map", "tertiary");
-                     } catch (IOException e) {
-                         AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+                     } catch (IOException ex) {
+                         AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
                          AppLogger.closeHandler();
                      }
                  });
@@ -82,8 +82,8 @@ public class MapController extends BaseController implements MapComponentInitial
     private void switchToSecondary() {
         try{
             switchScene("map", "secondary");
-        } catch (IOException e){
-            AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+        } catch (IOException ex){
+            AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
             AppLogger.closeHandler();
         }
     }
@@ -93,8 +93,8 @@ public class MapController extends BaseController implements MapComponentInitial
             Properties prop = new Properties();
             prop.load(input);
             result.put("GOOGLE_API_KEY", prop.getProperty("GOOGLE_API_KEY"));
-        } catch (IOException e) {
-            AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+        } catch (IOException ex) {
+            AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
             AppLogger.closeHandler();
         }
         return result;

@@ -52,8 +52,8 @@ public class LoginController extends BaseController implements Initializable {
     public void createNewUser(ActionEvent actionEvent) throws IOException {
         try{
             switchScene("login", "createUser");
-        } catch (IOException e){
-            AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+        } catch (IOException ex){
+            AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
             AppLogger.closeHandler();
         }
     }
@@ -81,8 +81,8 @@ public class LoginController extends BaseController implements Initializable {
                     label.setText("Username and/or password is wrong!");
                 }
             }
-        } catch (IOException e){
-            AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+        } catch (IOException ex){
+            AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
             AppLogger.closeHandler();
         }
     }

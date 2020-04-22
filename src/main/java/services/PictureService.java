@@ -50,8 +50,8 @@ public class PictureService {
                 pictures.add(pic);
             }
                 return pictures;
-        } catch(SQLException | IOException e) {
-            AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+        } catch(SQLException | IOException ex) {
+            AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
             AppLogger.closeHandler();
             return null;
         } finally {
@@ -211,7 +211,8 @@ public class PictureService {
             pst.executeUpdate();
             return true;
         } catch(SQLException se) {
-            //picLdLogger.getLogger().log(Level.FINE, se.getMessage());
+            AppLogger.getAppLogger().log(Level.FINE, se.getMessage());
+            AppLogger.closeHandler();
             return false;
         } finally {
             Database.closeConnection(conn, pst);
