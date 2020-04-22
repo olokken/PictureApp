@@ -186,8 +186,8 @@ public class SecondaryController extends BaseController implements Initializable
                 try {
                     App.setRoot("map");
                 } catch (IOException ex) {
-                    AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
-                    AppLogger.closeHandler();;
+                    AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
+                    AppLogger.closeHandler();
                 }
             });
         } catch (FileNotFoundException ex){
