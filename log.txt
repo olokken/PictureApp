@@ -163,3 +163,19 @@ FINE: Duplicate entry 'Lilli' for key 'Username_UNIQUE'
 Apr 22, 2020 6:26:40 PM services.PdfHandler createPfdDocument
 FINE: C:\Users\stine\Downloads\images.pdf (The process cannot access the file because it is being used by another process)
 
+Apr 22, 2020 7:44:41 PM services.UserService createUser
+FINE: Duplicate entry 'Klara' for key 'Username_UNIQUE'
+Apr 22, 2020 7:53:05 PM services.UserService createUser
+FINE: Duplicate entry 'Klara' for key 'Username_UNIQUE'
+Apr 22, 2020 7:58:37 PM services.UserService createUser
+FINE: Duplicate entry 'Klara' for key 'Username_UNIQUE'
+Apr 22, 2020 7:59:18 PM services.UserService createUser
+FINE: Duplicate entry 'Klara' for key 'Username_UNIQUE'
+Apr 22, 2020 8:00:19 PM services.UserService createUser
+FINE: Duplicate entry 'Klara' for key 'Username_UNIQUE'
+Apr 22, 2020 8:01:18 PM services.UserService createUser
+FINE: Duplicate entry 'Klara' for key 'Username_UNIQUE'
+Apr 22, 2020 8:03:04 PM services.UserService createUser
+FINE: Duplicate entry 'Klara' for key 'Username_UNIQUE'
+Apr 22, 2020 8:07:43 PM services.UserService createUser
+FINE: Duplicate entry 'Klara' for key 'Username_UNIQUE'

@@ -4,25 +4,19 @@ package services;
 import com.itextpdf.io.image.ImageData;
 import com.itextpdf.io.image.ImageDataFactory;
 import com.itextpdf.kernel.geom.PageSize;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.AreaBreak;
 import com.itextpdf.layout.element.Image;
-import com.itextpdf.layout.property.AreaBreakType;
-import entities.Album;
-
-import java.io.*;
-import java.net.MalformedURLException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
-
-import com.itextpdf.kernel.pdf.*;
-import com.itextpdf.layout.Document;
-import com.itextpdf.layout.element.Paragraph;
 import entities.Picture;
 import idk.AppLogger;
 
-import javax.imageio.ImageIO;
-import javax.print.Doc;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.net.MalformedURLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
 
 
 public class PdfHandler {
@@ -41,8 +35,7 @@ public class PdfHandler {
                 file = new File(filePath);
             }
             PdfWriter pdfWriter = new PdfWriter(file);
-            PdfDocument pdfDocument = new PdfDocument(pdfWriter);
-            return pdfDocument;
+            return new PdfDocument(pdfWriter);
         } catch (FileNotFoundException ex) {
             AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
             AppLogger.closeHandler();
@@ -50,7 +43,7 @@ public class PdfHandler {
         }
     }
 
-    public void createPdfAlbum(ArrayList<Picture> pictures) throws FileNotFoundException {
+    public boolean createPdfAlbum(ArrayList<Picture> pictures) throws FileNotFoundException {
         try {
             Document document = new Document(createPfdDocument());
             pictures.forEach(x -> {
@@ -65,9 +58,11 @@ public class PdfHandler {
                 }
             });
             document.close();
+            return true;
         } catch (FileNotFoundException ex) {
             AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
             AppLogger.closeHandler();
+            return false;
         }
     }
 }
