@@ -170,8 +170,8 @@ public class SecondaryController extends BaseController implements Initializable
                     AppLogger.closeHandler();;
                 }
             });
-        } catch (FileNotFoundException e){
-            AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+        } catch (FileNotFoundException ex){
+            AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
             AppLogger.closeHandler();
         }
     }
@@ -183,11 +183,16 @@ public class SecondaryController extends BaseController implements Initializable
             pdfIcon.setImage(image);
             pdfIcon.setOnMouseClicked(e -> {
                 if (selectedPhotos.size() > 0) {
-                    pdfHandler.createAlbumPdf(selectedPhotos);
+                    try {
+                        pdfHandler.createPdfAlbum(selectedPhotos);
+                    } catch (FileNotFoundException ex) {
+                        AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
+                        AppLogger.closeHandler();
+                    }
                 }
             });
-        } catch (FileNotFoundException e){
-            AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+        } catch (FileNotFoundException ex){
+            AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
             AppLogger.closeHandler();
         }
     }
