@@ -58,6 +58,7 @@ public class SecondaryController extends BaseController implements Initializable
     ArrayList<Picture> selectedPhotos = new ArrayList<>();
     TilePane tilePane = new TilePane();
     List<VBox> pages = new ArrayList<>();
+    Alert alert = new Alert(Alert.AlertType.INFORMATION);
 
     private static double ELEMENT_SIZE = 170;
     private static final double GAP = ELEMENT_SIZE/10;
@@ -181,8 +182,8 @@ public class SecondaryController extends BaseController implements Initializable
                 try {
                     App.setRoot("map");
                 } catch (IOException ex) {
-                    //AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
-                    AppLogger.closeHandler();;
+                    AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
+                    AppLogger.closeHandler();
                 }
             });
         } catch (FileNotFoundException ex){
@@ -197,8 +198,18 @@ public class SecondaryController extends BaseController implements Initializable
             PdfHandler pdfHandler = new PdfHandler();
             if (selectedPhotos.size() <= 0) {
                 pdfHandler.createPdfAlbum((ArrayList<Picture>) album.getPictures());
+                alert.setTitle("Information");
+                alert.setHeaderText("No pdf-file made.");
+                alert.setContentText("You have to choose pictures"
+                + "\nbefore you can make a pdf-file. ");
+                alert.showAndWait();
             } else {
                 pdfHandler.createPdfAlbum(selectedPhotos);
+                alert.setTitle("Information");
+                alert.setHeaderText("Pdf-file successfully made.");
+                alert.setContentText("Your pdf-file will be located"
+                        + "\nin your home directory under downloads.");
+                alert.showAndWait();
             }
         } catch (FileNotFoundException ex){
             AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
