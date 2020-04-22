@@ -70,7 +70,7 @@ public class BaseController {
     public List<VBox> createPicturePages (ArrayList<Picture> pictures) {
         return pictures.stream().map(x -> {
             VBox vBox = null;
-            try { ;
+            try {
                 vBox = createVBoxOptions(10 , x.getFilepath(), 170);
             } catch (FileNotFoundException e) {
                 AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
@@ -110,7 +110,8 @@ public class BaseController {
                             try {
                                 switchScene(currentScene, "tertiary");
                             } catch (IOException ex) {
-                                //picLdLogger.getLogger().log(Level.FINE, ex.getMessage());
+                                AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
+                                AppLogger.closeHandler();
                             }
                         }
 
