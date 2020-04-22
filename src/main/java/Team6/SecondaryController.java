@@ -192,13 +192,18 @@ public class SecondaryController extends BaseController implements Initializable
     }
 
     @FXML
-    void createPdf() {
+    void createPdf() throws FileNotFoundException {
+        try{
             PdfHandler pdfHandler = new PdfHandler();
             if (selectedPhotos.size() <= 0) {
                 pdfHandler.createPdfAlbum((ArrayList<Picture>) album.getPictures());
             } else {
                 pdfHandler.createPdfAlbum(selectedPhotos);
             }
+        } catch (FileNotFoundException ex){
+            AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
+            AppLogger.closeHandler();
+        }
     }
 
     public void deletePhotos(ActionEvent actionEvent) {
