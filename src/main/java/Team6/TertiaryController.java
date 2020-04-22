@@ -161,4 +161,7 @@ public class TertiaryController implements Initializable {
             listSetup();
         }
     }
+    public void mordi(){
+
+    }
 }
