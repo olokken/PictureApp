@@ -15,9 +15,6 @@ import java.util.logging.Level;
 
 public class UserService {
 
-    //Create logger object from PicLdLogger class.
-    //private PicLdLogger picLdLogger = new PicLdLogger();
-
     public UserService() throws IOException { }
 
     public boolean createUser(String name, String password) {
@@ -31,7 +28,8 @@ public class UserService {
             pst.executeUpdate();
             return true;
         } catch(SQLException se) {
-            //picLdLogger.getLogger().log(Level.FINE, se.getMessage());
+            AppLogger.getAppLogger().log(Level.FINE, se.getMessage());
+            AppLogger.closeHandler();
             return false;
         } finally {
             Database.closeConnection(conn, pst, null);
@@ -64,6 +62,22 @@ public class UserService {
             return null;
         } finally {
             Database.closeConnection(conn, pst, null);
+        }
+    }
+    public boolean deleteUser(User user) {
+        String query = "Delete from user where id = ?";
+        Connection conn = Database.ConnectDB();
+        PreparedStatement pst = null;
+        try {
+            pst = conn.prepareStatement(query);
+            pst.setInt(1, user.getId());
+            pst.executeUpdate();
+            return true;
+        } catch(SQLException se) {
+            //picLdLogger.getLogger().log(Level.FINE, se.getMessage());
+            return false;
+        } finally {
+            Database.closeConnection(conn, pst);
         }
     }
 

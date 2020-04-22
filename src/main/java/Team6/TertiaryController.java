@@ -145,7 +145,7 @@ public class TertiaryController implements Initializable {
         t.setContentText("Enter tag: ");
         Optional<String> result = t.showAndWait();
         if (result.isPresent()) {
-            pictureService.addTags(album.getPictures().get(index), result.get());
+            pictureService.addTag(album.getPictures().get(index), result.get());
             album.getPictures().get(index).getTags().add(result.get());
             listSetup();
         }
