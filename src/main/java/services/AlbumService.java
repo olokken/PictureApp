@@ -30,8 +30,8 @@ public class AlbumService {
             while(result.next())
                 albums.add(new Album(result.getInt("id"), result.getString("name"), userId));
             return albums;
-        } catch(SQLException e) {
-            AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+        } catch(SQLException se) {
+            AppLogger.getAppLogger().log(Level.FINE, se.getMessage());
             AppLogger.closeHandler();
             return null;
         } finally {
@@ -49,8 +49,8 @@ public class AlbumService {
             pst.setInt(2, userId);
             pst.executeUpdate();
             return true;
-        } catch(SQLException e) {
-            AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+        } catch(SQLException se) {
+            AppLogger.getAppLogger().log(Level.FINE, se.getMessage());
             AppLogger.closeHandler();
             return false;
         } finally {
@@ -83,8 +83,8 @@ public class AlbumService {
                 }
             }
             return true;
-        } catch(SQLException e) {
-            AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+        } catch(SQLException se) {
+            AppLogger.getAppLogger().log(Level.FINE, se.getMessage());
             AppLogger.closeHandler();
             return false;
         } finally {
@@ -107,8 +107,8 @@ public class AlbumService {
                 return result.getInt("max(id)");
             }
             return null;
-        } catch(SQLException e) {
-            AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+        } catch(SQLException se) {
+            AppLogger.getAppLogger().log(Level.FINE, se.getMessage());
             AppLogger.closeHandler();
             return null;
         } finally {

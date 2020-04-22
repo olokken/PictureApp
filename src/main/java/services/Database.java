@@ -27,8 +27,8 @@ public class Database {
             prop.load(input);
             result.put("username", prop.getProperty("USERNAME"));
             result.put("password", prop.getProperty("PASSWORD"));
-        } catch (IOException e) {
-            AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+        } catch (IOException ex) {
+            AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
             AppLogger.closeHandler();
         }
         return result;

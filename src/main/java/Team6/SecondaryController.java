@@ -109,8 +109,8 @@ public class SecondaryController extends BaseController implements Initializable
         try{
             Context.getInstance().currentAlbum().setPictures(null);
             App.setRoot("primary");
-        } catch (IOException e){
-            AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+        } catch (IOException ex){
+            AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
             AppLogger.closeHandler();
         }
 
@@ -166,7 +166,7 @@ public class SecondaryController extends BaseController implements Initializable
                 try {
                     App.setRoot("map");
                 } catch (IOException ex) {
-                    //AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+                    AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
                     AppLogger.closeHandler();;
                 }
             });
@@ -186,8 +186,8 @@ public class SecondaryController extends BaseController implements Initializable
                     pdfHandler.createAlbumPdf(selectedPhotos);
                 }
             });
-        } catch (FileNotFoundException ex){
-            AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
+        } catch (FileNotFoundException e){
+            AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
             AppLogger.closeHandler();
         }
     }

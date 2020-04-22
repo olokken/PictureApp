@@ -25,8 +25,8 @@ public class BaseController {
         try {
             Context.getInstance().setLastScene(currentScene);
             App.setRoot(nextScene);
-        } catch (IOException e) {
-            AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+        } catch (IOException ex) {
+            AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
             AppLogger.closeHandler();
         }
     }

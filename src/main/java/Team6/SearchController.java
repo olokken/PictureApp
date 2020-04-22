@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
 import java.util.stream.Collectors;
 
 public class SearchController extends BaseController implements Initializable {
@@ -120,8 +121,8 @@ public class SearchController extends BaseController implements Initializable {
         try{
             Context.getInstance().currentAlbum().setPictures(null);
             App.setRoot("primary");
-        } catch (IOException e){
-            //AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+        } catch (IOException ex){
+            AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
             AppLogger.closeHandler();
         }
     }

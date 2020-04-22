@@ -86,8 +86,8 @@ public class Picture {
                     }
                 }
             }
-        } catch (ImageProcessingException | IOException e) {
-            AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+        } catch (ImageProcessingException | IOException ex) {
+            AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
             AppLogger.closeHandler();
         }
         this.tags = new ArrayList<String>();
