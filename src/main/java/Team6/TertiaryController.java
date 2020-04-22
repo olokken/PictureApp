@@ -86,8 +86,8 @@ public class TertiaryController implements Initializable {
         Image image = null;
         try {
             image = new Image(new FileInputStream(album.getPictures().get(index).getFilepath()));
-        } catch (FileNotFoundException e) {
-            AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+        } catch (FileNotFoundException ex) {
+            AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
             AppLogger.closeHandler();
         }
         imageView.setImage(image);
@@ -160,5 +160,8 @@ public class TertiaryController implements Initializable {
             picture.getTags().remove(tag);
             listSetup();
         }
+    }
+    public void mordi(){
+
     }
 }
