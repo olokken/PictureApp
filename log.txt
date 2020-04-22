@@ -78,6 +78,9 @@ Apr 22, 2020 1:09:40 PM services.UserService createUser
 FINE: Duplicate entry 'Berit' for key 'Username_UNIQUE'
 Apr 22, 2020 1:26:18 PM services.UserService createUser
 FINE: Duplicate entry 'Berit' for key 'Username_UNIQUE'
+apr. 22, 2020 1:34:35 P.M. Team6.App loadFXML
+FINE: 
+/C:/Dev/PictureApp/target/classes/Team6/tertiary.fxml
 Apr 22, 2020 1:57:05 PM services.UserService createUser
 FINE: Duplicate entry 'Anne' for key 'Username_UNIQUE'
 Apr 22, 2020 1:58:20 PM services.UserService createUser
@@ -124,3 +127,4 @@ Apr 22, 2020 3:23:48 PM services.UserService createUser
 FINE: Duplicate entry 'Lilli' for key 'Username_UNIQUE'
 Apr 22, 2020 3:27:41 PM services.UserService createUser
 FINE: Duplicate entry 'Lilli' for key 'Username_UNIQUE'
+

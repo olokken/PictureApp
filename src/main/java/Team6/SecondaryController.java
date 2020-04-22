@@ -144,9 +144,9 @@ public class SecondaryController extends BaseController implements Initializable
                     p = new Picture(e.getPath());
                     album.getPictures().add(p);
                     pictureService.createPicture(p, album.getId());
-                    setupPicturePane();
                     ArrayList<Picture> pics = pictureService.getAllPictures(album.getId(), Context.getInstance().currentUser().getId());
                     album.setPictures(pics);
+                    setupPicturePane();
                 }
             });
         } catch (NullPointerException e ) {
@@ -174,7 +174,6 @@ public class SecondaryController extends BaseController implements Initializable
             AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
             AppLogger.closeHandler();
         }
-
     }
 
     void createPdf() {
@@ -196,17 +195,14 @@ public class SecondaryController extends BaseController implements Initializable
     public void deletePhotos(ActionEvent actionEvent) {
         if (selectedPhotos.size() > 0) {
             selectedPhotos.forEach(e -> pictureService.deletePicture(e.getId(), album.getId()));
+            ArrayList<Picture> pics = pictureService.getAllPictures(album.getId(), Context.getInstance().currentUser().getId());
+            album.setPictures(pics);
             setupPicturePane();
         }
     }
 
     public void selectAll() {
-        album.getPictures().forEach(x -> {
-            if (!selectedPhotos.contains(x)) {
-                selectedPhotos.add(x);
-            }
-        });
-        pages.forEach(e -> e.setStyle("-fx-background-color:linear-gradient(white,#DDDDDD)"));
+        selectAll(album.getPictures(), selectedPhotos, pages);
     }
 
     public void createAlbum(ActionEvent actionEvent) {

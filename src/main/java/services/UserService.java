@@ -82,16 +82,12 @@ public class UserService {
     }
 
 
-    /**public boolean deleteUser(User user) {
+    public boolean deleteUser(User user) {
         String query = "Delete from user where id = ?";
-        String deleteAlbumsQuery = "Delete from album where userid = ?";
 
         Connection conn = Database.ConnectDB();
         PreparedStatement pst = null;
         try {
-            pst = conn.prepareStatement(deleteAlbumsQuery);
-            pst.setInt(1, user.getId());
-            pst.executeUpdate();
             pst = conn.prepareStatement(query);
             pst.setInt(1, user.getId());
             pst.executeUpdate();
@@ -102,5 +98,5 @@ public class UserService {
         } finally {
             Database.closeConnection(conn, pst);
         }
-    }*/
+    }
 }

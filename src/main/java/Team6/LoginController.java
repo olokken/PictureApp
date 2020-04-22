@@ -21,7 +21,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 
 
-public class LoginController implements Initializable {
+public class LoginController extends BaseController implements Initializable {
 
     @FXML
     ImageView imageView;
@@ -51,7 +51,7 @@ public class LoginController implements Initializable {
 
     public void createNewUser(ActionEvent actionEvent) throws IOException {
         try{
-            App.setRoot("createUser");
+            switchScene("login", "createUser");
         } catch (IOException e){
             AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
             AppLogger.closeHandler();
