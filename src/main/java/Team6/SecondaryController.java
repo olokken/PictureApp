@@ -185,8 +185,8 @@ public class SecondaryController extends BaseController implements Initializable
                     AppLogger.closeHandler();;
                 }
             });
-        } catch (FileNotFoundException e){
-            AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+        } catch (FileNotFoundException ex){
+            AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
             AppLogger.closeHandler();
         }
     }
@@ -195,9 +195,9 @@ public class SecondaryController extends BaseController implements Initializable
     void createPdf() {
             PdfHandler pdfHandler = new PdfHandler();
             if (selectedPhotos.size() <= 0) {
-                pdfHandler.createAlbumPdf((ArrayList<Picture>) album.getPictures());
+                pdfHandler.createPdfAlbum((ArrayList<Picture>) album.getPictures());
             } else {
-                pdfHandler.createAlbumPdf(selectedPhotos);
+                pdfHandler.createPdfAlbum(selectedPhotos);
             }
     }
 

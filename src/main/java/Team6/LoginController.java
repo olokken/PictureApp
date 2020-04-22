@@ -43,8 +43,8 @@ public class LoginController extends BaseController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
             setImage();
-        } catch (FileNotFoundException e) {
-            AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+        } catch (FileNotFoundException ex) {
+            AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
             AppLogger.closeHandler();
         }
     }
@@ -62,8 +62,8 @@ public class LoginController extends BaseController implements Initializable {
         try{
             Image image = new Image(new FileInputStream("./images/pickles.png"));
             imageView.setImage(image);
-        } catch (FileNotFoundException e){
-            AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+        } catch (FileNotFoundException ex){
+            AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
             AppLogger.closeHandler();
         }
     }

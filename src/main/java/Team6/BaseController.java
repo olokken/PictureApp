@@ -33,22 +33,34 @@ public class BaseController {
     }
 
     public ImageView createImageView (String filePath, int elementSize) throws FileNotFoundException {
-        Image image = null;
-        image = new Image(new FileInputStream(filePath)); //filePath
-        ImageView imageView = new ImageView(image);
-        imageView.setFitHeight(elementSize);
-        imageView.setFitWidth(elementSize);
-        imageView.setSmooth(true);
-        imageView.setCache(true);
-        return imageView;
+        try{
+            Image image = null;
+            image = new Image(new FileInputStream(filePath)); //filePath
+            ImageView imageView = new ImageView(image);
+            imageView.setFitHeight(elementSize);
+            imageView.setFitWidth(elementSize);
+            imageView.setSmooth(true);
+            imageView.setCache(true);
+            return imageView;
+        } catch (FileNotFoundException ex){
+            AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
+            AppLogger.closeHandler();
+            return null;
+        }
     }
 
     public VBox createVBoxOptions(int padding, String imagePath, int elementSize) throws FileNotFoundException {
-        VBox vBox = new VBox();
-        vBox.setStyle("-fx-background-color: transparent");
-        vBox.setPadding(new Insets(padding,padding,padding,padding));
-        vBox.getChildren().add(createImageView(imagePath, elementSize));
-        return vBox;
+        try{
+            VBox vBox = new VBox();
+            vBox.setStyle("-fx-background-color: transparent");
+            vBox.setPadding(new Insets(padding,padding,padding,padding));
+            vBox.getChildren().add(createImageView(imagePath, elementSize));
+            return vBox;
+        } catch (FileNotFoundException ex){
+            AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
+            AppLogger.closeHandler();
+            return null;
+        }
     }
 
     public List<VBox> createAlbumPages (ArrayList<Album> yourAlbums, String iconPath) {
@@ -59,8 +71,8 @@ public class BaseController {
             try {
                 text.setWrappingWidth(createImageView(iconPath, 80).getFitWidth());
                 vBox = createVBoxOptions(10 , iconPath, 80);
-            } catch (FileNotFoundException e) {
-                AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+            } catch (FileNotFoundException ex) {
+                AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
                 AppLogger.closeHandler();
             }
             vBox.getChildren().add(text);
@@ -73,8 +85,8 @@ public class BaseController {
             VBox vBox = null;
             try {
                 vBox = createVBoxOptions(5 , x.getFilepath(), 170);
-            } catch (FileNotFoundException e) {
-                AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
+            } catch (FileNotFoundException ex) {
+                AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
                 AppLogger.closeHandler();
             }
             return vBox;

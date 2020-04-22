@@ -160,5 +160,6 @@ Apr 22, 2020 3:23:48 PM services.UserService createUser
 FINE: Duplicate entry 'Lilli' for key 'Username_UNIQUE'
 Apr 22, 2020 3:27:41 PM services.UserService createUser
 FINE: Duplicate entry 'Lilli' for key 'Username_UNIQUE'
-
+Apr 22, 2020 6:26:40 PM services.PdfHandler createPfdDocument
+FINE: C:\Users\stine\Downloads\images.pdf (The process cannot access the file because it is being used by another process)
 
