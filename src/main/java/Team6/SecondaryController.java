@@ -156,6 +156,7 @@ public class SecondaryController extends BaseController implements Initializable
     }
 
     void deleteButtonSetup() {
+        System.out.println(selectedPhotos.size());
         if (selectedPhotos.size() <= 0) {
             deleteButton.setStyle("-fx-background-color: transparent");
         } else if (selectedPhotos.size() > 0) {
@@ -165,12 +166,7 @@ public class SecondaryController extends BaseController implements Initializable
 
     void addListener() {
         pages.forEach(x -> {
-            x.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent mouseEvent) {
-                    deleteButtonSetup();
-                }
-            });
+            x.addEventHandler(MouseEvent.MOUSE_RELEASED, mouseEvent ->  deleteButtonSetup());
         });
     }
 
