@@ -15,8 +15,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class PdfHandlerTest {
@@ -51,7 +50,7 @@ public class PdfHandlerTest {
     @Test
     @Order(2)
     public void testCreatePdfDocument() throws FileNotFoundException {
-        assertNull(pdfHandler.createPfdDocument());
+        assertNotNull(pdfHandler.createPfdDocument());
     }
     @Test
     @Order(3)

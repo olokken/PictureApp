@@ -179,3 +179,15 @@ Apr 22, 2020 8:03:04 PM services.UserService createUser
 FINE: Duplicate entry 'Klara' for key 'Username_UNIQUE'
 Apr 22, 2020 8:07:43 PM services.UserService createUser
 FINE: Duplicate entry 'Klara' for key 'Username_UNIQUE'
+Apr 22, 2020 8:30:39 PM services.UserService createUser
+FINE: Duplicate entry 'Klara' for key 'Username_UNIQUE'
+Apr 22, 2020 9:20:43 PM services.UserService createUser
+FINE: Duplicate entry 'Klara' for key 'Username_UNIQUE'
+Apr 22, 2020 9:21:35 PM services.UserService createUser
+FINE: Duplicate entry 'Klara' for key 'Username_UNIQUE'
+Apr 22, 2020 9:22:14 PM services.UserService createUser
+FINE: Duplicate entry 'Klara' for key 'Username_UNIQUE'
+Apr 22, 2020 9:23:12 PM services.UserService createUser
+FINE: Duplicate entry 'Klara' for key 'Username_UNIQUE'
+Apr 22, 2020 9:24:21 PM services.UserService createUser
+FINE: Duplicate entry 'Klara' for key 'Username_UNIQUE'
