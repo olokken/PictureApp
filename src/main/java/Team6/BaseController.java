@@ -97,7 +97,7 @@ public class BaseController {
         pictures.forEach(a -> {
             pages.forEach(v -> {
                 if (pictures.indexOf(a) == pages.indexOf(v)) {
-                    v.setOnMouseClicked(e -> {
+                    v.setOnMousePressed(e -> {
                         if (selectedPictures.contains(a)) {
                             v.setStyle("-fx-background-color: transparent");
                             selectedPictures.remove(a);
