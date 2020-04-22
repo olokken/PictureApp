@@ -12,12 +12,14 @@ import entities.Album;
 import entities.Picture;
 import idk.AppLogger;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.TilePane;
@@ -40,8 +42,6 @@ public class SecondaryController extends BaseController implements Initializable
     @FXML
     MenuButton changeStatusButton;
     @FXML
-    ImageView pdfIcon;
-    @FXML
     Button createAlbumButton;
     @FXML
     ImageView mapViewIcon;
@@ -51,7 +51,6 @@ public class SecondaryController extends BaseController implements Initializable
     BorderPane borderPane;
     @FXML
     Text albumName;
-
 
     PictureService pictureService = new PictureService();
     AlbumService albumService = new AlbumService();
@@ -72,7 +71,8 @@ public class SecondaryController extends BaseController implements Initializable
         fillList();
         setupPicturePane();
         buttonSetup();
-        createPdf();
+        deleteButtonSetup();
+        addListener();
         openMapView();
     }
 
@@ -107,10 +107,9 @@ public class SecondaryController extends BaseController implements Initializable
     @FXML
     private void switchToPrimary() throws IOException {
         try{
-            Context.getInstance().currentAlbum().setPictures(null);
-            App.setRoot("primary");
-        } catch (IOException ex){
-            AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
+            switchScene("secondary", "primary");
+        } catch (IOException e){
+            AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
             AppLogger.closeHandler();
         }
 
@@ -155,6 +154,26 @@ public class SecondaryController extends BaseController implements Initializable
         }
     }
 
+    void deleteButtonSetup() {
+        if (selectedPhotos.size() <= 0) {
+            deleteButton.setStyle("-fx-background-color: transparent");
+        } else if (selectedPhotos.size() > 0) {
+             deleteButton.setStyle("-fx-background-color: linear-gradient(to bottom,#3F3F3F,#2B2B2B)");
+        }
+    }
+
+    void addListener() {
+        pages.forEach(x -> {
+            x.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    deleteButtonSetup();
+                }
+            });
+        });
+    }
+
+
 
 
     void openMapView() {
@@ -166,7 +185,7 @@ public class SecondaryController extends BaseController implements Initializable
                 try {
                     App.setRoot("map");
                 } catch (IOException ex) {
-                    AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
+                    //AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
                     AppLogger.closeHandler();;
                 }
             });
@@ -176,25 +195,14 @@ public class SecondaryController extends BaseController implements Initializable
         }
     }
 
+    @FXML
     void createPdf() {
-        try{
-            Image image = new Image(new FileInputStream("./images/pdf.png"));
             PdfHandler pdfHandler = new PdfHandler();
-            pdfIcon.setImage(image);
-            pdfIcon.setOnMouseClicked(e -> {
-                if (selectedPhotos.size() > 0) {
-                    try {
-                        pdfHandler.createPdfAlbum(selectedPhotos);
-                    } catch (FileNotFoundException ex) {
-                        AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
-                        AppLogger.closeHandler();
-                    }
-                }
-            });
-        } catch (FileNotFoundException ex){
-            AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
-            AppLogger.closeHandler();
-        }
+            if (selectedPhotos.size() <= 0) {
+                pdfHandler.createPdfAlbum((ArrayList<Picture>) album.getPictures());
+            } else {
+                pdfHandler.createPdfAlbum(selectedPhotos);
+            }
     }
 
     public void deletePhotos(ActionEvent actionEvent) {

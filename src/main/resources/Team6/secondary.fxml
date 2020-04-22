@@ -10,38 +10,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.geometry.Insets?>
-
-
-<!--<SplitPane fx:id="splitPane" dividerPositions="0.3010033444816054" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="465.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Team6.SecondaryController">
-  <items>
-    <AnchorPane fx:id="anchorPane" maxWidth="350.0" minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="159.0">
-         <children>
-               <font>
-                  <Font name="Georgia Italic" size="32.0" />
-               </font>
-            </Text>
-            <Button fx:id="deleteButton" layoutX="51.0" layoutY="76.0" maxWidth="30.0" mnemonicParsing="false" onAction="#deletePhotos" prefHeight="25.0" prefWidth="30.0" text="-" AnchorPane.leftAnchor="51.0" />
-            <Button fx:id="addButton" layoutX="91.0" layoutY="76.0" maxWidth="30.0" mnemonicParsing="false" onAction="#addPicture" prefHeight="25.0" prefWidth="30.0" text="+" AnchorPane.rightAnchor="56.0" />
-            <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchToPrimary" prefHeight="25.0" prefWidth="35.0" AnchorPane.leftAnchor="14.0" />
-            <Button layoutX="51.0" layoutY="108.0" mnemonicParsing="false" onAction="#sortIso" prefHeight="25.0" prefWidth="70.0" text="ISO" AnchorPane.leftAnchor="51.0" AnchorPane.rightAnchor="57.0" />
-            <Button layoutX="52.0" layoutY="139.0" mnemonicParsing="false" onAction="#sortShutterSpeed" prefHeight="43.0" prefWidth="70.0" text="Shutter- speed" wrapText="true" AnchorPane.leftAnchor="52.0" AnchorPane.rightAnchor="56.0" />
-            <Button layoutX="51.0" layoutY="249.0" mnemonicParsing="false" onAction="#sortExposureTime" prefHeight="43.0" prefWidth="70.0" text="Exposure- Time" wrapText="true" AnchorPane.leftAnchor="51.0" AnchorPane.rightAnchor="56.0" />
-            <Button layoutX="51.0" layoutY="218.0" mnemonicParsing="false" onAction="#sortFileSize" prefHeight="25.0" prefWidth="70.0" text="File Size" AnchorPane.leftAnchor="51.0" AnchorPane.rightAnchor="56.0" />
-            <Button layoutX="51.0" layoutY="187.0" mnemonicParsing="false" onAction="#sortFlash" prefHeight="25.0" prefWidth="70.0" text="Flash" AnchorPane.leftAnchor="51.0" AnchorPane.rightAnchor="57.0" />
-            <Button layoutX="51.0" layoutY="298.0" mnemonicParsing="false" onAction="#sortDate" prefHeight="25.0" prefWidth="70.0" text="Date" wrapText="true" AnchorPane.leftAnchor="51.0" AnchorPane.rightAnchor="56.0" />
-            <Button layoutX="51.0" layoutY="331.0" mnemonicParsing="false" onAction="#reverseOrder" prefHeight="25.0" prefWidth="70.0" text="Reverse" wrapText="true" />
-            <ImageView fx:id="mapViewIcon" fitHeight="64.0" fitWidth="69.0" layoutX="7.0" layoutY="380.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="101.0" AnchorPane.topAnchor="380.0" />
-            <Button layoutX="51.0" layoutY="368.0" mnemonicParsing="false" onAction="#selectAll" prefHeight="25.0" prefWidth="70.0" text="Select All" />
-            <Button fx:id="createAlbumButton" layoutX="44.0" layoutY="400.0" mnemonicParsing="false" onAction="#createAlbum" prefHeight="25.0" prefWidth="89.0" text="Create Album" />
-            <ImageView fx:id="pdfIcon" fitHeight="64.0" fitWidth="69.0" layoutX="99.0" layoutY="385.0" pickOnBounds="true" preserveRatio="true" />
-         </children></AnchorPane>
-      <ScrollPane fx:id="scrollPane" prefHeight="398.0" prefWidth="439.0" />
-  </items>
-</SplitPane>
--->
-
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
+
 <BorderPane fx:id="borderPane" maxHeight="400" prefHeight="400.0"
             minWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="Team6.SecondaryController">
@@ -59,8 +30,8 @@
         <Button fx:id="deleteButton"  mnemonicParsing="false" onAction="#deletePhotos" prefHeight="45.0" prefWidth="110.0" text="Delete photo"/>
         <Button mnemonicParsing="false" onAction="#selectAll" prefHeight="45.0" prefWidth="110.0" text="Select All" />
         <Button fx:id="createAlbumButton"  mnemonicParsing="false" onAction="#createAlbum" prefHeight="45.0" prefWidth="110.0" text="Create Album" />
+        <Button fx:id="createPdfButton"  mnemonicParsing="false" onAction="#createPdf" prefHeight="45.0" prefWidth="110.0" text="Create PDF" />
         <ImageView fx:id="mapViewIcon" fitHeight="64.0" fitWidth="69.0" layoutX="7.0" layoutY="380.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="101.0" AnchorPane.topAnchor="380.0" />
-        <ImageView fx:id="pdfIcon" fitHeight="64.0" fitWidth="69.0" layoutX="99.0" layoutY="385.0" pickOnBounds="true" preserveRatio="true" />
     </VBox>
 </left>
 

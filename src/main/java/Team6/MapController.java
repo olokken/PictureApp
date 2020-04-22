@@ -70,8 +70,6 @@ public class MapController extends BaseController implements MapComponentInitial
         });
     }
 
-
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         mapView.setKey(getProperties().get("GOOGLE_API_KEY").toString());
