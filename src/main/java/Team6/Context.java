@@ -17,12 +17,12 @@ public class Context {
     private int index;
     private Album album = new Album();
     private User user = new User();
-    private ArrayList<Album> albums;
     private String lastScene;
 
     public String getLastScene () {
         return lastScene;
     }
+
     public void setLastScene(String scene) {
         lastScene = scene;
     }
@@ -30,9 +30,7 @@ public class Context {
     public User currentUser() {
         return user;
     }
-    public ArrayList<Album> currentAlbums() {
-        return albums;
-    }
+
 
     public Album currentAlbum() {
         return album;

@@ -113,12 +113,7 @@ public class SearchController extends BaseController implements Initializable {
     }
 
     public void selectAll() {
-        searchedPictures.forEach(x -> {
-            if (!selectedPhotos.contains(x)) {
-                selectedPhotos.add(x);
-            }
-        });
-        pages.forEach(e -> e.setStyle("-fx-background-color:linear-gradient(white,#DDDDDD)"));
+        selectAll(searchedPictures, selectedPhotos, pages);
     }
 
     public void switchToPrimary(ActionEvent actionEvent) throws IOException {
