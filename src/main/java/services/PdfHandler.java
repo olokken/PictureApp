@@ -6,6 +6,7 @@ import com.itextpdf.io.image.ImageDataFactory;
 import com.itextpdf.kernel.geom.PageSize;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Canvas;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.AreaBreak;
 import com.itextpdf.layout.element.Image;
@@ -45,13 +46,13 @@ public class PdfHandler {
 
     public boolean createPdfAlbum(ArrayList<Picture> pictures) throws FileNotFoundException {
         try {
-            Document document = new Document(createPfdDocument());
+            Document document = new Document(createPfdDocument(), PageSize.A4);
             pictures.forEach(x -> {
                 try {
                     ImageData imageData = ImageDataFactory.create(x.getFilepath());
                     Image pdfImage = new Image(imageData);
-                    document.add(new AreaBreak(new PageSize(pdfImage.getImageWidth(), pdfImage.getImageHeight())));
-                    document.add(pdfImage);
+                    document.add(new AreaBreak(new PageSize(PageSize.A4)));
+                    document.add(pdfImage.setAutoScale(true));
                 } catch (MalformedURLException ex) {
                     AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
                     AppLogger.closeHandler();
