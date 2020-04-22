@@ -191,7 +191,8 @@ public class PictureService {
             }
             return tags;
         } catch(SQLException se) {
-            //picLdLogger.getLogger().log(Level.FINE, se.getMessage());
+            AppLogger.getAppLogger().log(Level.FINE, se.getMessage());
+            AppLogger.closeHandler();
             return null;
         } finally {
             Database.closeConnection(conn, pst, result);
