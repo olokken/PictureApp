@@ -52,7 +52,6 @@ public class SecondaryController extends BaseController implements Initializable
     @FXML
     Text albumName;
 
-
     PictureService pictureService = new PictureService();
     AlbumService albumService = new AlbumService();
     Album album = new Album();

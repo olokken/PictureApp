@@ -68,6 +68,39 @@ FINE:
 
 apr. 20, 2020 3:29:02 P.M. Team6.SecondaryController addPicture
 FINE: null
+
+Apr 22, 2020 2:16:20 PM Team6.App loadFXML
+FINE: 
+/C:/Users/Linda/Documents/Programmering%202/PictureApp/target/classes/Team6/secondary.fxml
+
+Apr 22, 2020 2:18:21 PM Team6.App loadFXML
+FINE: 
+/C:/Users/Linda/Documents/Programmering%202/PictureApp/target/classes/Team6/secondary.fxml
+
+Apr 22, 2020 2:19:58 PM Team6.App loadFXML
+FINE: 
+/C:/Users/Linda/Documents/Programmering%202/PictureApp/target/classes/Team6/secondary.fxml
+
+Apr 22, 2020 2:22:16 PM Team6.App loadFXML
+FINE: 
+/C:/Users/Linda/Documents/Programmering%202/PictureApp/target/classes/Team6/secondary.fxml
+
+Apr 22, 2020 2:23:45 PM Team6.App loadFXML
+FINE: 
+/C:/Users/Linda/Documents/Programmering%202/PictureApp/target/classes/Team6/secondary.fxml
+
+Apr 22, 2020 2:26:14 PM Team6.App loadFXML
+FINE: Error resolving onAction='#createPdf', either the event handler is not in the Namespace or there is an error in the script.
+/C:/Users/Linda/Documents/Programmering%202/PictureApp/target/classes/Team6/secondary.fxml:33
+
+Apr 22, 2020 5:12:35 PM Team6.App loadFXML
+FINE: Error resolving onAction='#createPdf', either the event handler is not in the Namespace or there is an error in the script.
+/C:/Users/Linda/Documents/Programmering%202/PictureApp/target/classes/Team6/secondary.fxml:33
+
+Apr 22, 2020 5:38:38 PM Team6.App loadFXML
+FINE: 
+/C:/Users/Linda/Documents/Programmering%202/PictureApp/target/classes/Team6/secondary.fxml
+
 Apr 22, 2020 1:06:10 PM services.UserService createUser
 FINE: Duplicate entry 'Berit' for key 'Username_UNIQUE'
 Apr 22, 2020 1:07:20 PM services.UserService createUser
@@ -127,4 +160,5 @@ Apr 22, 2020 3:23:48 PM services.UserService createUser
 FINE: Duplicate entry 'Lilli' for key 'Username_UNIQUE'
 Apr 22, 2020 3:27:41 PM services.UserService createUser
 FINE: Duplicate entry 'Lilli' for key 'Username_UNIQUE'
+
 
