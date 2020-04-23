@@ -82,5 +82,5 @@ nb-configuration.xml
 ## OS X
 ##############################
 .DS_Store
-!/log.txt
-!/config.properties
+log.txt
+config.properties
