@@ -7,7 +7,6 @@ package entities;
 
 import idk.AppLogger;
 
-import java.io.IOException;
 import java.util.*;
 import java.util.logging.Level;
 
