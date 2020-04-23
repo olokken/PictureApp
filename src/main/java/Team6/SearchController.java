@@ -101,11 +101,7 @@ public class SearchController extends BaseController implements Initializable {
     }
 
     public void createAlbum(ActionEvent actionEvent) {
-        TextInputDialog t = new TextInputDialog();
-        t.setTitle("Album");
-        t.setHeaderText("Create new album");
-        t.setContentText("Enter name: ");
-        Optional<String> result = t.showAndWait();
+        Optional<String> result = showInputDialog("Create new album", "Enter name :");
         if (result.isPresent()) {
             int userId = Context.getInstance().currentUser().getId();
             albumService.createAlbum(result.get(), userId);
@@ -117,10 +113,10 @@ public class SearchController extends BaseController implements Initializable {
         selectAll(searchedPictures, selectedPhotos, pages);
     }
 
-    public void switchToPrimary(ActionEvent actionEvent) throws IOException {
+    public void switchToPrimary(ActionEvent actionEvent) {
         try{
             Context.getInstance().currentAlbum().setPictures(null);
-            App.setRoot("primary");
+            switchScene("primary", "search");
         } catch (IOException ex){
             AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
             AppLogger.closeHandler();
