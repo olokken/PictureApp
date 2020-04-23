@@ -5,6 +5,7 @@
  */
 
 package entities;
+//Heja
 
 import idk.AppLogger;
 import java.util.*;
