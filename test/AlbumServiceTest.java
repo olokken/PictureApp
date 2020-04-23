@@ -39,5 +39,3 @@ public class AlbumServiceTest {
         userService.deleteUser(user);
     }
 }
-
-//HEia
