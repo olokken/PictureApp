@@ -108,6 +108,7 @@ public class SecondaryController extends BaseController implements Initializable
     @FXML
     private void switchToPrimary() throws IOException {
         try{
+            Context.getInstance().currentAlbum().setPictures(null);
             switchScene("secondary", "primary");
         } catch (IOException e){
             AppLogger.getAppLogger().log(Level.FINE, e.getMessage());

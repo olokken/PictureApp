@@ -116,8 +116,7 @@ public class TertiaryController extends BaseController implements Initializable 
     @FXML
     private void switchToSecondary() throws IOException {
         try{
-            String lastScene = Context.getInstance().getLastScene();
-            App.setRoot(lastScene);
+            switchScene("tertiary", "secondary");
         } catch (IOException ex){
             AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
             AppLogger.closeHandler();

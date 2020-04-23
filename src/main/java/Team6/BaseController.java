@@ -13,6 +13,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -38,13 +39,19 @@ public class BaseController {
     public ImageView createImageView (String filePath, int elementSize) throws FileNotFoundException {
         try{
             Image image = null;
-            FileInputStream fileInputStream = new FileInputStream(filePath);
-            image = new Image(new FileInputStream(filePath)); //filePath
-            ImageView imageView = new ImageView(image);
+            ImageView imageView = new ImageView();
+            File file = new File(filePath);
             imageView.setFitHeight(elementSize);
             imageView.setFitWidth(elementSize);
             imageView.setSmooth(true);
             imageView.setCache(true);
+            if(file.exists()) {
+                image = new Image(new FileInputStream(filePath)); //filePath
+                imageView.setImage(image);
+            } else {
+                image = new Image(new FileInputStream("./images/notAvailable.png"));
+                imageView.setImage(image);
+            }
             return imageView;
         } catch (FileNotFoundException ex){
             AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
