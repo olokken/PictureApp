@@ -131,7 +131,7 @@ public class Album {
      * sorts the images in the album based on the ISO data
      */
     public void sortIso() {
-        pictures.sort(Comparator.comparing(x -> x.getISO()));
+        pictures.sort(Comparator.comparing(x -> x.getIso()));
     }
 
 

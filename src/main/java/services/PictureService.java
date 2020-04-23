@@ -1,21 +1,20 @@
 package services;
 
-import entities.Album;
 import entities.Picture;
 import idk.AppLogger;
 
-import java.io.IOException;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 
 public class PictureService {
 
     public PictureService(){ }
 
-    public ArrayList<Picture> getAllPictures(int albumId, int userId) {
+    public List<Picture> getAllPictures(int albumId, int userId) {
         String query;
         if (albumId >= 0) {
             query = "SELECT *  From picture as p INNER JOIN albumpicture as ap WHERE p.id = ap.pictureId and ap.albumId = ?";
@@ -29,7 +28,7 @@ public class PictureService {
 
         ArrayList<Picture> pictures = new ArrayList<>();
 
-        Connection conn = Database.ConnectDB();
+        Connection conn = Database.connectDB();
         PreparedStatement pst = null;
         ResultSet result = null;
         try {
@@ -50,10 +49,10 @@ public class PictureService {
                 pictures.add(pic);
             }
                 return pictures;
-        } catch(SQLException | IOException ex) {
+        } catch(SQLException ex) {
             AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
             AppLogger.closeHandler();
-            return null;
+            return new ArrayList<>();
         } finally {
             Database.closeConnection(conn, pst, result);
         }
@@ -65,7 +64,7 @@ public class PictureService {
         String checkPictureQuery = "Select * from picture where filePath = ?";
         int pictureId = 0;
 
-        Connection conn = Database.ConnectDB();
+        Connection conn = Database.connectDB();
         PreparedStatement pst = null;
         ResultSet result = null;
         try {
@@ -85,7 +84,7 @@ public class PictureService {
                     currentTime = sdf.format(d);
                 }
                 pst.setString(4, currentTime);
-                pst.setInt(5, picture.getISO());
+                pst.setInt(5, picture.getIso());
                 pst.setInt(6, picture.getShutterSpeed());
                 pst.setDouble(7, picture.getExposureTime());
                 pst.setBoolean(8, picture.isFlashUsed());
@@ -121,7 +120,7 @@ public class PictureService {
         String checkPictureQuery = "Select * from albumpicture where pictureid = ?";
 
 
-        Connection conn = Database.ConnectDB();
+        Connection conn = Database.connectDB();
         PreparedStatement pst = null;
         ResultSet result = null;
         try {
@@ -155,7 +154,7 @@ public class PictureService {
     public boolean addTag(Picture p, String tag) {
         String insertPictureTag = "INSERT INTO picturetag VALUES (default, ?, ?)";
 
-        Connection conn = Database.ConnectDB();
+        Connection conn = Database.connectDB();
         PreparedStatement pst = null;
         ResultSet result = null;
         try {
@@ -174,11 +173,11 @@ public class PictureService {
     }
 
 
-    public ArrayList<String> getTags(Picture picture) {
+    public List<String> getTags(Picture picture) {
         String query = "Select * From picturetag where pictureId = ?";
         ArrayList<String> tags = new ArrayList<>();
 
-        Connection conn = Database.ConnectDB();
+        Connection conn = Database.connectDB();
         PreparedStatement pst = null;
         ResultSet result = null;
         try {
@@ -193,7 +192,7 @@ public class PictureService {
         } catch(SQLException se) {
             AppLogger.getAppLogger().log(Level.FINE, se.getMessage());
             AppLogger.closeHandler();
-            return null;
+            return new ArrayList<>();
         } finally {
             Database.closeConnection(conn, pst, result);
         }
@@ -202,7 +201,7 @@ public class PictureService {
     public boolean deleteTag(Picture picture, String tag) {
         String query = "Delete from picturetag where pictureId = ? and tagName = ?";
 
-        Connection conn = Database.ConnectDB();
+        Connection conn = Database.connectDB();
         PreparedStatement pst = null;
         try {
             pst = conn.prepareStatement(query);

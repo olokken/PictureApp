@@ -1,6 +1,7 @@
 package entities;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * class to represent a user
@@ -22,7 +23,7 @@ public class User {
         this.id = id;
         this.username = username;
         this.password = password;
-        albums = new ArrayList<Album>();
+        albums = new ArrayList<>();
     }
 
     public User() {
@@ -53,12 +54,12 @@ public class User {
         this.password = password;
     }
 
-    public ArrayList<Album> getAlbums() {
+    public List<Album> getAlbums() {
         return albums;
     }
 
-    public void setAlbums(ArrayList<Album> albums) {
-        this.albums = albums;
+    public void setAlbums(List<Album> albums) {
+        this.albums = (ArrayList<Album>) albums;
     }
 
 }

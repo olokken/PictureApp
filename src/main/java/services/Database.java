@@ -15,7 +15,6 @@ import java.util.logging.Level;
 
 public class Database {
     private static final String CONNECTION_STRING = "jdbc:mysql://mysql-ait.stud.idi.ntnu.no/olelok?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-    private static final String DRIVER = "com.mysql.jdbc.Driver";
     private static final String USERNAME = getProperties().get("username").toString();
     private static final String PASSWORD = getProperties().get("password").toString();
 
@@ -34,14 +33,15 @@ public class Database {
         return result;
     }
 
-    public Database() { }
+    private Database() { }
+
     /**
      * Connectiong to database
      *
      * @return
      *        - a Connection-object.
      */
-    public static Connection ConnectDB() {
+    public static Connection connectDB() {
         try {
             return DriverManager.getConnection(CONNECTION_STRING, USERNAME, PASSWORD);
         } catch (SQLException se) {

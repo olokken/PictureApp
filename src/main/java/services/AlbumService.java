@@ -16,11 +16,11 @@ public class AlbumService {
 
     public AlbumService() { }
 
-    public ArrayList<Album> getAllAlbums(int userId) {
+    public List<Album> getAllAlbums(int userId) {
         String query = "Select * from album where userid = ?";
         ArrayList<Album> albums = new ArrayList<>();
 
-        Connection conn = Database.ConnectDB();
+        Connection conn = Database.connectDB();
         PreparedStatement pst = null;
         ResultSet result = null;
         try {
@@ -33,7 +33,7 @@ public class AlbumService {
         } catch(SQLException se) {
             AppLogger.getAppLogger().log(Level.FINE, se.getMessage());
             AppLogger.closeHandler();
-            return null;
+            return albums;
         } finally {
             Database.closeConnection(conn, pst, result);
         }
@@ -41,7 +41,7 @@ public class AlbumService {
 
     public boolean createAlbum(String name, int userId) {
         String query = "INSERT INTO album VALUES (default, ?, ?)";
-        Connection conn = Database.ConnectDB();
+        Connection conn = Database.connectDB();
         PreparedStatement pst = null;
         try {
             pst = conn.prepareStatement(query);
@@ -64,7 +64,7 @@ public class AlbumService {
         String deletePictureQuery = "Delete from picture where id = ?";
         List<Picture> pictures = album.getPictures();
         ArrayList<Integer> pictureIds = new ArrayList<>();
-        Connection conn = Database.ConnectDB();
+        Connection conn = Database.connectDB();
         PreparedStatement pst = null;
         try {
             pst = conn.prepareStatement(query);
@@ -96,7 +96,7 @@ public class AlbumService {
         String query = "SELECT max(id)\n" +
                 "FROM album\n" +
                 "WHERE userId = ?;";
-        Connection conn = Database.ConnectDB();
+        Connection conn = Database.connectDB();
         PreparedStatement pst = null;
         ResultSet result = null;
         try {

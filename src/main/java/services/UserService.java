@@ -1,25 +1,22 @@
 package services;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
-import entities.Album;
 import entities.User;
 import idk.AppLogger;
 
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.logging.Level;
 
 public class UserService {
 
-    public UserService() throws IOException { }
+    public UserService() { }
 
     public boolean createUser(String name, String password) {
         String query = "INSERT INTO user VALUES (default, ?,?)";
-        Connection conn = Database.ConnectDB();
+        Connection conn = Database.connectDB();
         PreparedStatement pst = null;
         try {
             pst = conn.prepareStatement(query);
@@ -41,9 +38,8 @@ public class UserService {
     }
 
     public User login (String username, String password) {
-        // result.verified == true
         String query = "Select * From user where username = ?";
-        Connection conn = Database.ConnectDB();
+        Connection conn = Database.connectDB();
         PreparedStatement pst = null;
         ResultSet result = null;
         try {
@@ -69,7 +65,7 @@ public class UserService {
     public boolean deleteUser(User user) {
         String query = "Delete from user where id = ?";
 
-        Connection conn = Database.ConnectDB();
+        Connection conn = Database.connectDB();
         PreparedStatement pst = null;
         try {
             pst = conn.prepareStatement(query);

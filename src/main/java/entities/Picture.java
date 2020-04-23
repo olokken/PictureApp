@@ -8,12 +8,10 @@ import com.drew.metadata.exif.ExifSubIFDDirectory;
 import com.drew.metadata.exif.GpsDirectory;
 import idk.AppLogger;
 
+
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.logging.Level;
 
 /**
@@ -23,7 +21,7 @@ public class Picture {
     private int id;
     private String filepath;
     private Date dateTime;
-    private int ISO;
+    private int iso;
     private int shutterSpeed;
     private double exposureTime;
     private boolean isFlashUsed;
@@ -37,11 +35,11 @@ public class Picture {
         this.tags = tags;
     }
 
-    public Picture(int id, String fileName, String filepath, double fileSize, Date dateTime, int ISO, int shutterSpeed, double exposureTime, boolean isFlashUsed, double latitude, double longitude) throws IOException {
+    public Picture(int id, String fileName, String filepath, double fileSize, Date dateTime, int iso, int shutterSpeed, double exposureTime, boolean isFlashUsed, double latitude, double longitude) {
         this.id = id;
         this.filepath = filepath;
         this.dateTime = dateTime;
-        this.ISO = ISO;
+        this.iso = iso;
         this.shutterSpeed = shutterSpeed;
         this.exposureTime = exposureTime;
         this.isFlashUsed = isFlashUsed;
@@ -49,7 +47,7 @@ public class Picture {
         this.longitude = longitude;
         this.fileSize = fileSize;
         this.fileName = fileName;
-        this.tags = new ArrayList<String>();
+        this.tags = new ArrayList<>();
     }
 
     /**
@@ -70,7 +68,7 @@ public class Picture {
                 this.longitude = gps.getGeoLocation().getLongitude();
             }
             if(subIfd != null) {
-                this.ISO = subIfd.getInteger(ExifSubIFDDirectory.TAG_ISO_EQUIVALENT);
+                this.iso = subIfd.getInteger(ExifSubIFDDirectory.TAG_ISO_EQUIVALENT);
                 this.exposureTime = subIfd.getDoubleObject(ExifSubIFDDirectory.TAG_EXPOSURE_TIME);
                 this.dateTime = subIfd.getDate(ExifSubIFDDirectory.TAG_DATETIME_ORIGINAL);
                 this.shutterSpeed = subIfd.getInteger(ExifSubIFDDirectory.TAG_SHUTTER_SPEED);
@@ -88,7 +86,7 @@ public class Picture {
             AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
             AppLogger.closeHandler();
         }
-        this.tags = new ArrayList<String>();
+        this.tags = new ArrayList<>();
     }
 
     public int getId() {
@@ -123,8 +121,8 @@ public class Picture {
      * Gets ISO.
      * @return int
      */
-    public int getISO() {
-        return ISO;
+    public int getIso() {
+        return iso;
     }
 
     /**
@@ -205,5 +203,10 @@ public class Picture {
     @Override
     public String toString() {
         return fileName;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, filepath, dateTime, iso, shutterSpeed, exposureTime, isFlashUsed, latitude, longitude, fileSize, fileName, tags);
     }
 }

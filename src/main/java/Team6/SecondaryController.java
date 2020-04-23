@@ -7,20 +7,15 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 import java.util.logging.Level;
-import java.util.stream.Collectors;
 import entities.Album;
 import entities.Picture;
 import idk.AppLogger;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
@@ -60,9 +55,6 @@ public class SecondaryController extends BaseController implements Initializable
     List<VBox> pages = new ArrayList<>();
 
 
-    private static double ELEMENT_SIZE = 170;
-    private static final double GAP = ELEMENT_SIZE/10;
-
     public SecondaryController() throws IOException {
     }
 
@@ -92,7 +84,7 @@ public class SecondaryController extends BaseController implements Initializable
 
     public void fillList () {
         if (Context.getInstance().currentAlbum().getPictures() == null) {
-            ArrayList<Picture> pics = pictureService.getAllPictures(album.getId(), Context.getInstance().currentUser().getId());
+            ArrayList<Picture> pics = (ArrayList<Picture>) pictureService.getAllPictures(album.getId(), Context.getInstance().currentUser().getId());
             album.setPictures(pics);
         }
         else {
@@ -132,20 +124,19 @@ public class SecondaryController extends BaseController implements Initializable
         List<String> filter = new ArrayList<>();
         Collections.addAll(filter, "*.jpg", "'.png", "*.jfif", "*.PNG");
         dir.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Pictures", filter));
-        List<File> files = dir.showOpenMultipleDialog(vBox.getScene().getWindow());
-        return files;
+        return dir.showOpenMultipleDialog(vBox.getScene().getWindow());
     }
 
     public void addPicture() {
         List<File> files = choosePictures();
         try {
             files.forEach(e -> {
-                if (files.size() != 0) {
+                if (!files.isEmpty()) {
                     Picture p = null;
                     p = new Picture(e.getPath());
                     album.getPictures().add(p);
                     pictureService.createPicture(p, album.getId());
-                    ArrayList<Picture> pics = pictureService.getAllPictures(album.getId(), Context.getInstance().currentUser().getId());
+                    ArrayList<Picture> pics = (ArrayList<Picture>) pictureService.getAllPictures(album.getId(), Context.getInstance().currentUser().getId());
                     album.setPictures(pics);
                     setupPicturePane();
                 }
@@ -157,10 +148,9 @@ public class SecondaryController extends BaseController implements Initializable
     }
 
     void deleteButtonSetup() {
-        System.out.println(selectedPhotos.size());
-        if (selectedPhotos.size() <= 0) {
+        if (selectedPhotos.isEmpty()) {
             deleteButton.setStyle("-fx-background-color: transparent");
-        } else if (selectedPhotos.size() > 0) {
+        } else {
              deleteButton.setStyle("-fx-background-color: linear-gradient(to bottom,#3F3F3F,#2B2B2B)");
         }
     }
@@ -194,26 +184,21 @@ public class SecondaryController extends BaseController implements Initializable
     }
 
     @FXML
-    void createPdf() throws FileNotFoundException {
-        try{
-            PdfHandler pdfHandler = new PdfHandler();
-            if (selectedPhotos.size() <= 0) {
-                pdfHandler.createPdfAlbum((ArrayList<Picture>) album.getPictures());
-                showInformationDialog("PDF created", "You have created a pdf file with all your album pictures, which is located in download");
-            } else {
-                pdfHandler.createPdfAlbum(selectedPhotos);
-                showInformationDialog("PDF created", "You have created a pdf file with all your selected pictures, which is located in download");
-            }
-        } catch (FileNotFoundException ex){
-            AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
-            AppLogger.closeHandler();
+    void createPdf() {
+        PdfHandler pdfHandler = new PdfHandler();
+        if (selectedPhotos.isEmpty()) {
+            pdfHandler.createPdfAlbum(album.getPictures());
+            showInformationDialog("PDF created", "You have created a pdf file with all your album pictures, which is located in download");
+        } else {
+            pdfHandler.createPdfAlbum(selectedPhotos);
+            showInformationDialog("PDF created", "You have created a pdf file with all your selected pictures, which is located in download");
         }
     }
 
-    public void deletePhotos(ActionEvent actionEvent) {
-        if (selectedPhotos.size() > 0) {
+    public void deletePhotos() {
+        if (!selectedPhotos.isEmpty()) {
             selectedPhotos.forEach(e -> pictureService.deletePicture(e.getId(), album.getId()));
-            ArrayList<Picture> pics = pictureService.getAllPictures(album.getId(), Context.getInstance().currentUser().getId());
+            ArrayList<Picture> pics = (ArrayList<Picture>) pictureService.getAllPictures(album.getId(), Context.getInstance().currentUser().getId());
             album.setPictures(pics);
             setupPicturePane();
         }
@@ -223,7 +208,7 @@ public class SecondaryController extends BaseController implements Initializable
         selectAll(album.getPictures(), selectedPhotos, pages);
     }
 
-    public void createAlbum(ActionEvent actionEvent) {
+    public void createAlbum() {
         Optional<String> result = showInputDialog("Create new album", "Enter name :");
         if (result.isPresent()) {
             int userId = Context.getInstance().currentUser().getId();
@@ -232,27 +217,27 @@ public class SecondaryController extends BaseController implements Initializable
         }
     }
 
-    public void sortIso(ActionEvent actionEvent) {
+    public void sortIso() {
         album.sortIso();
         setupPicturePane();
     }
 
-    public void sortFlash(ActionEvent actionEvent) {
+    public void sortFlash() {
         album.sortFlashUsed();
         setupPicturePane();
     }
 
-    public void sortShutterSpeed(ActionEvent actionEvent) {
+    public void sortShutterSpeed() {
         album.sortShutterSpeed();
         setupPicturePane();
     }
 
-    public void sortFileSize(ActionEvent actionEvent) {
+    public void sortFileSize() {
         album.sortFileSize();
         setupPicturePane();
     }
 
-    public void sortExposureTime(ActionEvent actionEvent) {
+    public void sortExposureTime() {
         album.sortExposureTime();
         setupPicturePane();
     }
@@ -262,7 +247,7 @@ public class SecondaryController extends BaseController implements Initializable
         setupPicturePane();
     }
 
-    public void reverseOrder(ActionEvent actionEvent) {
+    public void reverseOrder() {
         album.reverseOrder();
         setupPicturePane();
     }

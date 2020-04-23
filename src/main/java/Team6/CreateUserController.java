@@ -1,8 +1,6 @@
 package Team6;
 
-import entities.User;
 import idk.AppLogger;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -27,7 +25,7 @@ public class CreateUserController extends BaseController {
     public CreateUserController() throws IOException {
     }
 
-    public void createUser(ActionEvent actionEvent) throws IOException {
+    public void createUser() {
         try{
             if(checkUsername() && checkPassword() && passwordEqual()) {
                 userService.createUser(username.getText(), password.getText());

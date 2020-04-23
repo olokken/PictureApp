@@ -1,11 +1,8 @@
 package Team6;
 
 import entities.Album;
-import entities.Picture;
 import entities.User;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class Context {
     private final static Context instance = new Context();

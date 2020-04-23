@@ -5,12 +5,10 @@ import entities.Picture;
 import idk.AppLogger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -130,14 +128,14 @@ public class TertiaryController extends BaseController implements Initializable 
             fileName.setText("File name : " +picture.getFileName());
         }
         fileSize.setText("File size : " + Double.toString(picture.getFileSize()));
-        iso.setText("ISO : " + Integer.toString(picture.getISO()));
+        iso.setText("ISO : " + Integer.toString(picture.getIso()));
         shutterspeed.setText("Shutterspeed : " + Integer.toString(picture.getShutterSpeed()));
         exposureTime.setText("Exposure time : " + Double.toString(picture.getExposureTime()));
         latitude.setText("Latitude : " + Double.toString(picture.getLatitude()));
         longitude.setText("Longitude : " + Double.toString(picture.getLongitude()));
     }
 
-    public void addTag(ActionEvent actionEvent) {
+    public void addTag() {
         Optional<String> result = showInputDialog("Add new tag", "Enter tag :");
         if (result.isPresent()) {
             pictureService.addTag(album.getPictures().get(index), result.get());
@@ -147,7 +145,7 @@ public class TertiaryController extends BaseController implements Initializable 
     }
 
 
-    public void deleteTag(ActionEvent actionEvent) {
+    public void deleteTag() {
         if (listView.getSelectionModel().getSelectedIndex() > -1) {
             Picture picture = album.getPictures().get(index);
             String tag = listView.getSelectionModel().getSelectedItem();
@@ -155,8 +153,5 @@ public class TertiaryController extends BaseController implements Initializable 
             picture.getTags().remove(tag);
             listSetup();
         }
-    }
-    public void mordi(){
-
     }
 }

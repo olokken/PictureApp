@@ -1,7 +1,6 @@
 package Team6;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -9,31 +8,17 @@ import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
-import java.util.stream.Collectors;
 import entities.Album;
-import entities.Picture;
 import entities.User;
 import idk.AppLogger;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
-import javafx.stage.Stage;
 import services.AlbumService;
 import services.PictureService;
-import services.UserService;
 
 
 public class PrimaryController extends BaseController implements Initializable  {
@@ -53,6 +38,8 @@ public class PrimaryController extends BaseController implements Initializable  
     AlbumService albumService = new AlbumService();
     PictureService pictureService = new PictureService();
     User user = Context.getInstance().currentUser();
+    String transparent = "-fx-background-color: transparent";
+    String buttonColor = "-fx-background-color: linear-gradient(to bottom,#3F3F3F,#2B2B2B)";
 
     TilePane tilePane = new TilePane();
     List<VBox> pages = new ArrayList<>();
@@ -70,12 +57,12 @@ public class PrimaryController extends BaseController implements Initializable  
     }
 
     void buttonSetup() {
-        if (selectedAlbums.size() <= 0) {
-            openButton.setStyle("-fx-background-color: transparent");
-            deleteButton.setStyle("-fx-background-color: transparent");
+        if (selectedAlbums.isEmpty()) {
+            openButton.setStyle(transparent);
+            deleteButton.setStyle(transparent);
         } else {
-            openButton.setStyle("-fx-background-color: linear-gradient(to bottom,#3F3F3F,#2B2B2B)"); //linda problemet e nok her
-            deleteButton.setStyle("-fx-background-color: linear-gradient(to bottom,#3F3F3F,#2B2B2B)"); // teksten forsvinn osv, også veit æ ikke ka fargen hete
+            openButton.setStyle(buttonColor); //linda problemet e nok her
+            deleteButton.setStyle(buttonColor); // teksten forsvinn osv, også veit æ ikke ka fargen hete
         }
     }
 
@@ -118,7 +105,7 @@ public class PrimaryController extends BaseController implements Initializable  
     }
 
     void albumSetup() {
-        yourAlbums = albumService.getAllAlbums(user.getId());
+        yourAlbums = (ArrayList<Album>) albumService.getAllAlbums(user.getId());
         Album album = new Album("All Photos");
         album.setId(-1);
         album.setUserId(Context.getInstance().currentUser().getId());
@@ -133,7 +120,7 @@ public class PrimaryController extends BaseController implements Initializable  
     }
 
 
-    public void createAlbum(ActionEvent actionEvent) {
+    public void createAlbum() {
         TextInputDialog t = new TextInputDialog();
         t.setTitle("Album");
         t.setHeaderText("Create new album");
@@ -146,8 +133,8 @@ public class PrimaryController extends BaseController implements Initializable  
         }
     }
 
-    public void deleteAlbum(ActionEvent actionEvent) {
-        if (selectedAlbums.size() > 0) {
+    public void deleteAlbum() {
+        if (!selectedAlbums.isEmpty()) {
             selectedAlbums.forEach(e -> {
                 e.setPictures(pictureService.getAllPictures(e.getId(), Context.getInstance().currentUser().getId()));
                 albumService.deleteAlbum(e);
@@ -183,7 +170,7 @@ public class PrimaryController extends BaseController implements Initializable  
         });
     }
 
-    public void logOut(ActionEvent actionEvent) throws IOException {
+    public void logOut() throws IOException {
         switchScene("primary", "login");
     }
 }

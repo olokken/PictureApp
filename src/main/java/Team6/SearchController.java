@@ -2,22 +2,15 @@ package Team6;
 
 import entities.Picture;
 import idk.AppLogger;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TextInputDialog;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import services.AlbumService;
 import services.PictureService;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -25,7 +18,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
-import java.util.stream.Collectors;
 
 public class SearchController extends BaseController implements Initializable {
     @FXML
@@ -35,7 +27,7 @@ public class SearchController extends BaseController implements Initializable {
 
     PictureService pictureService = new PictureService();
     AlbumService albumService = new AlbumService();
-    ArrayList<Picture> pictures = pictureService.getAllPictures(-1, Context.getInstance().currentUser().getId());
+    ArrayList<Picture> pictures = (ArrayList<Picture>) pictureService.getAllPictures(-1, Context.getInstance().currentUser().getId());
     ArrayList<Picture> searchedPictures = new ArrayList<>();
     ArrayList<Picture> selectedPhotos = new ArrayList<>();
 
@@ -75,6 +67,7 @@ public class SearchController extends BaseController implements Initializable {
                     addPictures(textField.getText());
                     Context.getInstance().setCurrentSearchingword(textField.getText());
                     setupPicturePane();
+                default:
             }
         });
     }
@@ -100,7 +93,7 @@ public class SearchController extends BaseController implements Initializable {
         createElements(tilePane, pages);
     }
 
-    public void createAlbum(ActionEvent actionEvent) {
+    public void createAlbum() {
         Optional<String> result = showInputDialog("Create new album", "Enter name :");
         if (result.isPresent()) {
             int userId = Context.getInstance().currentUser().getId();
@@ -113,7 +106,7 @@ public class SearchController extends BaseController implements Initializable {
         selectAll(searchedPictures, selectedPhotos, pages);
     }
 
-    public void switchToPrimary(ActionEvent actionEvent) {
+    public void switchToPrimary() {
         try{
             Context.getInstance().currentAlbum().setPictures(null);
             switchScene("primary", "search");

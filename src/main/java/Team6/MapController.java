@@ -4,8 +4,6 @@ import com.lynden.gmapsfx.GoogleMapView;
 import com.lynden.gmapsfx.MapComponentInitializedListener;
 import com.lynden.gmapsfx.javascript.event.UIEventType;
 import com.lynden.gmapsfx.javascript.object.*;
-import com.lynden.gmapsfx.util.MarkerImageFactory;
-import entities.Album;
 import entities.Picture;
 import idk.AppLogger;
 import javafx.fxml.FXML;
@@ -18,7 +16,6 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.*;
 import java.util.logging.Level;
-import java.util.stream.Collectors;
 
 public class MapController extends BaseController implements MapComponentInitializedListener, Initializable {
     @FXML
@@ -56,7 +53,7 @@ public class MapController extends BaseController implements MapComponentInitial
                          .visible(true);
                  Marker marker = new Marker(markerOptions);
                  map.addMarker(marker);
-                 map.addUIEventHandler(marker, UIEventType.click, (JSObject) -> {
+                 map.addUIEventHandler(marker, UIEventType.click, JSObject -> {
                      try {
                          int index = pictures.indexOf(x);
                          Context.getInstance().setIndex(index);

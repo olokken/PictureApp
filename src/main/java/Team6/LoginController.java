@@ -2,15 +2,12 @@ package Team6;
 
 import entities.User;
 import idk.AppLogger;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import services.UserService;
 
 import java.io.FileInputStream;
@@ -49,7 +46,7 @@ public class LoginController extends BaseController implements Initializable {
         }
     }
 
-    public void createNewUser(ActionEvent actionEvent) throws IOException {
+    public void createNewUser() throws IOException {
         try{
             switchScene("login", "createUser");
         } catch (IOException ex){
@@ -68,7 +65,7 @@ public class LoginController extends BaseController implements Initializable {
         }
     }
 
-    public void signIn(ActionEvent actionEvent) throws IOException {
+    public void signIn() {
         try{
             if(checkUsername() && checkPassword()){
                 User user = userService.login(username.getText(), password.getText());

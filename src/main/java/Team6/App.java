@@ -11,7 +11,6 @@ import javafx.stage.Stage;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.Objects;
 import java.util.logging.Level;
 
@@ -27,7 +26,7 @@ public class App extends Application {
         try {
             scene = new Scene(Objects.requireNonNull(loadFXML("login")));
             stage.setScene(scene);
-            Image image = new Image(new FileInputStream(".\\images\\pickles.png"));
+            Image image = new Image(new FileInputStream("./images/pickles.png"));
             stage.getIcons().add(image);
             stage.show();
             scene.setFill(Color.TRANSPARENT);

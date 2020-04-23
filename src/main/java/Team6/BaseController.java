@@ -17,8 +17,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.lang.reflect.Method;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.logging.Level;
@@ -74,7 +72,7 @@ public class BaseController {
         }
     }
 
-    public List<VBox> createAlbumPages (ArrayList<Album> yourAlbums, String iconPath) {
+    public List<VBox> createAlbumPages (List<Album> yourAlbums, String iconPath) {
         return yourAlbums.stream().map(x -> {
             VBox vBox = null;
             Text text = new Text(x.getName());
@@ -91,7 +89,7 @@ public class BaseController {
         }).collect(Collectors.toList());
     }
 
-    public List<VBox> createPicturePages (ArrayList<Picture> pictures) {
+    public List<VBox> createPicturePages (List<Picture> pictures) {
         return pictures.stream().map(x -> {
             VBox vBox = null;
             try {
@@ -116,7 +114,7 @@ public class BaseController {
         tilePane.getChildren().addAll(pages);
     }
 
-    public void setOnMouseClicked(ArrayList<Picture> pictures, ArrayList<Picture> selectedPictures, List<VBox> pages, String currentScene) {
+    public void setOnMouseClicked(List<Picture> pictures, List<Picture> selectedPictures, List<VBox> pages, String currentScene) {
         pictures.forEach(a -> {
             pages.forEach(v -> {
                 if (pictures.indexOf(a) == pages.indexOf(v)) {
@@ -138,7 +136,6 @@ public class BaseController {
                                 AppLogger.closeHandler();
                             }
                         }
-
                     });
                 }
             });
@@ -157,8 +154,8 @@ public class BaseController {
     public Optional<String> showInputDialog (String header, String content) {
         TextInputDialog t = new TextInputDialog();
         t.setTitle("PicLd");
-        t.setHeaderText("Create new album");
-        t.setContentText("Enter name: ");
+        t.setHeaderText(header);
+        t.setContentText(content);
         return t.showAndWait();
     }
 
