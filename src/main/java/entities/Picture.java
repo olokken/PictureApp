@@ -53,7 +53,7 @@ public class Picture {
     }
 
     /**
-     * cosntructor
+     * constructor
      * @param filepath the filepath to the image whose metadata is to be stored
      */
     public Picture(String filepath) {
