@@ -61,8 +61,6 @@ public class Picture {
         File file =  new File(filepath);
         this.fileName = file.getName();
         this.fileSize = file.length()/1024;
-
-         //Try catch block if the image does not have all the interesting metadata.
         try {
             Metadata metadata = ImageMetadataReader.readMetadata(file);
             ExifSubIFDDirectory subIfd = metadata.getFirstDirectoryOfType(ExifSubIFDDirectory.class);

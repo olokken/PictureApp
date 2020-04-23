@@ -4,6 +4,8 @@ import entities.Album;
 import entities.Picture;
 import idk.AppLogger;
 import javafx.geometry.Insets;
+import javafx.scene.control.Alert;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.TilePane;
@@ -17,6 +19,7 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.stream.Collectors;
 
@@ -35,6 +38,7 @@ public class BaseController {
     public ImageView createImageView (String filePath, int elementSize) throws FileNotFoundException {
         try{
             Image image = null;
+            FileInputStream fileInputStream = new FileInputStream(filePath);
             image = new Image(new FileInputStream(filePath)); //filePath
             ImageView imageView = new ImageView(image);
             imageView.setFitHeight(elementSize);
@@ -141,6 +145,22 @@ public class BaseController {
             }
         });
         pages.forEach(e -> e.setStyle("-fx-background-color:linear-gradient(black,#DDDDDD)"));
+    }
+
+    public Optional<String> showInputDialog (String header, String content) {
+        TextInputDialog t = new TextInputDialog();
+        t.setTitle("PicLd");
+        t.setHeaderText("Create new album");
+        t.setContentText("Enter name: ");
+        return t.showAndWait();
+    }
+
+    public void showInformationDialog(String header, String content) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information");
+        alert.setHeaderText(header);
+        alert.setContentText(content);
+        alert.showAndWait();
     }
 
 }

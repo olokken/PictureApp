@@ -23,7 +23,7 @@ import java.net.URL;
 import java.util.*;
 import java.util.logging.Level;
 
-public class TertiaryController implements Initializable {
+public class TertiaryController extends BaseController implements Initializable {
     @FXML
     HBox hBox;
     @FXML
@@ -139,11 +139,7 @@ public class TertiaryController implements Initializable {
     }
 
     public void addTag(ActionEvent actionEvent) {
-        TextInputDialog t = new TextInputDialog();
-        t.setTitle("Tag");
-        t.setHeaderText("Add new tag");
-        t.setContentText("Enter tag: ");
-        Optional<String> result = t.showAndWait();
+        Optional<String> result = showInputDialog("Add new tag", "Enter tag :");
         if (result.isPresent()) {
             pictureService.addTag(album.getPictures().get(index), result.get());
             album.getPictures().get(index).getTags().add(result.get());

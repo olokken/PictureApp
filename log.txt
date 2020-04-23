@@ -193,3 +193,7 @@ Apr 22, 2020 9:24:21 PM services.UserService createUser
 FINE: Duplicate entry 'Klara' for key 'Username_UNIQUE'
 Apr 22, 2020 10:03:24 PM services.UserService createUser
 FINE: Duplicate entry 'Berit' for key 'Username_UNIQUE'
+apr. 23, 2020 12:01:15 P.M. Team6.BaseController createImageView
+FINE: C:\Users\olelo\OneDrive\Bilder\AppPics\parken.jpg (Systemet finner ikke angitt fil)
+apr. 23, 2020 12:01:53 P.M. Team6.BaseController createImageView
+FINE: C:\Users\olelo\OneDrive\Bilder\AppPics\parken.jpg (Systemet finner ikke angitt fil)

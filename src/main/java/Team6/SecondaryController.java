@@ -58,7 +58,7 @@ public class SecondaryController extends BaseController implements Initializable
     ArrayList<Picture> selectedPhotos = new ArrayList<>();
     TilePane tilePane = new TilePane();
     List<VBox> pages = new ArrayList<>();
-    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+
 
     private static double ELEMENT_SIZE = 170;
     private static final double GAP = ELEMENT_SIZE/10;
@@ -198,18 +198,10 @@ public class SecondaryController extends BaseController implements Initializable
             PdfHandler pdfHandler = new PdfHandler();
             if (selectedPhotos.size() <= 0) {
                 pdfHandler.createPdfAlbum((ArrayList<Picture>) album.getPictures());
-                alert.setTitle("Information");
-                alert.setHeaderText("No pdf-file made.");
-                alert.setContentText("You have to choose pictures"
-                + "\nbefore you can make a pdf-file. ");
-                alert.showAndWait();
+                showInformationDialog("PDF created", "You have created a pdf file with all your album pictures, which is located in download");
             } else {
                 pdfHandler.createPdfAlbum(selectedPhotos);
-                alert.setTitle("Information");
-                alert.setHeaderText("Pdf-file successfully made.");
-                alert.setContentText("Your pdf-file will be located"
-                        + "\nin your home directory under downloads.");
-                alert.showAndWait();
+                showInformationDialog("PDF created", "You have created a pdf file with all your selected pictures, which is located in download");
             }
         } catch (FileNotFoundException ex){
             AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
@@ -231,11 +223,7 @@ public class SecondaryController extends BaseController implements Initializable
     }
 
     public void createAlbum(ActionEvent actionEvent) {
-        TextInputDialog t = new TextInputDialog();
-        t.setTitle("Album");
-        t.setHeaderText("Create new album");
-        t.setContentText("Enter name: ");
-        Optional<String> result = t.showAndWait();
+        Optional<String> result = showInputDialog("Create new album", "Enter name :");
         if (result.isPresent()) {
             int userId = Context.getInstance().currentUser().getId();
             albumService.createAlbum(result.get(), userId);
