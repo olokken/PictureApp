@@ -1,12 +1,12 @@
 /**
- * Class to represent a photoalbum
+ * Class to represent a photoalbum.
  *
  * @author team6
  */
+
 package entities;
 
 import idk.AppLogger;
-
 import java.util.*;
 import java.util.logging.Level;
 
