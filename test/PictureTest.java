@@ -1,5 +1,5 @@
 import entities.Picture;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -10,11 +10,11 @@ import static org.junit.jupiter.api.Assertions.*;
  * Testclass testing Picture.
  */
 public class PictureTest {
-    private Picture picture;
+    private static Picture picture;
 
-    @BeforeEach
-    public void beforeEach() throws IOException {
-        this.picture = new Picture("./test/garn.jpg");
+    @BeforeAll
+    static void beforeAll() throws IOException {
+        picture = new Picture("./test/garn.jpg");
     }
 
     @Test
