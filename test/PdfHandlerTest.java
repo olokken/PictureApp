@@ -1,4 +1,3 @@
-import Team6.Context;
 import entities.Album;
 import entities.Picture;
 import entities.User;
@@ -12,7 +11,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class PdfHandlerTest {
