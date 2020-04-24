@@ -80,6 +80,7 @@ public class UserService {
                 result = pst.executeQuery();
                 if (result.next()) {
                     User user = new User(result.getInt(1), result.getString(2), result.getString(3));
+                    System.out.println(user.getUsername());
                     BCrypt.Result res = BCrypt.verifyer().verify(password.toCharArray(), user.getPassword());
                     return res.verified ? user : null;
                 }

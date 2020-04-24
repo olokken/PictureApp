@@ -74,7 +74,7 @@ public class PdfHandler {
                     document.add(new AreaBreak(new PageSize(PageSize.A4)));
                     document.add(pdfImage.setAutoScale(true));
                 }
-            } catch (MalformedURLException ex) {
+            } catch (Exception ex) {
                 AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
                 AppLogger.closeHandler();
             }

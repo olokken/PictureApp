@@ -1,6 +1,7 @@
 package Team6;
 
 import Team6.services.AppLogger;
+import Team6.services.Database;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -30,6 +31,7 @@ public class App extends Application {
      * @param args Command line arguments provided during startup.
      */
     public static void main(String[] args) {
+        Database db = new Database();
         launch();
     }
 

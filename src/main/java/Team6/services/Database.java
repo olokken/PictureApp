@@ -18,16 +18,19 @@ import java.util.logging.Level;
  * @version 2020.04.24
  */
 public class Database {
+    private static final String DRIVER = "com.mysql.jdbc.Driver";
     private static final String CONNECTION_STRING = "jdbc:mysql://mysql-ait.stud.idi.ntnu.no/olelok?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-    private static final String USERNAME = getProperties().get("username").toString();
-    private static final String PASSWORD = getProperties().get("password").toString();
+    private static final String USERNAME = "olelok"; //getProperties().get("username").toString();
+    private static final String PASSWORD = "xRoHhYJn"; //getProperties().get("password").toString();
 
 
 
     /**
      * Constructor that creates an instance of database, initialising the instance.
      */
-    private Database() { }
+    public Database() {
+
+    }
 
     /**
      * Returns a connection to the database.
