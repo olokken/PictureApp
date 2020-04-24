@@ -23,8 +23,20 @@ import java.util.Optional;
 import java.util.logging.Level;
 import java.util.stream.Collectors;
 
+/**
+ * Controller that contains methods that's heavily used.
+ *
+ * @author Team 6
+ * @version 2020.04.24
+ */
 public class Base {
 
+    /**
+     * Switches from one given scene to another the next given scene.
+     *
+     * @param currentScene The current scene
+     * @param nextScene The next scene.
+     */
     public void switchScene(String currentScene, String nextScene) throws IOException {
         try {
             Context.getInstance().setLastScene(currentScene);
@@ -35,6 +47,15 @@ public class Base {
         }
     }
 
+    /**
+     * Creates a image view for picture with the given filepath.
+     * If no image can be found, a
+     * {@link FileNotFoundException} will be thrown.
+     *
+     * @param filePath The filepath.
+     * @param elementSize The element size.
+     * @return Image view with image.
+     */
     public ImageView createImageView (String filePath, int elementSize) throws FileNotFoundException {
         try{
             Image image = null;
@@ -59,7 +80,15 @@ public class Base {
         }
     }
 
-    public VBox createVBoxOptions(int padding, String imagePath, int elementSize) throws FileNotFoundException {
+    /**
+     * Creates a VBox with padding, in witch the image view will lay in.
+     *
+     * @param padding The padding of the VBox.
+     * @param imagePath The file path.
+     * @param elementSize The element size.
+     * @return Vbox with image view.
+     */
+    public VBox createVBox(int padding, String imagePath, int elementSize) throws FileNotFoundException {
         try{
             VBox vBox = new VBox();
             vBox.setStyle("-fx-background-color: transparent");
@@ -73,6 +102,13 @@ public class Base {
         }
     }
 
+    /**
+     * Returns a list with all the albums icons placed in VBoxes.
+     *
+     * @param yourAlbums The albums.
+     * @param iconPath The album icon path.
+     * @return A list with all the Vboxes.
+     */
     public List<VBox> createAlbumPages (List<Album> yourAlbums, String iconPath) {
         return yourAlbums.stream().map(x -> {
             VBox vBox = null;
@@ -80,7 +116,7 @@ public class Base {
             text.setTextAlignment(TextAlignment.CENTER);
             try {
                 text.setWrappingWidth(createImageView(iconPath, 80).getFitWidth());
-                vBox = createVBoxOptions(10 , iconPath, 80);
+                vBox = createVBox(10 , iconPath, 80);
             } catch (FileNotFoundException ex) {
                 AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
                 AppLogger.closeHandler();
@@ -90,11 +126,19 @@ public class Base {
         }).collect(Collectors.toList());
     }
 
+    /**
+     * Returns a list with all the pictures placed in VBoxes.
+     *If no filepath can be found, a
+     * {@link FileNotFoundException} will be thrown.
+     *
+     * @param pictures A list with pictures.
+     * @return A list with all the Vboxes.
+     */
     public List<VBox> createPicturePages (List<Picture> pictures) {
         return pictures.stream().map(x -> {
             VBox vBox = null;
             try {
-                vBox = createVBoxOptions(5 , x.getFilepath(), 170);
+                vBox = createVBox(5 , x.getFilepath(), 170);
             } catch (FileNotFoundException ex) {
                 AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
                 AppLogger.closeHandler();
@@ -103,6 +147,10 @@ public class Base {
         }).collect(Collectors.toList());
     }
 
+    /**
+     * Creates a tile pane witch you can place elements within.
+     * @return Tile pane.
+     */
     public TilePane elementPane() {
         TilePane tilePane = new TilePane();
         tilePane.setHgap(10);
@@ -110,11 +158,25 @@ public class Base {
         return tilePane;
     }
 
+    /**
+     * Clears a tile pane and add all the Vboxes to it, though creating
+     * elements.
+     * @param tilePane The tile pane.
+     * @param pages The Vbox pages.
+     */
     public void createElements(TilePane tilePane, List<VBox> pages) {
         tilePane.getChildren().clear();
         tilePane.getChildren().addAll(pages);
     }
 
+    /**
+     * Adds an event to a picture so you can change scene by clicking it.
+     *
+     * @param pictures List of pictures.
+     * @param selectedPictures List of selected picture.
+     * @param pages List of Vboxes.
+     * @param currentScene The current scene.
+     */
     public void setOnMouseClicked(List<Picture> pictures, List<Picture> selectedPictures, List<VBox> pages, String currentScene) {
         pictures.forEach(a -> {
             pages.forEach(v -> {
@@ -143,6 +205,14 @@ public class Base {
         });
     }
 
+    /**
+     * Select all pictures from the list given, and making them the
+     * selected pictures.
+     *
+     * @param pictures List of all the pictures.
+     * @param selectedPictuers List of all the selected pictures.
+     * @param pages List of all the VBoxes.
+     */
     public void selectAll(List<Picture> pictures, List<Picture> selectedPictuers, List<VBox> pages) {
         pictures.forEach(x -> {
             if (!selectedPictuers.contains(x)) {
@@ -152,6 +222,13 @@ public class Base {
         pages.forEach(e -> e.setStyle("-fx-background-color: #AAAAAA"));
     }
 
+    /**
+     *Creates a input dialog, that shows and wait.
+     *
+     * @param header The header.
+     * @param content The content.
+     * @return Input dialog.
+     */
     public Optional<String> showInputDialog (String header, String content) {
         TextInputDialog t = new TextInputDialog();
         t.setTitle("PicLd");
@@ -160,6 +237,12 @@ public class Base {
         return t.showAndWait();
     }
 
+    /**
+     * Creates information dialog, that shows and wait.
+     *
+     * @param header The header.
+     * @param content The content.
+     */
     public void showInformationDialog(String header, String content) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Information");
@@ -167,5 +250,4 @@ public class Base {
         alert.setContentText(content);
         alert.showAndWait();
     }
-
 }

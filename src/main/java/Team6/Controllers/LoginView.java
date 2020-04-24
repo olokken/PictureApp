@@ -18,7 +18,12 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 
-
+/**
+ * Controller for LoginView.
+ *
+ * @author Team 6
+ * @version 2020.04.24
+ */
 public class LoginView extends Base implements Initializable {
 
     @FXML
@@ -33,10 +38,18 @@ public class LoginView extends Base implements Initializable {
 
 
 
-
+    /**
+     * Constructor that creates an instance of LoginView, initialising the instance.
+     */
     public LoginView() throws IOException {
     }
 
+    /**
+     * Initialize the login view.
+     *
+     * @param url The url.
+     * @param resourceBundle The resource bundle.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
@@ -47,6 +60,9 @@ public class LoginView extends Base implements Initializable {
         }
     }
 
+    /**
+     * Switches to the create user view.
+     */
     public void createNewUser() throws IOException {
         try{
             switchScene("LoginView", "CreateUserView");
@@ -56,6 +72,11 @@ public class LoginView extends Base implements Initializable {
         }
     }
 
+    /**
+     * Sets the logo image for the login view.
+     * If image can't be found, a
+     * {@link FileNotFoundException} will be thrown.
+     */
     void setImage() throws FileNotFoundException {
         try{
             Image image = new Image(new FileInputStream("./images/pickles.png"));
@@ -66,6 +87,9 @@ public class LoginView extends Base implements Initializable {
         }
     }
 
+    /**
+     * Sign in the user and changes scene.
+     */
     public void signIn() {
         try{
             if(checkUsername() && checkPassword()){
@@ -85,6 +109,10 @@ public class LoginView extends Base implements Initializable {
         }
     }
 
+    /**
+     * Checks if the username is empty.
+     * @return True if username isn't empty.
+     */
     public boolean checkUsername(){
         if(username.getText().trim().equals("")){
             label.setText("Username can't be empty!");
@@ -94,6 +122,10 @@ public class LoginView extends Base implements Initializable {
         }
     }
 
+    /**
+     * Checks if the password field is empty.
+     * @return True if password field isn't empty.
+     */
     public boolean checkPassword(){
         if(password.getText().trim().equals("")){
             label.setText("Passwordfield can't be empty!");

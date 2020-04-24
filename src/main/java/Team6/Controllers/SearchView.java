@@ -19,6 +19,12 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 
+/**
+ * Controller for SearchView.
+ *
+ * @author Team 6
+ * @version 2020.04.24
+ */
 public class SearchView extends Base implements Initializable {
     @FXML
     TextField textField;
@@ -34,9 +40,18 @@ public class SearchView extends Base implements Initializable {
     TilePane tilePane = new TilePane();
     List<VBox> pages = new ArrayList<>();
 
+    /**
+     * Constructor that creates an instance of SearchView, initialising the instance.
+     */
     public SearchView() throws IOException {
     }
 
+    /**
+     * Initialize the SearchView.
+     *
+     * @param url The url.
+     * @param resourceBundle The resource bundle.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         bind();
@@ -44,6 +59,10 @@ public class SearchView extends Base implements Initializable {
         search();
     }
 
+    /**
+     * So the searched pictures don't disappear when you switch to
+     * PictureView and back.
+     */
     void rememberLastSearch() {
         if (Context.getInstance().currentSearchingword() != null) {
             String lastSearched = Context.getInstance().currentSearchingword();
@@ -53,11 +72,17 @@ public class SearchView extends Base implements Initializable {
         }
     }
 
+    /**
+     * Binds scrollPane to the tilePane, so you can scroll the tilePane.
+     */
     void bind() {
         scrollPane.setFitToWidth(true);
         scrollPane.setContent(tilePane);
     }
 
+    /**
+     * Search that show the pictures with the searched tag.
+     */
     void search () {
         textField.setOnKeyPressed(e -> {
             switch (e.getCode()) {
@@ -72,19 +97,25 @@ public class SearchView extends Base implements Initializable {
         });
     }
 
-
-    void addPictures(String searchingWord) {
+    /**
+     * Adds picture to a ArrayList contaning the given search word.
+     * @param searchWord The search word.
+     */
+    void addPictures(String searchWord) {
         pictures.forEach(x -> {
-            Optional<String> tag = x.getTags().stream().filter(e -> e.equalsIgnoreCase(searchingWord)).findAny();
+            Optional<String> tag = x.getTags().stream().filter(e -> e.equalsIgnoreCase(searchWord)).findAny();
             String[] fileName = x.getFileName().split("\\.");
-            if (tag.isPresent() || searchingWord.equalsIgnoreCase(fileName[0])) {
-                if (!searchedPictures.contains(x) || searchingWord.equalsIgnoreCase(fileName[0])){
+            if (tag.isPresent() || searchWord.equalsIgnoreCase(fileName[0])) {
+                if (!searchedPictures.contains(x) || searchWord.equalsIgnoreCase(fileName[0])){
                     searchedPictures.add(x);
                 }
             }
         });
     }
 
+    /**
+     * Sets up picturePane.
+     */
     public void setupPicturePane() {
         tilePane = elementPane();
         bind();
@@ -93,6 +124,9 @@ public class SearchView extends Base implements Initializable {
         createElements(tilePane, pages);
     }
 
+    /**
+     * Initialising create album button to create an album.
+     */
     public void createAlbum() {
         Optional<String> result = showInputDialog("Create new album", "Enter name :");
         if (result.isPresent()) {
@@ -107,10 +141,17 @@ public class SearchView extends Base implements Initializable {
         }
     }
 
+    /**
+     * Selects all searched pictures and adding them to
+     * the selectedPhotos ArrayList.
+     */
     public void selectAll() {
         selectAll(searchedPictures, selectedPhotos, pages);
     }
 
+    /**
+     * Switches from SearchView to MainView.
+     */
     public void switchToMainView() {
         try{
             Context.getInstance().currentAlbum().setPictures(null);

@@ -16,6 +16,12 @@ import java.net.URL;
 import java.util.*;
 import java.util.logging.Level;
 
+/**
+ * Controller map view.
+ *
+ * @author Team 6
+ * @version 2020.04.24
+ */
 public class MapView extends Base implements MapComponentInitializedListener, Initializable {
     @FXML
     GoogleMapView mapView;
@@ -24,6 +30,9 @@ public class MapView extends Base implements MapComponentInitializedListener, In
 
     List<Picture> pictures = Context.getInstance().currentAlbum().getPictures();
 
+    /**
+     * Initialize the map.
+     */
     @Override
     public void mapInitialized() {
         //Set the initial properties of the map.
@@ -43,7 +52,10 @@ public class MapView extends Base implements MapComponentInitializedListener, In
         createMarkers();
     }
 
-
+    /**
+     * Creates markers for the pictures in the albums.
+     * If the latitude and longitude is 0, no marker will be set.
+     */
     void createMarkers () {
          pictures.stream().forEach(x -> {
              if(x.getLatitude() != 0 && x.getLongitude() != 0){
@@ -66,12 +78,18 @@ public class MapView extends Base implements MapComponentInitializedListener, In
         });
     }
 
+    /**
+     * Initialize the map view and sets google API key.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         mapView.setKey(getProperties().get("GOOGLE_API_KEY").toString());
         mapView.addMapInializedListener(this);
     }
 
+    /**
+     * Switches from map to Album view.
+     */
     @FXML
     private void switchToAlbumView() {
         try{
@@ -81,6 +99,14 @@ public class MapView extends Base implements MapComponentInitializedListener, In
             AppLogger.closeHandler();
         }
     }
+
+    /**
+     * Returns a hashmap with the google API key.
+     * If the argument of the file input stream is incorrect or
+     * properties can't load, a {@link IOException} will be thrown.
+     *
+     * @return Hashmap with the username and password.
+     */
     private java.util.Map getProperties() {
         java.util.Map result = new HashMap();
         try (InputStream input = new FileInputStream("config.properties")) {

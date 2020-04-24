@@ -15,12 +15,30 @@ import java.util.Objects;
 import java.util.logging.Level;
 
 /**
- * JavaFX App
+ * JavaFX App.
+ *
+ * @author Team 6
+ * @version 2020.04.24
  */
 public class App extends Application {
 
     private static Scene scene;
 
+    /**
+     * The main starting point of the application.
+     *
+     * @param args Command line arguments provided during startup.
+     */
+    public static void main(String[] args) {
+        launch();
+    }
+
+    /**
+     * Starts the application.
+     * If app won't start, a {@link IOException} will be thrown.
+     *
+     * @param stage The stage.
+     */
     @Override
     public void start(Stage stage) throws IOException {
         try {
@@ -36,6 +54,11 @@ public class App extends Application {
         }
     }
 
+    /**
+     * Sets the scene with the given fxml string.
+     *
+     * @param fxml The fxml string.
+     */
     public static void setRoot(String fxml) throws IOException {
         try {
             scene.setRoot(loadFXML(fxml));
@@ -45,6 +68,13 @@ public class App extends Application {
         }
     }
 
+    /**
+     * Loads fxml files from the given string.
+     * If fxml can't load, a {@link IOException} will be thrown.
+     *
+     * @param fxml The fxml string.
+     * @return Loaded fxml file.
+     */
     private static Parent loadFXML(String fxml) throws IOException {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
@@ -54,9 +84,5 @@ public class App extends Application {
             AppLogger.closeHandler();
         }
         return null;
-    }
-
-    public static void main(String[] args) {
-        launch();
     }
 }

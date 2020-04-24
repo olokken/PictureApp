@@ -17,12 +17,26 @@ import java.net.MalformedURLException;
 import java.util.List;
 import java.util.logging.Level;
 
-
+/**
+ * Holds information about how to create a pdf-file.
+ *
+ * @author Team 6
+ * @version 2020.04.24
+ */
 public class PdfHandler {
 
-    public PdfHandler(){
+    /**
+     * Constructor that creates an instance of the PdfHandler, initialising the instance.
+     */
+    public PdfHandler(){}
 
-    }
+    /**
+     * Creates a PdfDocument.
+     * If a PdfWriter object can't be made, a
+     * {@link FileNotFoundException} will be thrown.
+     *
+     * @return The PdfDocument.
+     */
     public PdfDocument createPfdDocument() {
         try{
             int num = 0;
@@ -42,6 +56,13 @@ public class PdfHandler {
         }
     }
 
+    /**
+     * Creates a Pdf album with the given pictures.
+     * If the pdf album can't be created, a
+     * {@link MalformedURLException} will be thrown.
+     *
+     * @param pictures List with pictures.
+     */
     public boolean createPdfAlbum(List<Picture> pictures) {
         Document document = new Document(createPfdDocument(), PageSize.A4);
         pictures.forEach(x -> {

@@ -21,6 +21,12 @@ import Team6.services.AlbumService;
 import Team6.services.PictureService;
 
 
+/**
+ * Controller for MainView.
+ *
+ * @author Team 6
+ * @version 2020.04.24
+ */
 public class MainView extends Base implements Initializable  {
     @FXML
     Button deleteButton;
@@ -44,10 +50,17 @@ public class MainView extends Base implements Initializable  {
     TilePane tilePane = new TilePane();
     List<VBox> pages = new ArrayList<>();
 
-    public MainView() throws IOException {
-    }
+    /**
+     * Constructor that creates an instance of MainView, initialising the instance.
+     */
+    public MainView() throws IOException {}
 
-
+    /**
+     * Initialize the main view.
+     *
+     * @param url The url.
+     * @param resourceBundle The resource bundle.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setupVariables();
@@ -56,6 +69,9 @@ public class MainView extends Base implements Initializable  {
         setupButtonCss();
     }
 
+    /**
+     * Sets color to the button if album is selected.
+     */
     void setupButtonCss() {
         if (selectedAlbums.isEmpty()) {
             openButton.setStyle("-fx-background-color: #2e2d2d; -fx-text-fill: #4d4d4d");
@@ -68,7 +84,9 @@ public class MainView extends Base implements Initializable  {
         }
     }
 
-
+    /**
+     * Adds an event to album so you can change scene by clicking it.
+     */
     public void setOnMouseClicked() {
         yourAlbums.forEach(a -> {
             pages.forEach(v -> {
@@ -99,13 +117,18 @@ public class MainView extends Base implements Initializable  {
         });
     }
 
-
+    /**
+     * Sets up the albums view.
+     */
     void setupAlbumView() {
         setOnMouseClicked();
         scrollPane.setFitToWidth(true);
         scrollPane.setContent(tilePane);
     }
 
+    /**
+     * Sets up all the albums.
+     */
     void setupAlbums() {
         yourAlbums = (ArrayList<Album>) albumService.getAllAlbums(user.getId());
         Album album = new Album("All Photos");
@@ -114,6 +137,9 @@ public class MainView extends Base implements Initializable  {
         yourAlbums.add(0, album);
     }
 
+    /**
+     * Sets up the albums icons.
+     */
     public void setupVariables() {
         setupAlbums();
         tilePane = elementPane();
@@ -121,7 +147,9 @@ public class MainView extends Base implements Initializable  {
         createElements(tilePane, pages);
     }
 
-
+    /**
+     * Initialize create album button to create an album.
+     */
     public void createAlbum() {
         Optional<String> result = showInputDialog("Create new album", "Enter name :");
         if (result.isPresent()) {
@@ -131,6 +159,9 @@ public class MainView extends Base implements Initializable  {
         }
     }
 
+    /**
+     * Initialize delete album button to delete chosen album(s).
+     */
     public void deleteAlbum() {
         if (!selectedAlbums.isEmpty()) {
             selectedAlbums.forEach(e -> {
@@ -143,6 +174,9 @@ public class MainView extends Base implements Initializable  {
         }
     }
 
+    /**
+     * Initialize open album button to change scene to album view.
+     */
     public void openAlbum() throws IOException {
         try {
             if (selectedAlbums.size() == 1) {
@@ -157,6 +191,9 @@ public class MainView extends Base implements Initializable  {
         }
     }
 
+    /**
+     * Initialize search button to switch scene to search view.
+     */
     public void search() {
         textField.setOnMouseClicked(e -> {
             try {
@@ -168,6 +205,9 @@ public class MainView extends Base implements Initializable  {
         });
     }
 
+    /**
+     * Initialize log out button to switch scene to login view.
+     */
     public void logOut() throws IOException {
         switchScene("MainView", "LoginView");
     }
