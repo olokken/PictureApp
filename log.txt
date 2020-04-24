@@ -168,5 +168,3 @@ Apr 24, 2020 12:49:42 PM Team6.App loadFXML
 FINE: 
 /C:/Users/Linda/Documents/Programmering%202/PictureApp/target/classes/Team6/search.fxml:26
 
-Apr 24, 2020 3:14:55 PM Team6.SecondaryController addPicture
-FINE: null

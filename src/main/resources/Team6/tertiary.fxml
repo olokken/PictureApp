@@ -1,44 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
-<?import javafx.scene.control.TextArea?>
 
-<?import java.net.URL?>
-<BorderPane fx:id="borderPane" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="Team6.TertiaryController" styleClass="main">
+<BorderPane fx:id="borderPane" prefHeight="777.0" prefWidth="820.0" styleClass="main" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Team6.TertiaryController">
    <stylesheets>
       <URL value="@css/tertiary.css" />
    </stylesheets>
    <left>
-      <VBox VBox.vgrow="ALWAYS" alignment="BASELINE_CENTER" >
+      <VBox alignment="BASELINE_CENTER" VBox.vgrow="ALWAYS">
          <HBox fx:id="hBox" alignment="CENTER" prefHeight="78.0" prefWidth="600.0" spacing="10.0" styleClass="topMenu">
-            <Button styleClass="button" mnemonicParsing="false" onAction="#switchToSecondary" text="Go back" />
-            <Button styleClass="button" fx:id="deleteButton" mnemonicParsing="false" onAction="#deletePicture" text="Delete" />
-            <Button styleClass="button" mnemonicParsing="false" onAction="#addTag" text="Add tag" />
-            <Button styleClass="button" mnemonicParsing="false" onAction="#deleteTag" text="Delete tag" />
+            <Button mnemonicParsing="false" onAction="#switchToSecondary" styleClass="button" text="Go back" />
+            <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#deletePicture" styleClass="button" text="Delete" />
+            <Button mnemonicParsing="false" onAction="#addTag" styleClass="button" text="Add tag" />
+            <Button mnemonicParsing="false" onAction="#deleteTag" styleClass="button" text="Delete tag" />
          </HBox>
-         <ImageView fx:id="imageView" fitWidth="600" fitHeight="600" preserveRatio="true"/>
+         <ImageView fx:id="imageView" fitHeight="589.0" fitWidth="600" preserveRatio="true">
+            <VBox.margin>
+               <Insets bottom="10.0" left="10.0" right="10.0" />
+            </VBox.margin></ImageView>
+         <HBox prefHeight="50.0" prefWidth="610.0" />
       </VBox>
    </left>
    <right>
-      <VBox VBox.vgrow="ALWAYS" maxWidth="200" maxHeight="400" spacing="10" alignment="TOP_CENTER" styleClass="metadata">
-         <Text text="Metadata" styleClass="h2" />
-         <TextArea fx:id="fileName" text="File name: " wrapText="true" styleClass="TextArea"/>
-         <TextArea fx:id="fileSize" text="File size: " wrapText="true" styleClass="TextArea"/>
-         <TextArea fx:id="date" text="Date taken: " wrapText="true" styleClass="TextArea"/>
-         <TextArea fx:id="iso" text="ISO: " wrapText="true" styleClass="TextArea"/>
-         <TextArea fx:id="shutterspeed" text="Shutterspeed: " wrapText="true" styleClass="TextArea"/>
-         <TextArea fx:id="exposureTime" text="Exposure time: " wrapText="true" styleClass="TextArea"/>
-         <TextArea fx:id="flash" text="Is Flash used: " wrapText="true" styleClass="TextArea"/>
-         <TextArea fx:id="latitude" text="Latitude: " wrapText="true" styleClass="TextArea"/>
-         <TextArea fx:id="longitude" text="Longitude: " wrapText="true" styleClass="TextArea"/>
-         <VBox minHeight="90" alignment="TOP_CENTER" spacing="10">
-            <Text text="Tags" styleClass="h2"/>
-            <ListView fx:id="listView" editable="true" minHeight="50"/>
+      <VBox alignment="TOP_CENTER" maxHeight="773.0" maxWidth="200" prefHeight="773.0" prefWidth="200.0" spacing="10" styleClass="metadata" VBox.vgrow="ALWAYS">
+         <Text styleClass="h2" text="Metadata" />
+         <TextArea fx:id="fileName" styleClass="TextArea" text="File name: " wrapText="true" />
+         <TextArea fx:id="fileSize" styleClass="TextArea" text="File size: " wrapText="true" />
+         <TextArea fx:id="date" styleClass="TextArea" text="Date taken: " wrapText="true" />
+         <TextArea fx:id="iso" styleClass="TextArea" text="ISO: " wrapText="true" />
+         <TextArea fx:id="shutterspeed" styleClass="TextArea" text="Shutterspeed: " wrapText="true" />
+         <TextArea fx:id="exposureTime" styleClass="TextArea" text="Exposure time: " wrapText="true" />
+         <TextArea fx:id="flash" styleClass="TextArea" text="Is Flash used: " wrapText="true" />
+         <TextArea fx:id="latitude" styleClass="TextArea" text="Latitude: " wrapText="true" />
+         <TextArea fx:id="longitude" styleClass="TextArea" text="Longitude: " wrapText="true" />
+         <VBox alignment="TOP_CENTER" minHeight="90" spacing="10">
+            <Text styleClass="h2" text="Tags" />
+            <ListView fx:id="listView" editable="true" minHeight="50" prefHeight="59.0" prefWidth="170.0" />
          </VBox>
       </VBox>
    </right>

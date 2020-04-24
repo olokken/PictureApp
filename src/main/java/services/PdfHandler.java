@@ -47,10 +47,13 @@ public class PdfHandler {
         Document document = new Document(createPfdDocument(), PageSize.A4);
         pictures.forEach(x -> {
             try {
-                ImageData imageData = ImageDataFactory.create(x.getFilepath());
-                Image pdfImage = new Image(imageData);
-                document.add(new AreaBreak(new PageSize(PageSize.A4)));
-                document.add(pdfImage.setAutoScale(true));
+                File file = new File(x.getFilepath());
+                if (file.exists()) {
+                    ImageData imageData = ImageDataFactory.create(x.getFilepath());
+                    Image pdfImage = new Image(imageData);
+                    document.add(new AreaBreak(new PageSize(PageSize.A4)));
+                    document.add(pdfImage.setAutoScale(true));
+                }
             } catch (MalformedURLException ex) {
                 AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
                 AppLogger.closeHandler();
