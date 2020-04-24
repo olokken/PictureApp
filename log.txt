@@ -223,3 +223,7 @@ FINE: Duplicate entry 'helvete' for key 'Username_UNIQUE'
 apr. 24, 2020 7:09:45 P.M. Team6.services.UserService createUser
 FINE: Duplicate entry 'din' for key 'Username_UNIQUE'
 
+apr. 24, 2020 9:18:16 P.M. Team6.Controllers.PictureView setupPicture
+FINE: C:\Users\olelo\OneDrive\Bilder\AppPics\yarn.jpg (Systemet finner ikke angitt fil)
+apr. 24, 2020 9:22:11 P.M. Team6.Controllers.PictureView setupPicture
+FINE: C:\Users\olelo\OneDrive\Bilder\AppPics\yarn.jpg (Systemet finner ikke angitt fil)
