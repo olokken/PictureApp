@@ -22,16 +22,16 @@
 </stylesheets>
 
 <left>
-    <VBox VBox.vgrow="ALWAYS" minWidth="160" fx:id="vBox" styleClass="vBoxLeft" alignment="TOP_CENTER">
+    <VBox VBox.vgrow="ALWAYS" minWidth="160" fx:id="vBox" styleClass="vBoxLeft" alignment="TOP_CENTER" spacing="5">
         <VBox>
-            <Button mnemonicParsing="false" onAction="#switchToPrimary" prefHeight="45.0" prefWidth="70.0" text="Go back"/>
+            <Button mnemonicParsing="false" onAction="#switchToPrimary" prefHeight="35.0" prefWidth="110.0" text="Go back"/>
         </VBox>
-        <Button fx:id="addButton" mnemonicParsing="false" onAction="#addPicture" prefHeight="45.0" prefWidth="110.0" text="Add photo"/>
-        <Button fx:id="deleteButton"  mnemonicParsing="false" onAction="#deletePhotos" prefHeight="45.0" prefWidth="110.0" text="Delete photo"/>
-        <Button mnemonicParsing="false" onAction="#selectAll" prefHeight="45.0" prefWidth="110.0" text="Select All" />
-        <Button fx:id="createAlbumButton"  mnemonicParsing="false" onAction="#createAlbum" prefHeight="45.0" prefWidth="110.0" text="Create Album" />
-        <Button fx:id="createPdfButton"  mnemonicParsing="false" onAction="#createPdf" prefHeight="45.0" prefWidth="110.0" text="Create PDF" />
-        <ImageView fx:id="mapViewIcon" fitHeight="64.0" fitWidth="69.0" layoutX="7.0" layoutY="380.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="101.0" AnchorPane.topAnchor="380.0" />
+        <Button fx:id="addButton" mnemonicParsing="false" onAction="#addPicture" prefHeight="35.0" prefWidth="110.0" text="Add photo"/>
+        <Button fx:id="deleteButton"  mnemonicParsing="false" onAction="#deletePhotos" prefHeight="35.0" prefWidth="110.0" text="Delete photo"/>
+        <Button mnemonicParsing="false" onAction="#selectAll" prefHeight="35.0" prefWidth="110.0" text="Select All" />
+        <Button fx:id="createAlbumButton"  mnemonicParsing="false" onAction="#createAlbum" prefHeight="35.0" prefWidth="110.0" text="Create Album" />
+        <Button fx:id="createPdfButton"  mnemonicParsing="false" onAction="#createPdf" prefHeight="35.0" prefWidth="110.0" text="Create PDF" />
+        <ImageView fx:id="mapViewIcon" fitWidth="110" pickOnBounds="true" preserveRatio="true"/>
     </VBox>
 </left>
 

@@ -167,7 +167,7 @@ public class SecondaryController extends BaseController implements Initializable
 
     void openMapView() {
         try{
-            Image image = new Image(new FileInputStream("./images/globe.png"));
+            Image image = new Image(new FileInputStream("./images/google_maps_icon_2.png"));
             mapViewIcon.setImage(image);
             mapViewIcon.setOnMouseClicked(e -> {
                 Context.getInstance().currentAlbum().setPictures(album.getPictures());

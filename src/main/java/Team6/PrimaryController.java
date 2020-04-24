@@ -39,7 +39,7 @@ public class PrimaryController extends BaseController implements Initializable  
     PictureService pictureService = new PictureService();
     User user = Context.getInstance().currentUser();
     String transparent = "-fx-background-color: transparent";
-    String buttonColor = "-fx-background-color: linear-gradient(to bottom,#3F3F3F,#2B2B2B)";
+    String buttonColor = "-fx-background-color: linear-gradient(to bottom,#1D1D1D,#2B2B2B)";
 
     TilePane tilePane = new TilePane();
     List<VBox> pages = new ArrayList<>();
@@ -58,8 +58,8 @@ public class PrimaryController extends BaseController implements Initializable  
 
     void buttonSetup() {
         if (selectedAlbums.isEmpty()) {
-            openButton.setStyle(transparent);
-            deleteButton.setStyle(transparent);
+            openButton.setStyle("-fx-background-color: linear-gradient(to bottom,#353535,#3D3C3C); -fx-text-fill: #525252");
+            deleteButton.setStyle("-fx-background-color: linear-gradient(to bottom,#353535,#3D3C3C); -fx-text-fill: #525252");
         } else {
             openButton.setStyle(buttonColor); //linda problemet e nok her
             deleteButton.setStyle(buttonColor); // teksten forsvinn osv, også veit æ ikke ka fargen hete
@@ -73,11 +73,11 @@ public class PrimaryController extends BaseController implements Initializable  
                 if (yourAlbums.indexOf(a) == pages.indexOf(v)) {
                     v.setOnMouseClicked(e -> {
                         if (selectedAlbums.contains(a)) {
-                            v.setStyle("-fx-background-color: transparent");
+                            v.setStyle(transparent);
                             selectedAlbums.remove(a);
                             buttonSetup();
                         } else {
-                            v.setStyle("-fx-background-color:linear-gradient(white,#DDDDDD)");
+                            v.setStyle("-fx-background-color: #AAAAAA");
                             selectedAlbums.add(a);
                             buttonSetup();
                         }
@@ -115,7 +115,7 @@ public class PrimaryController extends BaseController implements Initializable  
     public void setupVariables() {
         albumSetup();
         tilePane = elementPane();
-        pages = createAlbumPages(yourAlbums, "./images/icon_2.png");
+        pages = createAlbumPages(yourAlbums, "./images/icon_green.png");
         createElements(tilePane, pages);
     }
 
