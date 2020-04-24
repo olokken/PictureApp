@@ -1,0 +1,150 @@
+Apr 18, 2020 4:38:22 PM services.Database getProperties
+FINE: config.properties (The system cannot find the file specified)
+Apr 18, 2020 4:42:53 PM services.Database getProperties
+FINE: config.properties (The system cannot find the file specified)
+Apr 18, 2020 4:47:52 PM Team6.LoginController signIn
+FINE: 
+/C:/Users/Linda/Documents/Programmering%202/PictureApp/target/classes/Team6/primary.fxml
+
+Apr 18, 2020 4:47:57 PM Team6.LoginController signIn
+FINE: 
+/C:/Users/Linda/Documents/Programmering%202/PictureApp/target/classes/Team6/primary.fxml
+
+Apr 18, 2020 4:48:02 PM Team6.LoginController signIn
+FINE: 
+/C:/Users/Linda/Documents/Programmering%202/PictureApp/target/classes/Team6/primary.fxml
+
+Apr 18, 2020 4:48:04 PM Team6.LoginController signIn
+FINE: 
+/C:/Users/Linda/Documents/Programmering%202/PictureApp/target/classes/Team6/primary.fxml
+
+Apr 18, 2020 4:48:05 PM Team6.LoginController signIn
+FINE: 
+/C:/Users/Linda/Documents/Programmering%202/PictureApp/target/classes/Team6/primary.fxml
+
+Apr 18, 2020 4:48:38 PM Team6.LoginController signIn
+FINE: 
+/C:/Users/Linda/Documents/Programmering%202/PictureApp/target/classes/Team6/primary.fxml
+
+Apr 18, 2020 4:48:45 PM Team6.LoginController signIn
+FINE: 
+/C:/Users/Linda/Documents/Programmering%202/PictureApp/target/classes/Team6/primary.fxml
+
+Apr 18, 2020 4:48:46 PM Team6.LoginController signIn
+FINE: 
+/C:/Users/Linda/Documents/Programmering%202/PictureApp/target/classes/Team6/primary.fxml
+
+Apr 18, 2020 4:48:55 PM Team6.LoginController signIn
+FINE: 
+/C:/Users/Linda/Documents/Programmering%202/PictureApp/target/classes/Team6/primary.fxml
+
+Apr 18, 2020 4:49:57 PM Team6.LoginController signIn
+FINE: 
+/C:/Users/Linda/Documents/Programmering%202/PictureApp/target/classes/Team6/primary.fxml
+
+Apr 18, 2020 4:50:02 PM Team6.LoginController signIn
+FINE: 
+/C:/Users/Linda/Documents/Programmering%202/PictureApp/target/classes/Team6/primary.fxml
+
+apr. 20, 2020 3:17:32 P.M. Team6.App loadFXML
+FINE: 
+/C:/Dev/PictureApp/target/classes/Team6/primary.fxml
+
+apr. 20, 2020 3:18:53 P.M. Team6.App loadFXML
+FINE: 
+/C:/Dev/PictureApp/target/classes/Team6/primary.fxml
+
+apr. 20, 2020 3:20:17 P.M. Team6.App loadFXML
+FINE: 
+/C:/Dev/PictureApp/target/classes/Team6/primary.fxml
+
+apr. 20, 2020 3:22:42 P.M. Team6.App loadFXML
+FINE: 
+/C:/Dev/PictureApp/target/classes/Team6/secondary.fxml
+
+apr. 20, 2020 3:25:25 P.M. Team6.App loadFXML
+FINE: 
+/C:/Dev/PictureApp/target/classes/Team6/secondary.fxml
+
+apr. 20, 2020 3:29:02 P.M. Team6.SecondaryController addPicture
+FINE: null
+Apr 22, 2020 1:06:10 PM services.UserService createUser
+FINE: Duplicate entry 'Berit' for key 'Username_UNIQUE'
+Apr 22, 2020 1:07:20 PM services.UserService createUser
+FINE: Duplicate entry 'Berit' for key 'Username_UNIQUE'
+Apr 22, 2020 1:09:12 PM services.UserService createUser
+FINE: Duplicate entry 'Berit' for key 'Username_UNIQUE'
+Apr 22, 2020 1:09:40 PM services.UserService createUser
+FINE: Duplicate entry 'Berit' for key 'Username_UNIQUE'
+Apr 22, 2020 1:26:18 PM services.UserService createUser
+FINE: Duplicate entry 'Berit' for key 'Username_UNIQUE'
+apr. 22, 2020 1:34:35 P.M. Team6.App loadFXML
+FINE: 
+/C:/Dev/PictureApp/target/classes/Team6/tertiary.fxml
+Apr 22, 2020 1:57:05 PM services.UserService createUser
+FINE: Duplicate entry 'Anne' for key 'Username_UNIQUE'
+Apr 22, 2020 1:58:20 PM services.UserService createUser
+FINE: Duplicate entry 'Anne' for key 'Username_UNIQUE'
+Apr 22, 2020 2:04:47 PM services.UserService createUser
+FINE: Duplicate entry 'Anne' for key 'Username_UNIQUE'
+Apr 22, 2020 2:09:13 PM services.UserService createUser
+FINE: Duplicate entry 'Anne' for key 'Username_UNIQUE'
+Apr 22, 2020 2:11:08 PM services.UserService createUser
+FINE: Duplicate entry 'Anne' for key 'Username_UNIQUE'
+Apr 22, 2020 2:12:55 PM services.UserService createUser
+FINE: Duplicate entry 'Anne' for key 'Username_UNIQUE'
+Apr 22, 2020 2:15:09 PM services.UserService createUser
+FINE: Duplicate entry 'Anne' for key 'Username_UNIQUE'
+Apr 22, 2020 2:17:35 PM services.UserService createUser
+FINE: Duplicate entry 'Anne' for key 'Username_UNIQUE'
+Apr 22, 2020 2:52:22 PM services.UserService createUser
+FINE: Duplicate entry 'Lilli' for key 'Username_UNIQUE'
+Apr 22, 2020 2:53:39 PM services.UserService createUser
+FINE: Duplicate entry 'Lilli' for key 'Username_UNIQUE'
+Apr 22, 2020 2:56:21 PM services.UserService createUser
+FINE: Duplicate entry 'Lilli' for key 'Username_UNIQUE'
+Apr 22, 2020 2:58:51 PM services.UserService createUser
+FINE: Duplicate entry 'Lilli' for key 'Username_UNIQUE'
+Apr 22, 2020 3:06:54 PM services.UserService createUser
+FINE: Duplicate entry 'Lilli' for key 'Username_UNIQUE'
+Apr 22, 2020 3:09:01 PM services.UserService createUser
+FINE: Duplicate entry 'Lilli' for key 'Username_UNIQUE'
+Apr 22, 2020 3:09:23 PM services.UserService createUser
+FINE: Duplicate entry 'Lilli' for key 'Username_UNIQUE'
+Apr 22, 2020 3:11:14 PM services.UserService createUser
+FINE: Duplicate entry 'Lilli' for key 'Username_UNIQUE'
+Apr 22, 2020 3:16:47 PM services.UserService createUser
+FINE: Duplicate entry 'Lilli' for key 'Username_UNIQUE'
+Apr 22, 2020 3:18:13 PM services.UserService createUser
+FINE: Duplicate entry 'Lilli' for key 'Username_UNIQUE'
+Apr 22, 2020 3:19:02 PM services.UserService createUser
+FINE: Duplicate entry 'Lilli' for key 'Username_UNIQUE'
+Apr 22, 2020 3:20:14 PM services.UserService createUser
+FINE: Duplicate entry 'Lilli' for key 'Username_UNIQUE'
+Apr 22, 2020 3:22:56 PM services.UserService createUser
+FINE: Duplicate entry 'Lilli' for key 'Username_UNIQUE'
+Apr 22, 2020 3:23:48 PM services.UserService createUser
+FINE: Duplicate entry 'Lilli' for key 'Username_UNIQUE'
+Apr 22, 2020 3:27:41 PM services.UserService createUser
+FINE: Duplicate entry 'Lilli' for key 'Username_UNIQUE'
+
+Apr 23, 2020 12:28:30 PM Team6.App loadFXML
+FINE: 
+/C:/Users/Linda/Documents/Programmering%202/PictureApp/target/classes/Team6/tertiary.fxml
+
+Apr 23, 2020 12:29:52 PM Team6.App loadFXML
+FINE: 
+/C:/Users/Linda/Documents/Programmering%202/PictureApp/target/classes/Team6/tertiary.fxml
+
+Apr 23, 2020 10:30:45 PM services.Database ConnectDB
+FINE: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+Apr 23, 2020 10:35:52 PM Team6.SecondaryController addPicture
+FINE: null
+Apr 23, 2020 10:37:34 PM Team6.SecondaryController addPicture
+FINE: null
+Apr 24, 2020 10:25:22 AM Team6.SecondaryController addPicture
+FINE: null
+Apr 24, 2020 10:35:37 AM Team6.SecondaryController addPicture
+FINE: null

@@ -43,7 +43,7 @@
         <HBox alignment="CENTER_LEFT" styleClass="titleBox">
             <Text fx:id="albumName" text="Text" styleClass="h2"/>
             <HBox HBox.hgrow="ALWAYS"/>
-            <MenuButton fx:id="changeStatusButton" layoutX="420.0" layoutY="16.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="180.0" text="Sort by.." AnchorPane.rightAnchor="17.0">
+            <MenuButton fx:id="changeStatusButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="220.0" text="Sort by.." styleClass="dropDownMenu">
                 <items>
                     <MenuItem mnemonicParsing="false" onAction="#sortIso" text="ISO" />
                     <MenuItem mnemonicParsing="false" onAction="#sortShutterSpeed" text="Shutter- speed" />

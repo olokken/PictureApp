@@ -29,6 +29,8 @@ import services.PictureService;
 
 public class SecondaryController extends BaseController implements Initializable {
     @FXML
+    Button createPdfButton;
+    @FXML
     VBox vBox;
     @FXML
     Button deleteButton;

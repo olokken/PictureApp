@@ -1,0 +1,61 @@
+/*Login fields*/
+
+.text-field {
+    -fx-background-color: transparent;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-color: #4C4B4C;
+    -fx-border-width: 1px;
+    -fx-alignment: center;
+    -fx-text-fill: #4C4B4C;
+    -fx-prompt-text-fill: #4C4B4C;
+    -fx-padding: 5px;
+    -fx-border-insets: 5px;
+    -fx-background-insets: 6px;
+}
+
+/*Login button*/
+
+.button {
+    -fx-background-color: linear-gradient(to bottom,#F0F0F0,#E1E1E1);
+    -fx-text-fill: #333333;
+    -fx-background-radius: 20px;
+    -fx-border-radius: 20;
+    -fx-alignment: center;
+
+}
+
+/*Login button when hovered*/
+
+.button:hover {
+    -fx-background-color: linear-gradient(to bottom,#44A21D,#348114);
+    -fx-text-fill: #ffffff;
+
+}
+
+.h2 {
+    -fx-font-size: 15pt;
+    -fx-fill: #333333 ;
+    -fx-alignment: left;
+
+}
+
+.metadata {
+    -fx-padding: 15;
+}
+
+.topMenu {
+    -fx-padding: 15;
+    -fx-border-insets: 15px;
+    -fx-background-insets: 15px;
+}
+
+.TextArea {
+    -fx-background-color: #F1F1F1;
+    -fx-border-color: #DFDFDF;
+    -fx-text-fill: #676767;
+}
+
+.main {
+    -fx-background-color:linear-gradient(white,#DDDDDD);
+}
