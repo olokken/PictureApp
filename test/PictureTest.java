@@ -22,7 +22,7 @@ public class PictureTest {
         assertNotNull(picture);
         //assertNotEquals(0, picture.getId());
         assertNotNull(picture.getFilepath());
-        assertNotEquals(0, picture.getISO());
+        assertNotEquals(0, picture.getIso());
         assertNotEquals(0, picture.getShutterSpeed());
         assertNotEquals(0, picture.getExposureTime());
         assertNotEquals(true, picture.isFlashUsed());
