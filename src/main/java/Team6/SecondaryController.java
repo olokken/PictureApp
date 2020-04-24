@@ -215,7 +215,7 @@ public class SecondaryController extends BaseController implements Initializable
         if (result.isPresent()) {
             int userId = Context.getInstance().currentUser().getId();
             albumService.createAlbum(result.get(), userId);
-            selectedPhotos.forEach(e -> pictureService.createPicture(e , albumService.getIdLastAlbumRegistered(userId)));
+            selectedPhotos.forEach(e -> pictureService.createPicture(e , albumService.getLastAlbumIdRegistered(userId)));
         }
     }
 

@@ -13,33 +13,29 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.logging.Level;
 
+/**
+ * Holds details about the database.
+ *
+ * @author Team 6
+ * @version 2020.04.24
+ */
 public class Database {
     private static final String CONNECTION_STRING = "jdbc:mysql://mysql-ait.stud.idi.ntnu.no/olelok?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
     private static final String USERNAME = getProperties().get("username").toString();
     private static final String PASSWORD = getProperties().get("password").toString();
 
-
-    private static Map getProperties() {
-        Map result = new HashMap();
-        try (InputStream input = new FileInputStream("config.properties")) {
-            Properties prop = new Properties();
-            prop.load(input);
-            result.put("username", prop.getProperty("USERNAME"));
-            result.put("password", prop.getProperty("PASSWORD"));
-        } catch (IOException ex) {
-            AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
-            AppLogger.closeHandler();
-        }
-        return result;
+    /**
+     * Constructor that creates an instance of database, initialising the instance.
+     */
+    private Database() {
     }
 
-    private Database() { }
-
     /**
-     * Connectiong to database
+     * Returns a connection to the database.
+     * If the database won't connect, a
+     * {@link SQLException} is thrown.
      *
-     * @return
-     *        - a Connection-object.
+     * @return A connection object.
      */
     public static Connection connectDB() {
         try {
@@ -52,30 +48,13 @@ public class Database {
     }
 
     /**
-     * Rollback query
+     * Closing the connection to the database.
+     * If one of the parameters is null, a
+     * {@link SQLException} is thrown.
      *
-     * @param conn
-     *        - The given connection which the rollback is set on.
-     */
-    public static void rollBack(Connection conn) {
-        try {
-            conn.rollback();
-        } catch (SQLException se) {
-            AppLogger.getAppLogger().log(Level.FINE, se.getMessage());
-            AppLogger.closeHandler();
-        }
-    }
-
-
-    /**
-     * Closing connection
-     *
-     * @param conn
-     *        - A given Connection-object.
-     * @param result
-     *        - A given ResultSet-object.
-     * @param pst
-     *        - A given PreparedStatement-object.
+     * @param conn A given Connection-object.
+     * @param result A given ResultSet-object.
+     * @param pst A given PreparedStatement-object.
      */
     public static void closeConnection(Connection conn, PreparedStatement pst, ResultSet result) {
         try {
@@ -104,12 +83,12 @@ public class Database {
         }
     }
     /**
-     * Closing connection
+     * Closing the connection to the database.
+     * If one of the parameters is null, a
+     * {@link SQLException} is thrown.
      *
-     * @param conn
-     *        - A given Connection-object.
-     * @param pst
-     *        - A given PreparedStatement-object.
+     * @param conn A given Connection-object.
+     * @param pst A given PreparedStatement-object.
      */
     public static void closeConnection(Connection conn, PreparedStatement pst) {
         try {
@@ -127,6 +106,29 @@ public class Database {
         } catch (SQLException se) {
             AppLogger.getAppLogger().log(Level.FINE, se.getMessage());
             AppLogger.closeHandler();
+        }
+    }
+
+    /**
+     * Returns a hashmap with the username and password of
+     * the database.
+     * If the argument of the file input stream is incorrect or
+     * properties can't load, a {@link IOException} will be thrown.
+     *
+     * @return Hashmap with the username and password.
+     */
+    private static Map getProperties() {
+        Map result = new HashMap();
+        try (InputStream input = new FileInputStream("config.properties")) {
+            Properties prop = new Properties();
+            prop.load(input);
+            result.put("username", prop.getProperty("USERNAME"));
+            result.put("password", prop.getProperty("PASSWORD"));
+            return result;
+        } catch (IOException ex) {
+            AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
+            AppLogger.closeHandler();
+            return null;
         }
     }
 }
