@@ -123,7 +123,7 @@ public class BaseController {
                             v.setStyle("-fx-background-color: transparent");
                             selectedPictures.remove(a);
                         } else {
-                            v.setStyle("-fx-background-color: #AAAAAA");
+                            v.setStyle("-fx-background-color: #429f1c");
                             selectedPictures.add(a);
                         }
                         if (e.getClickCount() == 2) {

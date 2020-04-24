@@ -5,8 +5,6 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.layout.VBox?>
-
-
 <?import javafx.scene.layout.BorderPane?>
 <?import java.net.URL?>
 <?import javafx.scene.layout.HBox?>
