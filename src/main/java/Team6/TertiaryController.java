@@ -21,6 +21,12 @@ import java.net.URL;
 import java.util.*;
 import java.util.logging.Level;
 
+/**
+ * Controller for PictureView.
+ *
+ * @author Team 6
+ * @version 2020.04.24
+ */
 public class TertiaryController extends BaseController implements Initializable {
     @FXML
     HBox hBox;
@@ -55,9 +61,18 @@ public class TertiaryController extends BaseController implements Initializable 
     int index = Context.getInstance().currentIndex();
     Album album = new Album();
 
-    public TertiaryController() throws IOException {
+    /**
+     * Constructor that creates an instance of PictureView, initialising the instance.
+     */
+    public TertiaryController(){
     }
 
+    /**
+     * Initialize the PictureView.
+     *
+     * @param url The url.
+     * @param resourceBundle The resource bundle.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         albumSetup();
@@ -67,12 +82,18 @@ public class TertiaryController extends BaseController implements Initializable 
         deleteButtonSetup();
     }
 
+    /**
+     * Sets up album.
+     */
     void albumSetup() {
         album.setName(Context.getInstance().currentAlbum().getName());
         album.setPictures(Context.getInstance().currentAlbum().getPictures());
         album.setId(Context.getInstance().currentAlbum().getId());
     }
 
+    /**
+     * Sets up delete button.
+     */
     void deleteButtonSetup() {
         if (album.getId() <= 0){
             hBox.getChildren().remove(deleteButton);
@@ -80,6 +101,9 @@ public class TertiaryController extends BaseController implements Initializable 
     }
 
 
+    /**
+     * Sets up picture.
+     */
     void pictureSetup() {
         Image image = null;
         try {
@@ -91,8 +115,11 @@ public class TertiaryController extends BaseController implements Initializable 
         imageView.setImage(image);
     }
 
+    /**
+     * Deletes picture shown.
+     */
     @FXML
-    void deletePicture() throws IOException {
+    void deletePicture() {
         try{
             Picture picture = album.getPictures().get(index);
             pictureService.deletePicture(picture.getId(), album.getId());
@@ -106,6 +133,9 @@ public class TertiaryController extends BaseController implements Initializable 
 
     }
 
+    /**
+     * Sets up list view with tags.
+     */
     void listSetup() {
         ObservableList<String> list = FXCollections.observableArrayList(album.getPictures().get(index).getTags());
         listView.setItems(list);
@@ -136,6 +166,9 @@ public class TertiaryController extends BaseController implements Initializable 
         longitude.setText("Longitude : " + Double.toString(picture.getLongitude()));
     }
 
+    /**
+     * Add tag to picture.
+     */
     public void addTag() {
         Optional<String> result = showInputDialog("Add new tag", "Enter tag :");
         if (result.isPresent()) {
@@ -145,7 +178,9 @@ public class TertiaryController extends BaseController implements Initializable 
         }
     }
 
-
+    /**
+     * Deletes selected tag from picture.
+     */
     public void deleteTag() {
         if (listView.getSelectionModel().getSelectedIndex() > -1) {
             Picture picture = album.getPictures().get(index);

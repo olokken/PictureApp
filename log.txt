@@ -152,3 +152,15 @@ Apr 24, 2020 11:23:05 AM services.Database getProperties
 FINE: config.properties (The system cannot find the file specified)
 Apr 24, 2020 11:24:50 AM services.Database getProperties
 FINE: config.properties (The system cannot find the file specified)
+Apr 24, 2020 7:18:45 PM Team6.App loadFXML
+FINE: Error resolving onAction='#switchToPrimary', either the event handler is not in the Namespace or there is an error in the script.
+/C:/Users/stine/OneDrive%20-%20NTNU/Programmering/IDATT2001%20Programmering%202/PictureApp/target/classes/Team6/secondary.fxml:27
+
+Apr 24, 2020 7:22:52 PM Team6.App loadFXML
+FINE: Error resolving onAction='#switchToPrimary', either the event handler is not in the Namespace or there is an error in the script.
+/C:/Users/stine/OneDrive%20-%20NTNU/Programmering/IDATT2001%20Programmering%202/PictureApp/target/classes/Team6/secondary.fxml:27
+
+Apr 24, 2020 7:25:40 PM Team6.App loadFXML
+FINE: Error resolving onAction='#switchToPrimary', either the event handler is not in the Namespace or there is an error in the script.
+/C:/Users/stine/OneDrive%20-%20NTNU/Programmering/IDATT2001%20Programmering%202/PictureApp/target/classes/Team6/secondary.fxml:27
+

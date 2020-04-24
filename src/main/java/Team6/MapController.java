@@ -8,7 +8,6 @@ import entities.Picture;
 import idk.AppLogger;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import netscape.javascript.JSObject;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -17,6 +16,12 @@ import java.net.URL;
 import java.util.*;
 import java.util.logging.Level;
 
+/**
+ * Controller map view.
+ *
+ * @author Team 6
+ * @version 2020.04.24
+ */
 public class MapController extends BaseController implements MapComponentInitializedListener, Initializable {
     @FXML
     GoogleMapView mapView;
@@ -25,9 +30,11 @@ public class MapController extends BaseController implements MapComponentInitial
 
     List<Picture> pictures = Context.getInstance().currentAlbum().getPictures();
 
+    /**
+     * Initialize the map.
+     */
     @Override
     public void mapInitialized() {
-        //Set the initial properties of the map.
         MapOptions mapOptions = new MapOptions();
 
         mapOptions.center(new LatLong(63.446827, 10.421906))
@@ -44,7 +51,10 @@ public class MapController extends BaseController implements MapComponentInitial
         createMarkers();
     }
 
-
+    /**
+     * Creates markers for the pictures in the albums.
+     * If the latitude and longitude is 0, no marker will be set.
+     */
     void createMarkers () {
          pictures.stream().forEach(x -> {
              if(x.getLatitude() != 0 && x.getLongitude() != 0){
@@ -67,12 +77,18 @@ public class MapController extends BaseController implements MapComponentInitial
         });
     }
 
+    /**
+     * Initialize the map view and sets google API key.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         mapView.setKey(getProperties().get("GOOGLE_API_KEY").toString());
         mapView.addMapInializedListener(this);
     }
 
+    /**
+     * Switches from map to secondary view.
+     */
     @FXML
     private void switchToSecondary() {
         try{
@@ -88,11 +104,12 @@ public class MapController extends BaseController implements MapComponentInitial
             Properties prop = new Properties();
             prop.load(input);
             result.put("GOOGLE_API_KEY", prop.getProperty("GOOGLE_API_KEY"));
+            return result;
         } catch (IOException ex) {
             AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
             AppLogger.closeHandler();
+            return null;
         }
-        return result;
     }
 
 }

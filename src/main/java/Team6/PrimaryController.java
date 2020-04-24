@@ -7,10 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
+
 import entities.Album;
 import entities.User;
-import idk.AppLogger;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -20,7 +19,12 @@ import javafx.scene.layout.VBox;
 import services.AlbumService;
 import services.PictureService;
 
-
+/**
+ * Controller for main view.
+ *
+ * @author Team 6
+ * @version 2020.04.24
+ */
 public class PrimaryController extends BaseController implements Initializable  {
     @FXML
     Button deleteButton;
@@ -44,10 +48,18 @@ public class PrimaryController extends BaseController implements Initializable  
     TilePane tilePane = new TilePane();
     List<VBox> pages = new ArrayList<>();
 
-    public PrimaryController() throws IOException {
+    /**
+     * Constructor that creates an instance of MainView, initialising the instance.
+     */
+    public PrimaryController() {
     }
 
-
+    /**
+     * Initialize the main view.
+     *
+     * @param url The url.
+     * @param resourceBundle The resource bundle.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setupVariables();
@@ -56,17 +68,22 @@ public class PrimaryController extends BaseController implements Initializable  
         buttonSetup();
     }
 
+    /**
+     * Sets color to the button if album is selected.
+     */
     void buttonSetup() {
         if (selectedAlbums.isEmpty()) {
             openButton.setStyle(transparent);
             deleteButton.setStyle(transparent);
         } else {
-            openButton.setStyle(buttonColor); //linda problemet e nok her
-            deleteButton.setStyle(buttonColor); // teksten forsvinn osv, også veit æ ikke ka fargen hete
+            openButton.setStyle(buttonColor);
+            deleteButton.setStyle(buttonColor);
         }
     }
 
-
+    /**
+     * Adds an event to album so you can change scene by clicking it.
+     */
     public void setOnMouseClicked() {
         yourAlbums.forEach(a -> {
             pages.forEach(v -> {
@@ -98,6 +115,9 @@ public class PrimaryController extends BaseController implements Initializable  
     }
 
 
+    /**
+     * Sets up the albums view.
+     */
     void setupAlbumView() {
         setOnMouseClicked();
         scrollPane.setFitToWidth(true);
@@ -112,6 +132,9 @@ public class PrimaryController extends BaseController implements Initializable  
         yourAlbums.add(0, album);
     }
 
+    /**
+     * Sets up the albums icons.
+     */
     public void setupVariables() {
         albumSetup();
         tilePane = elementPane();
@@ -119,7 +142,9 @@ public class PrimaryController extends BaseController implements Initializable  
         createElements(tilePane, pages);
     }
 
-
+    /**
+     * Initialize create album button to create an album.
+     */
     public void createAlbum() {
         TextInputDialog t = new TextInputDialog();
         t.setTitle("Album");
@@ -133,6 +158,9 @@ public class PrimaryController extends BaseController implements Initializable  
         }
     }
 
+    /**
+     * Initialize delete album button to delete chosen album.
+     */
     public void deleteAlbum() {
         if (!selectedAlbums.isEmpty()) {
             selectedAlbums.forEach(e -> {
@@ -159,6 +187,9 @@ public class PrimaryController extends BaseController implements Initializable  
         }
     }
 
+    /**
+     * Initialize search button to switch scene to search view.
+     */
     public void search() {
         textField.setOnMouseClicked(e -> {
             try {
@@ -170,7 +201,10 @@ public class PrimaryController extends BaseController implements Initializable  
         });
     }
 
-    public void logOut() throws IOException {
+    /**
+     * Initialize log out button to switch scene to login view.
+     */
+    public void logOut() {
         switchScene("primary", "login");
     }
 }

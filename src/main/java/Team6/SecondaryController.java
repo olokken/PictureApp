@@ -26,7 +26,12 @@ import services.PdfHandler;
 import services.PictureService;
 
 
-
+/**
+ * Controller for AlbumView.
+ *
+ * @author Team 6
+ * @version 2020.04.24
+ */
 public class SecondaryController extends BaseController implements Initializable {
     @FXML
     Button createPdfButton;
@@ -56,13 +61,21 @@ public class SecondaryController extends BaseController implements Initializable
     TilePane tilePane = new TilePane();
     List<VBox> pages = new ArrayList<>();
 
-
-    public SecondaryController() throws IOException {
+    /**
+     * Constructor that creates an instance of AlbumView, initialising the instance.
+     */
+    public SecondaryController() {
     }
 
+    /**
+     * Initialize the  AlbumView.
+     *
+     * @param url The url.
+     * @param resourceBundle The resource bundle.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        albumSetup();
+        setupAlbum();
         fillList();
         setupPicturePane();
         buttonSetup();
@@ -71,19 +84,28 @@ public class SecondaryController extends BaseController implements Initializable
         openMapView();
     }
 
-
+    /**
+     * Button setup for All Photos album, so pictures can't be added or
+     * deleted from there.
+     */
     void buttonSetup() {
         if (album.getId() < 0) {
             vBox.getChildren().removeAll(addButton, deleteButton);
         }
     }
 
-    void albumSetup() {
+    /**
+     * Sets up album.
+     */
+    void setupAlbum() {
         album.setName(Context.getInstance().currentAlbum().getName());
         album.setId(Context.getInstance().currentAlbum().getId());
         albumName.setText(album.getName());
     }
 
+    /**
+     * Sets the pictures inside the album.
+     */
     public void fillList () {
         if (Context.getInstance().currentAlbum().getPictures() == null) {
             ArrayList<Picture> pics = (ArrayList<Picture>) pictureService.getAllPictures(album.getId(), Context.getInstance().currentUser().getId());
@@ -94,6 +116,9 @@ public class SecondaryController extends BaseController implements Initializable
         }
     }
 
+    /**
+     * Binds scrollPane to the tilePane, so you can scroll the tilePane.
+     */
     void bind() {
         scrollPane.setFitToWidth(true);
         scrollPane.setContent(tilePane);
@@ -120,7 +145,11 @@ public class SecondaryController extends BaseController implements Initializable
         createElements(tilePane, pages);
     }
 
-
+    /**
+     * Returns chosen files in a list.
+     *
+     * @return A list with chosen files.
+     */
     public List<File> choosePictures() {
         final FileChooser dir = new FileChooser();
         List<String> filter = new ArrayList<>();
@@ -129,6 +158,11 @@ public class SecondaryController extends BaseController implements Initializable
         return dir.showOpenMultipleDialog(vBox.getScene().getWindow());
     }
 
+    /**
+     * Takes a list of chosen pictures and add to a album;
+     * If no pictures is found, a
+     * {@link NullPointerException} will be thrown.
+     */
     public void addPicture() {
         List<File> files = choosePictures();
         try {
@@ -149,6 +183,9 @@ public class SecondaryController extends BaseController implements Initializable
         }
     }
 
+    /**
+     * Sets up deleteButton color.
+     */
     void deleteButtonSetup() {
         if (selectedPhotos.isEmpty()) {
             deleteButton.setStyle("-fx-background-color: transparent");
@@ -157,15 +194,20 @@ public class SecondaryController extends BaseController implements Initializable
         }
     }
 
+    /**
+     * Adds listener for mouseevents on delete button.
+     */
     void addListener() {
         pages.forEach(x -> {
             x.addEventHandler(MouseEvent.MOUSE_RELEASED, mouseEvent ->  deleteButtonSetup());
         });
     }
 
-
-
-
+    /**
+     * Switches from AlbumView to MapView when you click the image.
+     * If no file is found, a
+     * {@link FileNotFoundException} will be thrown.
+     */
     void openMapView() {
         try{
             Image image = new Image(new FileInputStream("./images/globe.png"));
@@ -185,6 +227,9 @@ public class SecondaryController extends BaseController implements Initializable
         }
     }
 
+    /**
+     * Creates PDF.
+     */
     @FXML
     void createPdf() {
         PdfHandler pdfHandler = new PdfHandler();
@@ -197,6 +242,9 @@ public class SecondaryController extends BaseController implements Initializable
         }
     }
 
+    /**
+     * Delete photo or photos and sets up pane again.
+     */
     public void deletePhotos() {
         if (!selectedPhotos.isEmpty()) {
             selectedPhotos.forEach(e -> pictureService.deletePicture(e.getId(), album.getId()));
@@ -206,10 +254,16 @@ public class SecondaryController extends BaseController implements Initializable
         }
     }
 
+    /**
+     * Selects all photos and adds them to the list selectedPhotos.
+     */
     public void selectAll() {
         selectAll(album.getPictures(), selectedPhotos, pages);
     }
 
+    /**
+     * Initialising create album button to create an album.
+     */
     public void createAlbum() {
         Optional<String> result = showInputDialog("Create new album", "Enter name :");
         if (result.isPresent()) {
@@ -219,36 +273,57 @@ public class SecondaryController extends BaseController implements Initializable
         }
     }
 
+    /**
+     * Initialising button to sort after ISO.
+     */
     public void sortIso() {
         album.sortIso();
         setupPicturePane();
     }
 
+    /**
+     * Initialising button to sort after if flashed is used.
+     */
     public void sortFlash() {
         album.sortFlashUsed();
         setupPicturePane();
     }
 
+    /**
+     * Initialising button to sort after shutter speed.
+     */
     public void sortShutterSpeed() {
         album.sortShutterSpeed();
         setupPicturePane();
     }
 
+    /**
+     * Initialising button to sort after file size.
+     */
     public void sortFileSize() {
         album.sortFileSize();
         setupPicturePane();
     }
 
+    /**
+     * Initialising button to sort after exposure time.
+     */
     public void sortExposureTime() {
         album.sortExposureTime();
         setupPicturePane();
     }
 
+    /**
+     * Initialising button to sort after date and time.
+     */
     public void sortDate() {
         album.sortDate();
         setupPicturePane();
     }
 
+    /**
+     * Initialising button to reverse order of pictures.
+     */
     public void reverseOrder() {
         album.reverseOrder();
         setupPicturePane();

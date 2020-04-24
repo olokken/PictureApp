@@ -202,10 +202,11 @@ public class BaseController {
     }
 
     /**
+     *Creates a input dialog, that shows and wait.
      *
-     * @param header
-     * @param content
-     * @return
+     * @param header The header.
+     * @param content The content.
+     * @return Input dialog.
      */
     public Optional<String> showInputDialog (String header, String content) {
         TextInputDialog t = new TextInputDialog();
@@ -215,6 +216,12 @@ public class BaseController {
         return t.showAndWait();
     }
 
+    /**
+     * Creates information dialog, that shows and wait.
+     *
+     * @param header The header.
+     * @param content The content.
+     */
     public void showInformationDialog(String header, String content) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Information");

@@ -64,9 +64,8 @@ public class PdfHandler {
      * {@link MalformedURLException} will be thrown.
      *
      * @param pictures List with pictures.
-     * @return True if pdf album is made.
      */
-    public boolean createPdfAlbum(List<Picture> pictures) {
+    public void createPdfAlbum(List<Picture> pictures) {
         Document document = new Document(createPfdDocument(), PageSize.A4);
         pictures.forEach(x -> {
             try {
@@ -74,14 +73,13 @@ public class PdfHandler {
                 Image pdfImage = new Image(imageData);
                 document.add(new AreaBreak(new PageSize(PageSize.A4)));
                 document.add(pdfImage.setAutoScale(true));
+                document.close();
             } catch (MalformedURLException ex) {
                 AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
                 AppLogger.closeHandler();
-                return false;
+                document.close();
             }
         });
-        document.close();
-        return true;
     }
 }
 

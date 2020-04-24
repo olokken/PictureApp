@@ -17,7 +17,12 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 
-
+/**
+ * Controller for LoginView.
+ *
+ * @author Team 6
+ * @version 2020.04.24
+ */
 public class LoginController extends BaseController implements Initializable {
 
     @FXML
@@ -32,10 +37,18 @@ public class LoginController extends BaseController implements Initializable {
 
 
 
-
-    public LoginController() throws IOException {
+    /**
+     * Constructor that creates an instance of LoginView, initialising the instance.
+     */
+    public LoginController() {
     }
 
+    /**
+     * Initialize the login view.
+     *
+     * @param url The url.
+     * @param resourceBundle The resource bundle.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
@@ -55,7 +68,12 @@ public class LoginController extends BaseController implements Initializable {
         }
     }
 
-    void setImage() throws FileNotFoundException {
+    /**
+     * Sets the logo image for the login view.
+     * If image can't be found, a
+     * {@link FileNotFoundException} will be thrown.
+     */
+    void setImage() {
         try{
             Image image = new Image(new FileInputStream("./images/pickles.png"));
             imageView.setImage(image);
@@ -65,6 +83,9 @@ public class LoginController extends BaseController implements Initializable {
         }
     }
 
+    /**
+     * Sign in the user and changes scene.
+     */
     public void signIn() {
         try{
             if(checkUsername() && checkPassword()){
@@ -84,6 +105,10 @@ public class LoginController extends BaseController implements Initializable {
         }
     }
 
+    /**
+     * Checks if the username is empty.
+     * @return True if username isn't empty.
+     */
     public boolean checkUsername(){
         if(username.getText().trim().equals("")){
             label.setText("Username can't be empty!");
@@ -93,6 +118,10 @@ public class LoginController extends BaseController implements Initializable {
         }
     }
 
+    /**
+     * Checks if the password field is empty.
+     * @return True if password field isn't empty.
+     */
     public boolean checkPassword(){
         if(password.getText().trim().equals("")){
             label.setText("Passwordfield can't be empty!");
