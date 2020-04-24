@@ -148,3 +148,7 @@ Apr 24, 2020 10:25:22 AM Team6.SecondaryController addPicture
 FINE: null
 Apr 24, 2020 10:35:37 AM Team6.SecondaryController addPicture
 FINE: null
+Apr 24, 2020 11:23:05 AM services.Database getProperties
+FINE: config.properties (The system cannot find the file specified)
+Apr 24, 2020 11:24:50 AM services.Database getProperties
+FINE: config.properties (The system cannot find the file specified)

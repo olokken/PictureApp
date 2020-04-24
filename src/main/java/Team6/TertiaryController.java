@@ -9,10 +9,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.scene.text.Text;
 import services.PictureService;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -27,23 +27,23 @@ public class TertiaryController extends BaseController implements Initializable 
     @FXML
     Button deleteButton;
     @FXML
-    Text fileSize;
+    TextArea fileSize;
     @FXML
-    Text date;
+    TextArea date;
     @FXML
-    Text iso;
+    TextArea iso;
     @FXML
-    Text shutterspeed;
+    TextArea shutterspeed;
     @FXML
-    Text exposureTime;
+    TextArea exposureTime;
     @FXML
-    Text flash;
+    TextArea flash;
     @FXML
-    Text latitude;
+    TextArea latitude;
     @FXML
-    Text longitude;
+    TextArea longitude;
     @FXML
-    Text fileName;
+    TextArea fileName;
     @FXML
     BorderPane borderPane;
     @FXML
