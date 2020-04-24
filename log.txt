@@ -206,3 +206,11 @@ apr. 24, 2020 6:31:12 P.M. Team6.App loadFXML
 FINE: 
 /C:/Dev/PictureApp/target/classes/Team6/secondary.fxml:18
 
+apr. 24, 2020 6:36:26 P.M. Team6.App loadFXML
+FINE: 
+/C:/Dev/PictureApp/target/classes/Team6/PictureView.fxml
+
+apr. 24, 2020 6:54:18 P.M. Team6.App loadFXML
+FINE: 
+/C:/Dev/PictureApp/target/classes/Team6/tertiary.fxml:14
+

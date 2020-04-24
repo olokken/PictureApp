@@ -56,7 +56,7 @@ public class MapView extends Base implements MapComponentInitializedListener, In
                      try {
                          int index = pictures.indexOf(x);
                          Context.getInstance().setIndex(index);
-                         switchScene("map", "tertiary");
+                         switchScene("MapView", "PictureView");
                      } catch (IOException ex) {
                          AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
                          AppLogger.closeHandler();

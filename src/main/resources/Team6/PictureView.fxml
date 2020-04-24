@@ -18,7 +18,7 @@
    <center>
       <VBox alignment="BASELINE_CENTER" VBox.vgrow="ALWAYS">
          <HBox fx:id="hBox" alignment="CENTER" prefHeight="78.0" prefWidth="600.0" spacing="10.0" styleClass="topMenu">
-            <Button mnemonicParsing="false" onAction="#switchToAlbumView" styleClass="button" text="Go back" />
+            <Button mnemonicParsing="false" onAction="#switchView" styleClass="button" text="Go back" />
             <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#deletePicture" styleClass="button" text="Delete" />
             <Button mnemonicParsing="false" onAction="#addTag" styleClass="button" text="Add tag" />
             <Button mnemonicParsing="false" onAction="#deleteTag" styleClass="button" text="Delete tag" />
@@ -27,11 +27,11 @@
             <VBox.margin>
                <Insets bottom="10.0" left="10.0" right="10.0" />
             </VBox.margin></ImageView>
-         <HBox prefHeight="50.0" prefWidth="610.0" />
+         <HBox prefHeight="104.0" prefWidth="620.0" />
       </VBox>
    </center>
    <right>
-      <VBox alignment="TOP_CENTER" maxHeight="773.0" maxWidth="200" prefHeight="773.0" prefWidth="200.0" spacing="10" styleClass="metadata" VBox.vgrow="ALWAYS">
+      <VBox alignment="TOP_CENTER" maxHeight="797.0" maxWidth="211.0" prefHeight="750.0" prefWidth="211.0" spacing="10" styleClass="metadata" VBox.vgrow="ALWAYS">
          <Text styleClass="h2" text="Metadata" />
          <TextArea fx:id="fileName" styleClass="TextArea" text="File name: " wrapText="true" />
          <TextArea fx:id="fileSize" styleClass="TextArea" text="File size: " wrapText="true" />

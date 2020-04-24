@@ -100,7 +100,7 @@ public class PictureView extends Base implements Initializable {
             Picture picture = album.getPictures().get(index);
             pictureService.deletePicture(picture.getId(), album.getId());
             Context.getInstance().currentAlbum().removePicture(picture);
-            App.setRoot("secondary");
+            switchScene("SearchView", "AlbumView");
         } catch (IOException ex){
             AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
             AppLogger.closeHandler();
@@ -115,9 +115,9 @@ public class PictureView extends Base implements Initializable {
 
 
     @FXML
-    private void switchToAlbumView() throws IOException {
+    private void switchView() throws IOException {
         try{
-            switchScene("PictureView", "AlbumView");
+            switchScene("PictureView", Context.getInstance().getLastScene());
         } catch (IOException ex){
             AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
             AppLogger.closeHandler();
