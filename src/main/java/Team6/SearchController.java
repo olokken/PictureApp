@@ -109,7 +109,7 @@ public class SearchController extends BaseController implements Initializable {
     public void switchToPrimary() {
         try{
             Context.getInstance().currentAlbum().setPictures(null);
-            switchScene("primary", "search");
+            switchScene("search", "primary");
         } catch (IOException ex){
             AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
             AppLogger.closeHandler();
