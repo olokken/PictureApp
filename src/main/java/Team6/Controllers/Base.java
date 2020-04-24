@@ -149,7 +149,7 @@ public class Base {
                 selectedPictuers.add(x);
             }
         });
-        pages.forEach(e -> e.setStyle("-fx-background-color:linear-gradient(black,#DDDDDD)"));
+        pages.forEach(e -> e.setStyle("-fx-background-color: #AAAAAA"));
     }
 
     public Optional<String> showInputDialog (String header, String content) {

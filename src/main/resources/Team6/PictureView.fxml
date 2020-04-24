@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane fx:id="borderPane" prefHeight="777.0" prefWidth="820.0" styleClass="main" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Team6.Controllers.PictureView">
+<BorderPane fx:id="borderPane" prefHeight="777.0" prefWidth="820.0" styleClass="main" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="Team6.Controllers.PictureView">
    <stylesheets>
       <URL value="@css/PictureView.css" />
    </stylesheets>

@@ -16,7 +16,7 @@
             styleClass="layout"
             snapToPixel="false"
             xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml/1"
+            xmlns:fx="http://javafx.com/fxml"
             fx:controller="Team6.Controllers.LoginView">
 
    <stylesheets>

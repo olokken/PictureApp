@@ -31,7 +31,7 @@ public class CreateUserView extends Base {
             if(checkUsername() && checkPassword() && checkEqualPasswords()) {
                 if (userService.createUser(username.getText(), password.getText())) {
                     userService.createUser(username.getText(), password.getText());
-                    switchScene("createUser", "login");
+                    switchToLogin();
                 } else {
                     showInformationDialog("Username taken", "Please choose another username");
                 }
