@@ -11,14 +11,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane fx:id="borderPane" prefHeight="777.0" prefWidth="820.0" styleClass="main" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Team6.TertiaryController">
+<BorderPane fx:id="borderPane" prefHeight="777.0" prefWidth="820.0" styleClass="main" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Team6.Controllers.PictureView">
    <stylesheets>
-      <URL value="@css/tertiary.css" />
+      <URL value="@css/PictureView.css" />
    </stylesheets>
    <center>
       <VBox alignment="BASELINE_CENTER" VBox.vgrow="ALWAYS">
          <HBox fx:id="hBox" alignment="CENTER" prefHeight="78.0" prefWidth="600.0" spacing="10.0" styleClass="topMenu">
-            <Button mnemonicParsing="false" onAction="#switchToSecondary" styleClass="button" text="Go back" />
+            <Button mnemonicParsing="false" onAction="#switchToAlbumView" styleClass="button" text="Go back" />
             <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#deletePicture" styleClass="button" text="Delete" />
             <Button mnemonicParsing="false" onAction="#addTag" styleClass="button" text="Add tag" />
             <Button mnemonicParsing="false" onAction="#deleteTag" styleClass="button" text="Delete tag" />

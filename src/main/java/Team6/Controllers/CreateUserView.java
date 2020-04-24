@@ -1,16 +1,17 @@
-package Team6;
+package Team6.Controllers;
 
-import idk.AppLogger;
+import Team6.App;
+import Team6.services.AppLogger;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import services.UserService;
+import Team6.services.UserService;
 
 import java.io.IOException;
 import java.util.logging.Level;
 
-public class CreateUserController extends BaseController {
+public class CreateUserView extends Base {
     @FXML
     TextField username;
     @FXML
@@ -22,12 +23,12 @@ public class CreateUserController extends BaseController {
 
     UserService userService = new UserService();
 
-    public CreateUserController() throws IOException {
+    public CreateUserView() throws IOException {
     }
 
     public void createUser() {
         try{
-            if(checkUsername() && checkPassword() && passwordEqual()) {
+            if(checkUsername() && checkPassword() && checkEqualPasswords()) {
                 if (userService.createUser(username.getText(), password.getText())) {
                     userService.createUser(username.getText(), password.getText());
                     switchScene("createUser", "login");
@@ -59,7 +60,7 @@ public class CreateUserController extends BaseController {
         }
     }
 
-    public boolean passwordEqual(){
+    public boolean checkEqualPasswords(){
         if(password.getText().equals(confirmPassword.getText())){
             return true;
         } else {
@@ -72,7 +73,7 @@ public class CreateUserController extends BaseController {
     private void switchToLogin() throws IOException {
         try{
             Context.getInstance().currentAlbum().setPictures(null);
-            App.setRoot("login");
+            switchScene("CreateUserView", "LoginView");
         } catch (IOException ex){
             AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
             AppLogger.closeHandler();

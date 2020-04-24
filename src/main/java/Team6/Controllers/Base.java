@@ -1,8 +1,9 @@
-package Team6;
+package Team6.Controllers;
 
-import entities.Album;
-import entities.Picture;
-import idk.AppLogger;
+import Team6.App;
+import Team6.entities.Album;
+import Team6.entities.Picture;
+import Team6.services.AppLogger;
 import javafx.geometry.Insets;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextInputDialog;
@@ -22,7 +23,7 @@ import java.util.Optional;
 import java.util.logging.Level;
 import java.util.stream.Collectors;
 
-public class BaseController {
+public class Base {
 
     public void switchScene(String currentScene, String nextScene) throws IOException {
         try {
@@ -130,7 +131,7 @@ public class BaseController {
                             Context.getInstance().currentAlbum().setPictures(pictures);
                             Context.getInstance().setIndex(pictures.indexOf(a));
                             try {
-                                switchScene(currentScene, "tertiary");
+                                switchScene(currentScene, "PictureView");
                             } catch (IOException ex) {
                                 AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
                                 AppLogger.closeHandler();

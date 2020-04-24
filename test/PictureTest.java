@@ -1,4 +1,4 @@
-import entities.Picture;
+import Team6.entities.Picture;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +14,7 @@ public class PictureTest {
 
     @BeforeAll
     static void beforeAll() throws IOException {
-        picture = new Picture("./test/garn.jpg");
+        picture = new Picture("./Team6.Controllers.test/garn.jpg");
     }
 
     @Test

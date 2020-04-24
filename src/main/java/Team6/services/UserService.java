@@ -1,8 +1,7 @@
-package services;
+package Team6.services;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
-import entities.User;
-import idk.AppLogger;
+import Team6.entities.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

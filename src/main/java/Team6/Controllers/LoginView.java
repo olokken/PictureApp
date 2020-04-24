@@ -1,14 +1,15 @@
-package Team6;
+package Team6.Controllers;
 
-import entities.User;
-import idk.AppLogger;
+import Team6.App;
+import Team6.entities.User;
+import Team6.services.AppLogger;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import services.UserService;
+import Team6.services.UserService;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -18,7 +19,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 
 
-public class LoginController extends BaseController implements Initializable {
+public class LoginView extends Base implements Initializable {
 
     @FXML
     ImageView imageView;
@@ -33,7 +34,7 @@ public class LoginController extends BaseController implements Initializable {
 
 
 
-    public LoginController() throws IOException {
+    public LoginView() throws IOException {
     }
 
     @Override
@@ -48,7 +49,7 @@ public class LoginController extends BaseController implements Initializable {
 
     public void createNewUser() throws IOException {
         try{
-            switchScene("login", "createUser");
+            switchScene("LoginView", "CreateUserView");
         } catch (IOException ex){
             AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
             AppLogger.closeHandler();
@@ -72,7 +73,7 @@ public class LoginController extends BaseController implements Initializable {
                 if (user != null) {
                     Context.getInstance().currentUser().setId(user.getId());
                     Context.getInstance().currentUser().setUsername(user.getUsername());
-                    App.setRoot("primary");
+                    switchScene("LoginView", "MainView");
                 }
                 else {
                     label.setText("Username and/or password is wrong!");

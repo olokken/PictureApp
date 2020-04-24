@@ -13,10 +13,10 @@
 <?import javafx.geometry.Insets?>
 <BorderPane fx:id="borderPane" minHeight="-Infinity" minWidth="800.0" prefHeight="400.0"
             prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="Team6.PrimaryController">
+            fx:controller="Team6.Controllers.MainView">
 
    <stylesheets>
-      <URL value="@css/primary.css" />
+      <URL value="@css/MainView.css" />
    </stylesheets>
 
    <left>

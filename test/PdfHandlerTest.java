@@ -1,11 +1,11 @@
-import entities.Album;
-import entities.Picture;
-import entities.User;
+import Team6.entities.Album;
+import Team6.entities.Picture;
+import Team6.entities.User;
 import org.junit.jupiter.api.*;
-import services.AlbumService;
-import services.PdfHandler;
-import services.PictureService;
-import services.UserService;
+import Team6.services.AlbumService;
+import Team6.services.PdfHandler;
+import Team6.services.PictureService;
+import Team6.services.UserService;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -34,7 +34,7 @@ public class PdfHandlerTest {
         albumService = new AlbumService();
         albumService.createAlbum("Test Album", user.getId());
         pictureService = new PictureService();
-        picture = new Picture("./test/garn.jpg");
+        picture = new Picture("./Team6.Controllers.test/garn.jpg");
         album = albumService.getAllAlbums(user.getId()).get(0);
         pictures = new ArrayList<Picture>();
 

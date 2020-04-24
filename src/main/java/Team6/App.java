@@ -1,6 +1,6 @@
 package Team6;
 
-import idk.AppLogger;
+import Team6.services.AppLogger;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -24,7 +24,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         try {
-            scene = new Scene(Objects.requireNonNull(loadFXML("login")));
+            scene = new Scene(Objects.requireNonNull(loadFXML("LoginView")));
             stage.setScene(scene);
             Image image = new Image(new FileInputStream("./images/icon_small.png"));
             stage.getIcons().add(image);
@@ -36,7 +36,7 @@ public class App extends Application {
         }
     }
 
-    static void setRoot(String fxml) throws IOException {
+    public static void setRoot(String fxml) throws IOException {
         try {
             scene.setRoot(loadFXML(fxml));
         } catch (IOException ex) {

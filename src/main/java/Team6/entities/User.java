@@ -1,4 +1,4 @@
-package entities;
+package Team6.entities;
 
 import java.util.ArrayList;
 import java.util.List;
