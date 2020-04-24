@@ -4,24 +4,35 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+<?import javafx.scene.layout.BorderPane?>
+<?import java.net.URL?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Team6.SearchController">
-   <children>
-      <TextField fx:id="textField" layoutX="9.0" layoutY="61.0" prefHeight="25.0" prefWidth="619.0" promptText="search" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
-      <Text layoutX="247.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PicLd" wrappingWidth="106.884765625" AnchorPane.leftAnchor="247.0" AnchorPane.rightAnchor="246.115234375">
-         <font>
-            <Font name="Georgia Italic" size="36.0" />
-         </font>
-      </Text>
-      <ScrollPane fx:id="scrollPane" layoutX="14.0" layoutY="86.0" prefHeight="306.0" prefWidth="579.0" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="90.0">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
-        </content>
-      </ScrollPane>
-      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchToPrimary" prefHeight="25.0" prefWidth="43.0" text="&lt;--" />
-      <Button layoutX="499.0" layoutY="22.0" mnemonicParsing="false" onAction="#createAlbum" text="Create Album" />
-      <Button layoutX="425.0" layoutY="22.0" mnemonicParsing="false" onAction="#selectAll" text="Select All" />
-   </children>
-</AnchorPane>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<BorderPane styleClass="layout" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="Team6.SearchController">
+
+   <stylesheets>
+      <URL value="@css/search.css" />
+   </stylesheets>
+
+   <top>
+      <HBox HBox.hgrow="ALWAYS" minHeight="50" alignment="CENTER">
+         <TextField fx:id="textField" prefHeight="35.0" minWidth="300" promptText="Search..." styleClass="text-field"/>
+         <HBox.hgrow/>
+         <HBox alignment="CENTER_RIGHT">
+            <Button prefHeight="35.0" prefWidth="110.0" mnemonicParsing="false" onAction="#switchToPrimary" text="Go back" styleClass="button"/>
+            <Button prefHeight="35.0" prefWidth="110.0" mnemonicParsing="false" onAction="#createAlbum" text="Create Album" styleClass="button"/>
+            <Button prefHeight="35.0" prefWidth="110.0" mnemonicParsing="false" onAction="#selectAll" text="Select All" styleClass="button"/>
+         </HBox>
+      </HBox>
+   </top>
+   <center>
+      <VBox>
+         <ScrollPane fx:id="scrollPane" prefHeight="600" prefWidth="579.0">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="600" prefWidth="200.0"/>
+         </ScrollPane>
+      </VBox>
+   </center>
+</BorderPane>
