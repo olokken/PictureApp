@@ -96,9 +96,14 @@ public class SearchController extends BaseController implements Initializable {
     public void createAlbum() {
         Optional<String> result = showInputDialog("Create new album", "Enter name :");
         if (result.isPresent()) {
-            int userId = Context.getInstance().currentUser().getId();
-            albumService.createAlbum(result.get(), userId);
-            selectedPhotos.forEach(e -> pictureService.createPicture(e , albumService.getIdLastAlbumRegistered(userId)));
+            if(!selectedPhotos.isEmpty()) {
+                int userId = Context.getInstance().currentUser().getId();
+                albumService.createAlbum(result.get(), userId);
+                selectedPhotos.forEach(e -> pictureService.createPicture(e , albumService.getIdLastAlbumRegistered(userId)));
+            } else {
+                showInformationDialog("No selcted pictures", "You have to select which pictures that you want in your new album");
+            }
+
         }
     }
 

@@ -168,3 +168,9 @@ Apr 24, 2020 12:49:42 PM Team6.App loadFXML
 FINE: 
 /C:/Users/Linda/Documents/Programmering%202/PictureApp/target/classes/Team6/search.fxml:26
 
+apr. 24, 2020 2:47:06 P.M. Team6.App loadFXML
+FINE: 
+/C:/Dev/PictureApp/target/classes/Team6/tertiary.fxml
+
+apr. 24, 2020 2:49:33 P.M. Team6.TertiaryController pictureSetup
+FINE: C:\Users\olelo\OneDrive\Bilder\AppPics\parken.jpg (Systemet finner ikke angitt fil)
