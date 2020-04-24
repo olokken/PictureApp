@@ -6,13 +6,11 @@ idk\AppLogger.class
 entities\User.class
 Team6\CreateUserController.class
 Team6\Context.class
-Team6\SecondaryController.class
 forkastet\InterestingMetadata.class
 services\UserService.class
 Team6\BaseController.class
 Team6\PrimaryController.class
 Team6\MapController.class
-services\PdfHandler.class
 services\AlbumService.class
 services\Database.class
 forkastet\Metadata.class

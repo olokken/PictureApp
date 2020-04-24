@@ -60,9 +60,11 @@ public class PdfHandler {
 
     /**
      * Creates a Pdf album with the given pictures.
-     * If
-     * @param pictures
-     * @return
+     * If the pdf album can't be created, a
+     * {@link MalformedURLException} will be thrown.
+     *
+     * @param pictures List with pictures.
+     * @return True if pdf album is made.
      */
     public boolean createPdfAlbum(List<Picture> pictures) {
         Document document = new Document(createPfdDocument(), PageSize.A4);
@@ -75,6 +77,7 @@ public class PdfHandler {
             } catch (MalformedURLException ex) {
                 AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
                 AppLogger.closeHandler();
+                return false;
             }
         });
         document.close();

@@ -98,6 +98,7 @@ public class TertiaryController extends BaseController implements Initializable 
             pictureService.deletePicture(picture.getId(), album.getId());
             Context.getInstance().currentAlbum().removePicture(picture);
             App.setRoot("secondary");
+
         } catch (IOException ex){
             AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
             AppLogger.closeHandler();

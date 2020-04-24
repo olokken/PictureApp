@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.logging.Level;
 
 /**
- * Holds details about the usage of albums.
+ * Holds details about the usage of album.
  *
  * @author Team 6
  * @version 2020.04.24
@@ -27,12 +27,12 @@ public class AlbumService {
     }
 
     /**
-     * Returns all the albums to a user from the database.
+     * Returns all the albums from a user from the database.
      * If the database won't connect, can't get user or execute, a
      * {@link SQLException} is thrown.
      *
      * @param userId The user ID.
-     * @return The albums as a list.
+     * @return List of albums.
      */
     public List<Album> getAllAlbums(int userId) {
         String query = "Select * from album where userid = ?";
@@ -86,7 +86,7 @@ public class AlbumService {
     }
 
     /**
-     * Delete album with album ID from the given album.
+     * Delete an album with album ID from the given album.
      * If the database won't connect, can't get album ID, or execute,
      * a {@link SQLException} is thrown.
      *
