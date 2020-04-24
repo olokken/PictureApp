@@ -25,6 +25,7 @@
             <Button prefHeight="35.0" prefWidth="110.0" mnemonicParsing="false" onAction="#switchToMainView" text="Go back" styleClass="button"/>
             <Button prefHeight="35.0" prefWidth="110.0" mnemonicParsing="false" onAction="#createAlbum" text="Create Album" styleClass="button"/>
             <Button prefHeight="35.0" prefWidth="110.0" mnemonicParsing="false" onAction="#selectAll" text="Select All" styleClass="button"/>
+            <Button prefHeight="35.0" prefWidth="110.0" mnemonicParsing="false" onAction="#createPdf" text="Create PDF" styleClass="button"/>
          </HBox>
       </HBox>
    </top>

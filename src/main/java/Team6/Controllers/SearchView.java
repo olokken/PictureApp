@@ -2,6 +2,7 @@ package Team6.Controllers;
 
 import Team6.entities.Picture;
 import Team6.services.AppLogger;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ScrollPane;
@@ -160,5 +161,9 @@ public class SearchView extends Base implements Initializable {
             AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
             AppLogger.closeHandler();
         }
+    }
+
+    public void createPdf() {
+        createPdf(selectedPhotos, searchedPictures);
     }
 }

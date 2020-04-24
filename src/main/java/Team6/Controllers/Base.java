@@ -4,6 +4,8 @@ import Team6.App;
 import Team6.entities.Album;
 import Team6.entities.Picture;
 import Team6.services.AppLogger;
+import Team6.services.PdfHandler;
+import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextInputDialog;
@@ -249,5 +251,20 @@ public class Base {
         alert.setHeaderText(header);
         alert.setContentText(content);
         alert.showAndWait();
+    }
+
+    /**
+     * Creates PDF.
+     */
+    @FXML
+    void createPdf(List<Picture> selectedPhotos, List<Picture> pictures) {
+        PdfHandler pdfHandler = new PdfHandler();
+        if (selectedPhotos.isEmpty()) {
+            pdfHandler.createPdfAlbum(pictures);
+            showInformationDialog("PDF created", "You have created a pdf file with all your album pictures, which is located in download");
+        } else {
+            pdfHandler.createPdfAlbum(selectedPhotos);
+            showInformationDialog("PDF created", "You have created a pdf file with all your selected pictures, which is located in download");
+        }
     }
 }

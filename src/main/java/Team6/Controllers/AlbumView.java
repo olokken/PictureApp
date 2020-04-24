@@ -239,14 +239,7 @@ public class AlbumView extends Base implements Initializable {
      */
     @FXML
     void createPdf() {
-        PdfHandler pdfHandler = new PdfHandler();
-        if (selectedPhotos.isEmpty()) {
-            pdfHandler.createPdfAlbum(album.getPictures());
-            showInformationDialog("PDF created", "You have created a pdf file with all your album pictures, which is located in download");
-        } else {
-            pdfHandler.createPdfAlbum(selectedPhotos);
-            showInformationDialog("PDF created", "You have created a pdf file with all your selected pictures, which is located in download");
-        }
+        createPdf(selectedPhotos, album.getPictures());
     }
 
     /**
