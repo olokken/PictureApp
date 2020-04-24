@@ -21,7 +21,7 @@
 </stylesheets>
 
 <left>
-    <VBox VBox.vgrow="ALWAYS" maxWidth="160" fx:id="vBox" styleClass="vBoxLeft" alignment="TOP_CENTER" spacing="5">
+    <VBox VBox.vgrow="ALWAYS" maxWidth="160" fx:id="vBox" styleClass="vbox-left" alignment="TOP_CENTER" spacing="5">
         <VBox>
             <Button mnemonicParsing="false" onAction="#switchToMainView" prefHeight="35.0" prefWidth="110.0" text="Go back"/>
         </VBox>
@@ -36,14 +36,14 @@
 </left>
 
 <right>
-    <VBox VBox.vgrow="ALWAYS" minWidth="300" styleClass="vBoxRight" prefWidth="Infinity">
+    <VBox VBox.vgrow="ALWAYS" minWidth="300" styleClass="vbox-right" prefWidth="Infinity">
         <VBox.margin>
             <Insets top="161.0"/>
         </VBox.margin>
-        <HBox alignment="CENTER_LEFT" styleClass="titleBox">
+        <HBox alignment="CENTER_LEFT" styleClass="title-box">
             <Text fx:id="albumName" text="Text" styleClass="h2"/>
             <HBox HBox.hgrow="ALWAYS"/>
-            <MenuButton fx:id="changeStatusButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="220.0" text="Sort by.." styleClass="dropDownMenu">
+            <MenuButton fx:id="changeStatusButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="220.0" text="Sort by.." styleClass="drop-down-menu">
                 <items>
                     <MenuItem mnemonicParsing="false" onAction="#sortIso" text="ISO" />
                     <MenuItem mnemonicParsing="false" onAction="#sortShutterSpeed" text="Shutter- speed" />
@@ -55,7 +55,7 @@
                 </items>
             </MenuButton>
         </HBox>
-        <ScrollPane fx:id="scrollPane" styleClass="scrollPane" prefHeight="1050"/>
+        <ScrollPane fx:id="scrollPane" styleClass="scroll-pane" prefHeight="1050"/>
     </VBox>
 </right>
 

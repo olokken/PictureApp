@@ -1,5 +1,3 @@
-/*Login fields*/
-
 .text-field {
     -fx-background-color: transparent;
     -fx-border-radius: 20px;
@@ -14,18 +12,9 @@
     -fx-background-insets: 6px;
 }
 
-/*Error message*/
-
-.label {
-    -fx-text-fill: #EF1F2D;
-    -fx-font-weight: bold;
-}
-
-.vBox {
+.vbox {
     -fx-padding: 100,50,50,50;
 }
-
-/*Login button*/
 
 .button {
     -fx-background-color: linear-gradient(to bottom,#1D1D1D,#2B2B2B);
@@ -38,9 +27,6 @@
 
 }
 
-
-/*Login button when hovered*/
-
 .button:hover {
     -fx-background-color: linear-gradient(to bottom,#F0F0F0,#E1E1E1);
     -fx-text-fill: #333333;
@@ -51,19 +37,17 @@
     -fx-padding: 50,25,50,25;
 }
 
-.vBoxLeft {
+.vbox-left {
     -fx-background-color: #333333;
 }
 
-.vBoxRight {
+.vbox-right {
     -fx-background-color:linear-gradient(white,#DDDDDD);
 }
 
-.titleBox {
+.title-box {
     -fx-padding: 25,25,25,25;
-    -fx-font-weight: bold;
 }
-
 
 .h1 {
     -fx-font-size: 20pt;
@@ -73,12 +57,11 @@
 }
 
 .h2 {
-    -fx-font-size: 12pt;
+    -fx-font-size: 17pt;
     -fx-fill: #333333 ;
-
 }
 
-.scrollPane {
+.scroll-pane {
     -fx-padding: 15;
     -fx-border-color: #EEECEC;
 }

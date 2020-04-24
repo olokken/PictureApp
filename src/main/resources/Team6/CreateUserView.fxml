@@ -22,7 +22,7 @@
       <URL value="@css/CreateUserView.css" />
    </stylesheets>
 
-   <VBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" styleClass="vBox">
+   <VBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" styleClass="vbox">
       <Text text="Create new user" styleClass="headline"/>
       <TextField fx:id="username" focusTraversable="false" prefHeight="25.0"
                  prefWidth="525.0" promptText="Write your new username"/>

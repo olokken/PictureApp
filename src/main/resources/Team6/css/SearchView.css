@@ -25,7 +25,7 @@
     -fx-font-weight: bold;
 }
 
-.vBox {
+.vbox {
     -fx-padding: 100,50,50,50;
 }
 
@@ -44,7 +44,7 @@
 }
 
 
-.scrollPane {
+.scroll-pane {
     -fx-padding: 0;
     -fx-border-color: #EEECEC;
 }

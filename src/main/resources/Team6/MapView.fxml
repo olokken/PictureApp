@@ -4,11 +4,23 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="anchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="Team6.Controllers.MapView">
-   <children>
-      <GoogleMapView fx:id="mapView" prefHeight="500.0" prefWidth="600.0" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="3.0">
-         <children>
-            <Button mnemonicParsing="false" onAction="#switchToAlbumView" text="Go back" />
-         </children></GoogleMapView>
-   </children>
-</AnchorPane>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import java.net.URL?>
+<BorderPane fx:id="borderPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml" fx:controller="Team6.Controllers.MapView">
+   <stylesheets>
+      <URL value="@css/MapView.css" />
+   </stylesheets>
+   <left>
+      <VBox styleClass="vbox-left">
+         <Button mnemonicParsing="false" onAction="#switchToAlbumView" text="Go back" alignment="CENTER"
+                 styleClass="button" prefHeight="35.0" prefWidth="110.0"/>
+      </VBox>
+   </left>
+   <center>
+      <GoogleMapView fx:id="mapView" prefHeight="500.0" prefWidth="600.0" AnchorPane.bottomAnchor="3.0"
+                     AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="3.0">
+      </GoogleMapView>
+   </center>
+</BorderPane>

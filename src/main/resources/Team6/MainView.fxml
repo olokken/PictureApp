@@ -20,7 +20,7 @@
    </stylesheets>
 
    <left>
-      <VBox VBox.vgrow="ALWAYS" minWidth="210" styleClass="vBoxLeft" alignment="TOP_CENTER" spacing="5">
+      <VBox VBox.vgrow="ALWAYS" minWidth="210" styleClass="vbox-left" alignment="TOP_CENTER" spacing="5">
          <VBox styleClass="pickld" alignment="CENTER">
             <Text text="PicLd" styleClass="h1"/>
          </VBox>
@@ -32,16 +32,16 @@
    </left>
 
    <right>
-      <VBox VBox.vgrow="ALWAYS" minWidth="300" styleClass="vBoxRight" prefWidth="Infinity">
+      <VBox VBox.vgrow="ALWAYS" minWidth="300" styleClass="vbox-right" prefWidth="Infinity">
          <VBox.margin>
             <Insets top="161.0"/>
          </VBox.margin>
-         <HBox alignment="CENTER_LEFT" styleClass="titleBox">
-            <Text text="YOUR ALBUMS" styleClass="h2"/>
+         <HBox alignment="CENTER_LEFT" styleClass="title-box">
+            <Text text="Your albums" styleClass="h2"/>
             <HBox HBox.hgrow="ALWAYS"/>
             <TextField fx:id="textField" prefHeight="20.0" promptText="Search" alignment="CENTER_RIGHT"/>
          </HBox>
-         <ScrollPane fx:id="scrollPane" styleClass="scrollPane" prefHeight="1050"/>
+         <ScrollPane fx:id="scrollPane" styleClass="scroll-pane" prefHeight="1050"/>
       </VBox>
    </right>
 

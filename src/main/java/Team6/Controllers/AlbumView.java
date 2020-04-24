@@ -153,8 +153,8 @@ public class AlbumView extends Base implements Initializable {
 
     void setupTransparentButtons() {
         if (selectedPhotos.isEmpty()) {
-            deleteButton.setStyle("-fx-background-color: transparent");
-            createAlbumButton.setStyle("-fx-background-color: transparent");
+            deleteButton.setStyle("-fx-background-color: #2e2d2d; -fx-text-fill: #4d4d4d");
+            createAlbumButton.setStyle("-fx-background-color: #2e2d2d; -fx-text-fill: #4d4d4d");
         } else {
              deleteButton.setStyle(null);
              createAlbumButton.setStyle(null);

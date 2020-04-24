@@ -58,8 +58,8 @@ public class MainView extends Base implements Initializable  {
 
     void setupButtonCss() {
         if (selectedAlbums.isEmpty()) {
-            openButton.setStyle(transparentButton);
-            deleteButton.setStyle(transparentButton);
+            openButton.setStyle("-fx-background-color: #2e2d2d; -fx-text-fill: #4d4d4d");
+            deleteButton.setStyle("-fx-background-color: #2e2d2d; -fx-text-fill: #4d4d4d");
         } else {
             openButton.setStyle(null);
             deleteButton.setStyle(null);
