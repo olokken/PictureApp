@@ -21,8 +21,8 @@
 /*Login button*/
 
 .button {
-    -fx-background-color: linear-gradient(to bottom,#3F3F3F,#2B2B2B);
-    /*-fx-background-radius: 20px;*/
+    -fx-background-color: linear-gradient(to bottom,#1D1D1D,#2B2B2B);
+    -fx-background-radius: 20px;
     -fx-alignment: center;
     -fx-text-fill: #ffffff;
     -fx-padding: 4,4,4,4;
