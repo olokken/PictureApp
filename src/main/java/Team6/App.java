@@ -26,7 +26,7 @@ public class App extends Application {
         try {
             scene = new Scene(Objects.requireNonNull(loadFXML("login")));
             stage.setScene(scene);
-            Image image = new Image(new FileInputStream("./images/pickles.png"));
+            Image image = new Image(new FileInputStream("./images/icon_small.png"));
             stage.getIcons().add(image);
             stage.show();
             scene.setFill(Color.TRANSPARENT);

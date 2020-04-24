@@ -13,8 +13,8 @@
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 
-<BorderPane fx:id="borderPane" maxHeight="400" prefHeight="400.0"
-            minWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+<BorderPane fx:id="borderPane" minHeight="-Infinity" minWidth="800.0" prefHeight="400.0"
+            prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="Team6.SecondaryController">
 
 <stylesheets>
@@ -22,15 +22,16 @@
 </stylesheets>
 
 <left>
-    <VBox VBox.vgrow="ALWAYS" minWidth="160" fx:id="vBox" styleClass="vBoxLeft" alignment="TOP_CENTER" spacing="5">
+    <VBox VBox.vgrow="ALWAYS" maxWidth="160" fx:id="vBox" styleClass="vBoxLeft" alignment="TOP_CENTER" spacing="5">
         <VBox>
             <Button mnemonicParsing="false" onAction="#switchToPrimary" prefHeight="35.0" prefWidth="110.0" text="Go back"/>
         </VBox>
         <Button fx:id="addButton" mnemonicParsing="false" onAction="#addPicture" prefHeight="35.0" prefWidth="110.0" text="Add photo"/>
-        <Button fx:id="deleteButton"  mnemonicParsing="false" onAction="#deletePhotos" prefHeight="35.0" prefWidth="110.0" text="Delete photo"/>
+
         <Button mnemonicParsing="false" onAction="#selectAll" prefHeight="35.0" prefWidth="110.0" text="Select All" />
-        <Button fx:id="createAlbumButton"  mnemonicParsing="false" onAction="#createAlbum" prefHeight="35.0" prefWidth="110.0" text="Create Album" />
         <Button fx:id="createPdfButton"  mnemonicParsing="false" onAction="#createPdf" prefHeight="35.0" prefWidth="110.0" text="Create PDF" />
+        <Button fx:id="deleteButton"  mnemonicParsing="false" onAction="#deletePhotos" prefHeight="35.0" prefWidth="110.0" text="Delete photo"/>
+        <Button fx:id="createAlbumButton"  mnemonicParsing="false" onAction="#createAlbum" prefHeight="35.0" prefWidth="110.0" text="Create Album" />
         <ImageView fx:id="mapViewIcon" fitWidth="110" pickOnBounds="true" preserveRatio="true"/>
     </VBox>
 </left>
