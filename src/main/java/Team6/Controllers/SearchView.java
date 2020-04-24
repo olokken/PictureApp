@@ -120,7 +120,7 @@ public class SearchView extends Base implements Initializable {
         tilePane = elementPane();
         bind();
         pages = createPicturePages(searchedPictures);
-        setOnMouseClicked(searchedPictures, searchedPictures, pages, "SearchView");
+        setOnMouseClicked(searchedPictures, selectedPhotos, pages, "SearchView");
         createElements(tilePane, pages);
     }
 
