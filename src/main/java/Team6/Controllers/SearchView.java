@@ -1,15 +1,15 @@
-package Team6;
+package Team6.Controllers;
 
-import entities.Picture;
-import idk.AppLogger;
+import Team6.entities.Picture;
+import Team6.services.AppLogger;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
-import services.AlbumService;
-import services.PictureService;
+import Team6.services.AlbumService;
+import Team6.services.PictureService;
 
 import java.io.IOException;
 import java.net.URL;
@@ -19,7 +19,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 
-public class SearchController extends BaseController implements Initializable {
+public class SearchView extends Base implements Initializable {
     @FXML
     TextField textField;
     @FXML
@@ -34,7 +34,7 @@ public class SearchController extends BaseController implements Initializable {
     TilePane tilePane = new TilePane();
     List<VBox> pages = new ArrayList<>();
 
-    public SearchController() throws IOException {
+    public SearchView() throws IOException {
     }
 
     @Override
@@ -89,7 +89,7 @@ public class SearchController extends BaseController implements Initializable {
         tilePane = elementPane();
         bind();
         pages = createPicturePages(searchedPictures);
-        setOnMouseClicked(searchedPictures, searchedPictures, pages, "search");
+        setOnMouseClicked(searchedPictures, searchedPictures, pages, "SearchView");
         createElements(tilePane, pages);
     }
 
@@ -101,7 +101,7 @@ public class SearchController extends BaseController implements Initializable {
                 albumService.createAlbum(result.get(), userId);
                 selectedPhotos.forEach(e -> pictureService.createPicture(e , albumService.getIdLastAlbumRegistered(userId)));
             } else {
-                showInformationDialog("No selcted pictures", "You have to select which pictures that you want in your new album");
+                showInformationDialog("No selected pictures", "You have to select which pictures that you want in your new album");
             }
 
         }
@@ -111,10 +111,10 @@ public class SearchController extends BaseController implements Initializable {
         selectAll(searchedPictures, selectedPhotos, pages);
     }
 
-    public void switchToPrimary() {
+    public void switchToMainView() {
         try{
             Context.getInstance().currentAlbum().setPictures(null);
-            switchScene("search", "primary");
+            switchScene("SearchView", "MainView");
         } catch (IOException ex){
             AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
             AppLogger.closeHandler();

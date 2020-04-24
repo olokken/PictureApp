@@ -4,10 +4,10 @@
  * @author team6
  */
 
-package entities;
+package Team6.entities;
 //Heja
 
-import idk.AppLogger;
+import Team6.services.AppLogger;
 import java.util.*;
 import java.util.logging.Level;
 

@@ -1,7 +1,6 @@
-package services;
+package Team6.services;
 
-import entities.Picture;
-import idk.AppLogger;
+import Team6.entities.Picture;
 
 import java.sql.*;
 import java.text.SimpleDateFormat;

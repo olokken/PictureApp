@@ -11,10 +11,10 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <BorderPane styleClass="layout" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="Team6.SearchController">
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="Team6.Controllers.SearchView">
 
    <stylesheets>
-      <URL value="@css/search.css" />
+      <URL value="@css/SearchView.css" />
    </stylesheets>
 
    <top>
@@ -22,7 +22,7 @@
          <TextField fx:id="textField" prefHeight="35.0" minWidth="300" promptText="Search..." styleClass="text-field"/>
          <HBox.hgrow/>
          <HBox alignment="CENTER_RIGHT">
-            <Button prefHeight="35.0" prefWidth="110.0" mnemonicParsing="false" onAction="#switchToPrimary" text="Go back" styleClass="button"/>
+            <Button prefHeight="35.0" prefWidth="110.0" mnemonicParsing="false" onAction="#switchToMainView" text="Go back" styleClass="button"/>
             <Button prefHeight="35.0" prefWidth="110.0" mnemonicParsing="false" onAction="#createAlbum" text="Create Album" styleClass="button"/>
             <Button prefHeight="35.0" prefWidth="110.0" mnemonicParsing="false" onAction="#selectAll" text="Select All" styleClass="button"/>
          </HBox>

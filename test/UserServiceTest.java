@@ -1,8 +1,8 @@
 import ch.qos.logback.core.db.DBHelper;
-import entities.User;
+import Team6.entities.User;
 import org.junit.BeforeClass;
 import org.junit.jupiter.api.*;
-import services.UserService;
+import Team6.services.UserService;
 
 import static org.junit.jupiter.api.Assertions.*;
 

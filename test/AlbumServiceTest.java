@@ -1,8 +1,8 @@
-import entities.Album;
-import entities.User;
+import Team6.entities.Album;
+import Team6.entities.User;
 import org.junit.jupiter.api.*;
-import services.AlbumService;
-import services.UserService;
+import Team6.services.AlbumService;
+import Team6.services.UserService;
 
 import java.io.IOException;
 

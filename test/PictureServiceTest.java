@@ -1,10 +1,10 @@
-import entities.Album;
-import entities.User;
+import Team6.entities.Album;
+import Team6.entities.User;
 import org.junit.jupiter.api.*;
-import services.AlbumService;
-import services.PictureService;
-import entities.Picture;
-import services.UserService;
+import Team6.services.AlbumService;
+import Team6.services.PictureService;
+import Team6.entities.Picture;
+import Team6.services.UserService;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -27,7 +27,7 @@ public class PictureServiceTest {
         albumService = new AlbumService();
         albumService.createAlbum("Test Album", user.getId());
         pictureService = new PictureService();
-        picture = new Picture("./test/garn.jpg");
+        picture = new Picture("./Team6.Controllers.test/garn.jpg");
         album = albumService.getAllAlbums(user.getId()).get(0);
     }
 

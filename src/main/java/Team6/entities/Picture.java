@@ -1,4 +1,4 @@
-package entities;
+package Team6.entities;
 
 import com.drew.imaging.ImageMetadataReader;
 import com.drew.imaging.ImageProcessingException;
@@ -6,7 +6,7 @@ import com.drew.metadata.Metadata;
 import com.drew.metadata.Tag;
 import com.drew.metadata.exif.ExifSubIFDDirectory;
 import com.drew.metadata.exif.GpsDirectory;
-import idk.AppLogger;
+import Team6.services.AppLogger;
 
 
 import java.io.File;

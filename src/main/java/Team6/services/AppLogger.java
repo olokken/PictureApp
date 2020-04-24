@@ -1,6 +1,4 @@
-package idk;
-
-import com.mysql.cj.log.Log;
+package Team6.services;
 
 import java.io.IOException;
 import java.util.logging.*;

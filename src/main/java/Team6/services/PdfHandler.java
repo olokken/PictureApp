@@ -1,4 +1,4 @@
-package services;
+package Team6.services;
 
 
 import com.itextpdf.io.image.ImageData;
@@ -9,8 +9,7 @@ import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.AreaBreak;
 import com.itextpdf.layout.element.Image;
-import entities.Picture;
-import idk.AppLogger;
+import Team6.entities.Picture;
 
 import java.io.File;
 import java.io.FileNotFoundException;

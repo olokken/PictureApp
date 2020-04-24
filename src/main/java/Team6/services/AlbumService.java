@@ -1,8 +1,7 @@
-package services;
+package Team6.services;
 
-import entities.Album;
-import entities.Picture;
-import idk.AppLogger;
+import Team6.entities.Album;
+import Team6.entities.Picture;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

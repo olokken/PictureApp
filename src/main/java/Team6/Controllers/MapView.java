@@ -1,14 +1,13 @@
-package Team6;
+package Team6.Controllers;
 
+import Team6.services.AppLogger;
 import com.lynden.gmapsfx.GoogleMapView;
 import com.lynden.gmapsfx.MapComponentInitializedListener;
 import com.lynden.gmapsfx.javascript.event.UIEventType;
 import com.lynden.gmapsfx.javascript.object.*;
-import entities.Picture;
-import idk.AppLogger;
+import Team6.entities.Picture;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import netscape.javascript.JSObject;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -17,7 +16,7 @@ import java.net.URL;
 import java.util.*;
 import java.util.logging.Level;
 
-public class MapController extends BaseController implements MapComponentInitializedListener, Initializable {
+public class MapView extends Base implements MapComponentInitializedListener, Initializable {
     @FXML
     GoogleMapView mapView;
 
@@ -74,16 +73,16 @@ public class MapController extends BaseController implements MapComponentInitial
     }
 
     @FXML
-    private void switchToSecondary() {
+    private void switchToAlbumView() {
         try{
-            switchScene("map", "secondary");
+            switchScene("MapView", "AlbumView");
         } catch (IOException ex){
             AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
             AppLogger.closeHandler();
         }
     }
-    private Map getProperties() {
-        Map result = new HashMap();
+    private java.util.Map getProperties() {
+        java.util.Map result = new HashMap();
         try (InputStream input = new FileInputStream("config.properties")) {
             Properties prop = new Properties();
             prop.load(input);

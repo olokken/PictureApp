@@ -1,7 +1,7 @@
-package Team6;
+package Team6.Controllers;
 
-import entities.Album;
-import entities.User;
+import Team6.entities.Album;
+import Team6.entities.User;
 
 
 public class Context {

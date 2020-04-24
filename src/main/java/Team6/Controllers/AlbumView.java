@@ -1,4 +1,4 @@
-package Team6;
+package Team6.Controllers;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -7,9 +7,11 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 import java.util.logging.Level;
-import entities.Album;
-import entities.Picture;
-import idk.AppLogger;
+
+import Team6.App;
+import Team6.entities.Album;
+import Team6.entities.Picture;
+import Team6.services.AppLogger;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -21,13 +23,13 @@ import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
-import services.AlbumService;
-import services.PdfHandler;
-import services.PictureService;
+import Team6.services.AlbumService;
+import Team6.services.PdfHandler;
+import Team6.services.PictureService;
 
 
 
-public class SecondaryController extends BaseController implements Initializable {
+public class AlbumView extends Base implements Initializable {
     @FXML
     Button createPdfButton;
     @FXML
@@ -57,12 +59,12 @@ public class SecondaryController extends BaseController implements Initializable
     List<VBox> pages = new ArrayList<>();
 
 
-    public SecondaryController() throws IOException {
+    public AlbumView() throws IOException {
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        albumSetup();
+        setupAlbum();
         fillList();
         setupPicturePane();
         setupVisibleButtons();
@@ -78,7 +80,7 @@ public class SecondaryController extends BaseController implements Initializable
         }
     }
 
-    void albumSetup() {
+    void setupAlbum() {
         album.setName(Context.getInstance().currentAlbum().getName());
         album.setId(Context.getInstance().currentAlbum().getId());
         albumName.setText(album.getName());
@@ -100,10 +102,10 @@ public class SecondaryController extends BaseController implements Initializable
     }
 
     @FXML
-    private void switchToPrimary() throws IOException {
+    private void switchToMainView() throws IOException {
         try{
             Context.getInstance().currentAlbum().setPictures(null);
-            switchScene("secondary", "primary");
+            switchScene("AlbumView", "MainView");
         } catch (IOException e){
             AppLogger.getAppLogger().log(Level.FINE, e.getMessage());
             AppLogger.closeHandler();
@@ -116,7 +118,7 @@ public class SecondaryController extends BaseController implements Initializable
         tilePane = elementPane();
         bind();
         pages = createPicturePages((ArrayList<Picture>) album.getPictures());
-        setOnMouseClicked((ArrayList<Picture>) album.getPictures(), selectedPhotos, pages, "secondary");
+        setOnMouseClicked((ArrayList<Picture>) album.getPictures(), selectedPhotos, pages, "AlbumView");
         createElements(tilePane, pages);
     }
 
@@ -154,8 +156,10 @@ public class SecondaryController extends BaseController implements Initializable
             deleteButton.setStyle("-fx-background-color: transparent");
             createAlbumButton.setStyle("-fx-background-color: transparent");
         } else {
-             deleteButton.setStyle("-fx-background-color: linear-gradient(to bottom,#3F3F3F,#2B2B2B)");
-             createAlbumButton.setStyle("-fx-background-color: linear-gradient(to bottom,#3F3F3F,#2B2B2B)");
+             deleteButton.setStyle(null);
+             createAlbumButton.setStyle(null);
+             deleteButton.getStyleClass().add("AlbumView.css");
+             createAlbumButton.getStyleClass().add("AlbumView.css");
         }
     }
 
@@ -172,7 +176,7 @@ public class SecondaryController extends BaseController implements Initializable
             mapViewIcon.setOnMouseClicked(e -> {
                 Context.getInstance().currentAlbum().setPictures(album.getPictures());
                 try {
-                    App.setRoot("map");
+                    switchScene("AlbumView", "MapView");
                 } catch (IOException ex) {
                     AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
                     AppLogger.closeHandler();

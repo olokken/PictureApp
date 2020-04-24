@@ -15,11 +15,11 @@
             prefWidth="600.0"
             xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="Team6.CreateUserController"
+            fx:controller="Team6.Controllers.CreateUserView"
             styleClass="layout">
 
    <stylesheets>
-      <URL value="@css/createUser.css" />
+      <URL value="@css/CreateUserView.css" />
    </stylesheets>
 
    <VBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" styleClass="vBox">

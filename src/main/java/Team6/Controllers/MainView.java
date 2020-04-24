@@ -1,4 +1,4 @@
-package Team6;
+package Team6.Controllers;
 
 
 import java.io.IOException;
@@ -8,20 +8,20 @@ import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
-import entities.Album;
-import entities.User;
-import idk.AppLogger;
+import Team6.entities.Album;
+import Team6.entities.User;
+import Team6.services.AppLogger;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
-import services.AlbumService;
-import services.PictureService;
+import Team6.services.AlbumService;
+import Team6.services.PictureService;
 
 
-public class PrimaryController extends BaseController implements Initializable  {
+public class MainView extends Base implements Initializable  {
     @FXML
     Button deleteButton;
     @FXML
@@ -44,7 +44,7 @@ public class PrimaryController extends BaseController implements Initializable  
     TilePane tilePane = new TilePane();
     List<VBox> pages = new ArrayList<>();
 
-    public PrimaryController() throws IOException {
+    public MainView() throws IOException {
     }
 
 
@@ -53,18 +53,18 @@ public class PrimaryController extends BaseController implements Initializable  
         setupVariables();
         setupAlbumView();
         search();
-        buttonSetup();
+        setupButtonCss();
     }
 
-    void buttonSetup() {
+    void setupButtonCss() {
         if (selectedAlbums.isEmpty()) {
             openButton.setStyle(transparentButton);
             deleteButton.setStyle(transparentButton);
         } else {
             openButton.setStyle(null);
             deleteButton.setStyle(null);
-            openButton.getStyleClass().add("primary.css");
-            deleteButton.getStyleClass().add("primary.css");
+            openButton.getStyleClass().add("MainView.css");
+            deleteButton.getStyleClass().add("MainView.css");
         }
     }
 
@@ -77,17 +77,17 @@ public class PrimaryController extends BaseController implements Initializable  
                         if (selectedAlbums.contains(a)) {
                             v.setStyle("-fx-background-color: transparent");
                             selectedAlbums.remove(a);
-                            buttonSetup();
+                            setupButtonCss();
                         } else {
                             v.setStyle("-fx-background-color: #AAAAAA");
                             selectedAlbums.add(a);
-                            buttonSetup();
+                            setupButtonCss();
                         }
                         if (e.getClickCount() == 2) {
                             Context.getInstance().currentAlbum().setId(a.getId());
                             Context.getInstance().currentAlbum().setName(a.getName());
                             try {
-                                switchScene("primary", "secondary");
+                                switchScene("MainView", "AlbumView");
                             } catch (IOException ex) {
                                 AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
                                 AppLogger.closeHandler();
@@ -106,7 +106,7 @@ public class PrimaryController extends BaseController implements Initializable  
         scrollPane.setContent(tilePane);
     }
 
-    void albumSetup() {
+    void setupAlbums() {
         yourAlbums = (ArrayList<Album>) albumService.getAllAlbums(user.getId());
         Album album = new Album("All Photos");
         album.setId(-1);
@@ -115,7 +115,7 @@ public class PrimaryController extends BaseController implements Initializable  
     }
 
     public void setupVariables() {
-        albumSetup();
+        setupAlbums();
         tilePane = elementPane();
         pages = createAlbumPages(yourAlbums, "./images/icon_green.png");
         createElements(tilePane, pages);
@@ -123,11 +123,7 @@ public class PrimaryController extends BaseController implements Initializable  
 
 
     public void createAlbum() {
-        TextInputDialog t = new TextInputDialog();
-        t.setTitle("Album");
-        t.setHeaderText("Create new album");
-        t.setContentText("Enter name: ");
-        Optional<String> result = t.showAndWait();
+        Optional<String> result = showInputDialog("Create new album", "Enter name :");
         if (result.isPresent()) {
             albumService.createAlbum(result.get(), user.getId());
             setupVariables();
@@ -153,7 +149,7 @@ public class PrimaryController extends BaseController implements Initializable  
                 Album album = selectedAlbums.get(0);
                 Context.getInstance().currentAlbum().setId(album.getId());
                 Context.getInstance().currentAlbum().setName(album.getName());
-                switchScene("primary", "secondary");
+                switchScene("MainView", "AlbumView");
             }
         } catch (IOException ex) {
             AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
@@ -164,7 +160,7 @@ public class PrimaryController extends BaseController implements Initializable  
     public void search() {
         textField.setOnMouseClicked(e -> {
             try {
-                switchScene("primary", "search");
+                switchScene("MainView", "SearchView");
             } catch (IOException ex) {
                 AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
                 AppLogger.closeHandler();
@@ -173,6 +169,6 @@ public class PrimaryController extends BaseController implements Initializable  
     }
 
     public void logOut() throws IOException {
-        switchScene("primary", "login");
+        switchScene("MainView", "LoginView");
     }
 }
