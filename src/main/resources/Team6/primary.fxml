@@ -11,7 +11,7 @@
 <?import java.net.URL?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.geometry.Insets?>
-<BorderPane fx:id="borderPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+<BorderPane fx:id="borderPane" minHeight="-Infinity" minWidth="800.0" prefHeight="400.0"
             prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="Team6.PrimaryController">
 
@@ -20,8 +20,8 @@
    </stylesheets>
 
    <left>
-      <VBox VBox.vgrow="ALWAYS" minWidth="160" styleClass="vBoxLeft" alignment="TOP_CENTER" spacing="5">
-         <VBox styleClass="pickld">
+      <VBox VBox.vgrow="ALWAYS" minWidth="210" styleClass="vBoxLeft" alignment="TOP_CENTER" spacing="5">
+         <VBox styleClass="pickld" alignment="CENTER">
             <Text text="PicLd" styleClass="h1"/>
          </VBox>
          <Button mnemonicParsing="false" onAction="#createAlbum" prefHeight="35.0" prefWidth="110.0" text="New album"/>

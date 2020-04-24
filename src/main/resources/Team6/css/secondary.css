@@ -66,10 +66,10 @@
 }
 
 .h2 {
-    -fx-font-size: 21pt;
+    -fx-font-size: 12pt;
     -fx-fill: #333333 ;
-
 }
+
 
 .scrollPane {
     -fx-padding: 15;
