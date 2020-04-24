@@ -132,10 +132,10 @@ public class PictureView extends Base implements Initializable {
         }
         fileSize.setText("File size : " + Double.toString(picture.getFileSize()) + "bytes");
         iso.setText("ISO : " + Integer.toString(picture.getIso()));
-        shutterspeed.setText("Shutterspeed : " + Integer.toString(picture.getShutterSpeed()));
-        exposureTime.setText("Exposure time : " + Double.toString(picture.getExposureTime()));
-        latitude.setText("Latitude : " + Double.toString(picture.getLatitude()));
-        longitude.setText("Longitude : " + Double.toString(picture.getLongitude()));
+        shutterspeed.setText("Shutterspeed : " + Integer.toString(picture.getShutterSpeed()) + " sec");
+        exposureTime.setText("Exposure time : " + Double.toString(picture.getExposureTime()) + " sec");
+        latitude.setText("Latitude : " + Double.toString(picture.getLatitude()) + " degrees");
+        longitude.setText("Longitude : " + Double.toString(picture.getLongitude()) + " degrees");
     }
 
     public void addTag() {
