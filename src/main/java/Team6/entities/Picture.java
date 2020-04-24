@@ -15,7 +15,10 @@ import java.util.*;
 import java.util.logging.Level;
 
 /**
- * class used to store information about the photos
+ * Holds details about a picture, like filepath, iso and shutter speed.
+ *
+ * @author Team 6
+ * @version 2020.04.24
  */
 public class Picture {
     private int id;
@@ -31,10 +34,23 @@ public class Picture {
     private String fileName;
     private List<String> tags;
 
-    public void setTags(List<String> tags) {
-        this.tags = tags;
-    }
 
+    /**
+     * Basic constructor being used when retrieving picture details
+     * from database.
+     *
+     * @param id The ID.
+     * @param fileName The filename.
+     * @param filepath The filepath.
+     * @param fileSize The file size.
+     * @param dateTime The date and time.
+     * @param iso The iso.
+     * @param shutterSpeed The shutter speed.
+     * @param exposureTime The exposure time.
+     * @param isFlashUsed If the flashed is used.
+     * @param latitude The latitude.
+     * @param longitude The longitude.
+     */
     public Picture(int id, String fileName, String filepath, double fileSize, Date dateTime, int iso, int shutterSpeed, double exposureTime, boolean isFlashUsed, double latitude, double longitude) {
         this.id = id;
         this.filepath = filepath;
@@ -51,8 +67,13 @@ public class Picture {
     }
 
     /**
-     * constructor
-     * @param filepath the filepath to the image whose metadata is to be stored
+     * Sets up the metadata information.
+     * If the picture cant be processed, or if metadata
+     * can't be read, a {@link ImageProcessingException} or
+     * {@link IOException} is thrown in the try/catch-block.
+     *
+     * @param filepath The filepath to the image whose
+     *                 metadata is to be stored.
      */
     public Picture(String filepath) {
         this.filepath = filepath;
@@ -89,98 +110,229 @@ public class Picture {
         this.tags = new ArrayList<>();
     }
 
+    /**
+     * Returns the ID.
+     *
+     * @return The ID.
+     */
     public int getId() {
         return id;
     }
 
     /**
+     * Sets the ID.
      *
-     * @return returns a list of the photos tags
+     * @param id The ID.
      */
-    public List<String> getTags() {
-        return tags;
+    public void setId(int id) {
+        this.id = id;
     }
 
     /**
-     * Gets the filepath for the image.
-     * @return String
+     * Returns the filepath.
+     *
+     * @return The filepath.
      */
     public String getFilepath() {
         return filepath;
     }
 
     /**
-     * Gets the time the picture was taken.
-     * @return Date
+     * Sets the filepath.
+     *
+     * @param filepath The filepath.
+     */
+    public void setFilepath(String filepath) {
+        this.filepath = filepath;
+    }
+
+    /**
+     * Returns the date and time the picture is taken.
+     *
+     * @return The date and time.
      */
     public Date getDateTime() {
         return dateTime;
     }
 
     /**
-     * Gets ISO.
-     * @return int
+     * Sets the date and time.
+     *
+     * @param dateTime The date and time.
+     */
+    public void setDateTime(Date dateTime) {
+        this.dateTime = dateTime;
+    }
+
+    /**
+     * Returns the ISO.
+     *
+     * @return The ISO.
      */
     public int getIso() {
         return iso;
     }
 
     /**
-     * Gets the shutterspeed.
-     * @return int
+     * Sets the ISO.
+     *
+     * @param iso The ISO.
+     */
+    public void setIso(int iso) {
+        this.iso = iso;
+    }
+
+    /**
+     * Returns the shutter speed.
+     *
+     * @return The shutter speed.
      */
     public int getShutterSpeed() {
         return shutterSpeed;
     }
 
     /**
-     * Get the exposure time.
-     * @return double
+     * Sets the shutter speed.
+     *
+     * @param shutterSpeed The shutter speed.
+     */
+    public void setShutterSpeed(int shutterSpeed) {
+        this.shutterSpeed = shutterSpeed;
+    }
+
+    /**
+     * Returns the exposure time.
+     *
+     * @return The exposure time.
      */
     public double getExposureTime() {
         return exposureTime;
     }
 
     /**
-     * If the flash was used the method returns true.
-     * @return boolean
+     * Sets the exposure time.
+     *
+     * @param exposureTime The exposure time.
+     */
+    public void setExposureTime(double exposureTime) {
+        this.exposureTime = exposureTime;
+    }
+
+    /**
+     * If the flash is used in the picture.
+     *
+     * @return True if the flashed is being used.
      */
     public boolean isFlashUsed() {
         return isFlashUsed;
     }
 
     /**
-     * Gets the latitude of the image when it was taken.
-     * @return double
+     * Sets the if the flash is being used or not.
+     *
+     * @param flashUsed True if the flash is being used.
+     */
+    public void setFlashUsed(boolean flashUsed) {
+        isFlashUsed = flashUsed;
+    }
+
+    /**
+     * Returns the latitude.
+     *
+     * @return The latitude.
      */
     public double getLatitude() {
         return latitude;
     }
 
     /**
-     * Gets the longitude of the image when it was taken.
-     * @return double
+     * Sets the latitude.
+     *
+     * @param latitude The latitude.
+     */
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    /**
+     * Returns the longitude.
+     *
+     * @return The longitude.
      */
     public double getLongitude() {
         return longitude;
     }
 
     /**
-     * Gets file size
-     * @return double
+     * Sets the longitude.
+     *
+     * @param longitude The longitude.
+     */
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    /**
+     * Returns the file size.
+     *
+     * @return The file size.
      */
     public double getFileSize() {
         return fileSize;
     }
 
     /**
-     * Gets filename
-     * @return String
+     * Sets the file size.
+     *
+     * @param fileSize The file size.
+     */
+    public void setFileSize(double fileSize) {
+        this.fileSize = fileSize;
+    }
+
+    /**
+     * Returns the filename.
+     *
+     * @return The filename.
      */
     public String getFileName() {
         return fileName;
     }
 
+    /**
+     * Sets the filename.
+     *
+     * @param fileName The filename.
+     */
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
+    /**
+     * Returns all the tags as a list.
+     *
+     * @return All the tags as a list.
+     */
+    public List<String> getTags() {
+        return tags;
+    }
+
+    /**
+     * Sets the tags in a list.
+     *
+     * @param tags The tags in a list.
+     */
+    public void setTags(List<String> tags) {
+        this.tags = tags;
+    }
+
+    /**
+     * Test for content equality between two objects.
+     *
+     * @param o The object to compare to this one.
+     * @return Filepath if the argument object is instance
+     *         of Picture.
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -188,7 +340,6 @@ public class Picture {
         Picture picture = (Picture) o;
         return filepath.equals(picture.filepath);
     }
-
 
     /**
      * adds a tag to the image
@@ -200,11 +351,21 @@ public class Picture {
         return true;
     }
 
+    /**
+     * Returns a string with the filename of the picture..
+     *
+     * @return A string containing the filename.
+     */
     @Override
     public String toString() {
         return fileName;
     }
 
+    /**
+     * Compute a hashcode.
+     *
+     * @return A hashcode for picture.
+     */
     @Override
     public int hashCode() {
         return Objects.hash(id, filepath, dateTime, iso, shutterSpeed, exposureTime, isFlashUsed, latitude, longitude, fileSize, fileName, tags);

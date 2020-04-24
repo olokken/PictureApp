@@ -9,10 +9,28 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 
+/**
+ * Holds details about the usage of picture.
+ *
+ * @author Team 6
+ * @version 2020.04.24
+ */
 public class PictureService {
 
+    /**
+     * Constructor that creates an instance of PictureService, initialising the instance.
+     */
     public PictureService(){ }
 
+    /**
+     * Returns all the pictures from a user from the database.
+     * If the database won't connect, can't get user or album ID or execute, a
+     * {@link SQLException} is thrown.
+     *
+     * @param albumId The album ID.
+     * @param userId The user ID.
+     * @return List of pictures.
+     */
     public List<Picture> getAllPictures(int albumId, int userId) {
         String query;
         if (albumId >= 0) {
@@ -57,6 +75,15 @@ public class PictureService {
         }
     }
 
+    /**
+     * Creates a picture in the database with the given album ID.
+     * If the database won't connect, can't get picture or album ID, or execute,
+     * a {@link SQLException} is thrown.
+     *
+     * @param picture The picture.
+     * @param albumId The album ID.
+     * @return True if picture is created.
+     */
     public boolean createPicture(Picture picture, int albumId) {
         String insertPicture = "INSERT INTO picture VALUES (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         String insertAlbumPicture = "INSERT INTO albumpicture VALUES (default, ?, ?)";
@@ -112,6 +139,15 @@ public class PictureService {
         }
     }
 
+    /**
+     * Delete a album from the given picture ID and album ID.
+     * If the database won't connect, can't get picture ID or album ID, or execute,
+     * a {@link SQLException} is thrown.
+     *
+     * @param pictureid The picture ID.
+     * @param albumid The album ID.
+     * @return True if picture is deleted.
+     */
     public boolean deletePicture(int pictureid, int albumid) {
         String query = "Delete from picture where id = ?";
         String deleteFromAlbumQuery = "Delete from albumpicture where pictureid = ? and albumid = ?";
@@ -150,7 +186,16 @@ public class PictureService {
         }
     }
 
-    public boolean addTag(Picture p, String tag) {
+    /**
+     * Adds tag to a picture.
+     * If the database won't connect, can't get picture or tag, or execute,
+     * a {@link SQLException} is thrown.
+     *
+     * @param picture The picture.
+     * @param tag The tag.
+     * @return True if tag is added.
+     */
+    public boolean addTag(Picture picture, String tag) {
         String insertPictureTag = "INSERT INTO picturetag VALUES (default, ?, ?)";
 
         Connection conn = Database.connectDB();
@@ -158,7 +203,7 @@ public class PictureService {
         ResultSet result = null;
         try {
             pst = conn.prepareStatement(insertPictureTag,Statement.RETURN_GENERATED_KEYS);
-            pst.setInt(1, p.getId());
+            pst.setInt(1, picture.getId());
             pst.setString(2, tag);
             pst.executeUpdate();
             return true;
@@ -171,7 +216,14 @@ public class PictureService {
         }
     }
 
-
+    /**
+     * Returns list of tags belonging to the given picture.
+     * If the database won't connect, can't get picture or execute,
+     * a {@link SQLException} is thrown.
+     *
+     * @param picture The picture.
+     * @return All the tags as a List.
+     */
     public List<String> getTags(Picture picture) {
         String query = "Select * From picturetag where pictureId = ?";
         ArrayList<String> tags = new ArrayList<>();
@@ -197,6 +249,15 @@ public class PictureService {
         }
     }
 
+    /**
+     * Delete tag to a picture.
+     * If the database won't connect, can't get picture or tag, or execute,
+     * a {@link SQLException} is thrown.
+     *
+     * @param picture The picture.
+     * @param tag The tag.
+     * @return True if tag is deleted.
+     */
     public boolean deleteTag(Picture picture, String tag) {
         String query = "Delete from picturetag where pictureId = ? and tagName = ?";
 

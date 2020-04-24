@@ -1,16 +1,14 @@
-/**
- * Class to represent a photoalbum.
- *
- * @author team6
- */
-
 package Team6.entities;
-//Heja
 
 import Team6.services.AppLogger;
 import java.util.*;
 import java.util.logging.Level;
-
+/**
+ * Represents an photo Album containing pictures with picture information.
+ *
+ * @author Team 6
+ * @version 2020.04.24
+ */
 public class Album {
     private int id;
     private String name;
@@ -18,8 +16,11 @@ public class Album {
     private List<Picture> pictures;
 
     /**
-     * Constructor for an album object
-     * @param name
+     * Sets up the details about the album.
+     *
+     * @param name The name.
+     * @param id The ID.
+     * @param userId The ID of the user.
      */
     public Album(int id, String name, int userId) {
         this.id = id;
@@ -28,29 +29,50 @@ public class Album {
         this.pictures = new ArrayList<>();
     }
 
+    /**
+     * Sets up the details about the album.
+     *
+     * @param name The name.
+     */
     public Album(String name) {
         this.id = 0;
         this.name = name;
         this.pictures = new ArrayList<>();
     }
 
+    /**
+     * Constructor that creates an instance of the Album, initialising the instance.
+     */
     public Album() {}
 
-    public Album(Album a) {
-        this.id = a.getId();
-        this.name = a.getName();
-        this.pictures = a.getPictures();
+    /**
+     * Sets up the details about the album.
+     *
+     * @param album an Album.
+     */
+    public Album(Album album) {
+        this.id = album.getId();
+        this.name = album.getName();
+        this.pictures = album.getPictures();
     }
 
+    /**
+     * Sets up the details about the album.
+     *
+     * @param name The name.
+     * @param userId The ID of the user.
+     */
     public Album(String name, int userId) {
         this.name = name;
         this.userId = userId;
     }
 
-    public void setPictures(ArrayList<Picture> pictures) {
-        this.pictures = pictures;
-    }
 
+    /**
+     * Returns the ID.
+     *
+     * @return The ID.
+     */
     public int getId() {
         return id;
     }
@@ -63,10 +85,20 @@ public class Album {
         return name;
     }
 
+    /**
+     * Returns the user ID.
+     *
+     * @return The user ID.
+     */
     public int getUserId() {
         return userId;
     }
 
+    /**
+     * Sets the user ID.
+     *
+     * @param userId The user ID.
+     */
     public void setUserId(int userId) {
         this.userId = userId;
     }
@@ -154,14 +186,29 @@ public class Album {
         pictures.sort(Comparator.comparing(x -> x.getExposureTime()));
     }
 
+    /**
+     * Sets the ID.
+     *
+     * @param id The ID.
+     */
     public void setId(int id) {
         this.id = id;
     }
 
+    /**
+     * Returns the name.
+     *
+     * @return the name
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * Sets the pictures.
+     *
+     * @param pictures The list with pictures.
+     */
     public void setPictures(List<Picture> pictures) {
         this.pictures = pictures;
     }
@@ -171,11 +218,6 @@ public class Album {
      */
     public void sortFileSize() {
         pictures.sort(Comparator.comparing(x -> x.getFileSize()));
-    }
-
-    @Override
-    public String toString() {
-        return name;
     }
 
     /**
@@ -192,11 +234,28 @@ public class Album {
         pictures.sort(Comparator.comparing(x -> x.isFlashUsed()));
     }
 
+    /**
+     * Sorts the pictures in the album based on the shutter speed,
+     * by comparing.
+     */
     public void sortShutterSpeed() {
         pictures.sort(Comparator.comparing(x -> x.getShutterSpeed()));
     }
 
+    /**
+     * Reverses the order of the pictures.
+     */
     public void reverseOrder() {
         Collections.reverse(pictures);
+    }
+
+    /**
+     * Returns a string with the name of the album.
+     *
+     * @return A string containing the album name.
+     */
+    @Override
+    public String toString() {
+        return name;
     }
 }

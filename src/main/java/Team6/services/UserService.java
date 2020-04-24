@@ -9,10 +9,28 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 
+/**
+ * Holds details about the usage of user.
+ *
+ * @author Team 6
+ * @version 2020.04.24
+ */
 public class UserService {
 
+    /**
+     * Constructor that creates an instance of UserService, initialising the instance.
+     */
     public UserService() { }
 
+    /**
+     * Creates a user in the database with the given name and password.
+     * If the database won't connect, can't get name or password, or execute,
+     * a {@link SQLException} is thrown.
+     *
+     * @param name The name.
+     * @param password The password.
+     * @return True if user is created.
+     */
     public boolean createUser(String name, String password) {
         String query = "INSERT INTO user VALUES (default, ?,?)";
         Connection conn = Database.connectDB();
@@ -32,10 +50,25 @@ public class UserService {
         }
     }
 
+    /**
+     * Hashing the password with adding a salt to the given password.
+     *
+     * @param password The password.
+     * @return A hashed password.
+     */
     public String hashPassword(String password) {
         return BCrypt.withDefaults().hashToString(12, password.toCharArray());
     }
 
+    /**
+     * Returns the user with the given username and password.
+     * If the database won't connect, can't get username or password, or execute,
+     * a {@link SQLException} is thrown.
+     *
+     * @param username The username.
+     * @param password The password.
+     * @return The user.
+     */
     public User login (String username, String password) {
         String query = "Select * From user where username = ?";
         Connection conn = Database.connectDB();
@@ -60,7 +93,14 @@ public class UserService {
         }
     }
 
-
+    /**
+     * Delete user with user ID from the given user.
+     * If the database won't connect, can't get user ID or execute,
+     * a {@link SQLException} is thrown.
+     *
+     * @param user The user.
+     * @return True if user is deleted.
+     */
     public boolean deleteUser(User user) {
         String query = "Delete from user where id = ?";
 

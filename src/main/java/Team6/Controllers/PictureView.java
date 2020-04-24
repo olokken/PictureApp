@@ -22,6 +22,12 @@ import java.net.URL;
 import java.util.*;
 import java.util.logging.Level;
 
+/**
+ * Controller for PictureView.
+ *
+ * @author Team 6
+ * @version 2020.04.24
+ */
 public class PictureView extends Base implements Initializable {
     @FXML
     HBox hBox;
@@ -56,9 +62,18 @@ public class PictureView extends Base implements Initializable {
     int index = Context.getInstance().currentIndex();
     Album album = new Album();
 
+    /**
+     * Constructor that creates an instance of PictureView, initialising the instance.
+     */
     public PictureView() throws IOException {
     }
 
+    /**
+     * Initialize the PictureView.
+     *
+     * @param url The url.
+     * @param resourceBundle The resource bundle.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setupAlbum();
@@ -68,19 +83,27 @@ public class PictureView extends Base implements Initializable {
         setupDeleteButton();
     }
 
+    /**
+     * Sets up album.
+     */
     void setupAlbum() {
         album.setName(Context.getInstance().currentAlbum().getName());
         album.setPictures(Context.getInstance().currentAlbum().getPictures());
         album.setId(Context.getInstance().currentAlbum().getId());
     }
 
+    /**
+     * Sets up delete button.
+     */
     void setupDeleteButton() {
         if (album.getId() <= 0){
             hBox.getChildren().remove(deleteButton);
         }
     }
 
-
+    /**
+     * Sets up picture.
+     */
     void setupPicture() {
         Image image = null;
         try {
@@ -94,6 +117,9 @@ public class PictureView extends Base implements Initializable {
         imageView.setImage(image);
     }
 
+    /**
+     * Deletes picture shown.
+     */
     @FXML
     void deletePicture() throws IOException {
         try{
@@ -108,12 +134,17 @@ public class PictureView extends Base implements Initializable {
 
     }
 
+    /**
+     * Sets up list view with tags.
+     */
     void setupListView() {
         ObservableList<String> list = FXCollections.observableArrayList(album.getPictures().get(index).getTags());
         listView.setItems(list);
     }
 
-
+    /**
+     * Switches to the scene used before PictureView.
+     */
     @FXML
     private void switchView() throws IOException {
         try{
@@ -125,6 +156,9 @@ public class PictureView extends Base implements Initializable {
 
     }
 
+    /**
+     * Sets up metadata information.
+     */
     void setupMetadata() {
         Picture picture = album.getPictures().get(index);
         if (picture.getFileName()!= null) {
@@ -138,6 +172,9 @@ public class PictureView extends Base implements Initializable {
         longitude.setText("Longitude: " + Double.toString(picture.getLongitude()) + " degrees");
     }
 
+    /**
+     * Add tag to picture.
+     */
     public void addTag() {
         Optional<String> result = showInputDialog("Add new tag", "Enter tag :");
         if (result.isPresent()) {
@@ -147,7 +184,9 @@ public class PictureView extends Base implements Initializable {
         }
     }
 
-
+    /**
+     * Deletes selected tag from picture.
+     */
     public void deleteTag() {
         if (listView.getSelectionModel().getSelectedIndex() > -1) {
             Picture picture = album.getPictures().get(index);

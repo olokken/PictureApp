@@ -222,5 +222,4 @@ apr. 24, 2020 7:08:11 P.M. Team6.services.UserService createUser
 FINE: Duplicate entry 'helvete' for key 'Username_UNIQUE'
 apr. 24, 2020 7:09:45 P.M. Team6.services.UserService createUser
 FINE: Duplicate entry 'din' for key 'Username_UNIQUE'
-Apr 24, 2020 7:44:25 PM Team6.Controllers.AlbumView addPicture
-FINE: null
+
