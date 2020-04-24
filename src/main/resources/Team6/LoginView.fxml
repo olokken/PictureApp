@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.Hyperlink?>
 
-<AnchorPane prefHeight="600.0"
+<AnchorPane prefHeight="777.0"
             prefWidth="820.0"
             styleClass="layout"
             snapToPixel="false"
