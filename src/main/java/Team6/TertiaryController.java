@@ -88,6 +88,8 @@ public class TertiaryController extends BaseController implements Initializable 
             AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
             AppLogger.closeHandler();
         }
+        imageView.setSmooth(true);
+        imageView.setCache(true);
         imageView.setImage(image);
     }
 
@@ -152,6 +154,8 @@ public class TertiaryController extends BaseController implements Initializable 
             pictureService.deleteTag(picture, tag);
             picture.getTags().remove(tag);
             listSetup();
+        } else {
+            showInformationDialog("Tag not chosen", "You have to choose the tag you want to delete from the list");
         }
     }
 }

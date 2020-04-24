@@ -38,7 +38,7 @@ public class PrimaryController extends BaseController implements Initializable  
     AlbumService albumService = new AlbumService();
     PictureService pictureService = new PictureService();
     User user = Context.getInstance().currentUser();
-    String transparent = "-fx-background-color: transparent";
+    String transparentButton = "-fx-background-color: linear-gradient(to bottom,#353535,#3D3C3C)";
     String buttonColor = "-fx-background-color: linear-gradient(to bottom,#1D1D1D,#2B2B2B)";
 
     TilePane tilePane = new TilePane();
@@ -58,11 +58,13 @@ public class PrimaryController extends BaseController implements Initializable  
 
     void buttonSetup() {
         if (selectedAlbums.isEmpty()) {
-            openButton.setStyle("-fx-background-color: linear-gradient(to bottom,#353535,#3D3C3C); -fx-text-fill: #525252");
-            deleteButton.setStyle("-fx-background-color: linear-gradient(to bottom,#353535,#3D3C3C); -fx-text-fill: #525252");
+            openButton.setStyle(transparentButton);
+            deleteButton.setStyle(transparentButton);
         } else {
-            openButton.setStyle(buttonColor); //linda problemet e nok her
-            deleteButton.setStyle(buttonColor); // teksten forsvinn osv, også veit æ ikke ka fargen hete
+            openButton.setStyle(null);
+            deleteButton.setStyle(null);
+            openButton.getStyleClass().add("primary.css");
+            deleteButton.getStyleClass().add("primary.css");
         }
     }
 
@@ -73,7 +75,7 @@ public class PrimaryController extends BaseController implements Initializable  
                 if (yourAlbums.indexOf(a) == pages.indexOf(v)) {
                     v.setOnMouseClicked(e -> {
                         if (selectedAlbums.contains(a)) {
-                            v.setStyle(transparent);
+                            v.setStyle("-fx-background-color: transparent");
                             selectedAlbums.remove(a);
                             buttonSetup();
                         } else {

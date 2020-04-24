@@ -65,14 +65,14 @@ public class SecondaryController extends BaseController implements Initializable
         albumSetup();
         fillList();
         setupPicturePane();
-        buttonSetup();
-        deleteButtonSetup();
+        setupVisibleButtons();
+        setupTransparentButtons();
         addListener();
         openMapView();
     }
 
 
-    void buttonSetup() {
+    void setupVisibleButtons() {
         if (album.getId() < 0) {
             vBox.getChildren().removeAll(addButton, deleteButton);
         }
@@ -149,22 +149,21 @@ public class SecondaryController extends BaseController implements Initializable
         }
     }
 
-    void deleteButtonSetup() {
+    void setupTransparentButtons() {
         if (selectedPhotos.isEmpty()) {
             deleteButton.setStyle("-fx-background-color: transparent");
+            createAlbumButton.setStyle("-fx-background-color: transparent");
         } else {
              deleteButton.setStyle("-fx-background-color: linear-gradient(to bottom,#3F3F3F,#2B2B2B)");
+             createAlbumButton.setStyle("-fx-background-color: linear-gradient(to bottom,#3F3F3F,#2B2B2B)");
         }
     }
 
     void addListener() {
         pages.forEach(x -> {
-            x.addEventHandler(MouseEvent.MOUSE_RELEASED, mouseEvent ->  deleteButtonSetup());
+            x.addEventHandler(MouseEvent.MOUSE_RELEASED, mouseEvent ->  setupTransparentButtons());
         });
     }
-
-
-
 
     void openMapView() {
         try{

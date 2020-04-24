@@ -28,8 +28,12 @@ public class CreateUserController extends BaseController {
     public void createUser() {
         try{
             if(checkUsername() && checkPassword() && passwordEqual()) {
-                userService.createUser(username.getText(), password.getText());
-                switchScene("createUser", "login");
+                if (userService.createUser(username.getText(), password.getText())) {
+                    userService.createUser(username.getText(), password.getText());
+                    switchScene("createUser", "login");
+                } else {
+                    showInformationDialog("Username taken", "Please choose another username");
+                }
             }
         } catch (IOException ex){
             AppLogger.getAppLogger().log(Level.FINE, ex.getMessage());
